@@ -885,7 +885,7 @@
                 </div>
             </div>
             
-            <p style="margin-bottom: 2rem; opacity: 0.9;">This assessment takes approximately 10-15 minutes to complete</p>
+            <p style="margin-bottom: 2rem; opacity: 0.9;">This assessment takes approximately 5 minutes to complete</p>
             <button class="cta-button" onclick="startAssessment()">Start Assessment</button>
         </div>
 
@@ -1314,10 +1314,14 @@
         function submitLeadForm(event) {
             event.preventDefault();
             
+            console.log('Form submitted - starting lead capture process...');
+            
             // Calculate assessment score for email
             const totalScore = Object.values(answers).reduce((sum, answer) => sum + answer.score, 0);
             const maxScore = assessmentQuestions.length * 4;
             const percentage = Math.round((totalScore / maxScore) * 100);
+            
+            console.log('Assessment scores calculated:', { totalScore, maxScore, percentage });
             
             let readinessLevel;
             if (percentage >= 85) {
@@ -1347,12 +1351,14 @@
                 responses: answers
             };
 
+            console.log('Form data collected:', formData);
+
             // Store lead data locally
             localStorage.setItem('leadData', JSON.stringify(formData));
-            console.log('Lead captured:', formData);
             
-            // Initialize EmailJS (replace YOUR_PUBLIC_KEY with your actual public key)
-            emailjs.init("oI6t4dwMhBXNaBKXo"); // Get this from your EmailJS account
+            // Initialize EmailJS
+            console.log('Initializing EmailJS...');
+            emailjs.init("oI6t4dwMhBXNaBKXo");
             
             // Prepare detailed assessment breakdown for email
             const dimensions = {};
@@ -1371,7 +1377,7 @@
 
             // Send email notification
             const emailParams = {
-                to_email: "erik@aiexpert.ai", // Your email
+                to_email: "erik@aiexpert.ai",
                 from_name: `${formData.firstName} ${formData.lastName}`,
                 from_email: formData.email,
                 company: formData.company,
@@ -1385,12 +1391,17 @@
                 lead_priority: percentage < 50 ? 'High Priority Lead' : percentage < 70 ? 'Medium Priority Lead' : 'Good Prospect'
             };
 
-            // Send the email (replace YOUR_SERVICE_ID with your actual service ID)
+            console.log('Email parameters prepared:', emailParams);
+            console.log('Sending email via EmailJS...');
+
+            // Send the email
             emailjs.send("theaiexpert_assessment", "template_8u3fxbf", emailParams)
                 .then(function(response) {
-                    console.log('Email sent successfully!', response.status, response.text);
+                    console.log('✅ Email sent successfully!', response.status, response.text);
+                    alert('Assessment completed! Check your email for the results.');
                 }, function(error) {
-                    console.log('Email failed to send', error);
+                    console.error('❌ Email failed to send:', error);
+                    alert('There was an issue sending the email. Please contact erik@aiexpert.ai directly.');
                 });
 
             // Show results after form submission

@@ -3,7 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aiexpert.ai - Your First Stop for Getting AI Done Right</title>
+    
+    <!-- Primary SEO Tags -->
+    <title>AI Expert Consulting | Fractional CAIO Services | AI Strategy & Implementation</title>
+    <meta name="description" content="Transform your business with expert AI consulting. Fractional CAIO services, AI strategy development, team training, and implementation for SMBs. Get AI done right with aiexpert.ai.">
+    <meta name="keywords" content="AI consultant, fractional CAIO, AI strategy, artificial intelligence consulting, business AI implementation, AI training, machine learning consultant, AI readiness assessment, virtual chief AI officer">
+    <meta name="author" content="Erik Schwartz, aiexpert.ai">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://eschwaa919.github.io/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eschwaa919.github.io/">
+    <meta property="og:title" content="AI Expert Consulting | Transform Your Business with AI | aiexpert.ai">
+    <meta property="og:description" content="Expert AI consulting services including fractional CAIO, strategy development, and implementation. Transform your business with AI. Free AI readiness assessment included.">
+    <meta property="og:image" content="https://eschwaa919.github.io/Erik-Headshot.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="aiexpert.ai">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://eschwaa919.github.io/">
+    <meta property="twitter:title" content="AI Expert Consulting | Transform Your Business with AI">
+    <meta property="twitter:description" content="Expert AI consulting services including fractional CAIO, strategy development, and implementation. Transform your business with AI.">
+    <meta property="twitter:image" content="https://eschwaa919.github.io/Erik-Headshot.png">
+    <meta property="twitter:creator" content="@aiexpert_ai">
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#2563eb">
+    <meta name="msapplication-TileColor" content="#2563eb">
+    <meta name="application-name" content="aiexpert.ai">
+    <meta name="apple-mobile-web-app-title" content="aiexpert.ai">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "aiexpert.ai",
+        "description": "Expert AI consulting services for small and medium businesses. Fractional CAIO services, AI strategy development, team training, and implementation.",
+        "url": "https://eschwaa919.github.io/",
+        "logo": "https://eschwaa919.github.io/Erik-Headshot.png",
+        "image": "https://eschwaa919.github.io/Erik-Headshot.png",
+        "telephone": "+1-XXX-XXX-XXXX",
+        "email": "eschwaa@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "US"
+        },
+        "founder": {
+            "@type": "Person",
+            "name": "Erik Schwartz",
+            "jobTitle": "Fractional Chief AI Officer",
+            "description": "Seasoned technology executive with over two decades of experience specializing in AI, search, and knowledge discovery.",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "aiexpert.ai"
+            },
+            "alumniOf": [
+                {
+                    "@type": "Organization",
+                    "name": "Microsoft"
+                },
+                {
+                    "@type": "Organization", 
+                    "name": "Comcast"
+                },
+                {
+                    "@type": "Organization",
+                    "name": "Elsevier"
+                }
+            ]
+        },
+        "serviceType": [
+            "AI Strategy Consulting",
+            "Fractional CAIO Services",
+            "AI Implementation",
+            "Machine Learning Consulting",
+            "AI Training and Education",
+            "Data Strategy",
+            "AI Readiness Assessment"
+        ],
+        "areaServed": {
+            "@type": "Country",
+            "name": "United States"
+        },
+        "potentialAction": {
+            "@type": "ReserveAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://calendly.com/eschwaa/aiconsult"
+            },
+            "result": {
+                "@type": "Reservation",
+                "name": "AI Strategy Consultation"
+            }
+        }
+    }
+    </script>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://calendly.com">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//calendly.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -19,12 +135,34 @@
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
+            position: relative;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* Fixed background image */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('London.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
         }
 
         /* Header */
@@ -72,12 +210,15 @@
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.92) 0%, rgba(118, 75, 162, 0.92) 100%);
             display: flex;
             align-items: center;
             color: white;
             position: relative;
             overflow: hidden;
+            margin-bottom: 6rem; /* Larger gap after hero */
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
         }
 
         .hero::before {
@@ -152,10 +293,15 @@
         /* Sections */
         section {
             padding: 5rem 0;
+            scroll-margin-top: 80px; /* Account for fixed header */
+            margin-bottom: 4rem; /* Add transparent gaps between sections */
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
         }
 
         .section-alt {
-            background: #f8fafc;
+            background: rgba(248, 250, 252, 0.95); /* Slightly transparent */
+            backdrop-filter: blur(2px);
         }
 
         h2 {
@@ -176,11 +322,12 @@
             display: flex;
             align-items: flex-start;
             gap: 1rem;
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             padding: 1.5rem;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .check-item:hover {
@@ -377,49 +524,69 @@
                 gap: 2rem !important;
                 text-align: center;
             }
+            
+            /* Enhanced mobile styling for assessment benefits */
+            .assessment-benefits {
+                gap: 1rem;
+                margin: 1rem 0;
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .assessment-intro {
+                padding: 2rem 1rem;
+                margin: 1rem 0;
+            }
         }
 
         /* Smooth scroll */
         html {
             scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
         }
 
         /* Assessment Styles */
         .assessment-intro {
             background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
             color: white;
-            padding: 4rem 2rem;
+            padding: 2.5rem 2rem;
             border-radius: 20px;
             text-align: center;
-            margin: 3rem 0;
+            margin: 2rem 0;
         }
 
         .assessment-intro h2 {
             color: white;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 2rem;
         }
 
         .assessment-benefits {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
-            max-width: 800px;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .benefit-item {
             background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
+            padding: 1rem;
             border-radius: 12px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .benefit-item h4 {
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .benefit-item p {
+            font-size: 0.9rem;
+            margin: 0;
         }
 
         .assessment-container {
@@ -434,6 +601,112 @@
 
         .assessment-container.active {
             display: block;
+        }
+
+        /* Full-screen assessment mode */
+        .assessment-container.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+            background: #f8fafc;
+            overflow-y: auto;
+            padding: 80px 2rem 2rem 2rem;
+            max-width: none;
+            margin: 0;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .assessment-container.fullscreen .assessment-progress {
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .assessment-container.fullscreen .question-card {
+            max-width: 800px;
+            margin: 0 auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .assessment-container.fullscreen .navigation-buttons {
+            max-width: 800px;
+            margin: 2rem auto 0 auto;
+        }
+
+        /* Lead capture and results also full-screen */
+        .lead-capture-container.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+            background: #f8fafc;
+            overflow-y: auto;
+            padding: 80px 2rem 2rem 2rem;
+            max-width: none;
+            margin: 0;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .lead-capture-container.fullscreen .lead-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .results-container.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+            background: #f8fafc;
+            overflow-y: auto;
+            padding: 80px 2rem 2rem 2rem;
+            max-width: none;
+            margin: 0;
+            display: block;
+        }
+
+        .results-container.fullscreen > * {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Close button for assessment */
+        .assessment-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .assessment-close.active {
+            display: flex;
         }
 
         .assessment-progress {
@@ -794,6 +1067,457 @@
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
+
+        /* Fix for navigation anchor links */
+        #assessment, #services, #about, #contact {
+            scroll-margin-top: 80px;
+        }
+
+        /* Add transparent spacers */
+        .section-spacer {
+            height: 6rem; /* Increased from 3rem for better visibility */
+            background: url('London.png') center/cover no-repeat fixed;
+            background-attachment: fixed;
+            position: relative;
+            opacity: 1; /* Full opacity for the spacers */
+            scroll-snap-align: center;
+        }
+        
+        .section-spacer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1); /* Slight dark overlay for better contrast */
+            pointer-events: none;
+        }
+
+        /* Enhanced scroll snap for better browser support */
+        @supports (scroll-snap-type: y mandatory) {
+            body {
+                scroll-snap-type: y mandatory;
+            }
+            
+            section {
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+            }
+            
+            .hero {
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+            }
+        }
+
+        /* Disable scroll snap during assessment fullscreen mode */
+        body.assessment-active {
+            scroll-snap-type: none;
+        }
+
+        /* Featured Insights Section */
+        .featured-insights {
+            padding: 2rem 0;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .insight-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px);
+            border-left: 4px solid #2563eb;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .insight-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .insight-header h3 {
+            color: #1f2937;
+            font-size: 1.3rem;
+            margin: 0;
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .insight-tag {
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .insight-card p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .insight-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .insight-link:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .insights-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .insight-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Resource sections styling */
+        .insight-resources {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .resource-link {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .additional-resources {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .additional-resources h3 {
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .resource-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px);
+            border-left: 3px solid #10b981;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .resource-header h4 {
+            color: #1f2937;
+            font-size: 1.1rem;
+            margin: 0;
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .resource-type {
+            background: #ecfdf5;
+            color: #10b981;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .resource-card p {
+            color: #6b7280;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .resource-download {
+            color: #10b981;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .resource-download:hover {
+            color: #059669;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resource-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .insight-resources {
+                gap: 0.75rem;
+            }
+        }
+
+        /* Download Modal Styles */
+        .download-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1001;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .download-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .download-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 0.4s ease;
+        }
+
+        .download-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #f3f4f6;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .download-modal-close:hover {
+            background: #e5e7eb;
+        }
+
+        .download-modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .download-modal-header h3 {
+            color: #1f2937;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-modal-header p {
+            color: #6b7280;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .download-value-props {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .value-prop {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            color: #374151;
+        }
+
+        .value-prop:last-child {
+            margin-bottom: 0;
+        }
+
+        .value-icon {
+            font-size: 1.1rem;
+        }
+
+        .download-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .download-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .download-form-group input {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: white;
+        }
+
+        .download-form-group input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .download-submit-btn {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .download-submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .download-icon {
+            font-size: 1.2rem;
+        }
+
+        .download-privacy-notice {
+            font-size: 0.8rem;
+            color: #6b7280;
+            text-align: center;
+            margin-top: 1rem;
+            line-height: 1.4;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .download-modal-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .download-form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -809,6 +1533,64 @@
             <button class="mobile-menu-toggle">☰</button>
         </nav>
     </header>
+
+    <!-- Download Email Capture Modal -->
+    <div class="download-modal" id="downloadModal">
+        <div class="download-modal-content">
+            <button class="download-modal-close" onclick="closeDownloadModal()">×</button>
+            <div class="download-modal-header">
+                <h3>🎯 Get Your Free AI Resource</h3>
+                <p id="downloadResourceTitle">Download our premium AI resource</p>
+            </div>
+            
+            <div class="download-value-props">
+                <div class="value-prop">
+                    <span class="value-icon">📊</span>
+                    <span>Expert insights from industry leaders</span>
+                </div>
+                <div class="value-prop">
+                    <span class="value-icon">🚀</span>
+                    <span>Actionable strategies for immediate implementation</span>
+                </div>
+                <div class="value-prop">
+                    <span class="value-icon">💡</span>
+                    <span>Future-proof your business with AI</span>
+                </div>
+            </div>
+            
+            <form class="download-form" id="downloadForm" onsubmit="submitDownloadForm(event)">
+                <div class="download-form-row">
+                    <div class="download-form-group">
+                        <input type="text" id="downloadFirstName" name="firstName" placeholder="First Name" required>
+                    </div>
+                    <div class="download-form-group">
+                        <input type="text" id="downloadLastName" name="lastName" placeholder="Last Name" required>
+                    </div>
+                </div>
+                
+                <div class="download-form-group">
+                    <input type="email" id="downloadEmail" name="email" placeholder="Work Email Address" required>
+                </div>
+                
+                <div class="download-form-group">
+                    <input type="text" id="downloadCompany" name="company" placeholder="Company Name" required>
+                </div>
+                
+                <button type="submit" class="download-submit-btn">
+                    <span class="download-icon">📄</span>
+                    Download Now - It's Free!
+                </button>
+                
+                <p class="download-privacy-notice">
+                    We respect your privacy. Your information will only be used to send you valuable AI insights. 
+                    You can unsubscribe at any time.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Assessment close button -->
+    <button class="assessment-close" id="assessmentCloseBtn" onclick="closeAssessment()">×</button>
 
     <section class="hero">
         <div class="container">
@@ -829,6 +1611,9 @@
             </div>
         </div>
     </section>
+
+     <!-- Transparent spacer to show background -->
+     <div class="section-spacer"></div>
 
     <section class="container">
         <h2>Are You Here Because You Need To...</h2>
@@ -867,6 +1652,9 @@
         </div>
     </section>
 
+    <!-- Transparent spacer to show background -->
+    <div class="section-spacer"></div>
+
     <section id="services" class="section-alt">
         <div class="container">
             <h2>What We Offer</h2>
@@ -879,13 +1667,13 @@
                     <h3>2. Strategy & Advisory</h3>
                     <p>From AI Readiness to roadmap design — get clear, pragmatic guidance to scale with confidence.</p>
                 </div>
-                <div class="service-card fade-in">
-                    <h3>3. Deployment & Execution</h3>
-                    <p>From copilots to full agents, we design and deliver AI systems that work within your business today.</p>
+                 <div class="service-card fade-in">
+                    <h3>3. Data & Measurement</h3>
+                    <p>Get your data estate AI-ready. Measure adoption. Report impact. Drive continuous improvement.</p>
                 </div>
                 <div class="service-card fade-in">
-                    <h3>4. Data & Measurement</h3>
-                    <p>Get your data estate AI-ready. Measure adoption. Report impact. Drive continuous improvement.</p>
+                    <h3>4. Deployment & Execution</h3>
+                    <p>From copilots to full agents, we design and deliver AI systems that work within your business today.</p>
                 </div>
             </div>
             
@@ -895,6 +1683,9 @@
             </div>
         </div>
     </section>
+
+     <!-- Transparent spacer to show background -->
+     <div class="section-spacer"></div>
 
     <section class="container">
         <h2>Common Objections We Hear (And Solve)</h2>
@@ -934,6 +1725,9 @@
         </div>
     </section>
 
+    <!-- Transparent spacer to show background -->
+    <div class="section-spacer"></div>
+
     <section class="section-alt">
         <div class="container">
             <h2>Why aiexpert.ai?</h2>
@@ -953,6 +1747,9 @@
             </div>
         </div>
     </section>
+
+    <!-- Transparent spacer to show background -->
+    <div class="section-spacer"></div>
 
     <section id="assessment" class="container">
         <div class="assessment-intro fade-in">
@@ -1104,7 +1901,104 @@
         </div>
     </section>   
 
-  
+    <!-- Transparent spacer to show background -->
+    <div class="section-spacer"></div>
+
+    <section class="container">
+        <div class="featured-insights fade-in">
+            <h2>Featured AI Insights</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 3rem;">Practical AI guidance from Erik's latest thought leadership</p>
+            
+            <div class="insights-grid">
+                <div class="insight-card fade-in">
+                    <div class="insight-header">
+                        <h3>AI Execution Playbook for SMBs</h3>
+                        <span class="insight-tag">Strategy</span>
+                    </div>
+                    <p>Turning AI hype into measurable ROI without a Fortune 500 budget. A practical roadmap for small and medium businesses ready to implement AI successfully.</p>
+                    <div class="insight-resources">
+                        <a href="https://www.linkedin.com/pulse/ai-execution-playbook-smbs-turning-hype-roi-without-fortune-schwartz-76y6e/" target="_blank" rel="noopener" class="insight-link">Read Article →</a>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./The-AI-Execution-Playbook-for-SMBs.pdf', 'The AI Execution Playbook for SMBs')" class="insight-link resource-link">📄 Full Playbook (PDF)</a>
+                    </div>
+                </div>
+                
+                <div class="insight-card fade-in">
+                    <div class="insight-header">
+                        <h3>A Leader's Journey to AI Adoption</h3>
+                        <span class="insight-tag">Leadership</span>
+                    </div>
+                    <p>Real-world insights from leadership experiences in AI transformation. Navigate the challenges and opportunities of leading your organization through AI adoption.</p>
+                    <div class="insight-resources">
+                        <a href="https://www.linkedin.com/posts/eschwaa_a-leaders-journey-to-ai-adoption-activity-7325771625394565120-LNsR" target="_blank" rel="noopener" class="insight-link">Read Article →</a>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./The-AI-Infused-Business-A-Leaders-Journey-to-AI-Adoption.pdf', 'The AI-Infused Business: A Leader\'s Journey to AI Adoption')" class="insight-link resource-link">📄 Full Report (PDF)</a>
+                    </div>
+                </div>
+                
+                <div class="insight-card fade-in">
+                    <div class="insight-header">
+                        <h3>AI Workforce Revolution by 2045</h3>
+                        <span class="insight-tag">Future of Work</span>
+                    </div>
+                    <p>How jobs, teams, and leadership will transform over the next two decades. Prepare your organization for the AI-driven future of work.</p>
+                    <div class="insight-resources">
+                        <a href="https://www.linkedin.com/pulse/ai-workforce-revolution-how-jobs-teams-leadership-2045-erik-schwartz-bdn3e" target="_blank" rel="noopener" class="insight-link">Read Article →</a>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./AI and the Future of Work.pdf', 'AI and the Future of Work Research Paper')" class="insight-link resource-link">📄 Research Paper (PDF)</a>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./Future of work infographic.png', 'Future of Work Infographic')" class="insight-link resource-link">📊 Infographic</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Resources Section -->
+            <div class="additional-resources">
+                <h3>Additional AI Resources</h3>
+                <div class="resources-grid">
+                    <div class="resource-card fade-in">
+                        <div class="resource-header">
+                            <h4>The AI Competency Matrix</h4>
+                            <span class="resource-type">📄 PDF Guide</span>
+                        </div>
+                        <p>Comprehensive framework for assessing and developing AI capabilities across your organization.</p>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./The AI Competency Matrix.pdf', 'The AI Competency Matrix')" class="resource-download">Download PDF</a>
+                    </div>
+                    
+                    <div class="resource-card fade-in">
+                        <div class="resource-header">
+                            <h4>The Dawn of Intelligence as Infrastructure</h4>
+                            <span class="resource-type">📝 Research Paper</span>
+                        </div>
+                        <p>Deep dive into how AI is becoming the foundational infrastructure layer for modern businesses.</p>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./The Dawn of Intelligence as Infrastructure.docx', 'The Dawn of Intelligence as Infrastructure')" class="resource-download">Download DOCX</a>
+                    </div>
+                    
+                    <div class="resource-card fade-in">
+                        <div class="resource-header">
+                            <h4>AI as Infrastructure Layer - Deep Research</h4>
+                            <span class="resource-type">📝 Analysis</span>
+                        </div>
+                        <p>Technical analysis of AI infrastructure implementation patterns and best practices.</p>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./AI as an Infrastructure Layer Deep Research.docx', 'AI as Infrastructure Layer - Deep Research')" class="resource-download">Download DOCX</a>
+                    </div>
+                    
+                    <div class="resource-card fade-in">
+                        <div class="resource-header">
+                            <h4>The Future of Work & AI Disruption</h4>
+                            <span class="resource-type">📝 Whitepaper</span>
+                        </div>
+                        <p>Comprehensive analysis of how artificial intelligence is reshaping modern workplaces and job roles.</p>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./The future The fear of artificial intelligence disrupting jobs has permeated modern workplaces.docx', 'The Future of Work & AI Disruption')" class="resource-download">Download DOCX</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="color: #6b7280; margin-bottom: 1rem;">Want more AI insights delivered directly?</p>
+                <a href="https://www.linkedin.com/in/eschwaa/" target="_blank" rel="noopener" class="cta-button">Follow Erik on LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparent spacer to show background -->
+    <div class="section-spacer"></div>
 
     <section id="about" class="container">
         <div class="about-erik fade-in">
@@ -1130,6 +2024,9 @@
             </div>
         </div>
     </section>
+
+    <!-- Transparent spacer to show background -->
+    <div class="section-spacer"></div>
 
     <section id="contact" class="container">
         <div class="final-cta fade-in">
@@ -1290,9 +2187,38 @@
         let answers = {};
 
         function startAssessment() {
+            // Hide the intro and enable full-screen mode
             document.querySelector('.assessment-intro').style.display = 'none';
-            document.getElementById('assessmentContainer').classList.add('active');
+            const assessmentContainer = document.getElementById('assessmentContainer');
+            assessmentContainer.classList.add('active', 'fullscreen');
+            
+            // Disable scroll snap during assessment
+            document.body.classList.add('assessment-active');
+            
+            // Show close button
+            document.getElementById('assessmentCloseBtn').classList.add('active');
+            
+            // Reset to first question
+            currentQuestion = 0;
             showQuestion(0);
+        }
+
+        function closeAssessment() {
+            // Remove all fullscreen classes
+            document.getElementById('assessmentContainer').classList.remove('active', 'fullscreen');
+            document.getElementById('leadCaptureContainer').classList.remove('active', 'fullscreen');
+            document.getElementById('resultsContainer').classList.remove('active', 'fullscreen');
+            document.getElementById('assessmentCloseBtn').classList.remove('active');
+            
+            // Re-enable scroll snap
+            document.body.classList.remove('assessment-active');
+            
+            // Show the intro again
+            document.querySelector('.assessment-intro').style.display = 'block';
+            
+            // Reset data
+            currentQuestion = 0;
+            answers = {};
         }
 
         function showQuestion(index) {
@@ -1369,8 +2295,13 @@
         }
 
         function showResults() {
-            document.getElementById('assessmentContainer').style.display = 'none';
-            document.getElementById('leadCaptureContainer').classList.add('active');
+            // Switch to lead capture in full-screen
+            document.getElementById('assessmentContainer').classList.remove('active', 'fullscreen');
+            const leadCaptureContainer = document.getElementById('leadCaptureContainer');
+            leadCaptureContainer.classList.add('active', 'fullscreen');
+            
+            // Keep scroll snap disabled during lead capture
+            document.body.classList.add('assessment-active');
         }
 
         function submitLeadForm(event) {
@@ -1463,9 +2394,10 @@
                     console.error('❌ Email failed to send:', error);
                 });
 
-            // Show results after form submission
-            document.getElementById('leadCaptureContainer').style.display = 'none';
-            document.getElementById('resultsContainer').classList.add('active');
+            // Show results in full-screen mode
+            document.getElementById('leadCaptureContainer').classList.remove('active', 'fullscreen');
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.classList.add('active', 'fullscreen');
             calculateAndDisplayResults();
         }
 
@@ -1515,56 +2447,82 @@
                 dimensions[answer.dimension] = answer.score;
             });
 
-            const labels = Object.keys(dimensions).map(dim => {
-                // Shorten labels for better display
-                return dim.split(' ')[0] + (dim.split(' ').length > 1 ? '\n' + dim.split(' ').slice(1).join(' ') : '');
-            });
+            // Create shortened labels and map scores in the correct order
+            const dimensionMapping = [
+                { shortLabel: 'Strategy & Vision', fullName: 'Vision & Strategic Differentiation' },
+                { shortLabel: 'Customer Engagement', fullName: 'Customer Understanding & Engagement' },
+                { shortLabel: 'Operational Efficiency', fullName: 'Operational Efficiency' },
+                { shortLabel: 'Product Innovation', fullName: 'Product & Service Innovation' },
+                { shortLabel: 'Talent & Culture', fullName: 'Talent & Culture' },
+                { shortLabel: 'Risk & Governance', fullName: 'Risk Management & Governance' },
+                { shortLabel: 'Data & Decisions', fullName: 'Data & Decision Making' },
+                { shortLabel: 'Growth & Markets', fullName: 'Growth & Market Expansion' }
+            ];
             
-            const scores = Object.values(dimensions);
+            const shortLabels = dimensionMapping.map(d => d.shortLabel);
+            const scores = dimensionMapping.map(d => dimensions[d.fullName] || 0);
 
             new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: Object.keys(dimensions),
-                    datasets: [{
-                        label: 'AI Readiness Score',
-                        data: scores,
-                        borderColor: '#2563eb',
-                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
-                        borderWidth: 2,
-                        pointBackgroundColor: '#2563eb',
-                        pointBorderColor: '#ffffff',
-                        pointBorderWidth: 2,
-                        pointRadius: 6
-                    }]
+                    labels: shortLabels,
+                    datasets: [
+                        {
+                            // Hidden dataset to force 0 at center
+                            label: 'Zero Line',
+                            data: new Array(shortLabels.length).fill(0),
+                            borderColor: 'transparent',
+                            backgroundColor: 'transparent',
+                            pointBackgroundColor: 'transparent',
+                            pointBorderColor: 'transparent',
+                            pointRadius: 0,
+                            borderWidth: 0
+                        },
+                        {
+                            label: 'AI Readiness Score',
+                            data: scores,
+                            borderColor: '#2563eb',
+                            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#2563eb',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 3,
+                            pointRadius: 8
+                        }
+                    ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            angleLines: {
-                                color: '#e2e8f0'
-                            },
-                            grid: {
-                                color: '#e2e8f0'
-                            },
-                            pointLabels: {
-                                color: '#374151',
-                                font: {
-                                    size: 11,
-                                    weight: '600'
-                                }
-                            },
-                            ticks: {
-                                color: '#6b7280',
-                                font: {
-                                    size: 10
-                                },
-                                stepSize: 1,
-                                min: 0,
-                                max: 4,
-                                display: true
+                    scale: {
+                        // For radar charts, use 'scale' instead of 'scales.r'
+                        angleLines: {
+                            color: '#e2e8f0',
+                            lineWidth: 1
+                        },
+                        gridLines: {
+                            color: '#e2e8f0',
+                            lineWidth: 1
+                        },
+                        pointLabels: {
+                            fontColor: '#374151',
+                            fontSize: 12,
+                            fontStyle: '600'
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            min: 0,
+                            max: 4,
+                            stepSize: 1,
+                            showLabelBackdrop: true,
+                            backdropColor: 'rgba(255, 255, 255, 0.9)',
+                            backdropPaddingX: 4,
+                            backdropPaddingY: 4,
+                            fontColor: '#6b7280',
+                            fontSize: 11,
+                            fontStyle: '600',
+                            callback: function(value) {
+                                return value.toString();
                             }
                         }
                     },
@@ -1574,6 +2532,10 @@
                         },
                         tooltip: {
                             callbacks: {
+                                title: function(context) {
+                                    // Map short labels back to full dimension names for tooltips
+                                    return dimensionMapping[context[0].dataIndex].fullName;
+                                },
                                 label: function(context) {
                                     return `Score: ${context.parsed.r}/4`;
                                 }
@@ -1858,12 +2820,157 @@
             
             doc.setFontSize(11);
             doc.setFont(undefined, 'normal');
-            doc.text('Book a strategy call with our AI experts: calendly.com/eschwaa/aiconsult', 20, yPosition + 45);
+            doc.text('Book a strategy call with our AI experts: https://calendly.com/eschwaa/aiconsult', 20, yPosition + 45);
             doc.text('Visit https://aiexpert.ai to learn more about our services', 20, yPosition + 55);
 
             // Save the PDF
             doc.save(`AI-Assessment-Report-${currentDate.replace(/\//g, '-')}.pdf`);
+            
+            // Exit full-screen mode after PDF download
+            setTimeout(() => {
+                closeAssessment();
+            }, 1000); // Small delay to ensure PDF download starts
         }
+
+        let pendingDownload = null;
+
+        function showDownloadForm(fileUrl, fileName) {
+            // Store download details for later
+            pendingDownload = { fileUrl, fileName };
+            
+            // Update modal title
+            document.getElementById('downloadResourceTitle').textContent = `"${fileName}"`;
+            
+            // Show modal
+            document.getElementById('downloadModal').classList.add('active');
+            
+            // Disable scroll snap while modal is open
+            document.body.classList.add('assessment-active');
+        }
+
+        function closeDownloadModal() {
+            document.getElementById('downloadModal').classList.remove('active');
+            document.body.classList.remove('assessment-active');
+            pendingDownload = null;
+            
+            // Reset form
+            document.getElementById('downloadForm').reset();
+        }
+
+        function submitDownloadForm(event) {
+            event.preventDefault();
+            
+            console.log('Download form submitted - starting email capture...');
+            
+            // Collect form data
+            const formData = {
+                firstName: document.getElementById('downloadFirstName').value,
+                lastName: document.getElementById('downloadLastName').value,
+                email: document.getElementById('downloadEmail').value,
+                company: document.getElementById('downloadCompany').value,
+                resourceName: pendingDownload.fileName,
+                downloadUrl: pendingDownload.fileUrl,
+                downloadDate: new Date().toISOString()
+            };
+
+            console.log('Download form data collected:', formData);
+
+            // Send email notification via EmailJS
+            const emailParams = {
+                from_name: `${formData.firstName} ${formData.lastName}`,
+                from_email: formData.email,
+                company: formData.company,
+                resource_name: formData.resourceName,
+                download_date: new Date().toLocaleString(),
+                lead_type: 'Resource Download',
+                lead_source: 'Website Resource Library'
+            };
+
+            console.log('Sending download notification email...');
+
+            // Send the email
+            emailjs.send("theaiexpert_assessment", "template_8u3fxbf", emailParams)
+                .then(function(response) {
+                    console.log('✅ Download notification email sent!', response.status, response.text);
+                }, function(error) {
+                    console.error('❌ Download notification email failed:', error);
+                });
+
+            // Trigger the download
+            triggerDownload(pendingDownload.fileUrl, pendingDownload.fileName);
+            
+            // Close modal and show success message
+            closeDownloadModal();
+            
+            // Show brief success message
+            showDownloadSuccess(formData.resourceName);
+        }
+
+        function triggerDownload(fileUrl, fileName) {
+            const link = document.createElement('a');
+            link.href = fileUrl;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function showDownloadSuccess(resourceName) {
+            // Create temporary success message
+            const successDiv = document.createElement('div');
+            successDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+                z-index: 1002;
+                font-weight: 600;
+                animation: slideInRight 0.4s ease;
+            `;
+            successDiv.innerHTML = `✅ "${resourceName}" download started!`;
+            
+            document.body.appendChild(successDiv);
+            
+            // Remove after 4 seconds
+            setTimeout(() => {
+                successDiv.style.animation = 'slideOutRight 0.4s ease';
+                setTimeout(() => {
+                    if (successDiv.parentNode) {
+                        document.body.removeChild(successDiv);
+                    }
+                }, 400);
+            }, 4000);
+        }
+
+        // Add CSS animations for success message
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>

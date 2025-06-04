@@ -230,7 +230,7 @@
             color: #333;
             overflow-x: hidden;
             position: relative;
-            scroll-snap-type: y mandatory;
+            scroll-snap-type: y proximity; /* Changed from mandatory to proximity */
             scroll-behavior: smooth;
         }
 
@@ -804,11 +804,11 @@
         /* Reduce scroll snap intensity on mobile */
         @media (max-width: 768px) {
             body {
-                scroll-snap-type: y proximity; /* Less aggressive than mandatory */
+                scroll-snap-type: y proximity; /* Already proximity, keeping consistent */
             }
             
             html {
-                scroll-snap-type: y proximity;
+                scroll-snap-type: y proximity; /* Changed from proximity to match body */
             }
             
             section {
@@ -2364,6 +2364,161 @@
         }
 
         /* Expanded Services Styles */
+        
+        /* Privacy Modal Styles */
+        .privacy-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .privacy-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .privacy-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .privacy-modal.active .privacy-modal-content {
+            transform: scale(1) translateY(0);
+        }
+        
+        .privacy-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #9ca3af;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .privacy-modal-close:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+        
+        .privacy-modal-header h3 {
+            color: #1f2937;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .privacy-content {
+            line-height: 1.6;
+            color: #374151;
+        }
+        
+        .privacy-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-content strong {
+            color: #1f2937;
+        }
+        
+        .privacy-contact {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+        
+        .privacy-contact h4 {
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .privacy-contact-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-contact-form .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-contact-form input,
+        .privacy-contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+        
+        .privacy-contact-form input:focus,
+        .privacy-contact-form textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .privacy-submit-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+        
+        .privacy-submit-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+        
+        @media (max-width: 768px) {
+            .privacy-modal-content {
+                margin: 1rem;
+                padding: 1.5rem;
+                max-height: 90vh;
+            }
+            
+            .privacy-contact-form .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
     
     <!-- Favicon and Icon Links -->
@@ -2377,7 +2532,10 @@
 <body>
     <header>
         <nav class="container">
-            <a href="#hero" class="logo">aiexpert.ai</a>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <img src="theaiexpert-transparent-logo.png" alt="aiexpert.ai" style="height: 32px; width: auto;">
+                <a href="#hero" class="logo">aiexpert.ai</a>
+            </div>
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#assessment">AI Assessment</a></li>
@@ -2443,6 +2601,58 @@
                     You can unsubscribe at any time.
                 </p>
             </form>
+        </div>
+    </div>
+
+    <!-- Privacy Modal -->
+    <div class="privacy-modal" id="privacyModal">
+        <div class="privacy-modal-content">
+            <button class="privacy-modal-close" onclick="closePrivacyModal()">×</button>
+            <div class="privacy-modal-header">
+                <h3>Privacy & Cookie Statement</h3>
+                <p style="color: #6b7280; margin-bottom: 2rem;">We respect your privacy.</p>
+            </div>
+            
+            <div class="privacy-content">
+                <p><strong>theaiexpert.ai</strong> does not use tracking cookies, advertising pixels, or analytics that monitor your behavior across the web.</p>
+                
+                <p>We store minimal data in your browser using localStorage (e.g., for download preferences or session continuity). This stays on your device and never leaves your browser.</p>
+                
+                <p>You may encounter third-party tools that set functional cookies when used:</p>
+                <ul style="margin: 1rem 0; padding-left: 1.5rem; color: #4b5563;">
+                    <li>Calendly (for booking meetings)</li>
+                    <li>Google Fonts (for performance)</li>
+                    <li>CDNs like jsDelivr (for faster page loads)</li>
+                </ul>
+                
+                <p>These are only activated when you interact with those services.</p>
+                
+                <p><strong>We don't sell your data, we don't track you, and we don't build profiles.</strong></p>
+                
+                <p>If you contact us or book a call, we'll only use your information to follow up with you directly — never for marketing without your consent.</p>
+                
+                <div class="privacy-contact">
+                    <h4>Questions or concerns?</h4>
+                    <p style="margin-bottom: 1rem;">Reach out anytime:</p>
+                    
+                    <form class="privacy-contact-form" id="privacyContactForm" onsubmit="submitPrivacyContact(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="privacyName" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="privacyEmail" name="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="privacyMessage" name="message" rows="3" placeholder="Your privacy question or concern" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="privacy-submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -3249,8 +3459,16 @@
 
             console.log('Sending contact form email...');
 
-            // Send the email
-            emailjs.send("theaiexpert_assessment", "template_8u3fxbf", emailParams)
+            // Send the email using download template
+            emailjs.send("theaiexpert_assessment", "template_dmkjg71", {
+                from_name: `${formData.firstName} ${formData.lastName}`,
+                from_email: formData.email,
+                company: formData.company || 'Not specified',
+                downloaded_resource: formData.subject || 'General Inquiry',
+                download_date: new Date().toLocaleString(),
+                lead_type: 'General Contact',
+                lead_source: 'Website Contact Form'
+            })
                 .then(function(response) {
                     console.log('✅ Contact form email sent!', response.status, response.text);
                     
@@ -4213,6 +4431,114 @@
         console.log('   debugDownloads.checkUserData() - Check current stored user data');
         console.log('   debugDownloads.clearUserData() - Clear stored user data');
         console.log('   debugDownloads.getUserData() - Get raw user data object');
+
+        // Privacy Modal Functions
+        function openPrivacyModal() {
+            document.getElementById('privacyModal').classList.add('active');
+        }
+        
+        function closePrivacyModal() {
+            document.getElementById('privacyModal').classList.remove('active');
+        }
+        
+        function submitPrivacyContact(event) {
+            event.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('privacyName').value,
+                email: document.getElementById('privacyEmail').value,
+                message: document.getElementById('privacyMessage').value,
+                subject: 'Privacy Inquiry',
+                inquiryType: 'Privacy & Cookie Question'
+            };
+
+            // Initialize EmailJS
+            emailjs.init("oI6t4dwMhBXNaBKXo");
+
+            // Send privacy inquiry email using download template
+            const emailParams = {
+                from_name: formData.name,
+                from_email: formData.email,
+                company: 'Privacy Inquiry',
+                downloaded_resource: formData.subject,
+                download_date: new Date().toLocaleString(),
+                lead_type: 'Privacy Inquiry',
+                lead_source: 'Website Privacy Modal'
+            };
+
+            emailjs.send("theaiexpert_assessment", "template_dmkjg71", emailParams)
+                .then(function(response) {
+                    console.log('✅ Privacy inquiry sent!', response.status, response.text);
+                    
+                    // Show success message
+                    showPrivacySuccess();
+                    
+                    // Close modal and reset form
+                    closePrivacyModal();
+                    document.getElementById('privacyContactForm').reset();
+                }, function(error) {
+                    console.error('❌ Privacy inquiry failed:', error);
+                    showPrivacyError();
+                });
+        }
+        
+        function showPrivacySuccess() {
+            const successDiv = document.createElement('div');
+            successDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+                z-index: 1002;
+                font-weight: 600;
+                animation: slideInRight 0.4s ease;
+            `;
+            successDiv.innerHTML = `✅ Privacy inquiry sent! We'll respond within 24 hours.`;
+            
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.style.animation = 'slideOutRight 0.4s ease';
+                setTimeout(() => {
+                    if (successDiv.parentNode) {
+                        document.body.removeChild(successDiv);
+                    }
+                }, 400);
+            }, 5000);
+        }
+        
+        function showPrivacyError() {
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #ef4444;
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+                z-index: 1002;
+                font-weight: 600;
+                animation: slideInRight 0.4s ease;
+            `;
+            errorDiv.innerHTML = `❌ Failed to send inquiry. Please try again or email directly.`;
+            
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                errorDiv.style.animation = 'slideOutRight 0.4s ease';
+                setTimeout(() => {
+                    if (errorDiv.parentNode) {
+                        document.body.removeChild(errorDiv);
+                    }
+                }, 400);
+            }, 5000);
+        }
     </script>
 
     <!-- Transparent spacer to show background -->
@@ -4335,6 +4661,21 @@
             });
         });
     </script>
+
+    <!-- Footer -->
+    <footer style="background: #f9fafb; border-top: 1px solid #e5e7eb; padding: 2rem 0; text-align: center; margin-top: 4rem; scroll-snap-align: start;">
+        <div class="container">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <span style="color: #6b7280;">© 2025 aiexpert.ai</span>
+                <button onclick="openPrivacyModal()" style="background: none; border: none; color: #2563eb; text-decoration: underline; cursor: pointer; font-size: inherit;">
+                    Privacy & Cookies
+                </button>
+            </div>
+            <p style="color: #9ca3af; margin: 0; font-size: 0.875rem;">
+                "We don't track. Just helpful AI — no gimmicks."
+            </p>
+        </div>
+    </footer>
 
 </body>
 </html>

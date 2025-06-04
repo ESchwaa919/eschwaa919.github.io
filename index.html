@@ -1911,7 +1911,7 @@
 <body>
     <header>
         <nav class="container">
-            <a href="#" class="logo">aiexpert.ai</a>
+            <a href="#hero" class="logo">aiexpert.ai</a>
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#assessment">AI Assessment</a></li>
@@ -1981,7 +1981,7 @@
     <!-- Assessment close button -->
     <button class="assessment-close" id="assessmentCloseBtn" onclick="closeAssessment()">×</button>
 
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="container">
             <div class="hero-content">
                 <h1>Your First Stop for Getting AI Done — Right.</h1>
@@ -2438,7 +2438,8 @@
                     
                     <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 12px; margin-top: 2rem;">
                         <p style="margin-bottom: 1rem; font-weight: 600;">Ready to work with Erik?</p>
-                        <a href="https://calendly.com/eschwaa/aiconsult" style="color: #60a5fa; font-weight: 600; text-decoration: none;">Book a strategy call</a> to discuss how AI can transform your business.
+                        <a href="https://calendly.com/eschwaa/aiconsult" style="color: #60a5fa; font-weight: 600; text-decoration: none;">Book a strategy call</a> to discuss how AI can transform your business.<br>
+                        <a href="https://www.linkedin.com/in/eschwaa/" style="color: #60a5fa; font-weight: 600; text-decoration: none;">Connect with Erik on LinkedIn</a> to learn more about his work and expertise.
                     </div>
                 </div>
             </div>
@@ -2547,55 +2548,8 @@
     <!-- Remove duplicate network section -->
 
     <script>
-        // HubSpot Integration Functions
-        function submitToHubSpot(formData, formType) {
-            console.log(`Submitting ${formType} to HubSpot...`, formData);
-            
-            // HubSpot Forms API endpoint
-            const portalId = 'YOUR_HUBSPOT_PORTAL_ID'; // Replace with your actual Portal ID
-            const assessmentFormId = 'YOUR_ASSESSMENT_FORM_ID'; // Replace with your assessment form ID
-            const contactFormId = 'YOUR_CONTACT_FORM_ID'; // Replace with your contact form ID
-            
-            const formId = formType === 'assessment' ? assessmentFormId : contactFormId;
-            const hubspotEndpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`;
-            
-            // Prepare HubSpot format
-            const hubspotData = {
-                fields: Object.keys(formData).map(key => ({
-                    name: key,
-                    value: formData[key]
-                })),
-                context: {
-                    pageUri: window.location.href,
-                    pageName: document.title,
-                    source: 'aiexpert.ai website',
-                    sourceType: formType
-                }
-            };
-            
-            // Submit to HubSpot
-            return fetch(hubspotEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(hubspotData)
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('✅ Successfully submitted to HubSpot');
-                    return response.json();
-                } else {
-                    console.error('❌ HubSpot submission failed:', response.statusText);
-                    throw new Error('HubSpot submission failed');
-                }
-            })
-            .catch(error => {
-                console.error('❌ HubSpot integration error:', error);
-                throw error;
-            });
-        }
-
+        // Remove broken HubSpot functions and revert to working EmailJS
+        
         // Updated General Contact Form Function
         function submitGeneralContact(event) {
             event.preventDefault();
@@ -2763,10 +2717,202 @@
             });
         });
 
-        // Continue with existing assessment functionality...
-        // [Rest of assessment code would continue here]
+        // Assessment Functions
+        let currentQuestion = 0;
+        let assessmentAnswers = [];
+        let currentAssessmentScore = 0;
+        let currentReadinessLevel = '';
 
-        // Assessment Lead Form Function for HubSpot
+        const assessmentQuestions = [
+            {
+                title: "Vision & Strategic Differentiation",
+                question: "How well does your organization integrate AI into its strategic vision and competitive positioning?",
+                options: [
+                    { text: "AI is central to our strategic vision and drives competitive advantage", score: 4 },
+                    { text: "We have identified AI opportunities and begun strategic planning", score: 3 },
+                    { text: "We recognize AI's importance but lack concrete strategic direction", score: 2 },
+                    { text: "AI is not part of our current strategic discussions", score: 1 }
+                ]
+            },
+            {
+                title: "Customer Understanding & Engagement",
+                question: "How effectively does your organization use AI to understand and engage customers?",
+                options: [
+                    { text: "AI powers personalized customer experiences across all touchpoints", score: 4 },
+                    { text: "We use AI for some customer insights and basic personalization", score: 3 },
+                    { text: "We have basic customer data but limited AI-driven insights", score: 2 },
+                    { text: "Customer data collection and AI analysis are minimal", score: 1 }
+                ]
+            },
+            {
+                title: "Operational Efficiency",
+                question: "How well does your organization leverage AI to optimize operations and processes?",
+                options: [
+                    { text: "AI automates key processes and drives significant efficiency gains", score: 4 },
+                    { text: "We have implemented AI in select operational areas", score: 3 },
+                    { text: "We have identified automation opportunities but limited implementation", score: 2 },
+                    { text: "Operations remain largely manual with minimal AI integration", score: 1 }
+                ]
+            },
+            {
+                title: "Product & Service Innovation",
+                question: "How effectively does your organization use AI to enhance products and services?",
+                options: [
+                    { text: "AI is integral to our product development and service delivery", score: 4 },
+                    { text: "We have successfully integrated AI into some offerings", score: 3 },
+                    { text: "We have piloted AI features but limited production deployment", score: 2 },
+                    { text: "Products and services have minimal or no AI capabilities", score: 1 }
+                ]
+            },
+            {
+                title: "Talent & Culture",
+                question: "How prepared is your workforce for AI adoption and integration?",
+                options: [
+                    { text: "Our team has strong AI skills and embraces AI-augmented workflows", score: 4 },
+                    { text: "We have some AI expertise and active training programs", score: 3 },
+                    { text: "Basic AI awareness exists but limited skills development", score: 2 },
+                    { text: "Workforce has minimal AI knowledge or experience", score: 1 }
+                ]
+            },
+            {
+                title: "Risk Management & Governance",
+                question: "How well does your organization manage AI-related risks and governance?",
+                options: [
+                    { text: "Comprehensive AI governance framework with active risk management", score: 4 },
+                    { text: "Basic governance policies and risk assessment procedures in place", score: 3 },
+                    { text: "Awareness of AI risks but limited formal governance structures", score: 2 },
+                    { text: "Minimal consideration of AI risks and governance requirements", score: 1 }
+                ]
+            },
+            {
+                title: "Data & Decision Making",
+                question: "How effectively does your organization leverage data for AI-driven decision making?",
+                options: [
+                    { text: "High-quality, integrated data powers real-time AI-driven decisions", score: 4 },
+                    { text: "Good data foundation with some AI-enhanced decision processes", score: 3 },
+                    { text: "Basic data collection but limited AI-powered insights", score: 2 },
+                    { text: "Data is fragmented with minimal analytics or AI application", score: 1 }
+                ]
+            },
+            {
+                title: "Growth & Market Expansion",
+                question: "How well does your organization use AI to drive growth and market opportunities?",
+                options: [
+                    { text: "AI enables new revenue streams and market expansion strategies", score: 4 },
+                    { text: "We use AI for market analysis and some growth initiatives", score: 3 },
+                    { text: "Limited use of AI for market insights and growth planning", score: 2 },
+                    { text: "Growth strategies are developed without AI-driven insights", score: 1 }
+                ]
+            }
+        ];
+
+        function startAssessment() {
+            console.log('Starting assessment...');
+            document.getElementById('assessmentContainer').classList.add('active', 'fullscreen');
+            document.getElementById('assessmentCloseBtn').classList.add('active');
+            document.body.classList.add('assessment-active');
+            
+            currentQuestion = 0;
+            assessmentAnswers = [];
+            updateProgress();
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const container = document.getElementById('questionContainer');
+            const question = assessmentQuestions[currentQuestion];
+            
+            container.innerHTML = `
+                <div class="question-card active">
+                    <h3>${question.title}</h3>
+                    <p>${question.question}</p>
+                    <div class="options-grid">
+                        ${question.options.map((option, index) => `
+                            <button class="option-button" onclick="selectAnswer(${index})">
+                                ${option.text}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            updateNavigationButtons();
+        }
+
+        function selectAnswer(optionIndex) {
+            const question = assessmentQuestions[currentQuestion];
+            assessmentAnswers[currentQuestion] = {
+                question: question.title,
+                answer: question.options[optionIndex].text,
+                score: question.options[optionIndex].score
+            };
+            
+            // Highlight selected option
+            document.querySelectorAll('.option-button').forEach((btn, index) => {
+                btn.classList.toggle('selected', index === optionIndex);
+            });
+            
+            updateNavigationButtons();
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < assessmentQuestions.length - 1) {
+                currentQuestion++;
+                updateProgress();
+                showQuestion();
+            } else {
+                finishAssessment();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                updateProgress();
+                showQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / assessmentQuestions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.disabled = !assessmentAnswers[currentQuestion];
+            
+            if (currentQuestion === assessmentQuestions.length - 1) {
+                nextBtn.textContent = 'Complete Assessment';
+            } else {
+                nextBtn.textContent = 'Next';
+            }
+        }
+
+        function finishAssessment() {
+            // Calculate scores
+            let totalScore = 0;
+            assessmentAnswers.forEach(answer => {
+                totalScore += answer.score;
+            });
+            
+            currentAssessmentScore = totalScore;
+            const percentage = Math.round((totalScore / 32) * 100);
+            
+            if (percentage >= 85) currentReadinessLevel = 'AI Leader';
+            else if (percentage >= 70) currentReadinessLevel = 'AI Ready';
+            else if (percentage >= 50) currentReadinessLevel = 'AI Developing';
+            else currentReadinessLevel = 'AI Emerging';
+            
+            // Show lead capture
+            document.getElementById('assessmentContainer').classList.remove('active', 'fullscreen');
+            document.getElementById('leadCaptureContainer').classList.add('active', 'fullscreen');
+        }
+
+        // Fixed Assessment Lead Form Function using EmailJS
         function submitLeadForm(event) {
             event.preventDefault();
             
@@ -2774,41 +2920,471 @@
             
             // Collect form data
             const formData = {
-                firstname: document.getElementById('firstName').value,
-                lastname: document.getElementById('lastName').value,
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
                 email: document.getElementById('email').value,
                 company: document.getElementById('company').value,
-                jobtitle: document.getElementById('jobTitle').value,
-                company_size: document.getElementById('companySize').value,
+                jobTitle: document.getElementById('jobTitle').value,
+                companySize: document.getElementById('companySize').value,
                 industry: document.getElementById('industry').value,
-                lead_source: 'AI Assessment',
-                assessment_score: currentAssessmentScore || 0,
-                assessment_level: currentReadinessLevel || 'Unknown',
-                form_submission_date: new Date().toISOString()
+                assessmentScore: currentAssessmentScore || 0,
+                readinessLevel: currentReadinessLevel || 'Unknown',
+                submissionDate: new Date().toISOString()
             };
 
             console.log('Assessment form data collected:', formData);
 
-            // Submit to HubSpot
-            submitToHubSpot(formData, 'assessment')
-                .then(response => {
-                    console.log('✅ Assessment form submitted to HubSpot!');
+            // Initialize EmailJS
+            emailjs.init("oI6t4dwMhBXNaBKXo");
+
+            // Send assessment results email
+            const emailParams = {
+                from_name: `${formData.firstName} ${formData.lastName}`,
+                from_email: formData.email,
+                company: formData.company || 'Not specified',
+                job_title: formData.jobTitle || 'Not specified',
+                company_size: formData.companySize || 'Not specified',
+                industry: formData.industry || 'Not specified',
+                assessment_score: `${currentAssessmentScore}/32 (${Math.round((currentAssessmentScore / 32) * 100)}%)`,
+                readiness_level: currentReadinessLevel,
+                submission_date: new Date().toLocaleString(),
+                lead_type: 'AI Assessment',
+                lead_source: 'Website AI Assessment',
+                detailed_scores: assessmentAnswers.map(answer => 
+                    `${answer.question}: ${answer.score}/4`
+                ).join(', ')
+            };
+
+            console.log('Sending assessment results email...');
+
+            // Send the email
+            emailjs.send("theaiexpert_assessment", "template_8u3fxbf", emailParams)
+                .then(function(response) {
+                    console.log('✅ Assessment results email sent!', response.status, response.text);
+                    
+                    // Show assessment results
                     showAssessmentResults();
-                })
-                .catch(error => {
-                    console.error('❌ Assessment form submission failed:', error);
-                    // Still show results even if HubSpot submission fails
+                }, function(error) {
+                    console.error('❌ Assessment email failed:', error);
+                    // Still show results even if email fails
                     showAssessmentResults();
                 });
         }
 
-        // Function to show assessment results
+        // Complete Function to show assessment results
         function showAssessmentResults() {
             document.getElementById('leadCaptureContainer').classList.remove('active', 'fullscreen');
             document.getElementById('resultsContainer').classList.add('active', 'fullscreen');
             document.getElementById('assessmentCloseBtn').classList.add('active');
             
-            // Continue with existing results display logic...
+            // Update overall score display
+            const percentage = Math.round((currentAssessmentScore / 32) * 100);
+            document.getElementById('scoreCircle').textContent = percentage + '%';
+            
+            let levelDescription = '';
+            let levelColor = '';
+            
+            switch(currentReadinessLevel) {
+                case 'AI Leader':
+                    levelDescription = 'Your organization demonstrates advanced AI maturity with strong capabilities across all dimensions.';
+                    levelColor = '#10b981';
+                    break;
+                case 'AI Ready':
+                    levelDescription = 'Your organization has solid foundations and is well-positioned for AI implementation.';
+                    levelColor = '#2563eb';
+                    break;
+                case 'AI Developing':
+                    levelDescription = 'Your organization has identified AI opportunities and is building capabilities.';
+                    levelColor = '#f59e0b';
+                    break;
+                case 'AI Emerging':
+                    levelDescription = 'Your organization is beginning its AI journey with significant opportunities for growth.';
+                    levelColor = '#dc2626';
+                    break;
+            }
+            
+            document.getElementById('readinessLevel').innerHTML = `
+                <strong style="color: ${levelColor}">${currentReadinessLevel}</strong><br>
+                ${levelDescription}
+            `;
+            
+            // Display dimension results
+            const dimensionResults = document.getElementById('dimensionResults');
+            dimensionResults.innerHTML = assessmentAnswers.map(answer => {
+                const scorePercentage = (answer.score / 4) * 100;
+                let badgeClass = '';
+                let badgeText = '';
+                
+                if (scorePercentage >= 85) {
+                    badgeClass = 'score-excellent';
+                    badgeText = 'Excellent';
+                } else if (scorePercentage >= 70) {
+                    badgeClass = 'score-good';
+                    badgeText = 'Good';
+                } else if (scorePercentage >= 50) {
+                    badgeClass = 'score-developing';
+                    badgeText = 'Developing';
+                } else {
+                    badgeClass = 'score-emerging';
+                    badgeText = 'Emerging';
+                }
+                
+                return `
+                    <div class="dimension-card">
+                        <div class="dimension-score">
+                            <span class="dimension-name">${answer.question}</span>
+                            <span class="score-badge ${badgeClass}">${badgeText} (${answer.score}/4)</span>
+                        </div>
+                        <p style="color: #6b7280; font-size: 0.9rem;">${answer.answer}</p>
+                    </div>
+                `;
+            }).join('');
+            
+            // Generate recommendations
+            const recommendations = generateRecommendations();
+            const recommendationsList = document.getElementById('recommendationsList');
+            recommendationsList.innerHTML = recommendations.map(rec => `
+                <div class="recommendation-item">
+                    <h4 style="color: #2563eb; margin-bottom: 0.5rem;">${rec.title}</h4>
+                    <p style="margin: 0; color: #374151;">${rec.description}</p>
+                </div>
+            `).join('');
+            
+            // Create radar chart
+            createRadarChart();
+        }
+
+        function generateRecommendations() {
+            const recommendations = [];
+            const percentage = Math.round((currentAssessmentScore / 32) * 100);
+            
+            if (percentage < 50) {
+                recommendations.push({
+                    title: "Start with AI Foundations",
+                    description: "Begin with basic AI education for your team and establish data collection practices to build a foundation for future AI initiatives."
+                });
+                recommendations.push({
+                    title: "Focus on Quick Wins",
+                    description: "Identify low-risk, high-impact areas where AI tools can provide immediate value, such as automated email responses or basic data analysis."
+                });
+            } else if (percentage < 70) {
+                recommendations.push({
+                    title: "Develop AI Strategy",
+                    description: "Create a comprehensive AI roadmap that aligns with your business objectives and identifies priority use cases for implementation."
+                });
+                recommendations.push({
+                    title: "Invest in Skills Development",
+                    description: "Expand AI literacy across your organization through training programs and consider hiring AI-focused talent or consultants."
+                });
+            } else if (percentage < 85) {
+                recommendations.push({
+                    title: "Scale AI Implementation",
+                    description: "Move beyond pilot projects to production-ready AI systems that deliver measurable business value across multiple departments."
+                });
+                recommendations.push({
+                    title: "Strengthen Governance",
+                    description: "Implement robust AI governance frameworks to ensure responsible AI use, compliance, and risk management."
+                });
+            } else {
+                recommendations.push({
+                    title: "Drive Innovation Leadership",
+                    description: "Leverage your AI maturity to create competitive advantages and explore cutting-edge AI applications that could reshape your industry."
+                });
+                recommendations.push({
+                    title: "Share Your Expertise",
+                    description: "Consider partnering with other organizations or contributing to AI thought leadership to strengthen your position as an AI leader."
+                });
+            }
+            
+            // Add specific recommendations based on lowest scoring areas
+            const lowestScoring = assessmentAnswers
+                .map((answer, index) => ({ ...answer, index }))
+                .sort((a, b) => a.score - b.score)
+                .slice(0, 2);
+            
+            lowestScoring.forEach(item => {
+                if (item.score <= 2) {
+                    switch(item.question) {
+                        case "Vision & Strategic Differentiation":
+                            recommendations.push({
+                                title: "Develop AI Vision",
+                                description: "Create a clear AI vision statement and strategy that aligns with your business goals and competitive positioning."
+                            });
+                            break;
+                        case "Data & Decision Making":
+                            recommendations.push({
+                                title: "Improve Data Infrastructure",
+                                description: "Invest in data quality, integration, and analytics capabilities to support AI-driven decision making."
+                            });
+                            break;
+                        case "Talent & Culture":
+                            recommendations.push({
+                                title: "Build AI Culture",
+                                description: "Foster an AI-ready culture through training, change management, and demonstrating AI value to your team."
+                            });
+                            break;
+                    }
+                }
+            });
+            
+            return recommendations.slice(0, 4); // Limit to 4 recommendations
+        }
+
+        function createRadarChart() {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            
+            const labels = assessmentAnswers.map(answer => answer.question.split(' & ')[0]);
+            const scores = assessmentAnswers.map(answer => answer.score);
+            
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Your AI Readiness',
+                        data: scores,
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#2563eb',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            min: 0,
+                            max: 4,
+                            ticks: {
+                                stepSize: 1,
+                                color: '#6b7280',
+                                font: {
+                                    size: 12
+                                }
+                            },
+                            pointLabels: {
+                                color: '#374151',
+                                font: {
+                                    size: 11,
+                                    weight: '600'
+                                }
+                            },
+                            grid: {
+                                color: '#e5e7eb'
+                            },
+                            angleLines: {
+                                color: '#e5e7eb'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // PDF Download Function
+        function downloadPDF() {
+            console.log('Generating PDF report...');
+            
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Add title
+            doc.setFontSize(20);
+            doc.setTextColor(37, 99, 235);
+            doc.text('AI Competency Assessment Report', 20, 20);
+            
+            // Add company info
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const company = document.getElementById('company').value;
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Prepared for: ${firstName} ${lastName}`, 20, 35);
+            doc.text(`Company: ${company}`, 20, 45);
+            doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 55);
+            
+            // Add overall score
+            doc.setFontSize(16);
+            doc.setTextColor(37, 99, 235);
+            doc.text('Overall AI Readiness Score', 20, 75);
+            
+            const percentage = Math.round((currentAssessmentScore / 32) * 100);
+            doc.setFontSize(24);
+            doc.text(`${percentage}%`, 20, 90);
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Level: ${currentReadinessLevel}`, 20, 105);
+            
+            // Add dimension scores
+            doc.setFontSize(14);
+            doc.setTextColor(37, 99, 235);
+            doc.text('Dimension Scores:', 20, 125);
+            
+            let yPosition = 140;
+            assessmentAnswers.forEach(answer => {
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`${answer.question}: ${answer.score}/4`, 20, yPosition);
+                yPosition += 10;
+                
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+            });
+            
+            // Add recommendations
+            if (yPosition > 200) {
+                doc.addPage();
+                yPosition = 20;
+            } else {
+                yPosition += 10;
+            }
+            
+            doc.setFontSize(14);
+            doc.setTextColor(37, 99, 235);
+            doc.text('Recommendations:', 20, yPosition);
+            yPosition += 15;
+            
+            const recommendations = generateRecommendations();
+            recommendations.forEach(rec => {
+                doc.setFontSize(11);
+                doc.setTextColor(37, 99, 235);
+                doc.text(`• ${rec.title}`, 25, yPosition);
+                yPosition += 8;
+                
+                doc.setFontSize(9);
+                doc.setTextColor(0, 0, 0);
+                const lines = doc.splitTextToSize(rec.description, 160);
+                doc.text(lines, 30, yPosition);
+                yPosition += lines.length * 4 + 5;
+                
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+            });
+            
+            // Save the PDF
+            doc.save(`AI_Assessment_Report_${company.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
+            
+            console.log('✅ PDF downloaded successfully!');
+        }
+
+        function closeAssessment() {
+            document.getElementById('assessmentContainer').classList.remove('active', 'fullscreen');
+            document.getElementById('leadCaptureContainer').classList.remove('active', 'fullscreen');
+            document.getElementById('resultsContainer').classList.remove('active', 'fullscreen');
+            document.getElementById('assessmentCloseBtn').classList.remove('active');
+            document.body.classList.remove('assessment-active');
+        }
+
+        // Download Functions
+        function showDownloadForm(fileUrl, fileName) {
+            console.log('Showing download form for:', fileName);
+            document.getElementById('downloadResourceTitle').textContent = fileName;
+            document.getElementById('downloadModal').classList.add('active');
+            
+            // Store the file info for the download
+            window.currentDownload = { fileUrl, fileName };
+        }
+
+        function closeDownloadModal() {
+            document.getElementById('downloadModal').classList.remove('active');
+        }
+
+        function submitDownloadForm(event) {
+            event.preventDefault();
+            
+            const formData = {
+                firstName: document.getElementById('downloadFirstName').value,
+                lastName: document.getElementById('downloadLastName').value,
+                email: document.getElementById('downloadEmail').value,
+                company: document.getElementById('downloadCompany').value,
+                downloadedResource: window.currentDownload.fileName,
+                downloadDate: new Date().toISOString()
+            };
+
+            // Initialize EmailJS
+            emailjs.init("oI6t4dwMhBXNaBKXo");
+
+            // Send download notification
+            const emailParams = {
+                from_name: `${formData.firstName} ${formData.lastName}`,
+                from_email: formData.email,
+                company: formData.company || 'Not specified',
+                downloaded_resource: formData.downloadedResource,
+                download_date: new Date().toLocaleString(),
+                lead_type: 'Resource Download',
+                lead_source: 'Website Resource Download'
+            };
+
+            emailjs.send("theaiexpert_assessment", "template_8u3fxbf", emailParams)
+                .then(function(response) {
+                    console.log('✅ Download tracking email sent!', response.status, response.text);
+                    
+                    // Trigger the actual download
+                    const link = document.createElement('a');
+                    link.href = window.currentDownload.fileUrl;
+                    link.download = window.currentDownload.fileName;
+                    link.click();
+                    
+                    // Close modal and reset form
+                    closeDownloadModal();
+                    document.getElementById('downloadForm').reset();
+                    
+                    // Show success message
+                    showDownloadSuccess();
+                }, function(error) {
+                    console.error('❌ Download tracking failed:', error);
+                    // Still allow download even if tracking fails
+                    const link = document.createElement('a');
+                    link.href = window.currentDownload.fileUrl;
+                    link.download = window.currentDownload.fileName;
+                    link.click();
+                    closeDownloadModal();
+                });
+        }
+
+        function showDownloadSuccess() {
+            const successDiv = document.createElement('div');
+            successDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+                z-index: 1002;
+                font-weight: 600;
+                animation: slideInRight 0.4s ease;
+            `;
+            successDiv.innerHTML = `✅ Download started! Check your downloads folder.`;
+            
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.style.animation = 'slideOutRight 0.4s ease';
+                setTimeout(() => {
+                    if (successDiv.parentNode) {
+                        document.body.removeChild(successDiv);
+                    }
+                }, 400);
+            }, 5000);
         }
     </script>
 </body>

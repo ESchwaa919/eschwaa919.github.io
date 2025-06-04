@@ -6,6 +6,7 @@
     <title>aiexpert.ai - Your First Stop for Getting AI Done Right</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -759,6 +760,29 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .recommendation-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #2563eb;
+        }
+
+        .radar-chart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .radar-chart-container h3 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -1017,6 +1041,14 @@
                 <p id="readinessLevel">Calculating your results...</p>
             </div>
             
+            <div class="radar-chart-container">
+                <h3>AI Readiness Radar</h3>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Visual breakdown of your performance across all dimensions</p>
+                <div style="position: relative; height: 400px; margin: 2rem auto; max-width: 500px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+            
             <div class="dimension-results" id="dimensionResults"></div>
             
             <div class="recommendations" id="recommendationsSection">
@@ -1135,91 +1167,91 @@
         // AI Assessment Functionality
         const assessmentQuestions = [
             {
-                dimension: "AI Strategy & Vision",
-                question: "How would you describe your organization's AI strategy?",
-                description: "This evaluates your strategic approach to AI adoption and implementation.",
+                dimension: "Vision & Strategic Differentiation",
+                question: "How clearly does your vision articulate where AI creates distinctive value for your organization?",
+                description: "This evaluates how your organization's strategic vision and positioning leverage AI capabilities.",
                 options: [
-                    { text: "We have a comprehensive AI strategy with clear goals, timelines, and success metrics", score: 4 },
-                    { text: "We have a basic AI strategy with some defined goals", score: 3 },
-                    { text: "We're exploring AI opportunities but lack a formal strategy", score: 2 },
-                    { text: "We have no defined AI strategy", score: 1 }
+                    { text: "We have a comprehensive strategic vision that clearly defines how AI creates distinctive competitive advantage", score: 4 },
+                    { text: "Our vision includes AI, but we need clearer definition of specific value creation areas", score: 3 },
+                    { text: "We're exploring how AI fits into our strategy but lack a clear direction", score: 2 },
+                    { text: "AI is not yet integrated into our strategic vision", score: 1 }
                 ]
             },
             {
-                dimension: "Leadership & Governance",
-                question: "What level of AI leadership exists in your organization?",
-                description: "This assesses executive support and governance structures for AI initiatives.",
+                dimension: "Customer Understanding & Engagement",
+                question: "How effectively do you leverage AI to personalize and enhance customer experiences?",
+                description: "This assesses how AI enhances your ability to understand and serve customers.",
                 options: [
-                    { text: "We have dedicated AI leadership (CAIO/AI Director) with board-level support", score: 4 },
-                    { text: "We have AI champions in leadership roles with executive sponsorship", score: 3 },
-                    { text: "Some leaders are interested but there's no dedicated AI governance", score: 2 },
-                    { text: "Limited leadership awareness or support for AI initiatives", score: 1 }
+                    { text: "We extensively use AI for customer insights and deliver highly personalized experiences", score: 4 },
+                    { text: "We have some AI customer tools but could be more systematic in our approach", score: 3 },
+                    { text: "We're beginning to explore AI for customer understanding", score: 2 },
+                    { text: "We don't currently use AI for customer insights or engagement", score: 1 }
                 ]
             },
             {
-                dimension: "Data Infrastructure",
-                question: "How would you rate your organization's data readiness for AI?",
-                description: "This evaluates your data quality, accessibility, and infrastructure capabilities.",
+                dimension: "Operational Efficiency",
+                question: "Where could AI drive the most significant operational efficiencies in your organization?",
+                description: "This evaluates how AI optimizes your operations and resource allocation.",
                 options: [
-                    { text: "Our data is well-organized, accessible, and AI-ready with robust infrastructure", score: 4 },
-                    { text: "We have good data quality with some infrastructure improvements needed", score: 3 },
-                    { text: "Our data exists but requires significant cleaning and organization", score: 2 },
-                    { text: "Our data is fragmented, poor quality, or difficult to access", score: 1 }
+                    { text: "AI is systematically deployed across operations, driving significant efficiency gains", score: 4 },
+                    { text: "We've implemented AI in some operational areas with good results", score: 3 },
+                    { text: "We've identified opportunities but are early in implementation", score: 2 },
+                    { text: "We haven't yet applied AI to operational processes", score: 1 }
                 ]
             },
             {
-                dimension: "Technical Capabilities",
-                question: "What are your organization's current technical AI capabilities?",
-                description: "This assesses your team's technical skills and AI development capabilities.",
+                dimension: "Product & Service Innovation",
+                question: "How does AI enhance your organization's ability to develop and deliver innovative solutions?",
+                description: "This assesses how AI accelerates and enhances your innovation pipeline.",
                 options: [
-                    { text: "We have strong in-house AI/ML expertise and development capabilities", score: 4 },
-                    { text: "We have some technical skills but rely on external partners for complex AI work", score: 3 },
-                    { text: "Limited technical capabilities, mostly using pre-built AI tools", score: 2 },
-                    { text: "No significant AI technical capabilities in-house", score: 1 }
+                    { text: "AI is deeply embedded in our innovation processes, accelerating development significantly", score: 4 },
+                    { text: "We use AI in some innovation activities but not systematically", score: 3 },
+                    { text: "We're exploring how AI can enhance our innovation capabilities", score: 2 },
+                    { text: "AI is not yet part of our innovation processes", score: 1 }
                 ]
             },
             {
-                dimension: "Culture & Change Management",
-                question: "How ready is your organization culturally for AI adoption?",
-                description: "This evaluates employee readiness, training programs, and change management approaches.",
+                dimension: "Talent & Culture",
+                question: "How prepared is your workforce to work alongside and leverage AI technologies?",
+                description: "This evaluates how your people and organizational culture embrace AI.",
                 options: [
-                    { text: "Strong AI culture with comprehensive training and high employee adoption", score: 4 },
-                    { text: "Generally positive attitude toward AI with some training programs in place", score: 3 },
-                    { text: "Mixed reactions to AI with limited training or change management", score: 2 },
-                    { text: "Resistance to AI adoption or lack of awareness about AI benefits", score: 1 }
+                    { text: "Our organization has strong AI literacy and culture with widespread adoption", score: 4 },
+                    { text: "We have good AI awareness but need broader skill development", score: 3 },
+                    { text: "Some teams are ready for AI, but we lack organization-wide readiness", score: 2 },
+                    { text: "Our workforce lacks AI literacy and there's resistance to adoption", score: 1 }
                 ]
             },
             {
-                dimension: "Use Cases & Implementation",
-                question: "What stage are your AI use cases and implementations?",
-                description: "This assesses your progress in identifying and deploying AI solutions.",
+                dimension: "Risk Management & Governance",
+                question: "How robust is your framework for managing AI ethics, risks, and governance?",
+                description: "This assesses how you manage AI risks and ensure responsible deployment.",
                 options: [
-                    { text: "Multiple AI solutions deployed in production with measurable business impact", score: 4 },
-                    { text: "Several AI pilots completed with some moving to production", score: 3 },
-                    { text: "A few AI experiments or pilots underway", score: 2 },
-                    { text: "Still exploring potential AI use cases", score: 1 }
+                    { text: "We have mature AI governance frameworks that effectively manage risks while enabling innovation", score: 4 },
+                    { text: "We have basic governance in place but need more sophisticated risk management", score: 3 },
+                    { text: "We're developing AI governance capabilities but they're not yet comprehensive", score: 2 },
+                    { text: "We lack formal AI governance and risk management frameworks", score: 1 }
                 ]
             },
             {
-                dimension: "Risk Management & Ethics",
-                question: "How does your organization approach AI risk management and ethics?",
-                description: "This evaluates your governance, compliance, and ethical AI practices.",
+                dimension: "Data & Decision Making",
+                question: "How effectively does your data ecosystem support AI-driven decision making?",
+                description: "This evaluates how your data infrastructure supports AI-enhanced decisions.",
                 options: [
-                    { text: "Comprehensive AI ethics framework with risk management protocols in place", score: 4 },
-                    { text: "Basic risk management practices with some ethical guidelines", score: 3 },
-                    { text: "Aware of AI risks but limited formal management processes", score: 2 },
-                    { text: "Little consideration of AI risks or ethical implications", score: 1 }
+                    { text: "We have a robust data ecosystem that effectively powers AI initiatives across the enterprise", score: 4 },
+                    { text: "Our data capabilities are good but need enhancement for advanced AI applications", score: 3 },
+                    { text: "We have basic data infrastructure but significant gaps for AI", score: 2 },
+                    { text: "Our data ecosystem has major limitations that prevent effective AI implementation", score: 1 }
                 ]
             },
             {
-                dimension: "Measurement & ROI",
-                question: "How do you measure the success and ROI of AI initiatives?",
-                description: "This assesses your ability to track, measure, and optimize AI investments.",
+                dimension: "Growth & Market Expansion",
+                question: "How does AI help you identify and pursue new markets and growth opportunities?",
+                description: "This assesses how AI helps you identify and capture new growth opportunities.",
                 options: [
-                    { text: "Robust measurement framework with clear ROI tracking and continuous optimization", score: 4 },
-                    { text: "Basic metrics in place with some ROI visibility", score: 3 },
-                    { text: "Limited measurement capabilities, mostly qualitative assessment", score: 2 },
-                    { text: "No formal measurement or ROI tracking for AI initiatives", score: 1 }
+                    { text: "AI is central to our growth strategy, effectively identifying opportunities and optimizing approaches", score: 4 },
+                    { text: "We use AI for some growth initiatives but could be more comprehensive", score: 3 },
+                    { text: "We're exploring how AI can support growth and market expansion", score: 2 },
+                    { text: "We don't currently use AI for growth or market analysis", score: 1 }
                 ]
             }
         ];
@@ -1377,7 +1409,6 @@
 
             // Send email notification
             const emailParams = {
-                to_email: "eschwaa@gmail.com",
                 from_name: `${formData.firstName} ${formData.lastName}`,
                 from_email: formData.email,
                 company: formData.company,
@@ -1398,10 +1429,8 @@
             emailjs.send("theaiexpert_assessment", "template_8u3fxbf", emailParams)
                 .then(function(response) {
                     console.log('✅ Email sent successfully!', response.status, response.text);
-                    alert('Assessment completed! Check your email for the results.');
                 }, function(error) {
                     console.error('❌ Email failed to send:', error);
-                    alert('There was an issue sending the email. Please contact erik@aiexpert.ai directly.');
                 });
 
             // Show results after form submission
@@ -1442,6 +1471,87 @@
             
             // Generate recommendations
             generateRecommendations();
+            
+            // Create radar chart
+            createRadarChart();
+        }
+
+        function createRadarChart() {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            
+            // Prepare data for radar chart
+            const dimensions = {};
+            Object.values(answers).forEach(answer => {
+                dimensions[answer.dimension] = answer.score;
+            });
+
+            const labels = Object.keys(dimensions).map(dim => {
+                // Shorten labels for better display
+                return dim.split(' ')[0] + (dim.split(' ').length > 1 ? '\n' + dim.split(' ').slice(1).join(' ') : '');
+            });
+            
+            const scores = Object.values(dimensions);
+
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: Object.keys(dimensions),
+                    datasets: [{
+                        label: 'AI Readiness Score',
+                        data: scores,
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#2563eb',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: '#e2e8f0'
+                            },
+                            grid: {
+                                color: '#e2e8f0'
+                            },
+                            pointLabels: {
+                                color: '#374151',
+                                font: {
+                                    size: 11,
+                                    weight: '600'
+                                }
+                            },
+                            ticks: {
+                                color: '#6b7280',
+                                font: {
+                                    size: 10
+                                },
+                                stepSize: 1,
+                                min: 0,
+                                max: 4,
+                                display: true
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Score: ${context.parsed.r}/4`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
         }
 
         function displayDimensionResults() {
@@ -1526,35 +1636,35 @@
 
         function getRecommendation(dimension, score) {
             const recommendations = {
-                "AI Strategy & Vision": {
+                "Vision & Strategic Differentiation": {
                     1: "Develop a comprehensive AI strategy starting with business use case identification and ROI planning.",
                     2: "Formalize your AI strategy with clear goals, timelines, and success metrics aligned with business objectives."
                 },
-                "Leadership & Governance": {
+                "Customer Understanding & Engagement": {
                     1: "Establish AI governance structure with executive sponsorship and dedicated AI leadership roles.",
                     2: "Strengthen AI governance by appointing AI champions and creating cross-functional AI committees."
                 },
-                "Data Infrastructure": {
+                "Operational Efficiency": {
                     1: "Prioritize data quality improvement and establish data governance frameworks before AI implementation.",
                     2: "Invest in data infrastructure upgrades and implement data quality management processes."
                 },
-                "Technical Capabilities": {
+                "Product & Service Innovation": {
                     1: "Begin with AI education and training programs while partnering with experienced AI consultants.",
                     2: "Develop internal AI capabilities through training and strategic hiring of AI talent."
                 },
-                "Culture & Change Management": {
+                "Talent & Culture": {
                     1: "Launch comprehensive AI awareness and training programs to build organizational AI literacy.",
                     2: "Expand AI training programs and implement change management strategies for broader adoption."
                 },
-                "Use Cases & Implementation": {
-                    1: "Start with AI pilot projects in low-risk, high-impact areas to demonstrate value and build momentum.",
-                    2: "Scale successful AI pilots to production while developing a pipeline of new use cases."
-                },
-                "Risk Management & Ethics": {
+                "Risk Management & Governance": {
                     1: "Establish AI ethics guidelines and risk management frameworks before deploying AI solutions.",
                     2: "Formalize AI risk management processes and implement comprehensive ethics and compliance protocols."
                 },
-                "Measurement & ROI": {
+                "Data & Decision Making": {
+                    1: "Implement basic AI performance metrics and ROI tracking mechanisms for all AI initiatives.",
+                    2: "Enhance measurement capabilities with advanced analytics and continuous optimization processes."
+                },
+                "Growth & Market Expansion": {
                     1: "Implement basic AI performance metrics and ROI tracking mechanisms for all AI initiatives.",
                     2: "Enhance measurement capabilities with advanced analytics and continuous optimization processes."
                 }

@@ -39,7 +39,7 @@
     <meta name="msapplication-TileColor" content="#2563eb">
     <meta name="application-name" content="aiexpert.ai">
     <meta name="apple-mobile-web-app-title" content="aiexpert.ai">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     
     <!-- Structured Data (JSON-LD) -->
@@ -2085,7 +2085,294 @@
                 font-size: 1.1rem;
             }
         }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+        }
+
+        /* Media & Speaking Section Styles */
+        .media-speaking-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(2px);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .media-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #2563eb;
+        }
+
+        .media-card.featured {
+            border-left: 4px solid #10b981;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .media-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .media-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .media-header h4 {
+            color: #1f2937;
+            font-size: 1.3rem;
+            margin: 0;
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .media-date {
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .media-card p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .media-links {
+            margin-bottom: 1rem;
+        }
+
+        .media-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .media-link:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        .media-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .topic-tag {
+            background: #e0f2fe;
+            color: #0891b2;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .media-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .media-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .media-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .media-content {
+            flex: 1;
+        }
+
+        .media-content h4 {
+            color: #1f2937;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .media-content p {
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .media-description {
+            color: #374151;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .media-action {
+            flex-shrink: 0;
+        }
+
+        .media-button {
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .media-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .podcast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .podcast-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            border-left: 4px solid #10b981;
+        }
+
+        .podcast-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .podcast-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .podcast-card h4 {
+            color: #1f2937;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .podcast-card p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .podcast-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .podcast-link {
+            color: #10b981;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+        }
+
+        .podcast-link:hover {
+            color: #059669;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .media-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .media-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .podcast-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Expanded Services Styles */
     </style>
+    
+    <!-- Favicon and Icon Links -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
 </head>
 <body>
     <header>
@@ -2095,6 +2382,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#assessment">AI Assessment</a></li>
                 <li><a href="#insights">Insights</a></li>
+                <li><a href="#media">Media</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#faq">FAQ</a></li>
@@ -2593,6 +2881,163 @@
             <div style="text-align: center; margin-top: 3rem;">
                 <p style="color: #6b7280; margin-bottom: 1rem;">Want more AI insights delivered directly?</p>
                 <a href="https://www.linkedin.com/in/eschwaa/" target="_blank" rel="noopener" class="cta-button">Follow Erik on LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparent spacer to show background -->
+    <div class="section-spacer"></div>
+
+    <section id="media" class="container">
+        <div class="media-speaking-section">
+            <h2>Media & Speaking Engagements</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 3rem;">Watch Erik discuss AI strategy, predictions, and emerging technologies</p>
+            
+            <!-- Featured 2025 Strategic AI Content -->
+            <div class="featured-media">
+                <h3 style="text-align: center; color: #1f2937; margin-bottom: 2rem; font-size: 1.8rem;">Featured AI Strategy & Insights</h3>
+                
+                <div class="media-grid">
+                    <div class="media-card featured">
+                        <div class="media-header">
+                            <h4>AI Horizons: Erik Schwartz on AI Predictions for 2025</h4>
+                            <span class="media-date">2025</span>
+                        </div>
+                        <p>Expert predictions and strategic insights into the future of AI technology. Erik discusses emerging trends, business implications, and key developments to watch in 2025.</p>
+                        <div class="media-links">
+                            <a href="https://music.amazon.com/podcasts/a408a0af-eb75-4497-bac7-ba712b0366ce/episodes/18b22def-13e9-4a33-b123-ae4be936513f/eden-smith-ai-horizons-erik-schwartz-on-ai-predictions-for-2025" target="_blank" rel="noopener" class="media-link">
+                                🎵 Listen on Amazon Music →
+                            </a>
+                        </div>
+                        <div class="media-topics">
+                            <span class="topic-tag">AI Strategy</span>
+                            <span class="topic-tag">2025 Predictions</span>
+                            <span class="topic-tag">Business AI</span>
+                        </div>
+                    </div>
+                    
+                    <div class="media-card featured">
+                        <div class="media-header">
+                            <h4>Insights from a Chief AI Officer</h4>
+                            <span class="media-date">August 2024</span>
+                        </div>
+                        <p>Disruption Digest podcast featuring Erik discussing the CAIO role, key components of AI strategy, how to get started with AI, and the future of AI in business. Essential listening for executives considering AI adoption.</p>
+                        <div class="media-links">
+                            <a href="https://open.spotify.com/episode/0M9vnvDu9pzPyAIMk4PxmA?si=vkdVfznrTG-eZXH6f5ma_Q" target="_blank" rel="noopener" class="media-link">
+                                🎵 Listen on Spotify →
+                            </a>
+                        </div>
+                        <div class="media-topics">
+                            <span class="topic-tag">Chief AI Officer</span>
+                            <span class="topic-tag">AI Strategy</span>
+                            <span class="topic-tag">Business Leadership</span>
+                        </div>
+                    </div>
+                    
+                    <div class="media-card featured">
+                        <div class="media-header">
+                            <h4>Aligning AI to Business Strategy, DeepSeek and AI Agents</h4>
+                            <span class="media-date">2025</span>
+                        </div>
+                        <p>Deep dive into business strategy alignment with AI implementation, covering the latest developments in DeepSeek technology and the evolving landscape of AI agents in enterprise applications.</p>
+                        <div class="media-links">
+                            <a href="https://youtu.be/CnmClTT3AIw?si=NznboGL7WIVAnb8A" target="_blank" rel="noopener" class="media-link">
+                                ▶️ Watch on YouTube →
+                            </a>
+                        </div>
+                        <div class="media-topics">
+                            <span class="topic-tag">Business Strategy</span>
+                            <span class="topic-tag">AI Agents</span>
+                            <span class="topic-tag">DeepSeek</span>
+                        </div>
+                    </div>
+                    
+                    <div class="media-card featured">
+                        <div class="media-header">
+                            <h4>Harnessing the Power of AI: Insights from a Pioneer in Knowledge Discovery</h4>
+                            <span class="media-date">2024</span>
+                        </div>
+                        <p>Findr podcast episode featuring Erik Schwartz, Chief AI Officer at Tricon Infotech. Expert insights on leveraging AI for knowledge discovery and enterprise applications.</p>
+                        <div class="media-links">
+                            <a href="https://youtu.be/9tX5W5vHJXw?si=HhNDuVWcA--SvR63" target="_blank" rel="noopener" class="media-link">
+                                ▶️ Watch on YouTube →
+                            </a>
+                        </div>
+                        <div class="media-topics">
+                            <span class="topic-tag">Knowledge Discovery</span>
+                            <span class="topic-tag">Enterprise AI</span>
+                            <span class="topic-tag">AI Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technical AI Presentations (2024) -->
+            <div class="additional-media">
+                <h3 style="text-align: center; color: #1f2937; margin-bottom: 2rem; font-size: 1.6rem;">Technical AI Presentations</h3>
+                
+                <div class="media-list">
+                    <div class="media-item">
+                        <div class="media-content">
+                            <h4>The RAG Phenomenon: Cutting Through the Hype to Uncover the Truth</h4>
+                            <p>March 2024 • LinkedIn Live Event</p>
+                            <p class="media-description">LinkedIn Live session exploring Retrieval-Augmented Generation (RAG) technology with Alessandro Benedetti from Sease.io. Demystifying RAG's real-world applications.</p>
+                        </div>
+                        <div class="media-action">
+                            <a href="https://www.linkedin.com/events/theragphenomenon-cuttingthrough7173632352642949122/theater/" target="_blank" rel="noopener" class="media-button">Watch Event</a>
+                        </div>
+                    </div>
+                    
+                    <div class="media-item">
+                        <div class="media-content">
+                            <h4>The State of RAG: Pioneering the Next Wave of AI in Search</h4>
+                            <p>February 2024 • LinkedIn Live Event</p>
+                            <p class="media-description">Deep dive into RAG technology's impact on search. Expert analysis of implementation patterns and emerging trends in AI-powered search.</p>
+                        </div>
+                        <div class="media-action">
+                            <a href="https://www.linkedin.com/events/thestateofrag-pioneeringthenext7159216025807306752/theater/" target="_blank" rel="noopener" class="media-button">Watch Event</a>
+                        </div>
+                    </div>
+                    
+                    <div class="media-item">
+                        <div class="media-content">
+                            <h4>Is Generative AI the Future of Search?</h4>
+                            <p>January 2024 • LinkedIn Live Event</p>
+                            <p class="media-description">Exploring how Generative AI is reshaping search technology and the balance between AI innovation and established search techniques.</p>
+                        </div>
+                        <div class="media-action">
+                            <a href="https://www.linkedin.com/events/isgenerativeaithefutureofsearch7151276900189958144/theater/" target="_blank" rel="noopener" class="media-button">Watch Event</a>
+                        </div>
+                    </div>
+                    
+                    <div class="media-item">
+                        <div class="media-content">
+                            <h4>Go Beyond Search with Generative AI</h4>
+                            <p>January 2024 • LinkedIn Live Event</p>
+                            <p class="media-description">Exclusive session for search professionals on AI as a strategic asset and transitioning from lab to production environments.</p>
+                        </div>
+                        <div class="media-action">
+                            <a href="https://www.linkedin.com/events/gobeyondsearchwithgenerativeai7141382275933376513/theater/" target="_blank" rel="noopener" class="media-button">Watch Event</a>
+                        </div>
+                    </div>
+                    
+                    <div class="media-item">
+                        <div class="media-content">
+                            <h4>AI Evolution: Key Fundamentals</h4>
+                            <p>November 2023 • LinkedIn Live Event</p>
+                            <p class="media-description">Foundational discussion on AI evolution and key principles for understanding modern AI developments and emerging technologies.</p>
+                        </div>
+                        <div class="media-action">
+                            <a href="https://www.linkedin.com/events/aievolution-keyfundamentals7126218498820722688/theater/" target="_blank" rel="noopener" class="media-button">Watch Event</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(37, 99, 235, 0.05); border-radius: 16px;">
+                <h3 style="color: #2563eb; margin-bottom: 1rem;">Want Erik to speak at your event?</h3>
+                <p style="color: #6b7280; margin-bottom: 2rem;">Book Erik for keynotes, panels, workshops, and thought leadership sessions on AI strategy, implementation, and emerging technologies.</p>
+                <a href="https://calendly.com/eschwaa/aiconsult" class="cta-button">Book Speaking Engagement</a>
             </div>
         </div>
     </section>
@@ -3508,13 +3953,151 @@
         }
 
         // Download Functions
+        
+        // User data management with localStorage
+        function storeUserData(userData) {
+            const dataWithExpiry = {
+                ...userData,
+                expiryTime: Date.now() + (48 * 60 * 60 * 1000) // 48 hours in milliseconds
+            };
+            localStorage.setItem('aiexpert_user_data', JSON.stringify(dataWithExpiry));
+            console.log('✅ User data stored for 48 hours');
+        }
+        
+        function getUserData() {
+            try {
+                const storedData = localStorage.getItem('aiexpert_user_data');
+                if (!storedData) return null;
+                
+                const userData = JSON.parse(storedData);
+                
+                // Check if data has expired
+                if (Date.now() > userData.expiryTime) {
+                    localStorage.removeItem('aiexpert_user_data');
+                    console.log('🕒 User data expired, removed from storage');
+                    return null;
+                }
+                
+                console.log('✅ Valid user data found in storage');
+                return userData;
+            } catch (error) {
+                console.error('Error retrieving user data:', error);
+                localStorage.removeItem('aiexpert_user_data');
+                return null;
+            }
+        }
+        
+        function clearUserData() {
+            localStorage.removeItem('aiexpert_user_data');
+            console.log('🗑️ User data cleared from storage');
+        }
+
         function showDownloadForm(fileUrl, fileName) {
             console.log('Showing download form for:', fileName);
-            document.getElementById('downloadResourceTitle').textContent = fileName;
-            document.getElementById('downloadModal').classList.add('active');
             
             // Store the file info for the download
             window.currentDownload = { fileUrl, fileName };
+            
+            // Check if we have valid user data stored
+            const storedUserData = getUserData();
+            
+            if (storedUserData) {
+                // User has downloaded before and data is still valid
+                console.log('🚀 User recognized, starting instant download...');
+                
+                // Update the resource title for tracking
+                document.getElementById('downloadResourceTitle').textContent = fileName;
+                
+                // Start download immediately with stored user data
+                processDownloadWithUserData(storedUserData, fileName);
+                
+                // Show a brief message that download is starting
+                showInstantDownloadMessage(storedUserData.firstName);
+            } else {
+                // First time user or expired data, show the form
+                console.log('📝 New user, showing download form...');
+                document.getElementById('downloadResourceTitle').textContent = fileName;
+                document.getElementById('downloadModal').classList.add('active');
+            }
+        }
+        
+        function processDownloadWithUserData(userData, fileName) {
+            console.log('🔄 Processing download for returning user:', userData);
+            
+            // Initialize EmailJS (ensure it's ready)
+            if (!window.emailjs) {
+                console.error('❌ EmailJS not loaded! Cannot send tracking email.');
+                // Still proceed with download
+                triggerDownload();
+                return;
+            }
+            
+            emailjs.init("oI6t4dwMhBXNaBKXo");
+            console.log('📧 EmailJS initialized, preparing to send...');
+
+            // Send download notification with stored user data
+            const emailParams = {
+                from_name: `${userData.firstName} ${userData.lastName}`,
+                from_email: userData.email,
+                company: userData.company || 'Not specified',
+                downloaded_resource: fileName,
+                download_date: new Date().toLocaleString(),
+                lead_type: 'Resource Download (Returning User)',
+                lead_source: 'Website Resource Download'
+            };
+            
+            console.log('📋 Email parameters:', emailParams);
+
+            emailjs.send("theaiexpert_assessment", "template_dmkjg71", emailParams)
+                .then(function(response) {
+                    console.log('✅ Download tracking email sent for returning user!', response.status, response.text);
+                    triggerDownload();
+                }, function(error) {
+                    console.error('❌ Download tracking failed for returning user:', error);
+                    console.error('❌ Error details:', JSON.stringify(error, null, 2));
+                    // Still proceed with download even if email fails
+                    triggerDownload();
+                });
+            
+            function triggerDownload() {
+                // Trigger the actual download
+                const link = document.createElement('a');
+                link.href = window.currentDownload.fileUrl;
+                link.download = window.currentDownload.fileName;
+                link.click();
+                
+                // Show success message
+                showDownloadSuccess();
+            }
+        }
+        
+        function showInstantDownloadMessage(firstName) {
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #2563eb;
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+                z-index: 1002;
+                font-weight: 600;
+                animation: slideInRight 0.4s ease;
+            `;
+            messageDiv.innerHTML = `👋 Welcome back, ${firstName}! Starting your download...`;
+            
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.style.animation = 'slideOutRight 0.4s ease';
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        document.body.removeChild(messageDiv);
+                    }
+                }, 400);
+            }, 3000);
         }
 
         function closeDownloadModal() {
@@ -3533,6 +4116,9 @@
                 downloadDate: new Date().toISOString()
             };
 
+            // Store user data for future downloads (48 hours)
+            storeUserData(formData);
+
             // Initialize EmailJS
             emailjs.init("oI6t4dwMhBXNaBKXo");
 
@@ -3547,7 +4133,7 @@
                 lead_source: 'Website Resource Download'
             };
 
-            emailjs.send("theaiexpert_assessment", "template_8u3fxbf", emailParams)
+            emailjs.send("theaiexpert_assessment", "template_dmkjg71", emailParams)
                 .then(function(response) {
                     console.log('✅ Download tracking email sent!', response.status, response.text);
                     
@@ -3602,6 +4188,31 @@
                 }, 400);
             }, 5000);
         }
+
+        // Debug functions (accessible via browser console)
+        window.debugDownloads = {
+            clearUserData: clearUserData,
+            getUserData: getUserData,
+            checkUserData: function() {
+                const data = getUserData();
+                if (data) {
+                    const expiresIn = Math.round((data.expiryTime - Date.now()) / (1000 * 60 * 60));
+                    console.log(`👤 User: ${data.firstName} ${data.lastName} (${data.email})`);
+                    console.log(`🏢 Company: ${data.company || 'Not specified'}`);
+                    console.log(`⏰ Expires in: ${expiresIn} hours`);
+                    return data;
+                } else {
+                    console.log('❌ No user data stored or data has expired');
+                    return null;
+                }
+            }
+        };
+        
+        // Add console message about debug commands
+        console.log('🛠️ Download Debug Commands Available:');
+        console.log('   debugDownloads.checkUserData() - Check current stored user data');
+        console.log('   debugDownloads.clearUserData() - Clear stored user data');
+        console.log('   debugDownloads.getUserData() - Get raw user data object');
     </script>
 
     <!-- Transparent spacer to show background -->
@@ -3670,5 +4281,61 @@
             </div>
         </div>
     </section>
+
+    
+
+    <script>
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Functionality
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (mobileMenuToggle && navLinks) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('mobile-open');
+                    
+                    // Change hamburger icon when open
+                    if (navLinks.classList.contains('mobile-open')) {
+                        this.innerHTML = '✕';
+                    } else {
+                        this.innerHTML = '☰';
+                    }
+                });
+
+                // Close mobile menu when clicking nav links
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('mobile-open');
+                        mobileMenuToggle.innerHTML = '☰';
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!event.target.closest('nav')) {
+                        navLinks.classList.remove('mobile-open');
+                        mobileMenuToggle.innerHTML = '☰';
+                    }
+                });
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
+

@@ -366,6 +366,16 @@
             .why-us {
                 grid-template-columns: 1fr;
             }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-erik .about-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+                text-align: center;
+            }
         }
 
         /* Smooth scroll */
@@ -1095,9 +1105,26 @@
 
     <section id="about" class="container">
         <div class="about-erik fade-in">
-            <h3>About Erik</h3>
-            <p><strong>Erik Schwartz</strong> is the Fractional CAIO behind aiexpert.ai and the Co-Founder of Elysia Labs. He's helped Microsoft, Comcast, and Elsevier turn AI into revenue. Now, he does it for growing companies like yours.</p>
-            <p style="margin-top: 1rem;">Need an expert in your corner? <a href="https://calendly.com/eschwaa/aiconsult" style="color: #60a5fa;">Book a strategy call</a> or <a href="https://calendly.com/eschwaa/aiconsult" style="color: #60a5fa;">email us</a>.</p>
+            <div style="display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start;" class="about-grid">
+                <div style="text-align: center;">
+                    <img src="Erik-Headshot.png" alt="Erik Schwartz" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(255, 255, 255, 0.2); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);">
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 2rem;">About Erik Schwartz</h3>
+                    <p style="margin-bottom: 1.5rem;">Erik Schwartz is a seasoned technology executive and entrepreneur with over two decades of experience in the tech sector, specializing in search and knowledge discovery. As the Fractional CAIO behind aiexpert.ai, Erik has been at the forefront of integrating Large Language Models (LLMs) and Generative AI into search technologies, significantly enhancing user interaction and information accessibility.</p>
+                    
+                    <p style="margin-bottom: 1.5rem;">His illustrious career includes key senior roles at <strong>Comcast</strong>, <strong>Elsevier</strong>, and <strong>Microsoft</strong>, where he led pioneering AI, search, and LLM initiatives. Erik's professional journey is marked by his dedication to innovation and his belief in the power of collaboration, consistently driving teams towards the swift delivery of groundbreaking solutions.</p>
+                    
+                    <p style="margin-bottom: 1.5rem;">His work, notably on the <strong>Scopus AI project</strong>, underscores his commitment to redefining the boundaries of how we engage with information. Erik has firmly established himself as a trusted leader in the technology community through his track record of turning AI innovations into measurable business value.</p>
+                    
+                    <p style="margin-bottom: 2rem;">In his role as a <strong>Virtual Chief AI Officer (CAIO)</strong>, Erik leverages his extensive experience to develop and implement comprehensive AI strategies for small and medium businesses. His thorough process not only demystifies AI but also ensures that these businesses are equipped to succeed and thrive in the competitive landscape of AI technology.</p>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+                        <p style="margin-bottom: 1rem; font-weight: 600;">Ready to work with Erik?</p>
+                        <a href="https://calendly.com/eschwaa/aiconsult" style="color: #60a5fa; font-weight: 600; text-decoration: none;">Book a strategy call</a> to discuss how AI can transform your business.
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1829,7 +1856,7 @@
             doc.setFontSize(11);
             doc.setFont(undefined, 'normal');
             doc.text('Book a strategy call with our AI experts: calendly.com/eschwaa/aiconsult', 20, yPosition + 45);
-            doc.text('Visit aiexpert.ai to learn more about our services', 20, yPosition + 55);
+            doc.text('Visit https://aiexpert.ai to learn more about our services', 20, yPosition + 55);
 
             // Save the PDF
             doc.save(`AI-Assessment-Report-${currentDate.replace(/\//g, '-')}.pdf`);

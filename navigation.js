@@ -11,6 +11,7 @@ class NavigationComponent {
         if (path.includes('insights.html')) return 'insights';
         if (path.includes('media.html')) return 'media';
         if (path.includes('faq.html')) return 'faq';
+        if (path.includes('sitemap.html')) return 'sitemap';
         return 'index';
     }
 

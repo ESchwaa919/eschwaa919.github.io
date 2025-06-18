@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Map | aiexpert.ai</title>
+    <meta name="description" content="Complete site map for aiexpert.ai - find all pages, resources, and content easily.">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <link rel="stylesheet" href="navigation.css">
+    <script src="navigation.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #ffffff;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('London.png') center/cover no-repeat;
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 4rem 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .page-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 4rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .sitemap-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .sitemap-section h2 {
+            color: #2563eb;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sitemap-section ul {
+            list-style: none;
+        }
+
+        .sitemap-section li {
+            margin-bottom: 0.75rem;
+        }
+
+        .sitemap-section a {
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sitemap-section a:hover {
+            color: #2563eb;
+        }
+
+        .sitemap-section .description {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-left: 1.5rem;
+            margin-top: 0.25rem;
+        }
+
+        .resources-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .resource-item {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-item h4 {
+            color: #2563eb;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-item p {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .sitemap-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be injected by navigation.js -->
+
+    <main>
+        <div class="container">
+            <h1>Site Map</h1>
+            <div class="page-intro">
+                <p>Complete navigation guide to all pages, resources, and content on aiexpert.ai</p>
+            </div>
+            
+            <div class="sitemap-grid">
+                <!-- Main Pages -->
+                <div class="sitemap-section">
+                    <h2>🏠 Main Pages</h2>
+                    <ul>
+                        <li>
+                            <a href="index.html">🏠 Home Page</a>
+                            <div class="description">Main landing page with services overview and AI assessment</div>
+                        </li>
+                        <li>
+                            <a href="insights.html">📚 AI Insights</a>
+                            <div class="description">Thought leadership articles and strategic frameworks</div>
+                        </li>
+                        <li>
+                            <a href="media.html">🎙️ Media & Speaking</a>
+                            <div class="description">Podcast appearances and industry presentations</div>
+                        </li>
+                        <li>
+                            <a href="faq.html">❓ FAQ</a>
+                            <div class="description">Common questions about AI consulting</div>
+                        </li>
+                        <li>
+                            <a href="sitemap.html">🗺️ Site Map</a>
+                            <div class="description">This page - complete site navigation</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Main Sections -->
+                <div class="sitemap-section">
+                    <h2>📋 Main Sections</h2>
+                    <ul>
+                        <li>
+                            <a href="index.html#services">🎯 Services</a>
+                            <div class="description">AI consulting services and offerings</div>
+                        </li>
+                        <li>
+                            <a href="index.html#assessment">📊 AI Assessment</a>
+                            <div class="description">Free AI readiness assessment tool</div>
+                        </li>
+                        <li>
+                            <a href="index.html#about">👨‍💼 About Erik</a>
+                            <div class="description">Background and expertise of Erik Schwartz</div>
+                        </li>
+                        <li>
+                            <a href="index.html#contact">📞 Contact</a>
+                            <div class="description">Get in touch and book consultations</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="sitemap-section">
+                    <h2>📄 Resources & Downloads</h2>
+                    <div class="resources-list">
+                        <div class="resource-item">
+                            <h4>AI Execution Playbook for SMBs</h4>
+                            <p>Strategic framework for AI implementation</p>
+                        </div>
+                        <div class="resource-item">
+                            <h4>AI-Infused Business Leadership Guide</h4>
+                            <p>Leadership journey through AI adoption</p>
+                        </div>
+                        <div class="resource-item">
+                            <h4>AI Workforce Revolution Report</h4>
+                            <p>Future of work and AI transformation</p>
+                        </div>
+                        <div class="resource-item">
+                            <h4>AI Competency Matrix</h4>
+                            <p>Assessment framework for AI capabilities</p>
+                        </div>
+                        <div class="resource-item">
+                            <h4>Intelligence as Infrastructure</h4>
+                            <p>Deep research on AI infrastructure</p>
+                        </div>
+                        <div class="resource-item">
+                            <h4>Future of Work Infographic</h4>
+                            <p>Visual guide to AI workplace changes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- External Links -->
+                <div class="sitemap-section">
+                    <h2>🔗 External Links</h2>
+                    <ul>
+                        <li>
+                            <a href="https://calendly.com/eschwaa/aiconsult" target="_blank">📅 Book Strategy Call</a>
+                            <div class="description">Schedule a consultation with Erik</div>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/eschwaa/" target="_blank">💼 LinkedIn Profile</a>
+                            <div class="description">Connect with Erik on LinkedIn</div>
+                        </li>
+                        <li>
+                            <a href="https://music.amazon.com/podcasts/a408a0af-eb75-4497-bac7-ba712b0366ce/episodes/18b22def-13e9-4a33-b123-ae4be936513f/eden-smith-ai-horizons-erik-schwartz-on-ai-predictions-for-2025" target="_blank">🎵 AI Horizons Podcast</a>
+                            <div class="description">2025 AI predictions on Amazon Music</div>
+                        </li>
+                        <li>
+                            <a href="https://open.spotify.com/episode/0M9vnvDu9pzPyAIMk4PxmA" target="_blank">🎙️ CAIO Insights Podcast</a>
+                            <div class="description">Chief AI Officer discussion on Spotify</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tools & Features -->
+                <div class="sitemap-section">
+                    <h2>🛠️ Tools & Features</h2>
+                    <ul>
+                        <li>
+                            <a href="index.html#assessment">📊 AI Readiness Assessment</a>
+                            <div class="description">8-question assessment with personalized recommendations</div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">📄 PDF Report Generator</a>
+                            <div class="description">Download assessment results as PDF</div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">📧 Resource Downloads</a>
+                            <div class="description">Email-gated access to premium AI resources</div>
+                        </li>
+                        <li>
+                            <a href="index.html#contact">💬 Contact Form</a>
+                            <div class="description">Direct message system with email notifications</div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">🔄 Page Navigation</a>
+                            <div class="description">Previous/Next links between About Erik → Insights → Media (circular flow)</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Technical -->
+                <div class="sitemap-section">
+                    <h2>⚙️ Technical</h2>
+                    <ul>
+                        <li>
+                            <a href="sitemap.xml">🗂️ XML Sitemap</a>
+                            <div class="description">Machine-readable sitemap for search engines</div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="alert('Privacy modal will open')">🔒 Privacy & Cookies</a>
+                            <div class="description">Privacy statement and cookie information</div>
+                        </li>
+                        <li>
+                            <a href="favicon.ico">🎨 Favicon</a>
+                            <div class="description">Site icon and branding assets</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html> 

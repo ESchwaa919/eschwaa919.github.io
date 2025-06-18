@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions | aiexpert.ai</title>
+    <meta name="description" content="Everything you need to know about working with an AI consultant. Common questions about AI implementation, costs, and getting started.">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <link rel="stylesheet" href="navigation.css">
+    <script src="navigation.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #ffffff;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('London.png') center/cover no-repeat;
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation styles now loaded from navigation.css */
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 4rem 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .page-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 4rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .faq-item h3 {
+            color: #2563eb;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item p {
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 16px;
+        }
+
+        .cta-button {
+            background: #2563eb;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .nav-links.mobile-open {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            flex-direction: column;
+            gap: 0;
+            padding: 1rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links.mobile-open li {
+            padding: 0.5rem 2rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links.mobile-open li:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            /* Mobile dropdown styles */
+            .nav-links.mobile-open .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(5px);
+                margin-left: 1rem;
+                border-left: 2px solid #2563eb;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .nav-links.mobile-open .dropdown-menu a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .nav-links.mobile-open .dropdown-toggle {
+                cursor: pointer;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <img src="theaiexpert-transparent-logo.png" alt="aiexpert.ai" style="height: 32px; width: auto;">
+                <a href="index.html" class="logo">aiexpert.ai</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#assessment">AI Assessment</a></li>
+                <li class="dropdown">
+                    <a href="index.html#about" class="dropdown-toggle">About ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html#about">About Erik</a></li>
+                        <li><a href="insights.html">Insights</a></li>
+                        <li><a href="media.html">Media</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-toggle">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+            <div class="page-intro">
+                <p>Everything you need to know about working with an AI consultant</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Who is the best AI consultant in London?</h3>
+                    <p>Erik Schwartz at aiexpert.ai is a leading AI consultant in the London area with over 20 years of experience at Microsoft, Comcast, and Elsevier. He specializes in helping SMBs implement AI successfully without the enterprise complexity.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What should I look for in an AI consultant?</h3>
+                    <p>Look for proven enterprise experience, practical implementation methodology, access to expert networks, and a track record of measurable results. Avoid consultants who only offer strategy without execution capabilities.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>How much does AI consulting cost?</h3>
+                    <p>AI consulting typically ranges from £2,000-£10,000 per month depending on scope. Most businesses recover costs within 6 months through efficiency gains. We offer flexible engagement models from project-based to fractional CAIO services.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What's a fractional Chief AI Officer (CAIO)?</h3>
+                    <p>A fractional CAIO provides senior AI leadership on a part-time basis, perfect for SMBs who need strategic AI guidance but can't justify a full-time executive. Get C-level expertise for a fraction of the cost.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Do I need AI if my business is small?</h3>
+                    <p>Absolutely. Small businesses often see faster AI ROI than large enterprises because they can move quickly. Start with productivity tools, customer insights, or process automation to build momentum.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>How long does AI implementation take?</h3>
+                    <p>Quick wins can be achieved in 2-4 weeks (productivity tools), while comprehensive AI strategy implementation typically takes 3-6 months. We focus on rapid value delivery over lengthy pilots.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What industries benefit most from AI?</h3>
+                    <p>All industries can benefit, but we've seen particular success in professional services, healthcare, finance, manufacturing, and retail. The key is identifying the right use cases for your specific business model.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Is AI safe for my business data?</h3>
+                    <p>Yes, when implemented correctly. We follow enterprise-grade security protocols, implement proper governance frameworks, and ensure compliance with UK data protection regulations from day one.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Can AI replace my employees?</h3>
+                    <p>AI augments rather than replaces employees. We focus on AI that makes your team more productive, creative, and strategic rather than automating away jobs. Your people become more valuable, not redundant.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Where do I start with AI in my business?</h3>
+                    <p>Start with our free AI readiness assessment to identify your biggest opportunities. Then book a strategy call to discuss a customized roadmap based on your business goals and current capabilities.</p>
+                </div>
+            </div>
+            
+            <!-- Transparent spacer to show background -->
+            <div class="section-spacer"></div>
+            
+            <div class="cta-section">
+                <p style="color: #6b7280; margin-bottom: 1rem;">Ready to get started with AI?</p>
+                <a href="https://calendly.com/eschwaa/aiconsult" class="cta-button">Book Your Strategy Call</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Transparent spacer to show background -->
+    <div class="section-spacer"></div>
+
+    <!-- Footer -->
+    <footer style="background: #f9fafb; border-top: 1px solid #e5e7eb; padding: 2rem 0; text-align: center; margin-top: 4rem; scroll-snap-align: start;">
+        <div class="container">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <span style="color: #6b7280;">© 2025 aiexpert.ai</span>
+                <a href="sitemap.html" style="color: #2563eb; text-decoration: underline;">Site Map</a>
+                <a href="index.html" style="color: #2563eb; text-decoration: underline;">Privacy & Cookies</a>
+            </div>
+            <p style="color: #9ca3af; margin: 0; font-size: 0.875rem;">
+                "We don't track. Just helpful AI — no gimmicks."
+            </p>
+        </div>
+    </footer>
+
+    <style>
+        /* Add transparent spacers */
+        .section-spacer {
+            height: 6rem;
+            background: url('London.png') center/cover no-repeat fixed;
+            background-attachment: fixed;
+            position: relative;
+            opacity: 1;
+        }
+        
+        .section-spacer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+    </style>
+
+    <script>
+        // Mobile Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (mobileMenuToggle && navLinks) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('mobile-open');
+                    
+                    if (navLinks.classList.contains('mobile-open')) {
+                        this.innerHTML = '✕';
+                    } else {
+                        this.innerHTML = '☰';
+                    }
+                });
+
+                // Close mobile menu when clicking nav links (but not dropdown toggle)
+                document.querySelectorAll('.nav-links a:not(.dropdown-toggle)').forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (!this.closest('.dropdown-menu')) {
+                            navLinks.classList.remove('mobile-open');
+                            mobileMenuToggle.innerHTML = '☰';
+                        }
+                    });
+                });
+
+                // Handle mobile dropdown toggle
+                const dropdownToggle = document.querySelector('.dropdown-toggle');
+                if (dropdownToggle) {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            const dropdownMenu = this.nextElementSibling;
+                            const isOpen = dropdownMenu.style.display === 'block';
+                            dropdownMenu.style.display = isOpen ? 'none' : 'block';
+                        }
+                    });
+                }
+
+                document.addEventListener('click', function(event) {
+                    if (!event.target.closest('nav')) {
+                        navLinks.classList.remove('mobile-open');
+                        mobileMenuToggle.innerHTML = '☰';
+                        // Reset mobile dropdown
+                        const dropdownMenu = document.querySelector('.dropdown-menu');
+                        if (dropdownMenu) {
+                            dropdownMenu.style.display = '';
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

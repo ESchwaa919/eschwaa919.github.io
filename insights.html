@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Tags -->
+    <title>AI Insights & Thought Leadership | aiexpert.ai</title>
+    <meta name="description" content="Latest AI insights and thought leadership from Erik Schwartz. Practical AI guidance, strategic frameworks, and actionable resources for business leaders.">
+    <meta name="keywords" content="AI insights, AI thought leadership, AI strategy, business AI, AI resources, AI playbook, AI adoption">
+    <meta name="author" content="Erik Schwartz, aiexpert.ai">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://theaiexpert.ai/insights.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theaiexpert.ai/insights.html">
+    <meta property="og:title" content="AI Insights & Thought Leadership | aiexpert.ai">
+    <meta property="og:description" content="Latest AI insights and thought leadership from Erik Schwartz. Practical AI guidance and strategic frameworks for business leaders.">
+    <meta property="og:image" content="https://theaiexpert.ai/Erik-Headshot.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://theaiexpert.ai/insights.html">
+    <meta property="twitter:title" content="AI Insights & Thought Leadership | aiexpert.ai">
+    <meta property="twitter:description" content="Latest AI insights and thought leadership from Erik Schwartz. Practical AI guidance and strategic frameworks.">
+    <meta property="twitter:image" content="https://theaiexpert.ai/Erik-Headshot.png">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://calendly.com">
+    <link rel="dns-prefetch" href="https://api.emailjs.com">
+
+    <link rel="stylesheet" href="navigation.css">
+    <script src="navigation.js"></script>
+    <script src="page-navigation.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #ffffff;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+
+        /* Background Image */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('London.png') center/cover no-repeat;
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation styles now loaded from navigation.css */
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 4rem 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .page-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 4rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        /* Insights Grid */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .insight-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .insight-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .insight-tag {
+            background: #2563eb;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .insight-resources {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .insight-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .insight-link:hover {
+            color: #1d4ed8;
+        }
+
+        .resource-link {
+            background: rgba(37, 99, 235, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        /* Additional Resources */
+        .additional-resources {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 16px;
+            margin-bottom: 4rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .resource-type {
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .resource-download {
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        .resource-download:hover {
+            background: #1d4ed8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 16px;
+            margin-bottom: 4rem;
+        }
+
+        .cta-button {
+            background: #2563eb;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Responsive Design */
+                @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            /* Mobile dropdown styles */
+            .nav-links.mobile-open .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(5px);
+                margin-left: 1rem;
+                border-left: 2px solid #2563eb;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .nav-links.mobile-open .dropdown-menu a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .nav-links.mobile-open .dropdown-toggle {
+                cursor: pointer;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .insight-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .resource-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- Navigation will be injected by navigation.js -->
+
+    <!-- Download Email Capture Modal -->
+    <div class="download-modal" id="downloadModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div class="download-modal-content" style="background: white; padding: 2rem; border-radius: 16px; max-width: 500px; width: 90%; position: relative;">
+            <button class="download-modal-close" onclick="closeDownloadModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
+            <div class="download-modal-header">
+                <h3>🎯 Get Your Free AI Resource</h3>
+                <p id="downloadResourceTitle">Download our premium AI resource</p>
+            </div>
+            
+            <div class="download-value-props" style="margin: 2rem 0;">
+                <div class="value-prop" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span class="value-icon">📊</span>
+                    <span>Expert insights from industry leaders</span>
+                </div>
+                <div class="value-prop" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span class="value-icon">🚀</span>
+                    <span>Actionable strategies for immediate implementation</span>
+                </div>
+                <div class="value-prop" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span class="value-icon">💡</span>
+                    <span>Future-proof your business with AI</span>
+                </div>
+            </div>
+            
+            <form class="download-form" id="downloadForm" onsubmit="submitDownloadForm(event)">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <input type="text" id="downloadFirstName" name="firstName" placeholder="First Name" required style="padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 8px;">
+                    <input type="text" id="downloadLastName" name="lastName" placeholder="Last Name" required style="padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 8px;">
+                </div>
+                
+                <input type="email" id="downloadEmail" name="email" placeholder="Work Email Address" required style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 8px; margin-bottom: 1rem;">
+                
+                <input type="text" id="downloadCompany" name="company" placeholder="Company Name" required style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 8px; margin-bottom: 1rem;">
+                
+                <button type="submit" class="download-submit-btn" style="width: 100%; background: #2563eb; color: white; padding: 1rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                    <span class="download-icon">📄</span>
+                    Download Now - It's Free!
+                </button>
+                
+                <p style="font-size: 0.875rem; color: #6b7280; text-align: center; margin-top: 1rem;">
+                    We respect your privacy. Your information will only be used to send you valuable AI insights. 
+                    You can unsubscribe at any time.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <h1 class="fade-in">Featured AI Insights</h1>
+            <div class="page-intro fade-in">
+                <p>Practical AI guidance from Erik's latest thought leadership. Transform AI potential into measurable business outcomes with proven strategies and frameworks.</p>
+            </div>
+            
+            <div class="insights-grid">
+                <div class="insight-card fade-in">
+                    <div class="insight-header">
+                        <h3>AI Execution Playbook for SMBs</h3>
+                        <span class="insight-tag">Strategy</span>
+                    </div>
+                    <p>Turning AI hype into measurable ROI without a Fortune 500 budget. A practical roadmap for small and medium businesses ready to implement AI successfully.</p>
+                    <div class="insight-resources">
+                        <a href="https://www.linkedin.com/pulse/ai-execution-playbook-smbs-turning-hype-roi-without-fortune-schwartz-76y6e/" target="_blank" rel="noopener" class="insight-link">Read Article →</a>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./The-AI-Execution-Playbook-for-SMBs.pdf', 'The AI Execution Playbook for SMBs')" class="insight-link resource-link">📄 Full Playbook (PDF)</a>
+                    </div>
+                </div>
+                
+                <div class="insight-card fade-in">
+                    <div class="insight-header">
+                        <h3>A Leader's Journey to AI Adoption</h3>
+                        <span class="insight-tag">Leadership</span>
+                    </div>
+                    <p>Real-world insights from leadership experiences in AI transformation. Navigate the challenges and opportunities of leading your organization through AI adoption.</p>
+                    <div class="insight-resources">
+                        <a href="https://www.linkedin.com/posts/eschwaa_a-leaders-journey-to-ai-adoption-activity-7325771625394565120-LNsR" target="_blank" rel="noopener" class="insight-link">Read Article →</a>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./The-AI-Infused-Business-A-Leaders-Journey-to-AI-Adoption.pdf', 'The AI-Infused Business: A Leader\'s Journey to AI Adoption')" class="insight-link resource-link">📄 Full Report (PDF)</a>
+                    </div>
+                </div>
+                
+                <div class="insight-card fade-in">
+                    <div class="insight-header">
+                        <h3>AI Workforce Revolution by 2045</h3>
+                        <span class="insight-tag">Future of Work</span>
+                    </div>
+                    <p>How jobs, teams, and leadership will transform over the next two decades. Prepare your organization for the AI-driven future of work.</p>
+                    <div class="insight-resources">
+                        <a href="https://www.linkedin.com/pulse/ai-workforce-revolution-how-jobs-teams-leadership-2045-erik-schwartz-bdn3e" target="_blank" rel="noopener" class="insight-link">Read Article →</a>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./AI and the Future of Work.pdf', 'AI and the Future of Work Research Paper')" class="insight-link resource-link">📄 Research Paper (PDF)</a>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./Future of work infographic.png', 'Future of Work Infographic')" class="insight-link resource-link">📊 Infographic</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Transparent spacer to show background -->
+            <div class="section-spacer"></div>
+            
+            <!-- Additional Resources Section -->
+            <div class="additional-resources fade-in">
+                <h3>Additional AI Resources</h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>The AI Competency Matrix</h4>
+                            <span class="resource-type">📄 PDF Guide</span>
+                        </div>
+                        <p>Comprehensive framework for assessing and developing AI capabilities across your organization.</p>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./The AI Competency Matrix.pdf', 'The AI Competency Matrix')" class="resource-download">Download PDF</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>The Dawn of Intelligence as Infrastructure</h4>
+                            <span class="resource-type">📝 Research Paper</span>
+                        </div>
+                        <p>Deep dive into how AI is becoming the foundational infrastructure layer for modern businesses.</p>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./The Dawn of Intelligence as Infrastructure.docx', 'The Dawn of Intelligence as Infrastructure')" class="resource-download">Download DOCX</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>AI as Infrastructure Layer - Deep Research</h4>
+                            <span class="resource-type">📝 Analysis</span>
+                        </div>
+                        <p>Technical analysis of AI infrastructure implementation patterns and best practices.</p>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./AI as an Infrastructure Layer Deep Research.docx', 'AI as Infrastructure Layer - Deep Research')" class="resource-download">Download DOCX</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <h4>The Future of Work & AI Disruption</h4>
+                            <span class="resource-type">📝 Whitepaper</span>
+                        </div>
+                        <p>Comprehensive analysis of how artificial intelligence is reshaping modern workplaces and job roles.</p>
+                        <a href="javascript:void(0)" onclick="showDownloadForm('./The future The fear of artificial intelligence disrupting jobs has permeated modern workplaces.docx', 'The Future of Work & AI Disruption')" class="resource-download">Download DOCX</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-section fade-in">
+                <p style="color: #6b7280; margin-bottom: 1rem;">Want more AI insights delivered directly?</p>
+                <a href="https://www.linkedin.com/in/eschwaa/" target="_blank" rel="noopener" class="cta-button">Follow Erik on LinkedIn</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Download functionality
+        let currentDownloadUrl = '';
+        let currentDownloadTitle = '';
+
+        function showDownloadForm(url, title) {
+            currentDownloadUrl = url;
+            currentDownloadTitle = title;
+            document.getElementById('downloadResourceTitle').textContent = title;
+            document.getElementById('downloadModal').style.display = 'flex';
+        }
+
+        function closeDownloadModal() {
+            document.getElementById('downloadModal').style.display = 'none';
+            document.getElementById('downloadForm').reset();
+        }
+
+        function submitDownloadForm(event) {
+            event.preventDefault();
+            
+            const formData = {
+                firstName: document.getElementById('downloadFirstName').value,
+                lastName: document.getElementById('downloadLastName').value,
+                email: document.getElementById('downloadEmail').value,
+                company: document.getElementById('downloadCompany').value,
+                downloadedResource: currentDownloadTitle,
+                downloadUrl: currentDownloadUrl
+            };
+
+            // Initialize EmailJS
+            emailjs.init("oI6t4dwMhBXNaBKXo");
+
+            // Send email notification
+            const emailParams = {
+                from_name: `${formData.firstName} ${formData.lastName}`,
+                from_email: formData.email,
+                company: formData.company,
+                downloaded_resource: formData.downloadedResource,
+                download_date: new Date().toLocaleString(),
+                lead_type: 'Resource Download',
+                lead_source: 'Insights Page'
+            };
+
+            emailjs.send("theaiexpert_assessment", "template_dmkjg71", emailParams)
+                .then(function(response) {
+                    console.log('✅ Download notification sent!', response.status, response.text);
+                    
+                    // Close modal and trigger download
+                    closeDownloadModal();
+                    
+                    // Trigger download
+                    const link = document.createElement('a');
+                    link.href = currentDownloadUrl;
+                    link.download = currentDownloadTitle;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                }, function(error) {
+                    console.error('❌ Download notification failed:', error);
+                    // Still allow download even if email fails
+                    closeDownloadModal();
+                    const link = document.createElement('a');
+                    link.href = currentDownloadUrl;
+                    link.download = currentDownloadTitle;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('downloadModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDownloadModal();
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.insight-card, .resource-card').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Mobile menu functionality now handled by navigation.js
+        });
+    </script>
+
+    <!-- Transparent spacer to show background -->
+    <div class="section-spacer"></div>
+
+    <!-- Footer -->
+    <footer style="background: #f9fafb; border-top: 1px solid #e5e7eb; padding: 2rem 0; text-align: center; margin-top: 4rem; scroll-snap-align: start;">
+        <div class="container">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <span style="color: #6b7280;">© 2025 aiexpert.ai</span>
+                <a href="sitemap.html" style="color: #2563eb; text-decoration: underline;">Site Map</a>
+                <a href="index.html" style="color: #2563eb; text-decoration: underline;">Privacy & Cookies</a>
+            </div>
+            <p style="color: #9ca3af; margin: 0; font-size: 0.875rem;">
+                "We don't track. Just helpful AI — no gimmicks."
+            </p>
+        </div>
+    </footer>
+
+    <style>
+        /* Add transparent spacers */
+        .section-spacer {
+            height: 6rem;
+            background: url('London.png') center/cover no-repeat fixed;
+            background-attachment: fixed;
+            position: relative;
+            opacity: 1;
+            scroll-snap-align: center;
+        }
+        
+        .section-spacer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+    </style>
+</body>
+</html> 

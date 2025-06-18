@@ -217,6 +217,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="navigation.css">
+    <script src="navigation.js"></script>
+    <script src="page-navigation.js"></script>
     <style>
         * {
             margin: 0;
@@ -230,7 +233,6 @@
             color: #333;
             overflow-x: hidden;
             position: relative;
-            scroll-snap-type: y proximity; /* Changed from mandatory to proximity */
             scroll-behavior: smooth;
         }
 
@@ -259,54 +261,7 @@
             position: relative;
         }
 
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2563eb;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover {
-            color: #1d4ed8;
-            transform: scale(1.02);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #2563eb;
-        }
+        /* Header and navigation styles now loaded from navigation.css */
 
         /* Hero Section */
         .hero {
@@ -318,8 +273,6 @@
             position: relative;
             overflow: hidden;
             margin-bottom: 6rem; /* Larger gap after hero */
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
         }
 
         .hero::before {
@@ -416,8 +369,6 @@
             padding: 5rem 0;
             scroll-margin-top: 80px; /* Account for fixed header */
             margin-bottom: 4rem; /* Add transparent gaps between sections */
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
         }
 
         .section-alt {
@@ -605,49 +556,15 @@
             transform: translateY(0);
         }
 
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #333;
+        /* About Erik thought leadership links hover effect */
+        .about-erik a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
         }
 
-        .nav-links.mobile-open {
-            display: flex;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            flex-direction: column;
-            gap: 0;
-            padding: 1rem 0;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-links.mobile-open li {
-            padding: 0.5rem 2rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-links.mobile-open li:last-child {
-            border-bottom: none;
-        }
+        /* Mobile menu styles now loaded from navigation.css */
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
             .trust-companies {
                 flex-direction: column;
                 gap: 1rem;
@@ -694,7 +611,6 @@
         /* Smooth scroll */
         html {
             scroll-behavior: smooth;
-            scroll-snap-type: y mandatory;
         }
 
         /* Assessment Styles */
@@ -727,24 +643,6 @@
 
         /* Reduce scroll snap intensity on mobile */
         @media (max-width: 768px) {
-            body {
-                scroll-snap-type: y proximity; /* Already proximity, keeping consistent */
-            }
-            
-            html {
-                scroll-snap-type: y proximity; /* Changed from proximity to match body */
-            }
-            
-            section {
-                scroll-snap-align: start;
-                scroll-snap-stop: normal; /* Changed from always to normal */
-            }
-            
-            .hero {
-                scroll-snap-align: start;
-                scroll-snap-stop: normal;
-            }
-            
             /* FORCE SINGLE COLUMN LAYOUT FOR ASSESSMENT BENEFITS ON MOBILE */
             .assessment-intro .assessment-benefits {
                 display: grid !important;
@@ -1265,7 +1163,6 @@
             background-attachment: fixed;
             position: relative;
             opacity: 1; /* Full opacity for the spacers */
-            scroll-snap-align: center;
         }
         
         .section-spacer::before {
@@ -1279,26 +1176,9 @@
             pointer-events: none;
         }
 
-        /* Enhanced scroll snap for better browser support */
-        @supports (scroll-snap-type: y mandatory) {
-            body {
-                scroll-snap-type: y mandatory;
-            }
-            
-            section {
-                scroll-snap-align: start;
-                scroll-snap-stop: always;
-            }
-            
-            .hero {
-                scroll-snap-align: start;
-                scroll-snap-stop: always;
-            }
-        }
-
         /* Disable scroll snap during assessment fullscreen mode */
         body.assessment-active {
-            scroll-snap-type: none;
+            /* Keep assessment focused without scroll interference */
         }
 
         /* Featured Insights Section */
@@ -2454,24 +2334,7 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <img src="theaiexpert-transparent-logo.png" alt="aiexpert.ai" style="height: 32px; width: auto;">
-                <a href="#hero" class="logo">aiexpert.ai</a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#assessment">AI Assessment</a></li>
-                <li><a href="#insights">Insights</a></li>
-                <li><a href="#media">Media</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
-            <button class="mobile-menu-toggle">☰</button>
-        </nav>
-    </header>
+    <!-- Navigation will be injected by navigation.js -->
 
     <!-- Download Email Capture Modal -->
     <div class="download-modal" id="downloadModal">
@@ -2797,7 +2660,7 @@
                 </div>
             </div>
             
-            <p style="margin-bottom: 2rem; opacity: 0.9;">This assessment takes approximately 5 minutes to complete</p>
+            <p style="margin-bottom: 2rem; opacity: 0.9;">This assessment takes approximately 5 minutes to complete and is completely free.</p>
             <button class="cta-button" onclick="startAssessment()">Start Assessment</button>
         </div>
 
@@ -2926,259 +2789,6 @@
     <!-- Transparent spacer to show background -->
     <div class="section-spacer"></div>
 
-    <section class="container">
-        <div class="featured-insights fade-in" id="insights">
-            <h2>Featured AI Insights</h2>
-            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 3rem;">Practical AI guidance from Erik's latest thought leadership</p>
-            
-            <div class="insights-grid">
-                <div class="insight-card fade-in">
-                    <div class="insight-header">
-                        <h3>AI Execution Playbook for SMBs</h3>
-                        <span class="insight-tag">Strategy</span>
-                    </div>
-                    <p>Turning AI hype into measurable ROI without a Fortune 500 budget. A practical roadmap for small and medium businesses ready to implement AI successfully.</p>
-                    <div class="insight-resources">
-                        <a href="https://www.linkedin.com/pulse/ai-execution-playbook-smbs-turning-hype-roi-without-fortune-schwartz-76y6e/" target="_blank" rel="noopener" class="insight-link">Read Article →</a>
-                        <a href="javascript:void(0)" onclick="showDownloadForm('./The-AI-Execution-Playbook-for-SMBs.pdf', 'The AI Execution Playbook for SMBs')" class="insight-link resource-link">📄 Full Playbook (PDF)</a>
-                    </div>
-                </div>
-                
-                <div class="insight-card fade-in">
-                    <div class="insight-header">
-                        <h3>A Leader's Journey to AI Adoption</h3>
-                        <span class="insight-tag">Leadership</span>
-                    </div>
-                    <p>Real-world insights from leadership experiences in AI transformation. Navigate the challenges and opportunities of leading your organization through AI adoption.</p>
-                    <div class="insight-resources">
-                        <a href="https://www.linkedin.com/posts/eschwaa_a-leaders-journey-to-ai-adoption-activity-7325771625394565120-LNsR" target="_blank" rel="noopener" class="insight-link">Read Article →</a>
-                        <a href="javascript:void(0)" onclick="showDownloadForm('./The-AI-Infused-Business-A-Leaders-Journey-to-AI-Adoption.pdf', 'The AI-Infused Business: A Leader\'s Journey to AI Adoption')" class="insight-link resource-link">📄 Full Report (PDF)</a>
-                    </div>
-                </div>
-                
-                <div class="insight-card fade-in">
-                    <div class="insight-header">
-                        <h3>AI Workforce Revolution by 2045</h3>
-                        <span class="insight-tag">Future of Work</span>
-                    </div>
-                    <p>How jobs, teams, and leadership will transform over the next two decades. Prepare your organization for the AI-driven future of work.</p>
-                    <div class="insight-resources">
-                        <a href="https://www.linkedin.com/pulse/ai-workforce-revolution-how-jobs-teams-leadership-2045-erik-schwartz-bdn3e" target="_blank" rel="noopener" class="insight-link">Read Article →</a>
-                        <a href="javascript:void(0)" onclick="showDownloadForm('./AI and the Future of Work.pdf', 'AI and the Future of Work Research Paper')" class="insight-link resource-link">📄 Research Paper (PDF)</a>
-                        <a href="javascript:void(0)" onclick="showDownloadForm('./Future of work infographic.png', 'Future of Work Infographic')" class="insight-link resource-link">📊 Infographic</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Additional Resources Section -->
-            <div class="additional-resources">
-                <h3>Additional AI Resources</h3>
-                <div class="resources-grid">
-                    <div class="resource-card fade-in">
-                        <div class="resource-header">
-                            <h4>The AI Competency Matrix</h4>
-                            <span class="resource-type">📄 PDF Guide</span>
-                        </div>
-                        <p>Comprehensive framework for assessing and developing AI capabilities across your organization.</p>
-                        <a href="javascript:void(0)" onclick="showDownloadForm('./The AI Competency Matrix.pdf', 'The AI Competency Matrix')" class="resource-download">Download PDF</a>
-                    </div>
-                    
-                    <div class="resource-card fade-in">
-                        <div class="resource-header">
-                            <h4>The Dawn of Intelligence as Infrastructure</h4>
-                            <span class="resource-type">📝 Research Paper</span>
-                        </div>
-                        <p>Deep dive into how AI is becoming the foundational infrastructure layer for modern businesses.</p>
-                        <a href="javascript:void(0)" onclick="showDownloadForm('./The Dawn of Intelligence as Infrastructure.docx', 'The Dawn of Intelligence as Infrastructure')" class="resource-download">Download DOCX</a>
-                    </div>
-                    
-                    <div class="resource-card fade-in">
-                        <div class="resource-header">
-                            <h4>AI as Infrastructure Layer - Deep Research</h4>
-                            <span class="resource-type">📝 Analysis</span>
-                        </div>
-                        <p>Technical analysis of AI infrastructure implementation patterns and best practices.</p>
-                        <a href="javascript:void(0)" onclick="showDownloadForm('./AI as an Infrastructure Layer Deep Research.docx', 'AI as Infrastructure Layer - Deep Research')" class="resource-download">Download DOCX</a>
-                    </div>
-                    
-                    <div class="resource-card fade-in">
-                        <div class="resource-header">
-                            <h4>The Future of Work & AI Disruption</h4>
-                            <span class="resource-type">📝 Whitepaper</span>
-                        </div>
-                        <p>Comprehensive analysis of how artificial intelligence is reshaping modern workplaces and job roles.</p>
-                        <a href="javascript:void(0)" onclick="showDownloadForm('./The future The fear of artificial intelligence disrupting jobs has permeated modern workplaces.docx', 'The Future of Work & AI Disruption')" class="resource-download">Download DOCX</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 3rem;">
-                <p style="color: #6b7280; margin-bottom: 1rem;">Want more AI insights delivered directly?</p>
-                <a href="https://www.linkedin.com/in/eschwaa/" target="_blank" rel="noopener" class="cta-button">Follow Erik on LinkedIn</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Transparent spacer to show background -->
-    <div class="section-spacer"></div>
-
-    <section id="media" class="container">
-        <div class="media-speaking-section">
-            <h2>Media & Speaking Engagements</h2>
-            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 3rem;">Watch Erik discuss AI strategy, predictions, and emerging technologies</p>
-            
-            <!-- Featured 2025 Strategic AI Content -->
-            <div class="featured-media">
-                <h3 style="text-align: center; color: #1f2937; margin-bottom: 2rem; font-size: 1.8rem;">Featured AI Strategy & Insights</h3>
-                
-                <div class="media-grid">
-                    <div class="media-card featured">
-                        <div class="media-header">
-                            <h4>AI Horizons: Erik Schwartz on AI Predictions for 2025</h4>
-                            <span class="media-date">2025</span>
-                        </div>
-                        <p>Expert predictions and strategic insights into the future of AI technology. Erik discusses emerging trends, business implications, and key developments to watch in 2025.</p>
-                        <div class="media-links">
-                            <a href="https://music.amazon.com/podcasts/a408a0af-eb75-4497-bac7-ba712b0366ce/episodes/18b22def-13e9-4a33-b123-ae4be936513f/eden-smith-ai-horizons-erik-schwartz-on-ai-predictions-for-2025" target="_blank" rel="noopener" class="media-link">
-                                🎵 Listen on Amazon Music →
-                            </a>
-                        </div>
-                        <div class="media-topics">
-                            <span class="topic-tag">AI Strategy</span>
-                            <span class="topic-tag">2025 Predictions</span>
-                            <span class="topic-tag">Business AI</span>
-                        </div>
-                    </div>
-                    
-                    <div class="media-card featured">
-                        <div class="media-header">
-                            <h4>Insights from a Chief AI Officer</h4>
-                            <span class="media-date">August 2024</span>
-                        </div>
-                        <p>Disruption Digest podcast featuring Erik discussing the CAIO role, key components of AI strategy, how to get started with AI, and the future of AI in business. Essential listening for executives considering AI adoption.</p>
-                        <div class="media-links">
-                            <a href="https://open.spotify.com/episode/0M9vnvDu9pzPyAIMk4PxmA?si=vkdVfznrTG-eZXH6f5ma_Q" target="_blank" rel="noopener" class="media-link">
-                                🎵 Listen on Spotify →
-                            </a>
-                        </div>
-                        <div class="media-topics">
-                            <span class="topic-tag">Chief AI Officer</span>
-                            <span class="topic-tag">AI Strategy</span>
-                            <span class="topic-tag">Business Leadership</span>
-                        </div>
-                    </div>
-                    
-                    <div class="media-card featured">
-                        <div class="media-header">
-                            <h4>Aligning AI to Business Strategy, DeepSeek and AI Agents</h4>
-                            <span class="media-date">2025</span>
-                        </div>
-                        <p>Deep dive into business strategy alignment with AI implementation, covering the latest developments in DeepSeek technology and the evolving landscape of AI agents in enterprise applications.</p>
-                        <div class="media-links">
-                            <a href="https://youtu.be/CnmClTT3AIw?si=NznboGL7WIVAnb8A" target="_blank" rel="noopener" class="media-link">
-                                ▶️ Watch on YouTube →
-                            </a>
-                        </div>
-                        <div class="media-topics">
-                            <span class="topic-tag">Business Strategy</span>
-                            <span class="topic-tag">AI Agents</span>
-                            <span class="topic-tag">DeepSeek</span>
-                        </div>
-                    </div>
-                    
-                    <div class="media-card featured">
-                        <div class="media-header">
-                            <h4>Harnessing the Power of AI: Insights from a Pioneer in Knowledge Discovery</h4>
-                            <span class="media-date">2024</span>
-                        </div>
-                        <p>Findr podcast episode featuring Erik Schwartz, Chief AI Officer at Tricon Infotech. Expert insights on leveraging AI for knowledge discovery and enterprise applications.</p>
-                        <div class="media-links">
-                            <a href="https://youtu.be/9tX5W5vHJXw?si=HhNDuVWcA--SvR63" target="_blank" rel="noopener" class="media-link">
-                                ▶️ Watch on YouTube →
-                            </a>
-                        </div>
-                        <div class="media-topics">
-                            <span class="topic-tag">Knowledge Discovery</span>
-                            <span class="topic-tag">Enterprise AI</span>
-                            <span class="topic-tag">AI Leadership</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Technical AI Presentations (2024) -->
-            <div class="additional-media">
-                <h3 style="text-align: center; color: #1f2937; margin-bottom: 2rem; font-size: 1.6rem;">Technical AI Presentations</h3>
-                
-                <div class="media-list">
-                    <div class="media-item">
-                        <div class="media-content">
-                            <h4>The RAG Phenomenon: Cutting Through the Hype to Uncover the Truth</h4>
-                            <p>March 2024 • LinkedIn Live Event</p>
-                            <p class="media-description">LinkedIn Live session exploring Retrieval-Augmented Generation (RAG) technology with Alessandro Benedetti from Sease.io. Demystifying RAG's real-world applications.</p>
-                        </div>
-                        <div class="media-action">
-                            <a href="https://www.linkedin.com/events/theragphenomenon-cuttingthrough7173632352642949122/theater/" target="_blank" rel="noopener" class="media-button">Watch Event</a>
-                        </div>
-                    </div>
-                    
-                    <div class="media-item">
-                        <div class="media-content">
-                            <h4>The State of RAG: Pioneering the Next Wave of AI in Search</h4>
-                            <p>February 2024 • LinkedIn Live Event</p>
-                            <p class="media-description">Deep dive into RAG technology's impact on search. Expert analysis of implementation patterns and emerging trends in AI-powered search.</p>
-                        </div>
-                        <div class="media-action">
-                            <a href="https://www.linkedin.com/events/thestateofrag-pioneeringthenext7159216025807306752/theater/" target="_blank" rel="noopener" class="media-button">Watch Event</a>
-                        </div>
-                    </div>
-                    
-                    <div class="media-item">
-                        <div class="media-content">
-                            <h4>Is Generative AI the Future of Search?</h4>
-                            <p>January 2024 • LinkedIn Live Event</p>
-                            <p class="media-description">Exploring how Generative AI is reshaping search technology and the balance between AI innovation and established search techniques.</p>
-                        </div>
-                        <div class="media-action">
-                            <a href="https://www.linkedin.com/events/isgenerativeaithefutureofsearch7151276900189958144/theater/" target="_blank" rel="noopener" class="media-button">Watch Event</a>
-                        </div>
-                    </div>
-                    
-                    <div class="media-item">
-                        <div class="media-content">
-                            <h4>Go Beyond Search with Generative AI</h4>
-                            <p>January 2024 • LinkedIn Live Event</p>
-                            <p class="media-description">Exclusive session for search professionals on AI as a strategic asset and transitioning from lab to production environments.</p>
-                        </div>
-                        <div class="media-action">
-                            <a href="https://www.linkedin.com/events/gobeyondsearchwithgenerativeai7141382275933376513/theater/" target="_blank" rel="noopener" class="media-button">Watch Event</a>
-                        </div>
-                    </div>
-                    
-                    <div class="media-item">
-                        <div class="media-content">
-                            <h4>AI Evolution: Key Fundamentals</h4>
-                            <p>November 2023 • LinkedIn Live Event</p>
-                            <p class="media-description">Foundational discussion on AI evolution and key principles for understanding modern AI developments and emerging technologies.</p>
-                        </div>
-                        <div class="media-action">
-                            <a href="https://www.linkedin.com/events/aievolution-keyfundamentals7126218498820722688/theater/" target="_blank" rel="noopener" class="media-button">Watch Event</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(37, 99, 235, 0.05); border-radius: 16px;">
-                <h3 style="color: #2563eb; margin-bottom: 1rem;">Want Erik to speak at your event?</h3>
-                <p style="color: #6b7280; margin-bottom: 2rem;">Book Erik for keynotes, panels, workshops, and thought leadership sessions on AI strategy, implementation, and emerging technologies.</p>
-                <a href="https://calendly.com/eschwaa/aiconsult" class="cta-button">Book Speaking Engagement</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Transparent spacer to show background -->
-    <div class="section-spacer"></div>
-
     <section id="about" class="container">
         <div class="about-erik fade-in">
             <div style="display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start;" class="about-grid">
@@ -3195,7 +2805,22 @@
                     
                     <p style="margin-bottom: 2rem;">In his role as a <strong>Virtual Chief AI Officer (CAIO)</strong>, Erik leverages his extensive experience to develop and implement comprehensive AI strategies for small and medium businesses. His thorough process not only demystifies AI but also ensures that these businesses are equipped to succeed and thrive in the competitive landscape of AI technology.</p>
                     
-                    <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+                    <!-- Explore Erik's Work -->
+                    <div style="background: rgba(37, 99, 235, 0.05); padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <p style="margin-bottom: 1rem; font-weight: 600; color: #2563eb;">Explore Erik's Thought Leadership</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <a href="insights.html" style="color: #2563eb; font-weight: 600; text-decoration: none; padding: 1rem; background: rgba(255, 255, 255, 0.7); border-radius: 8px; display: block; transition: all 0.3s;">
+                                📚 AI Insights & Resources →<br>
+                                <span style="font-size: 0.9rem; font-weight: 400; color: #6b7280;">Strategic frameworks and practical guides</span>
+                            </a>
+                            <a href="media.html" style="color: #2563eb; font-weight: 600; text-decoration: none; padding: 1rem; background: rgba(255, 255, 255, 0.7); border-radius: 8px; display: block; transition: all 0.3s;">
+                                🎙️ Media & Speaking →<br>
+                                <span style="font-size: 0.9rem; font-weight: 400; color: #6b7280;">Podcasts and industry presentations</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 12px;">
                         <p style="margin-bottom: 1rem; font-weight: 600;">Ready to work with Erik?</p>
                         <a href="https://calendly.com/eschwaa/aiconsult" style="color: #60a5fa; font-weight: 600; text-decoration: none;">Book a strategy call</a> to discuss how AI can transform your business.<br>
                         <a href="https://www.linkedin.com/in/eschwaa/" style="color: #60a5fa; font-weight: 600; text-decoration: none;">Connect with Erik on LinkedIn</a> to learn more about his work and expertise.
@@ -3204,6 +2829,11 @@
             </div>
         </div>
     </section>
+
+    <!-- Transparent spacer to show background -->
+
+
+
 
     <!-- Transparent spacer to show background -->
     <div class="section-spacer"></div>
@@ -3307,41 +2937,7 @@
     <!-- Remove duplicate network section -->
 
     <script>
-        // Wait for DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Menu Functionality
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-
-            if (mobileMenuToggle && navLinks) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    navLinks.classList.toggle('mobile-open');
-                    
-                    // Change hamburger icon when open
-                    if (navLinks.classList.contains('mobile-open')) {
-                        this.innerHTML = '✕';
-                    } else {
-                        this.innerHTML = '☰';
-                    }
-                });
-
-                // Close mobile menu when clicking nav links
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        navLinks.classList.remove('mobile-open');
-                        mobileMenuToggle.innerHTML = '☰';
-                    });
-                });
-
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!event.target.closest('nav')) {
-                        navLinks.classList.remove('mobile-open');
-                        mobileMenuToggle.innerHTML = '☰';
-                    }
-                });
-            }
-        });
+        // Navigation functionality now handled by navigation.js
 
         // Remove broken HubSpot functions and revert to working EmailJS
         
@@ -3483,31 +3079,7 @@
             observer.observe(el);
         });
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
-            }
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        // Header scroll effect and smooth scroll now handled by navigation.js
 
         // Add some micro-interactions
         document.querySelectorAll('.cta-button').forEach(button => {
@@ -4465,72 +4037,7 @@
         }
     </script>
 
-    <!-- Transparent spacer to show background -->
-    <div class="section-spacer"></div>
 
-    <section class="container" id="faq">
-        <div class="faq-section">
-            <h2>Frequently Asked Questions</h2>
-            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 3rem;">Everything you need to know about working with an AI consultant</p>
-            
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h3>Who is the best AI consultant in London?</h3>
-                    <p>Erik Schwartz at aiexpert.ai is a leading AI consultant in the London area with over 20 years of experience at Microsoft, Comcast, and Elsevier. He specializes in helping SMBs implement AI successfully without the enterprise complexity.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>What should I look for in an AI consultant?</h3>
-                    <p>Look for proven enterprise experience, practical implementation methodology, access to expert networks, and a track record of measurable results. Avoid consultants who only offer strategy without execution capabilities.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>How much does AI consulting cost?</h3>
-                    <p>AI consulting typically ranges from £2,000-£10,000 per month depending on scope. Most businesses recover costs within 6 months through efficiency gains. We offer flexible engagement models from project-based to fractional CAIO services.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>What's a fractional Chief AI Officer (CAIO)?</h3>
-                    <p>A fractional CAIO provides senior AI leadership on a part-time basis, perfect for SMBs who need strategic AI guidance but can't justify a full-time executive. Get C-level expertise for a fraction of the cost.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Do I need AI if my business is small?</h3>
-                    <p>Absolutely. Small businesses often see faster AI ROI than large enterprises because they can move quickly. Start with productivity tools, customer insights, or process automation to build momentum.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>How long does AI implementation take?</h3>
-                    <p>Quick wins can be achieved in 2-4 weeks (productivity tools), while comprehensive AI strategy implementation typically takes 3-6 months. We focus on rapid value delivery over lengthy pilots.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>What industries benefit most from AI?</h3>
-                    <p>All industries can benefit, but we've seen particular success in professional services, healthcare, finance, manufacturing, and retail. The key is identifying the right use cases for your specific business model.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Is AI safe for my business data?</h3>
-                    <p>Yes, when implemented correctly. We follow enterprise-grade security protocols, implement proper governance frameworks, and ensure compliance with UK data protection regulations from day one.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Can AI replace my employees?</h3>
-                    <p>AI augments rather than replaces employees. We focus on AI that makes your team more productive, creative, and strategic rather than automating away jobs. Your people become more valuable, not redundant.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Where do I start with AI in my business?</h3>
-                    <p>Start with our free AI readiness assessment to identify your biggest opportunities. Then book a strategy call to discuss a customized roadmap based on your business goals and current capabilities.</p>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 3rem;">
-                <p style="color: #6b7280; margin-bottom: 1rem;">Ready to get started with AI?</p>
-                <a href="https://calendly.com/eschwaa/aiconsult" class="cta-button">Book Your Strategy Call</a>
-            </div>
-        </div>
-    </section>
 
     
 
@@ -4553,10 +4060,11 @@
     </script>
 
     <!-- Footer -->
-    <footer style="background: #f9fafb; border-top: 1px solid #e5e7eb; padding: 2rem 0; text-align: center; margin-top: 4rem; scroll-snap-align: start;">
+    <footer style="background: #f9fafb; border-top: 1px solid #e5e7eb; padding: 2rem 0; text-align: center; margin-top: 4rem;">
         <div class="container">
             <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
                 <span style="color: #6b7280;">© 2025 aiexpert.ai</span>
+                <a href="sitemap.html" style="color: #2563eb; text-decoration: underline;">Site Map</a>
                 <button onclick="openPrivacyModal()" style="background: none; border: none; color: #2563eb; text-decoration: underline; cursor: pointer; font-size: inherit;">
                     Privacy & Cookies
                 </button>

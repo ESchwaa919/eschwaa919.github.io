@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media & Speaking Engagements | aiexpert.ai</title>
+    <meta name="description" content="Watch Erik discuss AI strategy, predictions, and emerging technologies. AI podcast appearances and technical presentations.">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <link rel="stylesheet" href="navigation.css">
+    <script src="navigation.js"></script>
+    <script src="page-navigation.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #ffffff;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('London.png') center/cover no-repeat;
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation styles now loaded from navigation.css */
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 4rem 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .page-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 4rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .media-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .media-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .media-date {
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .media-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .media-link:hover {
+            color: #1d4ed8;
+        }
+
+        .topic-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: rgba(37, 99, 235, 0.05);
+            padding: 3rem;
+            border-radius: 16px;
+            margin-top: 4rem;
+        }
+
+        .cta-button {
+            background: #2563eb;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .nav-links.mobile-open {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            flex-direction: column;
+            gap: 0;
+            padding: 1rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links.mobile-open li {
+            padding: 0.5rem 2rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links.mobile-open li:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            /* Mobile dropdown styles */
+            .nav-links.mobile-open .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(5px);
+                margin-left: 1rem;
+                border-left: 2px solid #2563eb;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .nav-links.mobile-open .dropdown-menu a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .nav-links.mobile-open .dropdown-toggle {
+                cursor: pointer;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be injected by navigation.js -->
+
+    <main>
+        <div class="container">
+            <h1>Media & Speaking Engagements</h1>
+            <div class="page-intro">
+                <p>Watch Erik discuss AI strategy, predictions, and emerging technologies</p>
+            </div>
+            
+            <div class="media-grid">
+                <div class="media-card">
+                    <div class="media-header">
+                        <h3>AI Horizons: Erik Schwartz on AI Predictions for 2025</h3>
+                        <span class="media-date">2025</span>
+                    </div>
+                    <p>Expert predictions and strategic insights into the future of AI technology. Erik discusses emerging trends, business implications, and key developments to watch in 2025.</p>
+                    <a href="https://music.amazon.com/podcasts/a408a0af-eb75-4497-bac7-ba712b0366ce/episodes/18b22def-13e9-4a33-b123-ae4be936513f/eden-smith-ai-horizons-erik-schwartz-on-ai-predictions-for-2025" target="_blank" class="media-link">🎵 Listen on Amazon Music →</a>
+                    <div>
+                        <span class="topic-tag">AI Strategy</span>
+                        <span class="topic-tag">2025 Predictions</span>
+                        <span class="topic-tag">Business AI</span>
+                    </div>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-header">
+                        <h3>Insights from a Chief AI Officer</h3>
+                        <span class="media-date">Aug 2024</span>
+                    </div>
+                    <p>Disruption Digest podcast featuring Erik discussing the CAIO role, key components of AI strategy, how to get started with AI, and the future of AI in business.</p>
+                    <a href="https://open.spotify.com/episode/0M9vnvDu9pzPyAIMk4PxmA?si=vkdVfznrTG-eZXH6f5ma_Q" target="_blank" class="media-link">🎵 Listen on Spotify →</a>
+                    <div>
+                        <span class="topic-tag">Chief AI Officer</span>
+                        <span class="topic-tag">AI Strategy</span>
+                        <span class="topic-tag">Business Leadership</span>
+                    </div>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-header">
+                        <h3>Aligning AI to Business Strategy, DeepSeek and AI Agents</h3>
+                        <span class="media-date">2025</span>
+                    </div>
+                    <p>Deep dive into business strategy alignment with AI implementation, covering the latest developments in DeepSeek technology and the evolving landscape of AI agents.</p>
+                    <a href="https://youtu.be/CnmClTT3AIw?si=NznboGL7WIVAnb8A" target="_blank" class="media-link">▶️ Watch on YouTube →</a>
+                    <div>
+                        <span class="topic-tag">Business Strategy</span>
+                        <span class="topic-tag">AI Agents</span>
+                        <span class="topic-tag">DeepSeek</span>
+                    </div>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-header">
+                        <h3>Harnessing the Power of AI: Knowledge Discovery</h3>
+                        <span class="media-date">2024</span>
+                    </div>
+                    <p>Findr podcast episode featuring Erik Schwartz. Expert insights on leveraging AI for knowledge discovery and enterprise applications.</p>
+                    <a href="https://youtu.be/9tX5W5vHJXw?si=HhNDuVWcA--SvR63" target="_blank" class="media-link">▶️ Watch on YouTube →</a>
+                    <div>
+                        <span class="topic-tag">Knowledge Discovery</span>
+                        <span class="topic-tag">Enterprise AI</span>
+                        <span class="topic-tag">AI Leadership</span>
+                    </div>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-header">
+                        <h3>The RAG Phenomenon: Cutting Through the Hype</h3>
+                        <span class="media-date">Mar 2024</span>
+                    </div>
+                    <p>LinkedIn Live session exploring Retrieval-Augmented Generation (RAG) technology with Alessandro Benedetti from Sease.io.</p>
+                    <a href="https://www.linkedin.com/events/theragphenomenon-cuttingthrough7173632352642949122/theater/" target="_blank" class="media-link">Watch Event →</a>
+                    <div>
+                        <span class="topic-tag">RAG Technology</span>
+                        <span class="topic-tag">AI Search</span>
+                    </div>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-header">
+                        <h3>The State of RAG: Next Wave of AI in Search</h3>
+                        <span class="media-date">Feb 2024</span>
+                    </div>
+                    <p>Deep dive into RAG technology's impact on search. Expert analysis of implementation patterns and emerging trends in AI-powered search.</p>
+                    <a href="https://www.linkedin.com/events/thestateofrag-pioneeringthenext7159216025807306752/theater/" target="_blank" class="media-link">Watch Event →</a>
+                    <div>
+                        <span class="topic-tag">Search Technology</span>
+                        <span class="topic-tag">AI Innovation</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Transparent spacer to show background -->
+            <div class="section-spacer"></div>
+            
+            <div class="cta-section">
+                <h3 style="color: #2563eb; margin-bottom: 1rem;">Want Erik to speak at your event?</h3>
+                <p style="color: #6b7280; margin-bottom: 2rem;">Book Erik for keynotes, panels, workshops, and thought leadership sessions on AI strategy, implementation, and emerging technologies.</p>
+                <a href="https://calendly.com/eschwaa/aiconsult" class="cta-button">Book Speaking Engagement</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Transparent spacer to show background -->
+    <div class="section-spacer"></div>
+
+    <!-- Footer -->
+    <footer style="background: #f9fafb; border-top: 1px solid #e5e7eb; padding: 2rem 0; text-align: center; margin-top: 4rem; scroll-snap-align: start;">
+        <div class="container">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <span style="color: #6b7280;">© 2025 aiexpert.ai</span>
+                <a href="sitemap.html" style="color: #2563eb; text-decoration: underline;">Site Map</a>
+                <a href="index.html" style="color: #2563eb; text-decoration: underline;">Privacy & Cookies</a>
+            </div>
+            <p style="color: #9ca3af; margin: 0; font-size: 0.875rem;">
+                "We don't track. Just helpful AI — no gimmicks."
+            </p>
+        </div>
+    </footer>
+
+    <style>
+        /* Add transparent spacers */
+        .section-spacer {
+            height: 6rem;
+            background: url('London.png') center/cover no-repeat fixed;
+            background-attachment: fixed;
+            position: relative;
+            opacity: 1;
+        }
+        
+        .section-spacer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+    </style>
+
+    <script>
+        // Mobile menu functionality now handled by navigation.js
+    </script>
+</body>
+</html> 

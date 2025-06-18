@@ -3383,6 +3383,13 @@
         function downloadPDF() {
             console.log('Generating PDF report...');
             
+            // Add a small delay to ensure radar chart is fully rendered
+            setTimeout(() => {
+                generatePDFWithChart();
+            }, 500);
+        }
+        
+        function generatePDFWithChart() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
@@ -3417,23 +3424,40 @@
             
             // Add radar chart
             const canvas = document.getElementById('radarChart');
+            console.log('Canvas element found:', !!canvas);
+            
             if (canvas) {
                 try {
-                    // Convert canvas to image
-                    const chartImage = canvas.toDataURL('image/png');
+                    // Check if canvas has content
+                    const ctx = canvas.getContext('2d');
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const hasContent = imageData.data.some(channel => channel !== 0);
                     
-                    // Add chart title
-                    doc.setFontSize(14);
-                    doc.setTextColor(37, 99, 235);
-                    doc.text('AI Readiness Radar Chart', 20, 125);
+                    console.log('Canvas has content:', hasContent);
+                    console.log('Canvas dimensions:', canvas.width, 'x', canvas.height);
                     
-                    // Add the chart image (centered, reasonable size)
-                    const chartWidth = 120;
-                    const chartHeight = 120;
-                    const chartX = (doc.internal.pageSize.width - chartWidth) / 2; // Center horizontally
-                    const chartY = 135;
-                    
-                    doc.addImage(chartImage, 'PNG', chartX, chartY, chartWidth, chartHeight);
+                    if (hasContent) {
+                        // Convert canvas to image
+                        const chartImage = canvas.toDataURL('image/png');
+                        console.log('Chart image data length:', chartImage.length);
+                        
+                        // Add chart title
+                        doc.setFontSize(14);
+                        doc.setTextColor(37, 99, 235);
+                        doc.text('AI Readiness Radar Chart', 20, 125);
+                        
+                        // Add the chart image (centered, reasonable size)
+                        const chartWidth = 120;
+                        const chartHeight = 120;
+                        const chartX = (doc.internal.pageSize.width - chartWidth) / 2; // Center horizontally
+                        const chartY = 135;
+                        
+                        doc.addImage(chartImage, 'PNG', chartX, chartY, chartWidth, chartHeight);
+                        console.log('✅ Radar chart added to PDF successfully!');
+                    } else {
+                        console.log('⚠️ Canvas is empty, skipping chart');
+                        throw new Error('Canvas is empty');
+                    }
                     
                     // Continue with dimension scores after the chart
                     let yPosition = chartY + chartHeight + 20;
@@ -3450,10 +3474,18 @@
                     yPosition += 15;
                     
                     assessmentAnswers.forEach(answer => {
-                        doc.setFontSize(10);
-                        doc.setTextColor(0, 0, 0);
+                        // Add dimension title and score
+                        doc.setFontSize(11);
+                        doc.setTextColor(37, 99, 235);
                         doc.text(`${answer.question}: ${answer.score}/4`, 20, yPosition);
-                        yPosition += 10;
+                        yPosition += 8;
+                        
+                        // Add the selected answer text
+                        doc.setFontSize(9);
+                        doc.setTextColor(75, 85, 99);
+                        const answerLines = doc.splitTextToSize(answer.answer, 160);
+                        doc.text(answerLines, 25, yPosition);
+                        yPosition += answerLines.length * 4 + 8;
                         
                         if (yPosition > 250) {
                             doc.addPage();
@@ -3471,10 +3503,18 @@
                     
                     let yPosition = 140;
                     assessmentAnswers.forEach(answer => {
-                        doc.setFontSize(10);
-                        doc.setTextColor(0, 0, 0);
+                        // Add dimension title and score
+                        doc.setFontSize(11);
+                        doc.setTextColor(37, 99, 235);
                         doc.text(`${answer.question}: ${answer.score}/4`, 20, yPosition);
-                        yPosition += 10;
+                        yPosition += 8;
+                        
+                        // Add the selected answer text
+                        doc.setFontSize(9);
+                        doc.setTextColor(75, 85, 99);
+                        const answerLines = doc.splitTextToSize(answer.answer, 160);
+                        doc.text(answerLines, 25, yPosition);
+                        yPosition += answerLines.length * 4 + 8;
                         
                         if (yPosition > 250) {
                             doc.addPage();
@@ -3490,10 +3530,18 @@
                 
                 let yPosition = 140;
                 assessmentAnswers.forEach(answer => {
-                    doc.setFontSize(10);
-                    doc.setTextColor(0, 0, 0);
+                    // Add dimension title and score
+                    doc.setFontSize(11);
+                    doc.setTextColor(37, 99, 235);
                     doc.text(`${answer.question}: ${answer.score}/4`, 20, yPosition);
-                    yPosition += 10;
+                    yPosition += 8;
+                    
+                    // Add the selected answer text
+                    doc.setFontSize(9);
+                    doc.setTextColor(75, 85, 99);
+                    const answerLines = doc.splitTextToSize(answer.answer, 160);
+                    doc.text(answerLines, 25, yPosition);
+                    yPosition += answerLines.length * 4 + 8;
                     
                     if (yPosition > 250) {
                         doc.addPage();

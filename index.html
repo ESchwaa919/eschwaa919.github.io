@@ -3085,6 +3085,16 @@
             // Initialize EmailJS
             emailjs.init("oI6t4dwMhBXNaBKXo");
 
+            // Calculate lead priority based on score and company size
+            const percentage = Math.round((currentAssessmentScore / 32) * 100);
+            let leadPriority = 'Medium';
+            
+            if (percentage >= 70 && (formData.companySize === '51-200' || formData.companySize === '201-1000' || formData.companySize === '1000+')) {
+                leadPriority = 'High';
+            } else if (percentage <= 40) {
+                leadPriority = 'Low';
+            }
+
             // Send assessment results email
             const emailParams = {
                 from_name: `${formData.firstName} ${formData.lastName}`,
@@ -3093,15 +3103,32 @@
                 job_title: formData.jobTitle || 'Not specified',
                 company_size: formData.companySize || 'Not specified',
                 industry: formData.industry || 'Not specified',
-                assessment_score: `${currentAssessmentScore}/32 (${Math.round((currentAssessmentScore / 32) * 100)}%)`,
+                
+                // Overall Score section
+                overall_score: `${currentAssessmentScore}/32 (${percentage}%)`,
+                assessment_score: `${currentAssessmentScore}/32 (${percentage}%)`,
                 readiness_level: currentReadinessLevel,
+                
+                // Lead Priority and Date
+                lead_priority: leadPriority,
+                assessment_date: new Date().toLocaleString(),
                 submission_date: new Date().toLocaleString(),
+                
+                // Lead classification
                 lead_type: 'AI Assessment',
                 lead_source: 'Website AI Assessment',
+                
+                // Dimension Breakdown - formatted for email display
+                dimension_breakdown: assessmentAnswers.map(answer => 
+                    `${answer.question}: ${answer.score}/4`
+                ).join('\n'),
+                
+                // Detailed scores with answers
                 detailed_scores: assessmentAnswers.map(answer => 
                     `${answer.question}: ${answer.score}/4 - ${answer.answer}`
                 ).join('\n'),
-                // Add individual dimension scores for better email formatting
+                
+                // Individual dimension scores for granular access
                 dimension_1: assessmentAnswers[0] ? `${assessmentAnswers[0].question}: ${assessmentAnswers[0].score}/4` : 'Not completed',
                 dimension_2: assessmentAnswers[1] ? `${assessmentAnswers[1].question}: ${assessmentAnswers[1].score}/4` : 'Not completed',
                 dimension_3: assessmentAnswers[2] ? `${assessmentAnswers[2].question}: ${assessmentAnswers[2].score}/4` : 'Not completed',
@@ -3110,6 +3137,8 @@
                 dimension_6: assessmentAnswers[5] ? `${assessmentAnswers[5].question}: ${assessmentAnswers[5].score}/4` : 'Not completed',
                 dimension_7: assessmentAnswers[6] ? `${assessmentAnswers[6].question}: ${assessmentAnswers[6].score}/4` : 'Not completed',
                 dimension_8: assessmentAnswers[7] ? `${assessmentAnswers[7].question}: ${assessmentAnswers[7].score}/4` : 'Not completed',
+                
+                // Assessment completion status
                 total_questions: assessmentAnswers.length,
                 assessment_complete: assessmentAnswers.length === 8 ? 'Yes' : `No (${assessmentAnswers.length}/8 completed)`
             };

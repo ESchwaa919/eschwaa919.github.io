@@ -8,23 +8,30 @@ class NavigationComponent {
 
     getCurrentPage() {
         const path = window.location.pathname;
+        console.log('NavigationComponent: Current path:', path);
         if (path.includes('insights.html')) return 'insights';
         if (path.includes('media.html')) return 'media';
         if (path.includes('faq.html')) return 'faq';
-        if (path.includes('sitemap.html')) return 'sitemap';
+        if (path.includes('sitemap.html')) {
+            console.log('NavigationComponent: Detected sitemap page');
+            return 'sitemap';
+        }
         return 'index';
     }
 
     getNavigationHTML() {
         const isIndexPage = this.currentPage === 'index';
         const linkPrefix = isIndexPage ? '' : 'index.html';
+        const logoHref = isIndexPage ? '#hero' : 'index.html';
+        
+        console.log('NavigationComponent: Current page:', this.currentPage, 'isIndexPage:', isIndexPage, 'logoHref:', logoHref);
         
         return `
             <header>
                 <nav class="container">
                     <div style="display: flex; align-items: center; gap: 0.5rem;">
                         <img src="theaiexpert-transparent-logo.png" alt="aiexpert.ai" style="height: 32px; width: auto;">
-                        <a href="${isIndexPage ? '#hero' : 'index.html'}" class="logo">aiexpert.ai</a>
+                        <a href="${logoHref}" class="logo">aiexpert.ai</a>
                     </div>
                     <ul class="nav-links">
                         <li><a href="${linkPrefix}#services">Services</a></li>

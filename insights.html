@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="navigation.css">
     <script src="navigation.js"></script>
     <script src="page-navigation.js"></script>
+    <script src="download-component.js"></script>
 
     <style>
         * {
@@ -497,82 +498,7 @@
     </main>
 
     <script>
-        // Download functionality
-        let currentDownloadUrl = '';
-        let currentDownloadTitle = '';
-
-        function showDownloadForm(url, title) {
-            currentDownloadUrl = url;
-            currentDownloadTitle = title;
-            document.getElementById('downloadResourceTitle').textContent = title;
-            document.getElementById('downloadModal').style.display = 'flex';
-        }
-
-        function closeDownloadModal() {
-            document.getElementById('downloadModal').style.display = 'none';
-            document.getElementById('downloadForm').reset();
-        }
-
-        function submitDownloadForm(event) {
-            event.preventDefault();
-            
-            const formData = {
-                firstName: document.getElementById('downloadFirstName').value,
-                lastName: document.getElementById('downloadLastName').value,
-                email: document.getElementById('downloadEmail').value,
-                company: document.getElementById('downloadCompany').value,
-                downloadedResource: currentDownloadTitle,
-                downloadUrl: currentDownloadUrl
-            };
-
-            // Initialize EmailJS
-            emailjs.init("oI6t4dwMhBXNaBKXo");
-
-            // Send email notification
-            const emailParams = {
-                from_name: `${formData.firstName} ${formData.lastName}`,
-                from_email: formData.email,
-                company: formData.company,
-                downloaded_resource: formData.downloadedResource,
-                download_date: new Date().toLocaleString(),
-                lead_type: 'Resource Download',
-                lead_source: 'Insights Page'
-            };
-
-            emailjs.send("theaiexpert_assessment", "template_dmkjg71", emailParams)
-                .then(function(response) {
-                    console.log('✅ Download notification sent!', response.status, response.text);
-                    
-                    // Close modal and trigger download
-                    closeDownloadModal();
-                    
-                    // Trigger download
-                    const link = document.createElement('a');
-                    link.href = currentDownloadUrl;
-                    link.download = currentDownloadTitle;
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    
-                }, function(error) {
-                    console.error('❌ Download notification failed:', error);
-                    // Still allow download even if email fails
-                    closeDownloadModal();
-                    const link = document.createElement('a');
-                    link.href = currentDownloadUrl;
-                    link.download = currentDownloadTitle;
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                });
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('downloadModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeDownloadModal();
-            }
-        });
+        // Download functionality now handled by download-component.js
 
         // Animation on scroll
         const observerOptions = {
@@ -595,6 +521,12 @@
             });
 
             // Mobile menu functionality now handled by navigation.js
+            
+            // Initialize download component
+            if (typeof DownloadComponent !== 'undefined') {
+                window.downloadComponent = new DownloadComponent();
+                console.log('✅ Download component initialized on insights page');
+            }
         });
     </script>
 

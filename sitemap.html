@@ -12,6 +12,8 @@
     
     <link rel="stylesheet" href="navigation.css">
     <script src="navigation.js"></script>
+    <script src="download-component.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
      
     <style>
         * {
@@ -148,7 +150,28 @@
         .resource-item p {
             font-size: 0.8rem;
             color: #6b7280;
+            margin-bottom: 0.75rem;
         }
+
+        .resource-download-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .resource-download-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        /* Download modal styles now handled by download-component.js */
 
         @media (max-width: 768px) {
             h1 {
@@ -162,6 +185,8 @@
 </head>
 <body>
     <!-- Navigation will be injected by navigation.js -->
+
+    <!-- Download modal will be injected by download-component.js -->
 
     <main>
         <div class="container">
@@ -228,26 +253,32 @@
                         <div class="resource-item">
                             <h4>AI Execution Playbook for SMBs</h4>
                             <p>Strategic framework for AI implementation</p>
+                            <button class="resource-download-btn" onclick="showDownloadForm('The-AI-Execution-Playbook-for-SMBs.pdf', 'AI Execution Playbook for SMBs')">📄 Download PDF</button>
                         </div>
                         <div class="resource-item">
                             <h4>AI-Infused Business Leadership Guide</h4>
                             <p>Leadership journey through AI adoption</p>
+                            <button class="resource-download-btn" onclick="showDownloadForm('The-AI-Infused-Business-A-Leaders-Journey-to-AI-Adoption.pdf', 'AI-Infused Business Leadership Guide')">📄 Download PDF</button>
                         </div>
                         <div class="resource-item">
                             <h4>AI Workforce Revolution Report</h4>
                             <p>Future of work and AI transformation</p>
+                            <button class="resource-download-btn" onclick="showDownloadForm('AI and the Future of Work.pdf', 'AI Workforce Revolution Report')">📄 Download PDF</button>
                         </div>
                         <div class="resource-item">
                             <h4>AI Competency Matrix</h4>
                             <p>Assessment framework for AI capabilities</p>
+                            <button class="resource-download-btn" onclick="showDownloadForm('The AI Competency Matrix.pdf', 'AI Competency Matrix')">📄 Download PDF</button>
                         </div>
                         <div class="resource-item">
                             <h4>Intelligence as Infrastructure</h4>
                             <p>Deep research on AI infrastructure</p>
+                            <button class="resource-download-btn" onclick="showDownloadForm('AI as an Infrastructure Layer Deep Research.docx', 'Intelligence as Infrastructure')">📄 Download DOCX</button>
                         </div>
                         <div class="resource-item">
                             <h4>Future of Work Infographic</h4>
                             <p>Visual guide to AI workplace changes</p>
+                            <button class="resource-download-btn" onclick="showDownloadForm('Future of work infographic.png', 'Future of Work Infographic')">🖼️ Download PNG</button>
                         </div>
                     </div>
                 </div>
@@ -323,5 +354,15 @@
             </div>
         </div>
     </main>
+
+    <script>
+        // Initialize download component when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof DownloadComponent !== 'undefined') {
+                window.downloadComponent = new DownloadComponent();
+                console.log('✅ Download component initialized on sitemap page');
+            }
+        });
+    </script>
 </body>
 </html> 

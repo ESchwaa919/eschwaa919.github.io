@@ -45,47 +45,7 @@
             padding: 0 2rem;
         }
 
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2563eb;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #374151;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #2563eb;
-        }
+        /* Navigation styles now loaded from navigation.css */
 
         /* Main Content */
         main {
@@ -191,9 +151,6 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
             h1 {
                 font-size: 2rem;
             }

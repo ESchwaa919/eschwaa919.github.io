@@ -3454,44 +3454,46 @@
                         
                         doc.addImage(chartImage, 'PNG', chartX, chartY, chartWidth, chartHeight);
                         console.log('✅ Radar chart added to PDF successfully!');
-                    } else {
-                        console.log('⚠️ Canvas is empty, skipping chart');
-                        throw new Error('Canvas is empty');
-                    }
-                    
-                    // Continue with dimension scores after the chart
-                    let yPosition = chartY + chartHeight + 20;
-                    
-                    // Check if we need a new page
-                    if (yPosition > 250) {
-                        doc.addPage();
-                        yPosition = 20;
-                    }
-                    
-                    doc.setFontSize(14);
-                    doc.setTextColor(37, 99, 235);
-                    doc.text('Dimension Scores:', 20, yPosition);
-                    yPosition += 15;
-                    
-                    assessmentAnswers.forEach(answer => {
-                        // Add dimension title and score
-                        doc.setFontSize(11);
-                        doc.setTextColor(37, 99, 235);
-                        doc.text(`${answer.question}: ${answer.score}/4`, 20, yPosition);
-                        yPosition += 8;
                         
-                        // Add the selected answer text
-                        doc.setFontSize(9);
-                        doc.setTextColor(75, 85, 99);
-                        const answerLines = doc.splitTextToSize(answer.answer, 160);
-                        doc.text(answerLines, 25, yPosition);
-                        yPosition += answerLines.length * 4 + 8;
+                        // Continue with dimension scores after the chart
+                        let yPosition = chartY + chartHeight + 20;
                         
+                        // Check if we need a new page
                         if (yPosition > 250) {
                             doc.addPage();
                             yPosition = 20;
                         }
-                    });
+                        
+                        doc.setFontSize(14);
+                        doc.setTextColor(37, 99, 235);
+                        doc.text('Dimension Scores:', 20, yPosition);
+                        yPosition += 15;
+                        
+                        // Add dimension scores with proper positioning
+                        assessmentAnswers.forEach(answer => {
+                            // Add dimension title and score
+                            doc.setFontSize(11);
+                            doc.setTextColor(37, 99, 235);
+                            doc.text(`${answer.question}: ${answer.score}/4`, 20, yPosition);
+                            yPosition += 8;
+                            
+                            // Add the selected answer text
+                            doc.setFontSize(9);
+                            doc.setTextColor(75, 85, 99);
+                            const answerLines = doc.splitTextToSize(answer.answer, 160);
+                            doc.text(answerLines, 25, yPosition);
+                            yPosition += answerLines.length * 4 + 8;
+                            
+                            if (yPosition > 250) {
+                                doc.addPage();
+                                yPosition = 20;
+                            }
+                        });
+                        
+                    } else {
+                        console.log('⚠️ Canvas is empty, skipping chart');
+                        throw new Error('Canvas is empty');
+                    }
                     
                 } catch (error) {
                     console.log('Could not add radar chart to PDF, continuing without it:', error);

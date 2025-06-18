@@ -3415,60 +3415,135 @@
             doc.setTextColor(0, 0, 0);
             doc.text(`Level: ${currentReadinessLevel}`, 20, 105);
             
-            // Add dimension scores
-            doc.setFontSize(14);
-            doc.setTextColor(37, 99, 235);
-            doc.text('Dimension Scores:', 20, 125);
-            
-            let yPosition = 140;
-            assessmentAnswers.forEach(answer => {
-                doc.setFontSize(10);
-                doc.setTextColor(0, 0, 0);
-                doc.text(`${answer.question}: ${answer.score}/4`, 20, yPosition);
-                yPosition += 10;
-                
-                if (yPosition > 250) {
-                    doc.addPage();
-                    yPosition = 20;
+            // Add radar chart
+            const canvas = document.getElementById('radarChart');
+            if (canvas) {
+                try {
+                    // Convert canvas to image
+                    const chartImage = canvas.toDataURL('image/png');
+                    
+                    // Add chart title
+                    doc.setFontSize(14);
+                    doc.setTextColor(37, 99, 235);
+                    doc.text('AI Readiness Radar Chart', 20, 125);
+                    
+                    // Add the chart image (centered, reasonable size)
+                    const chartWidth = 120;
+                    const chartHeight = 120;
+                    const chartX = (doc.internal.pageSize.width - chartWidth) / 2; // Center horizontally
+                    const chartY = 135;
+                    
+                    doc.addImage(chartImage, 'PNG', chartX, chartY, chartWidth, chartHeight);
+                    
+                    // Continue with dimension scores after the chart
+                    let yPosition = chartY + chartHeight + 20;
+                    
+                    // Check if we need a new page
+                    if (yPosition > 250) {
+                        doc.addPage();
+                        yPosition = 20;
+                    }
+                    
+                    doc.setFontSize(14);
+                    doc.setTextColor(37, 99, 235);
+                    doc.text('Dimension Scores:', 20, yPosition);
+                    yPosition += 15;
+                    
+                    assessmentAnswers.forEach(answer => {
+                        doc.setFontSize(10);
+                        doc.setTextColor(0, 0, 0);
+                        doc.text(`${answer.question}: ${answer.score}/4`, 20, yPosition);
+                        yPosition += 10;
+                        
+                        if (yPosition > 250) {
+                            doc.addPage();
+                            yPosition = 20;
+                        }
+                    });
+                    
+                } catch (error) {
+                    console.log('Could not add radar chart to PDF, continuing without it:', error);
+                    
+                    // Fallback: continue with dimension scores without chart
+                    doc.setFontSize(14);
+                    doc.setTextColor(37, 99, 235);
+                    doc.text('Dimension Scores:', 20, 125);
+                    
+                    let yPosition = 140;
+                    assessmentAnswers.forEach(answer => {
+                        doc.setFontSize(10);
+                        doc.setTextColor(0, 0, 0);
+                        doc.text(`${answer.question}: ${answer.score}/4`, 20, yPosition);
+                        yPosition += 10;
+                        
+                        if (yPosition > 250) {
+                            doc.addPage();
+                            yPosition = 20;
+                        }
+                    });
                 }
-            });
-            
-            // Add recommendations
-            if (yPosition > 200) {
-                doc.addPage();
-                yPosition = 20;
             } else {
-                yPosition += 10;
+                // Fallback if no chart canvas found
+                doc.setFontSize(14);
+                doc.setTextColor(37, 99, 235);
+                doc.text('Dimension Scores:', 20, 125);
+                
+                let yPosition = 140;
+                assessmentAnswers.forEach(answer => {
+                    doc.setFontSize(10);
+                    doc.setTextColor(0, 0, 0);
+                    doc.text(`${answer.question}: ${answer.score}/4`, 20, yPosition);
+                    yPosition += 10;
+                    
+                    if (yPosition > 250) {
+                        doc.addPage();
+                        yPosition = 20;
+                    }
+                });
+            }
+            
+            // Add recommendations (continue from current yPosition or start new page)
+            let currentY = 20; // Will be set properly based on chart inclusion
+            
+            // Calculate current position after dimension scores
+            const dimensionCount = assessmentAnswers.length;
+            const estimatedY = 140 + (dimensionCount * 10) + 20; // Rough estimate
+            
+            if (estimatedY > 200) {
+                doc.addPage();
+                currentY = 20;
+            } else {
+                currentY = estimatedY;
             }
             
             doc.setFontSize(14);
             doc.setTextColor(37, 99, 235);
-            doc.text('Recommendations:', 20, yPosition);
-            yPosition += 15;
+            doc.text('Recommendations:', 20, currentY);
+            currentY += 15;
             
             const recommendations = generateRecommendations();
             recommendations.forEach(rec => {
                 doc.setFontSize(11);
                 doc.setTextColor(37, 99, 235);
-                doc.text(`• ${rec.title}`, 25, yPosition);
-                yPosition += 8;
+                doc.text(`• ${rec.title}`, 25, currentY);
+                currentY += 8;
                 
                 doc.setFontSize(9);
                 doc.setTextColor(0, 0, 0);
                 const lines = doc.splitTextToSize(rec.description, 160);
-                doc.text(lines, 30, yPosition);
-                yPosition += lines.length * 4 + 5;
+                doc.text(lines, 30, currentY);
+                currentY += lines.length * 4 + 5;
                 
-                if (yPosition > 250) {
+                if (currentY > 250) {
                     doc.addPage();
-                    yPosition = 20;
+                    currentY = 20;
                 }
             });
             
             // Save the PDF
             doc.save(`AI_Assessment_Report_${company.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
             
-            console.log('✅ PDF downloaded successfully!');
+            console.log('✅ PDF downloaded successfully with radar chart!');
         }
 
         function closeAssessment() {

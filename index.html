@@ -3308,6 +3308,9 @@
             };
 
             console.log('Assessment form data collected:', formData);
+            console.log('Assessment answers array:', assessmentAnswers);
+            console.log('Current assessment score:', currentAssessmentScore);
+            console.log('Current readiness level:', currentReadinessLevel);
 
             // Initialize EmailJS
             emailjs.init("oI6t4dwMhBXNaBKXo");
@@ -3326,8 +3329,19 @@
                 lead_type: 'AI Assessment',
                 lead_source: 'Website AI Assessment',
                 detailed_scores: assessmentAnswers.map(answer => 
-                    `${answer.question}: ${answer.score}/4`
-                ).join(', ')
+                    `${answer.question}: ${answer.score}/4 - ${answer.answer}`
+                ).join('\n'),
+                // Add individual dimension scores for better email formatting
+                dimension_1: assessmentAnswers[0] ? `${assessmentAnswers[0].question}: ${assessmentAnswers[0].score}/4` : 'Not completed',
+                dimension_2: assessmentAnswers[1] ? `${assessmentAnswers[1].question}: ${assessmentAnswers[1].score}/4` : 'Not completed',
+                dimension_3: assessmentAnswers[2] ? `${assessmentAnswers[2].question}: ${assessmentAnswers[2].score}/4` : 'Not completed',
+                dimension_4: assessmentAnswers[3] ? `${assessmentAnswers[3].question}: ${assessmentAnswers[3].score}/4` : 'Not completed',
+                dimension_5: assessmentAnswers[4] ? `${assessmentAnswers[4].question}: ${assessmentAnswers[4].score}/4` : 'Not completed',
+                dimension_6: assessmentAnswers[5] ? `${assessmentAnswers[5].question}: ${assessmentAnswers[5].score}/4` : 'Not completed',
+                dimension_7: assessmentAnswers[6] ? `${assessmentAnswers[6].question}: ${assessmentAnswers[6].score}/4` : 'Not completed',
+                dimension_8: assessmentAnswers[7] ? `${assessmentAnswers[7].question}: ${assessmentAnswers[7].score}/4` : 'Not completed',
+                total_questions: assessmentAnswers.length,
+                assessment_complete: assessmentAnswers.length === 8 ? 'Yes' : `No (${assessmentAnswers.length}/8 completed)`
             };
 
             console.log('Sending assessment results email...');

@@ -12,7 +12,7 @@ class PageNavigationComponent {
             },
             { 
                 id: 'insights', 
-                title: 'Insights', 
+                title: 'Featured Insights', 
                 url: 'insights.html',
                 description: 'AI thought leadership and strategic frameworks'
             },

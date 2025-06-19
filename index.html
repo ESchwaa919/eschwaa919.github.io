@@ -307,6 +307,15 @@
             max-width: 600px;
         }
 
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
         .cta-button {
             display: inline-block;
             background: #ff6b6b;
@@ -318,11 +327,34 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            white-space: nowrap;
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        .cta-button.primary {
+            background: #ff6b6b;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .cta-button.primary:hover {
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
         }
 
         .trust-strip {
@@ -566,6 +598,20 @@
         /* Mobile menu styles now loaded from navigation.css */
 
         @media (max-width: 768px) {
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+                width: 100%;
+            }
+            
+            .cta-button {
+                text-align: center;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
             .trust-companies {
                 flex-direction: column;
                 gap: 1rem;
@@ -2220,11 +2266,15 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Your First Stop for Getting AI Done — Right.</h1>
-                <p class="subhead">Where AI expertise meets real-world application. Connect with the strategic guidance, proven methodologies, and trusted network you need to transform AI potential into measurable business outcomes.</p>
-                <a href="https://calendly.com/eschwaa/aiconsult" class="cta-button">Talk to an AI Expert Today</a>
+                <p class="subhead">Connect with the strategic guidance, proven methodologies, and the trusted network you need to transform AI potential into action.</p>
+                <div class="cta-buttons">
+                    <a href="https://calendly.com/eschwaa/aiconsult" class="cta-button secondary">Talk to an AI Expert Today</a>
+                    <a href="#assessment" class="cta-button primary">Free AI Competency Assessment</a>
+                    <a href="insights.html" class="cta-button secondary">Download Featured Insights</a>
+                </div>
                 
                 <div class="trust-strip">
-                    <p>Built with experience from</p>
+                    <p>Where AI expertise meets real-world application. Built with experience from</p>
                     <div class="trust-companies">
                         <span class="company-name">Microsoft</span>
                         <span class="company-name">Comcast</span>

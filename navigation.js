@@ -40,7 +40,7 @@ class NavigationComponent {
                             <a href="${linkPrefix}#about" class="dropdown-toggle">About ▼</a>
                             <ul class="dropdown-menu">
                                 <li><a href="${linkPrefix}#about">About Erik</a></li>
-                                <li><a href="insights.html">Insights</a></li>
+                                <li><a href="insights.html">Featured</a></li>
                                 <li><a href="media.html">Media</a></li>
                                 <li><a href="faq.html">FAQ</a></li>
                             </ul>

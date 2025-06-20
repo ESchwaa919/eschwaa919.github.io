@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Tags -->
+    <title>AI ROI Calculator | Calculate Your AI Return on Investment | aiexpert.ai</title>
+    <meta name="description" content="Calculate your potential AI ROI with our intelligent calculator. See how much your business could gain from AI implementation and the cost of waiting.">
+    <meta name="keywords" content="AI ROI calculator, artificial intelligence return on investment, AI business case, AI cost benefit analysis, SMB AI calculator">
+    <meta name="author" content="Erik Schwartz, aiexpert.ai">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://theaiexpert.ai/ai-roi-calculator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theaiexpert.ai/ai-roi-calculator.html">
+    <meta property="og:title" content="AI ROI Calculator | See Your AI Return on Investment" />
+    <meta property="og:description" content="Calculate your potential AI ROI and see the cost of delaying AI adoption. Get a personalized business case for AI implementation.">
+    <meta property="og:image" content="https://theaiexpert.ai/Erik-Headshot.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://theaiexpert.ai/ai-roi-calculator.html">
+    <meta property="twitter:title" content="AI ROI Calculator | See Your AI Return on Investment">
+    <meta property="twitter:description" content="Calculate your potential AI ROI and see the cost of delaying AI adoption.">
+    <meta property="twitter:image" content="https://theaiexpert.ai/Erik-Headshot.png">
+    
+    <!-- Required Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="navigation.css">
+    <script src="navigation.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        /* Fixed background image */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('London.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.92) 0%, rgba(59, 130, 246, 0.92) 100%);
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 6rem;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .subhead {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .urgency-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: #60a5fa;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.4);
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.6);
+            background: #ff5252;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(2px);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .step-number {
+            background: #2563eb;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #374151;
+            font-size: 1rem;
+        }
+
+        .form-group select,
+        .form-group input {
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .calculate-button {
+            background: #2563eb;
+            color: white;
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .calculate-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* Results Section */
+        .results-section {
+            display: none;
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .roi-summary {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .roi-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+        }
+
+        .roi-timeframe {
+            font-size: 1.2rem;
+            color: #6b7280;
+        }
+
+        .cost-of-delay {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .delay-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .metric-card {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .download-button {
+            background: white;
+            color: #2563eb;
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Lead Capture */
+        .lead-capture {
+            background: rgba(37, 99, 235, 0.05);
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 2rem 0;
+        }
+
+        .lead-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .modal-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .lead-form input {
+            padding: 0.875rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            width: 100%;
+        }
+
+        .lead-form input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .lead-form input::placeholder {
+            color: #9ca3af;
+        }
+
+        .submit-lead {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1.5rem auto 1rem auto;
+            width: 100%;
+            max-width: 280px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .submit-lead:hover {
+            background: #ff5252;
+        }
+
+        /* Lead Capture Modal */
+        .lead-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .lead-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .lead-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        
+        .lead-modal.active .lead-modal-content {
+            transform: scale(1) translateY(0);
+        }
+        
+        .lead-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #9ca3af;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .lead-modal-close:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+        
+        .lead-modal h2 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .lead-modal p {
+            color: #6b7280;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Add transparent spacers */
+        .section-spacer {
+            height: 6rem;
+            background: url('London.png') center/cover no-repeat fixed;
+            background-attachment: fixed;
+            position: relative;
+            opacity: 1;
+        }
+        
+        .section-spacer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+
+        /* Sections */
+        section {
+            padding: 3rem 0;
+            scroll-margin-top: 80px;
+            margin-bottom: 4rem;
+        }
+
+        .section-alt {
+            background: rgba(248, 250, 252, 0.95);
+            backdrop-filter: blur(2px);
+        }
+
+        @media (max-width: 768px) {
+            .urgency-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lead-modal-content {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+                max-height: 90vh;
+                max-width: 95%;
+            }
+
+            .modal-form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .lead-modal h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be injected by navigation.js -->
+
+    <!-- Lead Capture Modal -->
+    <div class="lead-modal" id="leadModal">
+        <div class="lead-modal-content">
+            <button class="lead-modal-close" onclick="closeLeadModal()">×</button>
+            <h2>📊 Get Your AI Business Case</h2>
+            <p>You're one step away from downloading your personalized AI ROI report and implementation roadmap. This comprehensive business case will help you present the AI opportunity to stakeholders.</p>
+            
+            <form class="lead-form" id="leadForm" onsubmit="submitLead(event)">
+                <div class="modal-form-row">
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name *" required>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name *" required>
+                </div>
+                <input type="email" id="email" name="email" placeholder="Email Address *" required>
+                <input type="text" id="company" name="company" placeholder="Company Name *" required>
+                <button type="submit" class="submit-lead">Download My AI Business Case</button>
+            </form>
+            
+            <p style="font-size: 0.85rem; color: #6b7280; margin-top: 1rem; line-height: 1.4;">
+                We respect your privacy. Your information will only be used to provide your business case and relevant AI insights. You can unsubscribe at any time.
+            </p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>AI: Your New Compound Interest</h1>
+                <p class="subhead">Every month you wait to implement AI, your competitors compound ahead. Calculate the true cost of delay and see your potential AI ROI in minutes.</p>
+                
+                <div class="urgency-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">88%</div>
+                        <div class="stat-label">see early returns on AI investments <span style="font-size: 0.7rem; opacity: 0.8;">(<a href="https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-business-survey.html" target="_blank" rel="noopener" style="color: white; text-decoration: underline; font-weight: 600;">PwC 2025</a>)</span></div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">productivity boost with proper AI use <span style="font-size: 0.7rem; opacity: 0.8;">(<a href="https://www.nber.org/papers/w31161" target="_blank" rel="noopener" style="color: white; text-decoration: underline; font-weight: 600;">Stanford/MIT</a>)</span></div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">70%</div>
+                        <div class="stat-label">of CEOs expect AI to transform value creation <span style="font-size: 0.7rem; opacity: 0.8;">(<a href="https://www.pwc.com/gx/en/issues/c-suite-insights/ceo-survey.html" target="_blank" rel="noopener" style="color: white; text-decoration: underline; font-weight: 600;">PwC Global CEO Survey</a>)</span></div>
+                    </div>
+                </div>
+                
+                <a href="#calculator" class="cta-button">Calculate Your AI ROI Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparent spacer to show background -->
+    <div class="section-spacer"></div>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="container section-alt">
+        <div class="calculator-section">
+            <div class="calculator-container">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h2>Tell Us About Your Business</h2>
+                    <p>Help us calculate your personalized AI ROI and cost of delay</p>
+                </div>
+                
+                <form id="roiCalculatorForm" onsubmit="calculateROI(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="industry">Industry</label>
+                            <select id="industry" name="industry" required>
+                                <option value="">Select your industry</option>
+                                <option value="professional-services">Professional Services</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="financial-services">Financial Services</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="retail">Retail & E-commerce</option>
+                                <option value="real-estate">Real Estate</option>
+                                <option value="technology">Technology</option>
+                                <option value="education">Education</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="companySize">Company Size</label>
+                            <select id="companySize" name="companySize" required>
+                                <option value="">Select company size</option>
+                                <option value="1-10">1-10 employees</option>
+                                <option value="11-50">11-50 employees</option>
+                                <option value="51-200">51-200 employees</option>
+                                <option value="201-1000">201-1,000 employees</option>
+                                <option value="1000+">1,000+ employees</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="revenue">Annual Revenue (GBP)</label>
+                            <select id="revenue" name="revenue" required>
+                                <option value="">Select revenue range</option>
+                                <option value="under-1m">Under £800K</option>
+                                <option value="1m-5m">£800K - £4M</option>
+                                <option value="5m-25m">£4M - £20M</option>
+                                <option value="25m-100m">£20M - £80M</option>
+                                <option value="100m+">£80M+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="techSavvy">Technology Readiness</label>
+                            <select id="techSavvy" name="techSavvy" required>
+                                <option value="">How tech-savvy is your team?</option>
+                                <option value="low">Basic - We use essential tools</option>
+                                <option value="medium">Moderate - We adopt new tools regularly</option>
+                                <option value="high">Advanced - We're early adopters</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="currentAI">Current AI Usage</label>
+                            <select id="currentAI" name="currentAI" required>
+                                <option value="">Current AI implementation level</option>
+                                <option value="none">No AI tools yet</option>
+                                <option value="basic">Basic tools (ChatGPT, etc.)</option>
+                                <option value="some">Some business applications</option>
+                                <option value="advanced">Advanced AI systems</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="priority">Top Business Priority</label>
+                            <select id="priority" name="priority" required>
+                                <option value="">What's your main focus?</option>
+                                <option value="efficiency">Improve operational efficiency</option>
+                                <option value="growth">Drive revenue growth</option>
+                                <option value="customer">Enhance customer experience</option>
+                                <option value="costs">Reduce operating costs</option>
+                                <option value="competitive">Stay competitive</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="calculate-button">
+                        Calculate My AI ROI & Cost of Delay
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparent spacer to show background -->
+    <div class="section-spacer"></div>
+
+    <!-- Results Section -->
+    <section id="results" class="container">
+        <div class="results-section" id="resultsSection">
+            <div class="roi-summary">
+                <h2>Your AI Investment Returns</h2>
+                <div class="roi-number" id="roiNumber">327%</div>
+                <div class="roi-timeframe" id="roiTimeframe">Expected ROI over 3 years</div>
+            </div>
+            
+            <div class="cost-of-delay">
+                <h3>Cost of Waiting 12 Months</h3>
+                <div class="delay-amount" id="delayAmount">£677,000</div>
+                <p>In lost efficiency, missed opportunities, and competitive disadvantage</p>
+            </div>
+            
+            <div class="metrics-grid" id="metricsGrid">
+                <!-- Dynamic metrics will be populated here -->
+            </div>
+            
+            <div class="download-section">
+                <h3>📊 Get Your AI Business Case</h3>
+                <p>Download a detailed PDF report with your ROI analysis, implementation roadmap, and executive summary to share with stakeholders.</p>
+                <button class="download-button" onclick="openLeadModal()" id="initialDownloadBtn">
+                    Download AI Business Case PDF
+                </button>
+                
+                <!-- Additional downloads section (hidden initially) -->
+                <div class="additional-downloads" id="additionalDownloads" style="display: none; background: rgba(255, 255, 255, 0.95); padding: 2rem; border-radius: 16px; margin-top: 2rem; border: 2px solid #e5e7eb;">
+                    <h4 style="color: #1f2937; margin-bottom: 1rem; font-size: 1.3rem; font-weight: 700; text-align: center;">📚 Bonus Resources</h4>
+                    <p style="color: #374151; margin-bottom: 1.5rem; text-align: center; font-weight: 500;">Congratulations! You've unlocked access to additional AI insights to support your implementation journey.</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin: 0 auto;">
+                        <button class="download-button" onclick="generateBusinessCasePDF()" style="background: #10b981; color: white; font-weight: 600;">
+                            📄 Re-download Your Business Case
+                        </button>
+                        <button class="download-button" onclick="downloadROIReport()" style="background: #2563eb; color: white; font-weight: 600;">
+                            📊 ROI of AI Investment for UK SMBs (Comprehensive Report)
+                        </button>
+                    </div>
+                    
+                    <p style="color: #4b5563; font-size: 0.9rem; margin-top: 1.5rem; font-style: italic; text-align: center; line-height: 1.5;">
+                        The comprehensive ROI report provides industry benchmarks, case studies, and detailed analysis specifically for UK small and medium businesses.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // ROI Calculator Intelligence Engine
+        let calculatorData = {};
+        let roiResults = {};
+
+        function calculateROI(event) {
+            event.preventDefault();
+            
+            // Collect form data
+            calculatorData = {
+                industry: document.getElementById('industry').value,
+                companySize: document.getElementById('companySize').value,
+                revenue: document.getElementById('revenue').value,
+                techSavvy: document.getElementById('techSavvy').value,
+                currentAI: document.getElementById('currentAI').value,
+                priority: document.getElementById('priority').value
+            };
+            
+            // Run intelligent ROI analysis
+            roiResults = runIntelligentROIAnalysis(calculatorData);
+            
+            // Display results
+            displayResults();
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function runIntelligentROIAnalysis(data) {
+            // Industry-specific multipliers and factors
+            const industryFactors = {
+                'professional-services': { efficiency: 1.4, growth: 1.2, baseline: 280000 },
+                'healthcare': { efficiency: 1.6, growth: 1.1, baseline: 420000 },
+                'financial-services': { efficiency: 1.8, growth: 1.3, baseline: 650000 },
+                'manufacturing': { efficiency: 1.7, growth: 1.4, baseline: 580000 },
+                'retail': { efficiency: 1.3, growth: 1.5, baseline: 340000 },
+                'real-estate': { efficiency: 1.2, growth: 1.3, baseline: 280000 },
+                'technology': { efficiency: 1.5, growth: 1.6, baseline: 520000 },
+                'education': { efficiency: 1.3, growth: 1.0, baseline: 220000 },
+                'other': { efficiency: 1.3, growth: 1.2, baseline: 300000 }
+            };
+            
+            // Company size multipliers
+            const sizeMultipliers = {
+                '1-10': 0.6,
+                '11-50': 1.0,
+                '51-200': 1.8,
+                '201-1000': 3.2,
+                '1000+': 5.5
+            };
+            
+            // Revenue base amounts for calculations (GBP)
+            const revenueBase = {
+                'under-1m': 400000,
+                '1m-5m': 2000000,
+                '5m-25m': 10000000,
+                '25m-100m': 40000000,
+                '100m+': 160000000
+            };
+            
+            // Tech readiness impact
+            const techReadiness = {
+                'low': 0.7,
+                'medium': 1.0,
+                'high': 1.3
+            };
+            
+            // Current AI level impact
+            const aiReadiness = {
+                'none': 0.8,
+                'basic': 1.0,
+                'some': 1.2,
+                'advanced': 1.4
+            };
+            
+            // Get factors
+            const industry = industryFactors[data.industry] || industryFactors['other'];
+            const sizeMultiplier = sizeMultipliers[data.companySize] || 1.0;
+            const revenue = revenueBase[data.revenue] || 2500000;
+            const techFactor = techReadiness[data.techSavvy] || 1.0;
+            const aiFactor = aiReadiness[data.currentAI] || 1.0;
+            
+            // Calculate baseline AI value
+            const baselineValue = industry.baseline * sizeMultiplier * techFactor * aiFactor;
+            
+            // Year 1 calculations
+            const year1Efficiency = baselineValue * industry.efficiency * 0.6; // 60% in year 1
+            const year1Growth = revenue * 0.15 * industry.growth * 0.4; // 40% in year 1
+            const year1Total = year1Efficiency + year1Growth;
+            
+            // Year 2 calculations  
+            const year2Efficiency = baselineValue * industry.efficiency * 0.85;
+            const year2Growth = revenue * 0.25 * industry.growth * 0.7;
+            const year2Total = year2Efficiency + year2Growth;
+            
+            // Year 3 calculations
+            const year3Efficiency = baselineValue * industry.efficiency;
+            const year3Growth = revenue * 0.35 * industry.growth;
+            const year3Total = year3Efficiency + year3Growth;
+            
+            // Total value over 3 years
+            const totalValue = year1Total + year2Total + year3Total;
+            
+            // Implementation costs (conservative estimate)
+            const implementationCost = Math.min(totalValue * 0.25, revenue * 0.08);
+            
+            // Net ROI
+            const netROI = ((totalValue - implementationCost) / implementationCost) * 100;
+            
+            // Cost of delay (12 months)
+            const delayedStart = year1Total * 0.8; // Miss 80% of year 1 value
+            const competitorAdvantage = revenue * 0.05; // 5% market share risk
+            const increasedCosts = implementationCost * 0.15; // 15% higher costs later
+            const costOfDelay = delayedStart + competitorAdvantage + increasedCosts;
+            
+            // Priority-specific insights
+            const priorityInsights = {
+                'efficiency': {
+                    metric1: { label: 'Time Savings per Week', value: Math.round(sizeMultiplier * 8) + ' hours' },
+                    metric2: { label: 'Process Automation', value: Math.round(industry.efficiency * 35) + '%' },
+                    metric3: { label: 'Error Reduction', value: '78%' }
+                },
+                'growth': {
+                    metric1: { label: 'Revenue Uplift Potential', value: Math.round(industry.growth * 28) + '%' },
+                    metric2: { label: 'Customer Acquisition', value: '+' + Math.round(sizeMultiplier * 12) + '%' },
+                    metric3: { label: 'Market Expansion', value: '2.3x faster' }
+                },
+                'customer': {
+                    metric1: { label: 'Response Time Improvement', value: '78%' },
+                    metric2: { label: 'Satisfaction Increase', value: '+' + Math.round(industry.efficiency * 25) + '%' },
+                    metric3: { label: 'Retention Improvement', value: '+15%' }
+                },
+                'costs': {
+                    metric1: { label: 'Operating Cost Reduction', value: Math.round(industry.efficiency * 22) + '%' },
+                    metric2: { label: 'Labor Cost Savings', value: '£' + Math.round(baselineValue/1000) + 'K' },
+                    metric3: { label: 'Resource Optimization', value: '45%' }
+                },
+                'competitive': {
+                    metric1: { label: 'Time to Market', value: '56% faster' },
+                    metric2: { label: 'Competitive Advantage', value: '24 months' },
+                    metric3: { label: 'Innovation Speed', value: '3x faster' }
+                }
+            };
+            
+            return {
+                netROI: Math.round(netROI),
+                totalValue: totalValue,
+                implementationCost: implementationCost,
+                costOfDelay: costOfDelay,
+                yearlyBreakdown: {
+                    year1: year1Total,
+                    year2: year2Total,
+                    year3: year3Total
+                },
+                insights: priorityInsights[data.priority] || priorityInsights['efficiency'],
+                timeToROI: netROI > 200 ? '4-6 months' : '6-8 months'
+            };
+        }
+
+        function displayResults() {
+            // Update ROI number and timeframe
+            document.getElementById('roiNumber').textContent = roiResults.netROI + '%';
+            document.getElementById('roiTimeframe').textContent = 'Expected ROI over 3 years';
+            
+            // Update cost of delay
+            document.getElementById('delayAmount').textContent = '£' + Math.round(roiResults.costOfDelay).toLocaleString();
+            
+            // Update metrics grid
+            const metricsGrid = document.getElementById('metricsGrid');
+            metricsGrid.innerHTML = Object.entries(roiResults.insights).map(([key, metric]) => `
+                <div class="metric-card">
+                    <div class="metric-value">${metric.value}</div>
+                    <div class="metric-label">${metric.label}</div>
+                </div>
+            `).join('') + `
+                <div class="metric-card">
+                    <div class="metric-value">£${Math.round(roiResults.totalValue/1000)}K</div>
+                    <div class="metric-label">Total 3-Year Value</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">${roiResults.timeToROI}</div>
+                    <div class="metric-label">Time to Positive ROI</div>
+                </div>
+            `;
+            
+            // Show results section
+            document.getElementById('resultsSection').classList.add('active');
+        }
+
+        // Modal functions
+        function openLeadModal() {
+            document.getElementById('leadModal').classList.add('active');
+        }
+        
+        function closeLeadModal() {
+            document.getElementById('leadModal').classList.remove('active');
+        }
+
+        // Lead capture and PDF generation
+        function submitLead(event) {
+            event.preventDefault();
+            
+            const leadData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                company: document.getElementById('company').value,
+                calculatorData: calculatorData,
+                roiResults: roiResults,
+                submissionDate: new Date().toISOString()
+            };
+            
+            // Send lead notification via EmailJS
+            emailjs.init("oI6t4dwMhBXNaBKXo");
+            
+            emailjs.send("theaiexpert_assessment", "template_dmkjg71", {
+                from_name: `${leadData.firstName} ${leadData.lastName}`,
+                from_email: leadData.email,
+                company: leadData.company,
+                downloaded_resource: 'AI ROI Calculator Business Case',
+                download_date: new Date().toLocaleString(),
+                lead_type: 'AI ROI Calculator',
+                lead_source: 'Website ROI Calculator'
+            }).then(function(response) {
+                console.log('✅ ROI Calculator lead sent!', response.status, response.text);
+                
+                // Close modal and show additional downloads
+                closeLeadModal();
+                showAdditionalDownloads();
+                setTimeout(() => {
+                    generateBusinessCasePDF();
+                }, 500);
+                
+            }, function(error) {
+                console.error('❌ ROI Calculator lead failed:', error);
+                // Still close modal and show additional downloads
+                closeLeadModal();
+                showAdditionalDownloads();
+                setTimeout(() => {
+                    generateBusinessCasePDF();
+                }, 500);
+            });
+        }
+
+        function generateBusinessCasePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Get user data
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const company = document.getElementById('company').value;
+            
+            // Title Page
+            doc.setFontSize(24);
+            doc.setTextColor(220, 38, 38);
+            doc.text('AI BUSINESS CASE', 20, 30);
+            
+            doc.setFontSize(18);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`${company}`, 20, 45);
+            
+            doc.setFontSize(12);
+            doc.text(`Prepared for: ${firstName} ${lastName}`, 20, 60);
+            doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 70);
+            doc.text('Prepared by: aiexpert.ai', 20, 80);
+            
+            // Executive Summary
+            doc.setFontSize(16);
+            doc.setTextColor(220, 38, 38);
+            doc.text('EXECUTIVE SUMMARY', 20, 100);
+            
+            doc.setFontSize(11);
+            doc.setTextColor(0, 0, 0);
+            const execSummary = [
+                `AI implementation for ${company} represents a critical business opportunity`,
+                `that cannot be delayed without significant competitive and financial risk.`,
+                '',
+                `Key Financial Impact:`,
+                `• Expected 3-year ROI: ${roiResults.netROI}%`,
+                `• Total projected value: £${Math.round(roiResults.totalValue/1000)}K over 3 years`,
+                `• Implementation investment: £${Math.round(roiResults.implementationCost/1000)}K`,
+                `• Cost of delaying 12 months: £${Math.round(roiResults.costOfDelay/1000)}K`,
+                '',
+                'RECOMMENDATION: Begin AI implementation immediately to capture',
+                'maximum value and maintain competitive position.'
+            ];
+            
+            let yPos = 115;
+            execSummary.forEach(line => {
+                doc.text(line, 25, yPos);
+                yPos += 6;
+            });
+            
+            // Add new page for detailed analysis
+            doc.addPage();
+            
+            // The Compound Interest Case
+            doc.setFontSize(16);
+            doc.setTextColor(220, 38, 38);
+            doc.text('AI: YOUR NEW COMPOUND INTEREST', 20, 30);
+            
+            doc.setFontSize(11);
+            doc.setTextColor(0, 0, 0);
+            yPos = 45;
+            
+            const compoundCase = [
+                'Like compound interest, AI returns accelerate over time. Every month',
+                'of delay means missing exponential gains that become harder to',
+                'recover as competitors build advantages.',
+                '',
+                'INDUSTRY EVIDENCE (Source: Leading Research Institutions):'
+            ];
+            
+            // Add the industry evidence with clickable links
+            const industryEvidence = [
+                { text: '• 88% of companies see early returns on AI investments (PwC 2025)', url: 'https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-business-survey.html' },
+                { text: '• 40% productivity boost for skilled workers using AI properly (MIT/Harvard)', url: 'https://www.nber.org/papers/w31161' },
+                { text: '• 70% of CEOs expect AI to transform value creation (PwC Global CEO Survey)', url: 'https://www.pwc.com/gx/en/issues/c-suite-insights/ceo-survey.html' },
+                { text: '• 27% productivity growth in AI-exposed industries (PwC Jobs Barometer)', url: 'https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-jobs-barometer.html' },
+                { text: '• 49% of tech leaders have AI fully integrated into strategy (PwC 2025)', url: 'https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-business-survey.html' }
+            ];
+            
+            const remainingCompoundCase = [
+                '',
+                'Your AI Compound Growth Projection:',
+                `• Year 1: £${Math.round(roiResults.yearlyBreakdown.year1/1000)}K value created`,
+                `• Year 2: £${Math.round(roiResults.yearlyBreakdown.year2/1000)}K value created`,
+                `• Year 3: £${Math.round(roiResults.yearlyBreakdown.year3/1000)}K value created`,
+                '',
+                'The Mathematics of Delay:',
+                'Waiting 12 months costs your organization:',
+                `• Lost efficiency gains: £${Math.round((roiResults.costOfDelay * 0.6)/1000)}K`,
+                `• Competitive disadvantage: £${Math.round((roiResults.costOfDelay * 0.3)/1000)}K`,
+                `• Higher implementation costs: £${Math.round((roiResults.costOfDelay * 0.1)/1000)}K`,
+                `• Total cost of delay: £${Math.round(roiResults.costOfDelay/1000)}K`
+            ];
+            
+            // Add the first part of compound case
+            compoundCase.forEach(line => {
+                if (yPos > 250) {
+                    doc.addPage();
+                    yPos = 30;
+                }
+                doc.text(line, 25, yPos);
+                yPos += 6;
+            });
+            
+            // Add industry evidence with clickable links
+            industryEvidence.forEach(item => {
+                if (yPos > 250) {
+                    doc.addPage();
+                    yPos = 30;
+                }
+                // Set blue color for links
+                doc.setTextColor(0, 100, 200);
+                doc.text(item.text, 25, yPos);
+                // Add clickable link area
+                doc.link(25, yPos - 3, 160, 6, { url: item.url });
+                // Reset to black
+                doc.setTextColor(0, 0, 0);
+                yPos += 6;
+            });
+            
+            // Add remaining compound case content
+            remainingCompoundCase.forEach(line => {
+                if (yPos > 250) {
+                    doc.addPage();
+                    yPos = 30;
+                }
+                doc.text(line, 25, yPos);
+                yPos += 6;
+            });
+            
+            // Add new page for implementation roadmap
+            doc.addPage();
+            
+            doc.setFontSize(16);
+            doc.setTextColor(220, 38, 38);
+            doc.text('3-PHASE IMPLEMENTATION ROADMAP', 20, 30);
+            
+            yPos = 50;
+            const roadmap = [
+                'PHASE 1: QUICK WINS (Months 1-2)',
+                '• Deploy AI productivity tools (ChatGPT, Copilot)',
+                '• Automate routine email responses and scheduling',
+                '• Implement basic customer service chatbots',
+                `• Expected value: £${Math.round((roiResults.yearlyBreakdown.year1 * 0.3)/1000)}K`,
+                '',
+                'PHASE 2: CORE OPERATIONS (Months 3-6)',
+                '• AI-powered analytics and reporting',
+                '• Process automation for key workflows',
+                '• Personalized customer experiences',
+                `• Expected value: £${Math.round((roiResults.yearlyBreakdown.year1 * 0.7)/1000)}K`,
+                '',
+                'PHASE 3: STRATEGIC ADVANTAGE (Months 6-12)',
+                '• Custom AI solutions for competitive advantage',
+                '• Predictive analytics for business insights',
+                '• AI-driven product/service innovation',
+                `• Expected value: £${Math.round(roiResults.yearlyBreakdown.year2/1000)}K`,
+                '',
+                'SUCCESS METRICS:',
+                `• ROI positive by month ${roiResults.timeToROI.includes('4-6') ? '5' : '7'}`,
+                '• 25%+ efficiency improvement by month 6',
+                '• Full implementation ROI within 18 months'
+            ];
+            
+            roadmap.forEach(line => {
+                if (yPos > 260) {
+                    doc.addPage();
+                    yPos = 30;
+                }
+                
+                if (line.startsWith('PHASE') || line.startsWith('SUCCESS')) {
+                    doc.setFont(undefined, 'bold');
+                } else {
+                    doc.setFont(undefined, 'normal');
+                }
+                
+                doc.text(line, 25, yPos);
+                yPos += 6;
+            });
+            
+            // Add final page with next steps
+            doc.addPage();
+            
+            doc.setFontSize(16);
+            doc.setTextColor(220, 38, 38);
+            doc.text('NEXT STEPS', 20, 30);
+            
+            doc.setFont(undefined, 'normal');
+            doc.setFontSize(11);
+            doc.setTextColor(0, 0, 0);
+            
+            yPos = 50;
+            const nextSteps = [
+                'IMMEDIATE ACTIONS (This Week):',
+                '1. Share this business case with key stakeholders',
+                '2. Book an AI strategy consultation: calendly.com/eschwaa/aiconsult',
+                '3. Begin researching AI productivity tools for quick wins',
+                '',
+                'SHORT-TERM ACTIONS (Next 30 Days):',
+                '1. Develop detailed AI implementation budget',
+                '2. Identify internal AI champion/project manager',
+                '3. Create AI governance and risk management framework',
+                '',
+                'The Cost of Inaction:',
+                `Every month of delay costs ${company} approximately`,
+                `£${Math.round((roiResults.costOfDelay/12)/1000)}K in lost value and competitive position.`,
+                '',
+                'Time is your most valuable asset in the AI race.',
+                'Companies that act now will compound ahead of those who wait.',
+                '',
+                '───────────────────────────────────────────────',
+                '',
+                'Contact Information:',
+                'Erik Schwartz, Fractional CAIO',
+                'Email: eschwaa@gmail.com',
+                'Phone: +44-7946-235391',
+                'Website: theaiexpert.ai',
+                '',
+                '"AI isn\'t a tech project — it\'s compound interest for your business."'
+            ];
+            
+            nextSteps.forEach(line => {
+                if (yPos > 260) {
+                    doc.addPage();
+                    yPos = 30;
+                }
+                
+                if (line.startsWith('IMMEDIATE') || line.startsWith('SHORT-TERM') || line.startsWith('The Cost')) {
+                    doc.setFont(undefined, 'bold');
+                } else if (line.startsWith('"')) {
+                    doc.setFont(undefined, 'italic');
+                } else {
+                    doc.setFont(undefined, 'normal');
+                }
+                
+                doc.text(line, 25, yPos);
+                yPos += 6;
+            });
+            
+            // Save the PDF
+            doc.save(`AI_Business_Case_${company.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
+            
+            console.log('✅ AI Business Case PDF downloaded successfully!');
+        }
+
+        function showAdditionalDownloads() {
+            // Hide the initial download button
+            document.getElementById('initialDownloadBtn').style.display = 'none';
+            
+            // Show the additional downloads section
+            document.getElementById('additionalDownloads').style.display = 'block';
+            
+            // Scroll to the downloads section
+            document.getElementById('additionalDownloads').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }
+
+        function downloadROIReport() {
+            // Create a temporary link to download the ROI report
+            const link = document.createElement('a');
+            link.href = './ROI of AI Investment for UK SMBs.pdf';
+            link.download = 'ROI_of_AI_Investment_for_UK_SMBs.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            console.log('✅ ROI of AI Investment for UK SMBs report downloaded!');
+        }
+
+        // Smooth scroll for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer style="background: #f9fafb; border-top: 1px solid #e5e7eb; padding: 2rem 0; text-align: center; margin-top: 4rem;">
+        <div class="container">
+            <!-- Social Media Links -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <a href="https://www.linkedin.com/in/eschwaa/" target="_blank" rel="noopener noreferrer" style="color: #0077B5; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/ESchwaa" target="_blank" rel="noopener noreferrer" style="color: #000000; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/eschwaa/" target="_blank" rel="noopener noreferrer" style="color: #E4405F; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/ESchwaa" target="_blank" rel="noopener noreferrer" style="color: #1877F2; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <span style="color: #6b7280;">© 2025 aiexpert.ai</span>
+                <a href="index.html" style="color: #2563eb; text-decoration: underline;">Back to Home</a>
+                <a href="insights.html" style="color: #2563eb; text-decoration: underline;">AI Insights</a>
+                <a href="sitemap.html" style="color: #2563eb; text-decoration: underline;">Site Map</a>
+                <button onclick="openPrivacyModal()" style="background: none; border: none; color: #2563eb; text-decoration: underline; cursor: pointer; font-size: inherit;">
+                    Privacy & Cookies
+                </button>
+            </div>
+            <p style="color: #9ca3af; margin: 0; font-size: 0.875rem;">
+                "We don't track. Just helpful AI — no gimmicks."
+            </p>
+        </div>
+    </footer>
+
+    <!-- Add privacy modal functionality -->
+    <script>
+        function openPrivacyModal() {
+            // For now, redirect to main site for privacy modal
+            window.open('index.html#privacy', '_blank');
+        }
+    </script>
+</body>
+</html> 

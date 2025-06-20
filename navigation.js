@@ -12,6 +12,7 @@ class NavigationComponent {
         if (path.includes('insights.html')) return 'insights';
         if (path.includes('media.html')) return 'media';
         if (path.includes('faq.html')) return 'faq';
+        if (path.includes('ai-roi-calculator.html')) return 'roi-calculator';
         if (path.includes('sitemap.html')) {
             console.log('NavigationComponent: Detected sitemap page');
             return 'sitemap';
@@ -36,6 +37,7 @@ class NavigationComponent {
                     <ul class="nav-links">
                         <li><a href="${linkPrefix}#services">Services</a></li>
                         <li><a href="${linkPrefix}#assessment">AI Assessment</a></li>
+                        <li><a href="ai-roi-calculator.html">ROI Calculator</a></li>
                         <li class="dropdown">
                             <a href="${linkPrefix}#about" class="dropdown-toggle">About ▼</a>
                             <ul class="dropdown-menu">

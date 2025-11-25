@@ -1,10 +1,16 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { BookOpen, Clock, Award, Target, Filter, TrendingUp, Users, Lightbulb } from "lucide-react"
+import { toast } from "sonner"
+import { useNavigate } from "react-router-dom"
 
 const AILearning = () => {
+  const navigate = useNavigate()
+
   const handleLaunchTool = () => {
-    window.location.href = '/ai-learning/'
+    // Legacy tool has been removed - redirect to contact for now
+    toast.info("The AI Learning Path Generator is being updated with new features. Contact us to learn more!")
+    navigate('/contact')
   }
 
   return (

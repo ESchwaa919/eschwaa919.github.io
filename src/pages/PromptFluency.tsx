@@ -4,8 +4,8 @@ import { CheckCircle2, Target, Zap, Shield, FileText, Users, Code, BarChart3, He
 
 const PromptFluency = () => {
   const handleDownload = () => {
-    // Open the PDF directly
-    window.open('/promptfluency/Prompt Fluency Toolkit.pdf', '_blank')
+    // Open the PDF directly from downloads directory
+    window.open('/downloads/Prompt Fluency Toolkit.pdf', '_blank')
   }
 
   return (

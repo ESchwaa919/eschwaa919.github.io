@@ -15,6 +15,7 @@ import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 import AIAssessment from "./pages/AIAssessment";
 import ROICalculator from "./pages/ROICalculator";
+import PromptFluency from "./pages/PromptFluency";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
@@ -39,6 +40,8 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/ai-assessment" element={<AIAssessment />} />
           <Route path="/roi-calculator" element={<ROICalculator />} />
+          <Route path="/promptfluency" element={<PromptFluency />} />
+          <Route path="/prompt-fluency" element={<PromptFluency />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

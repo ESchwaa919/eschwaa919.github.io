@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Executive AI Learning Path – The AI Expert</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Curated AI learning resources for executives from verified, free sources." />
+  
+  <!-- Navigation CSS -->
+  <link rel="stylesheet" href="../navigation.css">
+  
+  <style>
+    /* Main website color scheme */
+    :root {
+      --primary: #1a365d;
+      --primary-hover: #153c5a;
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --background: #ffffff;
+      --card-bg: #f7fafc;
+      --border: #e5e7eb;
+      --border-light: #f3f4f6;
+      --accent: #e2725b;
+      --success: #e2725b;
+      --warning: #f59e0b;
+    }
+    
+    * { box-sizing: border-box; }
+    
+    body { 
+      margin: 0; 
+      font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; 
+      background: var(--background); 
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding-top: 80px; /* Account for fixed header */
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      width: 100%;
+    }
+    
+    .page-header {
+      background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+      color: white;
+      text-align: center;
+      padding: 4rem 0 4rem 0; /* Ensure proper spacing from fixed nav */
+      margin-bottom: 3rem;
+      margin-top: 0; /* Remove any default margin */
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem;
+    }
+    
+    .page-header p {
+      font-size: 1.125rem;
+      opacity: 0.9;
+      margin: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .filters {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .filters h3 {
+      margin: 0 0 1.5rem;
+      font-size: 1.25rem;
+      color: var(--text-primary);
+    }
+
+    .filter-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .filter-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .filter-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: white;
+      font-size: 0.875rem;
+    }
+
+    .results-count {
+      margin: 2rem 0 1rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .course-table {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    .course-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .course-table th {
+      background: var(--card-bg);
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+
+    .course-table td {
+      padding: 1.5rem 1rem;
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: top;
+    }
+
+    .course-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .course-table tr:hover {
+      background: var(--card-bg);
+    }
+
+    .course-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .course-provider {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .course-description {
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .course-audience {
+      background: var(--border-light);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+    }
+
+    .course-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .course-link {
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      transition: background 0.2s ease;
+    }
+
+    .course-link:hover {
+      background: var(--primary-hover);
+      color: white;
+    }
+
+    .topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .topic-tag {
+      background: var(--border-light);
+      color: var(--text-secondary);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+
+    .cta-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem;
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .cta-section h3 {
+      font-size: 1.5rem;
+      margin: 0 0 1rem;
+      color: var(--text-primary);
+    }
+
+    .cta-section p {
+      color: var(--text-secondary);
+      margin: 0 0 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: 1px solid var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+
+    /* Contact Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 450px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background-color 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background-color: var(--border-light);
+    }
+
+    .modal h3 {
+      margin: 0 0 1rem;
+      color: var(--text-primary);
+    }
+
+    .modal p {
+      margin: 0 0 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-family: inherit;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .modal .btn {
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    /* Mobile Course Cards */
+    .course-cards {
+      display: none;
+    }
+
+    .course-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .course-card-header {
+      margin-bottom: 1rem;
+    }
+
+    .course-card-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .course-card-provider {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .course-card-description {
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .course-card-audience {
+      background: var(--border-light);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .course-card-topics {
+      margin-bottom: 1rem;
+    }
+
+    .course-card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .course-card-link {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      display: block;
+      text-align: center;
+      font-size: 1rem;
+      transition: background 0.2s ease;
+    }
+
+    .course-card-link:hover {
+      background: var(--primary-hover);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px; /* Adjust for mobile header height */
+      }
+      
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .page-header {
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+      }
+      
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      
+      .filter-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .filters {
+        padding: 1.5rem;
+      }
+      
+      /* Hide table on mobile and show cards */
+      .course-table {
+        display: none;
+      }
+      
+      .course-cards {
+        display: block;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .modal-content {
+        margin: 1rem auto;
+        padding: 1rem;
+        width: 95%;
+        max-height: 95vh;
+      }
+
+      .modal h3 {
+        font-size: 1.25rem;
+      }
+      
+      .cta-section {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navigation"></nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <h1>Executive AI Learning Resources</h1>
+      <p>Curated free courses and resources to help executives understand and implement AI in their organizations</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+      <!-- Filters -->
+      <div class="filters">
+        <h3>Filter Resources</h3>
+        <div class="filter-row">
+          <div class="filter-group">
+            <label for="jurisdictionFilter">Region Focus</label>
+            <select id="jurisdictionFilter">
+              <option value="">All Regions</option>
+              <!-- Options will be populated dynamically -->
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="topicFilter">Topic Focus</label>
+            <select id="topicFilter">
+              <option value="">All Topics</option>
+              <!-- Options will be populated dynamically -->
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="formatFilter">Content Format</label>
+            <select id="formatFilter">
+              <option value="">All Formats</option>
+              <!-- Options will be populated dynamically -->
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Count -->
+      <div class="results-count" id="resultsCount">
+        Loading resources...
+      </div>
+
+      <!-- Course Table (Desktop) -->
+      <div class="course-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Course & Provider</th>
+              <th>Topics</th>
+              <th>Format & Duration</th>
+              <th>Access</th>
+            </tr>
+          </thead>
+          <tbody id="courseTableBody">
+            <!-- Courses will be populated here -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Course Cards (Mobile) -->
+      <div class="course-cards" id="courseCards">
+        <!-- Course cards will be populated here -->
+      </div>
+
+      <!-- Call to Action -->
+      <div class="cta-section">
+        <h3>Find This Helpful?</h3>
+        <p>If these resources have been valuable for your AI journey, we'd love to hear from you. Our team helps executives navigate AI implementation and strategy.</p>
+        <div class="cta-buttons">
+          <button onclick="openContactModal()" class="btn btn-primary">
+            Drop us an email
+          </button>
+          <a href="../index.html#contact" class="btn btn-secondary">
+            Book a consultation
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background: #f9fafb; border-top: 1px solid #e5e7eb; padding: 2rem 0; text-align: center; margin-top: 4rem;">
+    <div class="container">
+      <!-- Social Media Links -->
+      <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+        <a href="https://www.linkedin.com/in/eschwaa/" target="_blank" rel="noopener noreferrer" style="color: #0077B5; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <a href="https://x.com/ESchwaa" target="_blank" rel="noopener noreferrer" style="color: #000000; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/eschwaa/" target="_blank" rel="noopener noreferrer" style="color: #E4405F; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/ESchwaa" target="_blank" rel="noopener noreferrer" style="color: #1877F2; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+      
+      <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+        <span style="color: #6b7280;">© 2025 aiexpert.ai</span>
+        <a href="../sitemap.html" style="color: #1a365d; text-decoration: underline;">Site Map</a>
+        <span style="color: #1a365d; text-decoration: underline; cursor: pointer;">
+          Privacy & Cookies
+        </span>
+      </div>
+      <p style="color: #9ca3af; margin: 0; font-size: 0.875rem;">
+        "We don't track. Just helpful AI — no gimmicks."
+      </p>
+    </div>
+  </footer>
+
+  <!-- Contact Modal -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeContactModal()">&times;</button>
+      <h3>Get in Touch</h3>
+      <p>We'd love to hear from you! Share your thoughts about these resources or ask about AI implementation for your organization.</p>
+      
+      <form id="contactForm" onsubmit="return false;">
+        <div class="form-group">
+          <label for="contactName">Name</label>
+          <input type="text" id="contactName" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="contactEmail">Email</label>
+          <input type="email" id="contactEmail" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="contactCompany">Company (optional)</label>
+          <input type="text" id="contactCompany">
+        </div>
+        
+        <div class="form-group">
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" placeholder="Tell us about your AI goals or ask any questions..." required></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Navigation Script -->
+  <script src="../navigation.js"></script>
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Initialize EmailJS globally first -->
+  <script>
+    // Initialize EmailJS globally
+    emailjs.init('oI6t4dwMhBXNaBKXo');
+    
+    // Global modal control functions
+    function openContactModal() {
+      console.log('Opening contact modal...');
+      const modal = document.getElementById('contactModal');
+      if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        console.log('Modal opened successfully');
+      } else {
+        console.error('Contact modal not found!');
+      }
+    }
+
+    function closeContactModal() {
+      document.getElementById('contactModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('contactModal');
+      if (event.target === modal) {
+        closeContactModal();
+      }
+    }
+
+    // Handle contact form submission
+    document.addEventListener('DOMContentLoaded', function() {
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          const submitButton = e.target.querySelector('button[type="submit"]');
+          const originalText = submitButton.textContent;
+          submitButton.textContent = 'Sending...';
+          submitButton.disabled = true;
+          
+          try {
+            const formData = {
+              from_name: document.getElementById('contactName').value,
+              from_email: document.getElementById('contactEmail').value,
+              company: document.getElementById('contactCompany').value || 'Not specified',
+              message: document.getElementById('contactMessage').value,
+              downloaded_resource: 'AI Learning Resources Page Contact',
+              download_date: new Date().toLocaleString(),
+              lead_type: 'Resource Page Inquiry',
+              lead_source: 'AI Learning Resources Page'
+            };
+            
+            await emailjs.send('theaiexpert_assessment', 'template_dmkjg71', formData);
+            
+            alert('Thank you! Your message has been sent successfully.');
+            closeContactModal();
+            document.getElementById('contactForm').reset();
+            
+          } catch (error) {
+            console.error('Failed to send message:', error);
+            alert('Sorry, there was an error sending your message. Please try again or email us directly at erik@aiexpert.ai');
+          } finally {
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+          }
+        });
+      }
+    });
+  </script>
+
+  <script type="module">
+    import { generateLearningPath, normalizePreferences } from './engine.js';
+
+    // --- State ---
+    let catalog = [];
+    let filteredCourses = [];
+
+    // --- Boot ---
+    init();
+
+    async function init() {
+      await loadCatalog();
+      renderCourses();
+      setupFilters();
+    }
+
+    async function loadCatalog() {
+      try {
+        const response = await fetch('./catalog.json');
+        catalog = await response.json();
+        filteredCourses = [...catalog];
+        console.log('✅ Loaded', catalog.length, 'courses');
+      } catch (error) {
+        console.error('❌ Failed to load catalog:', error);
+        document.getElementById('resultsCount').textContent = 'Failed to load courses. Please try refreshing the page.';
+      }
+    }
+
+    function setupFilters() {
+      populateFilterOptions();
+      
+      const jurisdictionFilter = document.getElementById('jurisdictionFilter');
+      const topicFilter = document.getElementById('topicFilter');
+      const formatFilter = document.getElementById('formatFilter');
+
+      [jurisdictionFilter, topicFilter, formatFilter].forEach(filter => {
+        filter.addEventListener('change', applyFilters);
+      });
+    }
+
+    function populateFilterOptions() {
+      // Get unique values from catalog
+      const jurisdictions = new Set();
+      const topics = new Set();
+      const formats = new Set();
+
+      catalog.forEach(course => {
+        // Add all region tags
+        course.regionTags.forEach(region => jurisdictions.add(region));
+        
+        // Add all topics
+        course.topics.forEach(topic => topics.add(topic));
+        
+        // Add format
+        formats.add(course.format);
+      });
+
+      // Populate jurisdiction filter
+      const jurisdictionFilter = document.getElementById('jurisdictionFilter');
+      jurisdictionFilter.innerHTML = '<option value="">All Regions</option>';
+      Array.from(jurisdictions).sort().forEach(region => {
+        const option = document.createElement('option');
+        option.value = region;
+        option.textContent = region;
+        jurisdictionFilter.appendChild(option);
+      });
+
+      // Populate topic filter
+      const topicFilter = document.getElementById('topicFilter');
+      topicFilter.innerHTML = '<option value="">All Topics</option>';
+      Array.from(topics).sort().forEach(topic => {
+        const option = document.createElement('option');
+        option.value = topic;
+        option.textContent = formatTopic(topic);
+        topicFilter.appendChild(option);
+      });
+
+      // Populate format filter
+      const formatFilter = document.getElementById('formatFilter');
+      formatFilter.innerHTML = '<option value="">All Formats</option>';
+      Array.from(formats).sort().forEach(format => {
+        const option = document.createElement('option');
+        option.value = format;
+        option.textContent = format.charAt(0).toUpperCase() + format.slice(1);
+        formatFilter.appendChild(option);
+      });
+    }
+
+    function applyFilters() {
+      const region = document.getElementById('jurisdictionFilter').value;
+      const topic = document.getElementById('topicFilter').value;
+      const format = document.getElementById('formatFilter').value;
+
+      filteredCourses = catalog.filter(course => {
+        // Region filter
+        if (region && !course.regionTags.includes(region)) {
+          return false;
+        }
+
+        // Topic filter
+        if (topic && !course.topics.includes(topic)) {
+          return false;
+        }
+
+        // Format filter
+        if (format && course.format !== format) {
+          return false;
+        }
+
+        return true;
+      });
+
+      renderCourses();
+    }
+
+    function renderCourses() {
+      const tbody = document.getElementById('courseTableBody');
+      const cards = document.getElementById('courseCards');
+      const resultsCount = document.getElementById('resultsCount');
+
+      resultsCount.textContent = `Showing ${filteredCourses.length} of ${catalog.length} resources`;
+
+      if (filteredCourses.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="4" style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+              No courses match your current filters. Try adjusting your criteria.
+            </td>
+          </tr>
+        `;
+        cards.innerHTML = `
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            No courses match your current filters. Try adjusting your criteria.
+          </div>
+        `;
+        return;
+      }
+
+      // Render table for desktop
+      tbody.innerHTML = filteredCourses.map(course => `
+        <tr>
+          <td>
+            <div class="course-title">${course.title}</div>
+            <div class="course-provider">by ${course.provider}</div>
+            <div class="course-description">${getDescription(course)}</div>
+            <div class="course-audience">👥 ${getTargetAudience(course)}</div>
+          </td>
+          <td>
+            <div class="topics">
+              ${course.topics.map(topic => `<span class="topic-tag">${formatTopic(topic)}</span>`).join('')}
+            </div>
+          </td>
+          <td>
+            <div class="course-meta">
+              <div>📺 ${course.format}</div>
+              <div>⏱️ ${course.durationMinutes} min</div>
+              ${course.certificateBadge ? `<div>🏆 ${course.certificateBadge}</div>` : ''}
+            </div>
+          </td>
+          <td>
+            <a href="${course.url}" target="_blank" rel="noopener noreferrer" class="course-link" onclick="scrollToHelpful()">
+              Launch Website
+            </a>
+          </td>
+        </tr>
+      `).join('');
+
+      // Render cards for mobile
+      cards.innerHTML = filteredCourses.map(course => `
+        <div class="course-card">
+          <div class="course-card-header">
+            <div class="course-card-title">${course.title}</div>
+            <div class="course-card-provider">by ${course.provider}</div>
+          </div>
+          <div class="course-card-description">${getDescription(course)}</div>
+          <div class="course-card-audience">👥 ${getTargetAudience(course)}</div>
+          <div class="course-card-topics">
+            <div class="topics">
+              ${course.topics.map(topic => `<span class="topic-tag">${formatTopic(topic)}</span>`).join('')}
+            </div>
+          </div>
+          <div class="course-card-meta">
+            <div>📺 ${course.format}</div>
+            <div>⏱️ ${course.durationMinutes} min</div>
+            ${course.certificateBadge ? `<div>🏆 ${course.certificateBadge}</div>` : ''}
+          </div>
+          <a href="${course.url}" target="_blank" rel="noopener noreferrer" class="course-card-link" onclick="scrollToHelpful()">
+            Launch Course
+          </a>
+        </div>
+      `).join('');
+    }
+
+    function getDescription(course) {
+      // Enhanced descriptions based on detailed course research
+      const descriptions = {
+        'AI for Everyone (Andrew Ng)': 'A comprehensive non-technical course that demystifies AI for business professionals, covering what AI can and cannot realistically do, how to spot AI opportunities in your organization, and how to build an AI strategy. Learn to work effectively with AI teams and navigate ethical considerations while understanding the business impact of machine learning and data science projects.',
+        
+        'Transform your business with Microsoft AI (AI-3017)': 'Strategic learning path designed for business leaders to develop AI roadmaps, create AI-ready organizational cultures, and implement responsible AI practices using Microsoft\'s suite of tools. Covers practical AI adoption strategies, change management, and how to leverage AI-driven solutions to streamline operations and drive measurable business growth.',
+        
+        'Introduction to Generative AI': 'Foundational Google Cloud course that provides executives with essential understanding of generative AI technology, its business applications, and strategic implementation considerations. Perfect primer for leaders who need to quickly understand the generative AI landscape and its potential impact on their industry and organization.',
+        
+        'Generative AI for Everyone (Andrew Ng)': 'Practical course focusing on how generative AI can transform business operations through content automation, enhanced customer experiences, and productivity improvements. Covers prompt engineering fundamentals, understanding AI limitations and hallucination risks, while providing frameworks for calculating ROI and building business cases for generative AI adoption.',
+        
+        'Generative AI for Executives and Business Leaders': 'Comprehensive IBM specialization that empowers executives to strategically integrate generative AI into their organizations with confidence. Using IBM\'s watsonx platform, learn to develop tailored AI use cases across customer service, HR, finance, and operations while mastering governance, compliance, and prompt-writing techniques for maximum business impact.',
+        
+        'Introduction to Responsible AI': 'Essential Google Cloud micro-course that provides business leaders with foundational knowledge of responsible AI principles, ethical AI deployment, and governance frameworks. Critical for executives who need to understand AI bias, fairness, transparency, and accountability when making strategic AI investment decisions.',
+        
+        'Responsible AI: Applying AI Principles with Google Cloud': 'Advanced course that goes beyond theory to show executives how to implement responsible AI practices using real-world Google Cloud tools and frameworks. Learn to establish AI governance structures, manage algorithmic bias, ensure transparency in AI decision-making, and build trust with stakeholders through ethical AI deployment.',
+        
+        'Artificial Intelligence: Ethics & Societal Challenges': 'Comprehensive university-level course from Lund University that explores the broader societal implications of AI deployment in business contexts. Essential for executives who need to understand regulatory compliance, social responsibility, and long-term ethical considerations when developing AI strategies for their organizations.',
+        
+        'What are AI hallucinations?': 'Focused article that provides executives with critical understanding of AI hallucination risks, their business implications, and practical strategies for mitigation. Essential reading for leaders implementing AI systems where accuracy and reliability are paramount, covering detection methods and governance frameworks to minimize hallucination-related business risks.'
+      };
+      
+      return descriptions[course.title] || `${course.category} course covering ${course.topics.join(', ').toLowerCase()} with practical applications for business leaders.`;
+    }
+
+    function getTargetAudience(course) {
+      // Specific target audiences based on course content and level
+      const audiences = {
+        'AI for Everyone (Andrew Ng)': 'C-suite executives, business leaders, and managers across all industries seeking foundational AI understanding',
+        
+        'Transform your business with Microsoft AI (AI-3017)': 'Business owners, executives, and department heads ready to implement AI transformation strategies',
+        
+        'Introduction to Generative AI': 'Technical leaders, CTOs, and senior managers evaluating generative AI adoption for their organizations',
+        
+        'Generative AI for Everyone (Andrew Ng)': 'Business leaders, product managers, and innovation executives exploring generative AI applications',
+        
+        'Generative AI for Executives and Business Leaders': 'C-suite executives, VPs, and senior leaders responsible for strategic AI implementation and governance',
+        
+        'Introduction to Responsible AI': 'Chief Risk Officers, compliance managers, legal executives, and ethical AI committee members',
+        
+        'Responsible AI: Applying AI Principles with Google Cloud': 'Senior technology leaders, AI governance teams, and executives overseeing responsible AI deployment',
+        
+        'Artificial Intelligence: Ethics & Societal Challenges': 'Board members, policy makers, legal executives, and senior leaders addressing AI societal impact',
+        
+        'What are AI hallucinations?': 'Risk managers, quality assurance leaders, and executives implementing AI in critical business processes'
+      };
+      
+      return audiences[course.title] || 'Business leaders and executives seeking AI knowledge';
+    }
+
+    function formatTopic(topic) {
+      const topicMap = {
+        'Foundations': 'AI Foundations',
+        'GenAI': 'Generative AI',
+        'ResponsibleAI': 'Responsible AI',
+        'RiskHallucinations': 'AI Risks',
+        'ROI': 'Business Value',
+        'RegulationUK': 'UK Regulation',
+        'RegulationEU': 'EU Regulation',
+        'RegulationUS': 'US Regulation'
+      };
+      return topicMap[topic] || topic;
+    }
+
+    // Scroll to helpful section after launching course
+    function scrollToHelpful() {
+      setTimeout(() => {
+        document.querySelector('.cta-section').scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 500);
+    }
+
+    // Make scroll function globally accessible from module
+    window.scrollToHelpful = scrollToHelpful;
+  </script>
+</body>
+</html>

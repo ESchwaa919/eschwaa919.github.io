@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMLR - Multi-Agent Medical Legal Review Automation | The AI Expert</title>
+    <meta name="description" content="Transform medical legal review with AutoMLR's AI-powered multi-agent automation. 90% faster approvals, 15-second latency, seamless Veeva Vault integration.">
+    <meta name="keywords" content="medical legal review, AI automation, multi-agent AI, Veeva Vault, pharmaceutical compliance, regulatory review">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="AutoMLR - Multi-Agent Medical Legal Review Automation">
+    <meta property="og:description" content="Transform medical legal review with AI-powered automation. 90% faster approvals, 15-second latency.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theaiexpert.ai/automlr/">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AutoMLR - Multi-Agent Medical Legal Review Automation">
+    <meta name="twitter:description" content="Transform medical legal review with AI-powered automation. 90% faster approvals, 15-second latency.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Three.js for 3D animations - ES Modules -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+        }
+    }
+    </script>
+    
+    <!-- EmailJS for form handling - v4 -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <!-- Main Navigation Component -->
+    <script src="../navigation.js"></script>
+    <link rel="stylesheet" href="../navigation.css">
+    
+    <!-- Download Component -->
+    <script src="../download-component.js"></script>
+    
+    <style>
+        /* AutoMLR Specific Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Override navigation for dark theme while keeping floating design */
+        header {
+            background: rgba(0, 0, 0, 0.75) !important;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .logo {
+            color: #fff !important;
+        }
+
+        .nav-links a {
+            color: #fff !important;
+        }
+
+        .nav-links a:hover {
+            color: #00ff88 !important;
+        }
+
+        .mobile-menu-toggle {
+            color: #fff !important;
+        }
+
+        .dropdown-menu {
+            background: rgba(0, 0, 0, 0.95) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .dropdown-menu a {
+            color: #fff !important;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(0, 255, 136, 0.1) !important;
+            color: #00ff88 !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ff88 0%, #0099ff 100%);
+            color: #000;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.4);
+        }
+
+        .hero-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .metric-badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .metric-badge:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .metric-badge:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00ff88;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+            margin-bottom: 4rem; /* Add space between sections */
+        }
+        
+        /* Subtle section transitions */
+        .section {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #fff 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ccc;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Bottleneck Section */
+        .bottleneck {
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        /* Solution Section */
+        .solution {
+            background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .pipeline-visual {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .pipeline-step {
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .pipeline-step:nth-child(2) { animation-delay: 0.2s; }
+        .pipeline-step:nth-child(3) { animation-delay: 0.4s; }
+        .pipeline-step:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            color: #00ff88;
+            margin-bottom: 0.5rem;
+        }
+
+        .arrow-down {
+            font-size: 1.5rem;
+            color: #666;
+            margin: 1rem 0;
+        }
+
+        /* Metrics Section */
+        .metrics {
+            background: #000;
+            text-align: center;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .metric-item {
+            position: relative;
+        }
+
+        .metric-number {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00ff88 0%, #0099ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .metric-description {
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+
+        /* Competitor Section */
+        .competitor {
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+        }
+
+        .comparison-table {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 3rem;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, #00ff88 0%, #0099ff 100%);
+            color: #000;
+            padding: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1.5fr;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .feature {
+            font-weight: 500;
+        }
+
+        .check-mark {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #00ff88;
+            font-weight: 500;
+        }
+
+        .cross-mark {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ff6b6b;
+            font-weight: 500;
+        }
+
+        .warning-mark {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ffa500;
+            font-weight: 500;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            background: #000;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ff88;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00ff88 0%, #0099ff 100%);
+            color: #000;
+            border-radius: 50%;
+            font-weight: 700;
+            line-height: 40px;
+            margin-bottom: 1rem;
+        }
+
+        .step-card h3 {
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .step-card p {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-question h3 {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: #00ff88;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Demo Section */
+        .demo {
+            background: #000;
+            text-align: center;
+        }
+
+        .demo-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .demo-text {
+            text-align: left;
+        }
+
+        .demo-text h2 {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .demo-text p {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .trust-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .calendly-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            min-height: 400px;
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00ff88;
+        }
+
+        .footer-note {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-metrics {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .solution-grid,
+            .demo-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .demo-text {
+                text-align: center;
+            }
+
+            .demo-text h2,
+            .demo-text p {
+                text-align: center;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+
+        /* Video Demo Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal-content {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+        }
+
+        .video-modal-header {
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 153, 255, 0.1) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .video-modal-header h3 {
+            color: #fff;
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .video-modal-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+
+        .demo-cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #00ff88 0%, #0099ff 100%);
+            color: #000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            text-decoration: none;
+        }
+
+        .demo-cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.4);
+        }
+
+        .demo-cta-button .play-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile responsive for video modal */
+        @media (max-width: 768px) {
+            .video-modal {
+                padding: 1rem;
+            }
+            
+            .video-modal-header {
+                padding: 1rem 1.5rem;
+            }
+            
+            .video-modal-header h3 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-background"></div>
+            <div class="hero-content">
+                <h1 id="heroHeadline">Accelerate Medical Legal Review with Multi-Agent AI</h1>
+                <p>Transform your pharmaceutical compliance workflow with AutoMLR's intelligent automation. AI-powered review with human oversight ensures accuracy, seamless Veeva Vault integration, and regulatory compliance across all major markets.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <button onclick="showVideoDemo()" class="demo-cta-button">
+                        <span class="play-icon">▶</span>
+                        Watch a Brief Demo
+                    </button>
+                    <a href="#demo" class="cta-button">Request a Demo</a>
+                </div>
+                
+                <div class="hero-metrics">
+                    <div class="metric-badge">
+                        <div class="metric-value">90%</div>
+                        <div class="metric-label">Faster Approvals</div>
+                    </div>
+                    <div class="metric-badge">
+                        <div class="metric-value">15s</div>
+                        <div class="metric-label">Latency</div>
+                    </div>
+                    <div class="metric-badge">
+                        <div class="metric-value">24/7</div>
+                        <div class="metric-label">Availability</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Bottleneck Section -->
+        <section class="section bottleneck" id="bottleneck">
+            <div class="container">
+                <h2>The Medical Legal Review Bottleneck</h2>
+                <p>Traditional review processes create costly delays, inconsistent decisions, and compliance risks that slow down critical pharmaceutical operations.</p>
+                
+                <div class="problem-grid animate-on-scroll">
+                    <div class="problem-card">
+                        <div class="problem-icon">⏳</div>
+                        <h3>Lengthy Delays</h3>
+                        <p>Manual review processes take weeks, creating bottlenecks in product launches and critical communications.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">❌</div>
+                        <h3>Inconsistent Decisions</h3>
+                        <p>Human reviewers apply different standards, leading to conflicting decisions and compliance risks.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">📊</div>
+                        <h3>Limited Scalability</h3>
+                        <p>Traditional systems can't handle increasing volumes while maintaining quality and speed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Solution Overview -->
+        <section class="section solution" id="solution">
+            <div class="container">
+                <h2>The AutoMLR Solution</h2>
+                <p>Our multi-agent AI system transforms medical legal review with intelligent automation, instant processing, and seamless integration.</p>
+                
+                <div class="solution-grid animate-on-scroll">
+                    <div class="pipeline-visual">
+                        <div class="pipeline-step">
+                            <div class="step-icon">📄</div>
+                            <h4>Content Ingestion</h4>
+                            <p>Direct Veeva Vault integration</p>
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <div class="pipeline-step">
+                            <div class="step-icon">🧠</div>
+                            <h4>AI Multi-Agent Review</h4>
+                            <p>Intelligent analysis & flagging</p>
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <div class="pipeline-step">
+                            <div class="step-icon">👤</div>
+                            <h4>Human Override</h4>
+                            <p>Expert review when needed</p>
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <div class="pipeline-step">
+                            <div class="step-icon">✅</div>
+                            <h4>Instant Approval</h4>
+                            <p>Automated compliance & audit</p>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-text">
+                        <h3>AI + Human Intelligence</h3>
+                        <p>AutoMLR's multi-agent AI handles routine reviews and flags potential issues, while human experts maintain final authority on complex decisions. This hybrid approach delivers 90% faster processing while ensuring pharmaceutical-grade accuracy and regulatory confidence.</p>
+                        
+                        <h3>Expert Oversight Always</h3>
+                        <p>AI recommendations are transparent and explainable. Human reviewers can override any decision, add context, and maintain full control. Built specifically for pharmaceutical workflows with native Veeva Vault integration.</p>
+                        
+                        <h3>Trusted Global Compliance</h3>
+                        <p>Pre-configured for FDA, EMA, MHRA, and PMDA requirements with human validation at every critical checkpoint. AI accelerates the process, humans ensure compliance integrity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Metrics Section -->
+        <section class="section metrics" id="metrics">
+            <div class="container">
+                <h2>Proven Results</h2>
+                <p>AutoMLR delivers measurable improvements across all key performance indicators for medical legal review operations.</p>
+                
+                <div class="metrics-grid animate-on-scroll">
+                    <div class="metric-item">
+                        <span class="metric-number" data-target="90">0</span>
+                        <div class="metric-description">% Faster Review Process</div>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-number" data-target="15">0</span>
+                        <div class="metric-description">Second Average Latency</div>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-number" data-target="99.9">0</span>
+                        <div class="metric-description">% Accuracy Rate</div>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-number" data-target="24">0</span>
+                        <div class="metric-description">Hour Availability</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Competitor Comparison -->
+        <section class="section competitor" id="competitor">
+            <div class="container">
+                <h2>AutoMLR vs Traditional Solutions</h2>
+                <p>See how AutoMLR outperforms legacy medical legal review systems across critical capabilities.</p>
+                
+                <div class="comparison-table animate-on-scroll">
+                    <div class="table-header">
+                        <div style="display: grid; grid-template-columns: 2fr 1.5fr 1.5fr; align-items: center;">
+                            <div>Feature</div>
+                            <div>AutoMLR</div>
+                            <div>Most Other Platforms</div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="feature">Veeva Vault Integration</div>
+                        <div class="check-mark">✔ Native, zero-config connector</div>
+                        <div class="warning-mark">⚠ Limited / vendor-specific</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="feature">Real-time Processing (&lt;15 s)</div>
+                        <div class="check-mark">✔ Seconds, not hours</div>
+                        <div class="cross-mark">✘ Typically hours–days</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="feature">Multi-Agent AI Architecture</div>
+                        <div class="check-mark">✔ Yes</div>
+                        <div class="cross-mark">✘ Single model / rule engine</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="feature">Regulatory Compliance Packs</div>
+                        <div class="check-mark">✔ FDA today, EU/JP roadmap</div>
+                        <div class="warning-mark">⚠ Manual or service-heavy</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="feature">15-Second Latency (P95)</div>
+                        <div class="check-mark">✔ Proven SLO</div>
+                        <div class="cross-mark">✘ Not publicly documented</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="feature">Cryptographically-Sealed Audit</div>
+                        <div class="check-mark">✔ Immutable, tamper-proof trail</div>
+                        <div class="warning-mark">⚠ Basic logs only</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- How It Works -->
+        <section class="section how-it-works" id="how-it-works">
+            <div class="container">
+                <h2>How AutoMLR Works</h2>
+                <p>Our sophisticated multi-agent system streamlines every step of the medical legal review process.</p>
+                
+                <div class="steps-grid animate-on-scroll">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Content Ingestion</h3>
+                        <p>Documents are automatically pulled from Veeva Vault and preprocessed for AI analysis with complete metadata preservation.</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Multi-Agent AI Review</h3>
+                        <p>Specialized AI agents analyze content for regulatory compliance, medical accuracy, and legal requirements in parallel.</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Expert Human Validation</h3>
+                        <p>All AI decisions can be reviewed and overridden by human experts. Complex cases are automatically escalated with full context, recommendations, and supporting analysis for informed decision-making.</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Human-Validated Approval</h3>
+                        <p>Only human-approved content is updated in Veeva Vault with complete audit trail showing both AI analysis and human validation decisions for full regulatory traceability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FAQ Section -->
+        <section class="section faq" id="faq">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <p>Get answers to common questions about AutoMLR implementation and capabilities.</p>
+                
+                <div class="faq-container animate-on-scroll">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How does AutoMLR maintain human control and oversight in the review process?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>AutoMLR is designed as a human-in-the-loop system. AI handles initial analysis and flags potential issues, but humans maintain final authority on all decisions. Reviewers can override any AI recommendation, add contextual notes, and escalate complex cases. Every approval requires human validation, ensuring expert judgment remains central to your compliance process.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How quickly can AutoMLR be integrated with our existing Veeva Vault setup?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>AutoMLR can be integrated with your existing Veeva Vault instance within 2-4 weeks. Our team handles the complete setup, configuration, and testing to ensure seamless operation without disrupting your current workflows.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Which regulatory frameworks does AutoMLR support?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>AutoMLR is pre-configured for FDA, EMA, MHRA, and PMDA requirements. The system automatically adapts review criteria based on your target markets and can be customized for additional regulatory frameworks as needed.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>What happens when the AI identifies potential compliance issues?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>When potential issues are detected, AutoMLR provides detailed explanations, suggests corrections, and can automatically escalate to human reviewers. All decisions include full audit trails and regulatory justifications.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Is our sensitive pharmaceutical data secure with AutoMLR?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, AutoMLR is built with enterprise-grade security including SOC 2 Type II compliance, HIPAA compliance, and GDPR compliance. All data is encrypted in transit and at rest, with role-based access controls and comprehensive audit logging.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Can AutoMLR handle different types of medical and promotional content?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>AutoMLR supports all content types including promotional materials, medical information, clinical data, regulatory submissions, and training materials. The AI agents are specialized for different content types and regulatory requirements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Demo Request Section -->
+        <section class="section demo" id="demo">
+            <div class="container">
+                <div class="demo-content animate-on-scroll">
+                    <div class="demo-text">
+                        <h2>See AutoMLR in Action</h2>
+                        <p>Schedule a personalized demo to see how AutoMLR can transform your medical legal review process. Our experts will show you the platform using your specific use cases and requirements.</p>
+                        
+                        <div class="trust-badges">
+                            <div class="trust-badge">Veeva Vault</div>
+                            <div class="trust-badge">HIPAA</div>
+                            <div class="trust-badge">GDPR</div>
+                            <div class="trust-badge">SOC 2 Type II</div>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <button onclick="showDownloadForm('automlr-whitepaper.pdf', 'AutoMLR Technical Whitepaper')" 
+                                    style="background: rgba(0, 255, 136, 0.1); border: 1px solid #00ff88; color: #00ff88; padding: 0.75rem 1.5rem; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                                📄 Download Technical Whitepaper
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="calendly-container">
+                        <!-- Calendly inline widget -->
+                        <div class="calendly-inline-widget" data-url="https://calendly.com/eschwaa/60-minute-meeting" style="min-width:320px;height:400px;"></div>
+                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                        
+                        <!-- Fallback if Calendly doesn't load -->
+                        <noscript>
+                            <div style="text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.05); border-radius: 15px;">
+                                <h3 style="color: #fff; margin-bottom: 1rem;">Schedule Your AutoMLR Demo</h3>
+                                <p style="color: #ccc; margin-bottom: 1.5rem;">Book a 60-minute personalized demo with our AI experts</p>
+                                <a href="https://calendly.com/eschwaa/60-minute-meeting" target="_blank" class="cta-button">
+                                    Open Calendly →
+                                </a>
+                            </div>
+                        </noscript>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Video Demo Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <h3>AutoMLR Product Demo</h3>
+                <button class="video-modal-close" onclick="closeVideoDemo()">×</button>
+            </div>
+            <div class="video-container">
+                <video id="demoVideo" controls preload="metadata">
+                    <source src="auto-mlr-demo.mp4" type="video/mp4">
+                    <source src="auto-mlr-demo.mov" type="video/quicktime">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: #111; border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 3rem 0; text-align: center;">
+        <div class="container">
+            <!-- Social Media Links -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <a href="https://www.linkedin.com/in/eschwaa/" target="_blank" rel="noopener noreferrer" style="color: #0077B5; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/ESchwaa" target="_blank" rel="noopener noreferrer" style="color: #fff; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/eschwaa/" target="_blank" rel="noopener noreferrer" style="color: #E4405F; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/ESchwaa" target="_blank" rel="noopener noreferrer" style="color: #1877F2; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <span style="color: #ccc;">&copy; 2025 theaiexpert.ai</span>
+                <a href="../sitemap.html" style="color: #00ff88; text-decoration: underline;">Site Map</a>
+                <a href="../index.html" style="color: #00ff88; text-decoration: underline;">Home</a>
+                <a href="../index.html#contact" style="color: #00ff88; text-decoration: underline;">Contact</a>
+            </div>
+            
+            <div style="color: #666; font-size: 0.9rem;">
+                Powered by Agentic AI Architecture
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        // AutoMLR JavaScript with ES Modules
+        import * as THREE from 'three';
+        
+        class AutoMLRApp {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupHeadlineRotation();
+                this.setupScrollAnimations();
+                this.setupMetricCounters();
+                this.setupHeroBackground();
+                this.setupHeaderEffects();
+            }
+
+            setupHeadlineRotation() {
+                // Get user's region for geo-targeted headlines
+                const userRegion = this.getUserRegion();
+                
+                const headlines = {
+                    default: [
+                        "Accelerate Medical Legal Review with Multi-Agent AI",
+                        "AI-Powered Review with Human Oversight & Control", 
+                        "Seamlessly Integrate AI with Your Veeva Vault Workflow",
+                        "Ensure Global Compliance with Trusted AI Technology",
+                        "Transform Review Architecture with Multi-Agent Intelligence"
+                    ],
+                    US: [
+                        "FDA-Compliant Medical Legal Review Automation",
+                        "Accelerate Medical Legal Review with Multi-Agent AI",
+                        "Streamline FDA Submissions with AI-Powered Review"
+                    ],
+                    EU: [
+                        "EMA-Compliant Medical Legal Review Automation", 
+                        "Accelerate Medical Legal Review with Multi-Agent AI",
+                        "Streamline EMA Submissions with AI-Powered Review"
+                    ],
+                    UK: [
+                        "MHRA-Compliant Medical Legal Review Automation",
+                        "Accelerate Medical Legal Review with Multi-Agent AI", 
+                        "Streamline MHRA Submissions with AI-Powered Review"
+                    ],
+                    JP: [
+                        "PMDA-Compliant Medical Legal Review Automation",
+                        "Accelerate Medical Legal Review with Multi-Agent AI",
+                        "Streamline PMDA Submissions with AI-Powered Review"
+                    ]
+                };
+
+                const selectedHeadlines = headlines[userRegion] || headlines.default;
+                const headlineElement = document.getElementById('heroHeadline');
+                
+                // Set initial headline based on geo-targeting (happens on load)
+                const randomIndex = Math.floor(Math.random() * selectedHeadlines.length);
+                headlineElement.textContent = selectedHeadlines[randomIndex];
+                
+                // Add subtle entrance animation
+                headlineElement.style.opacity = '0';
+                headlineElement.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    headlineElement.style.transition = 'all 0.8s ease';
+                    headlineElement.style.opacity = '1';
+                    headlineElement.style.transform = 'translateY(0)';
+                }, 100);
+            }
+
+            getUserRegion() {
+                // Simple geo-detection based on timezone and language
+                const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                const language = navigator.language || navigator.userLanguage;
+                
+                if (timezone.includes('America') || language.startsWith('en-US')) {
+                    return 'US';
+                } else if (timezone.includes('Europe') && !timezone.includes('London') || language.startsWith('de') || language.startsWith('fr') || language.startsWith('es') || language.startsWith('it')) {
+                    return 'EU';
+                } else if (timezone.includes('London') || language.startsWith('en-GB')) {
+                    return 'UK';
+                } else if (timezone.includes('Tokyo') || timezone.includes('Asia/Tokyo') || language.startsWith('ja')) {
+                    return 'JP';
+                }
+                return 'default';
+            }
+
+            setupScrollAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animated');
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+
+            setupMetricCounters() {
+                const counters = document.querySelectorAll('.metric-number[data-target]');
+                
+                const animateCounter = (counter) => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+
+                    const updateCounter = () => {
+                        current += step;
+                        if (current < target) {
+                            counter.textContent = Math.floor(current) + (target === 99.9 ? '.9' : '');
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target + (target === 99.9 ? '' : target === 15 ? 's' : target === 24 ? '/7' : '%');
+                        }
+                    };
+
+                    updateCounter();
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counter = entry.target.querySelector('.metric-number[data-target]');
+                            if (counter && !counter.classList.contains('animated')) {
+                                counter.classList.add('animated');
+                                animateCounter(counter);
+                            }
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                counters.forEach(counter => {
+                    observer.observe(counter.closest('.metric-item'));
+                });
+            }
+
+            setupHeroBackground() {
+                // High-Resolution Three.js particle animation covering full page
+                const canvas = document.createElement('canvas');
+                canvas.style.position = 'fixed';
+                canvas.style.top = '0';
+                canvas.style.left = '0';
+                canvas.style.width = '100vw';
+                canvas.style.height = '100vh';
+                canvas.style.zIndex = '-1';
+                canvas.style.opacity = '0.3';
+                canvas.style.pointerEvents = 'none';
+                
+                document.body.appendChild(canvas);
+
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+                
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setClearColor(0x000000, 0);
+
+                // Create multiple high-resolution particle systems for depth
+                const particleSystem1 = this.createAutoMLRParticleSystem1(scene);
+                const particleSystem2 = this.createAutoMLRParticleSystem2(scene);
+                const particleSystem3 = this.createAutoMLRParticleSystem3(scene);
+
+                camera.position.z = 80;
+
+                let mouseX = 0, mouseY = 0;
+                
+                // Very subtle mouse movement effect
+                document.addEventListener('mousemove', (event) => {
+                    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+                }, false);
+
+                // Animation loop
+                const animate = () => {
+                    requestAnimationFrame(animate);
+
+                    // Different rotation speeds for depth
+                    if (particleSystem1) {
+                        particleSystem1.rotation.x += 0.0003;
+                        particleSystem1.rotation.y += 0.0005;
+                    }
+                    if (particleSystem2) {
+                        particleSystem2.rotation.z += 0.0004;
+                        particleSystem2.rotation.x += 0.0002;
+                    }
+                    if (particleSystem3) {
+                        particleSystem3.rotation.y += 0.0006;
+                        particleSystem3.rotation.z += 0.0001;
+                    }
+
+                    // Subtle camera movement
+                    camera.position.x += (mouseX * 2 - camera.position.x) * 0.02;
+                    camera.position.y += (mouseY * 2 - camera.position.y) * 0.02;
+
+                    renderer.render(scene, camera);
+                };
+
+                animate();
+
+                // Handle window resize
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+
+            createAutoMLRParticleSystem1(scene) {
+                // Primary layer - Dense neural network-like patterns
+                const particleCount = 25000;
+                const positions = new Float32Array(particleCount * 3);
+                const colors = new Float32Array(particleCount * 3);
+                const sizes = new Float32Array(particleCount);
+                
+                for (let i = 0; i < particleCount; i++) {
+                    // Create neural network-like branching patterns
+                    const t = i / particleCount;
+                    const angle1 = t * Math.PI * 8;
+                    const angle2 = t * Math.PI * 12;
+                    const radius = Math.pow(t, 0.3) * 50;
+                    
+                    // Add computational grid patterns
+                    const gridScale = 0.2;
+                    const gridX = Math.floor(t * 20) * 4;
+                    const gridY = Math.floor((t * 20) % 5) * 8;
+                    
+                    positions[i * 3] = Math.cos(angle1) * radius + gridX + (Math.random() - 0.5) * 8;
+                    positions[i * 3 + 1] = Math.sin(angle1) * radius + gridY + (Math.random() - 0.5) * 6;
+                    positions[i * 3 + 2] = (Math.random() - 0.5) * 60 + Math.sin(t * Math.PI * 6) * 10;
+                    
+                    // AutoMLR theme: greens and cyans for tech feel
+                    const colorPhase = t + Math.sin(i * 0.05) * 0.4;
+                    colors[i * 3] = 0.0 + Math.sin(colorPhase * Math.PI) * 0.1;     // Red (minimal)
+                    colors[i * 3 + 1] = 0.8 + Math.sin(colorPhase * Math.PI + 1) * 0.2; // Green (bright)
+                    colors[i * 3 + 2] = 0.4 + Math.sin(colorPhase * Math.PI + 2) * 0.4; // Blue (cyan)
+                    
+                    sizes[i] = 0.3 + Math.random() * 0.5; // Very small particles
+                }
+
+                const geometry = new THREE.BufferGeometry();
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+                const material = new THREE.PointsMaterial({
+                    size: 1.0,
+                    sizeAttenuation: true,
+                    transparent: true,
+                    opacity: 0.7,
+                    vertexColors: true,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const particleSystem = new THREE.Points(geometry, material);
+                scene.add(particleSystem);
+                return particleSystem;
+            }
+
+            createAutoMLRParticleSystem2(scene) {
+                // Secondary layer - Data flow patterns
+                const particleCount = 15000;
+                const positions = new Float32Array(particleCount * 3);
+                const colors = new Float32Array(particleCount * 3);
+                const sizes = new Float32Array(particleCount);
+                
+                for (let i = 0; i < particleCount; i++) {
+                    // Create flowing data streams
+                    const t = i / particleCount;
+                    const streamAngle = t * Math.PI * 20;
+                    const flowPattern = Math.sin(t * Math.PI * 8) * Math.cos(t * Math.PI * 6);
+                    
+                    positions[i * 3] = (Math.random() - 0.5) * 100 + flowPattern * 15;
+                    positions[i * 3 + 1] = (Math.random() - 0.5) * 80 + Math.sin(streamAngle) * 20;
+                    positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
+                    
+                    // Slightly different green/cyan palette for depth
+                    colors[i * 3] = 0.0;                    // Red (none)
+                    colors[i * 3 + 1] = 0.6 + t * 0.3;     // Green
+                    colors[i * 3 + 2] = 0.8 + t * 0.2;     // Blue (more cyan)
+                    
+                    sizes[i] = 0.2 + Math.random() * 0.4;
+                }
+
+                const geometry = new THREE.BufferGeometry();
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+                const material = new THREE.PointsMaterial({
+                    size: 0.6,
+                    sizeAttenuation: true,
+                    transparent: true,
+                    opacity: 0.5,
+                    vertexColors: true,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const particleSystem = new THREE.Points(geometry, material);
+                scene.add(particleSystem);
+                return particleSystem;
+            }
+
+            createAutoMLRParticleSystem3(scene) {
+                // Background layer - Subtle atmospheric tech particles
+                const particleCount = 12000;
+                const positions = new Float32Array(particleCount * 3);
+                const colors = new Float32Array(particleCount * 3);
+                const sizes = new Float32Array(particleCount);
+                
+                for (let i = 0; i < particleCount; i++) {
+                    // Random distribution for atmospheric effect
+                    positions[i * 3] = (Math.random() - 0.5) * 120;
+                    positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+                    positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
+                    
+                    // Very subtle tech colors for background
+                    colors[i * 3] = 0.0;     // Red (none)
+                    colors[i * 3 + 1] = 0.4; // Green (dim)
+                    colors[i * 3 + 2] = 0.6; // Blue (dim cyan)
+                    
+                    sizes[i] = 0.1 + Math.random() * 0.2;
+                }
+
+                const geometry = new THREE.BufferGeometry();
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+                const material = new THREE.PointsMaterial({
+                    size: 0.4,
+                    sizeAttenuation: true,
+                    transparent: true,
+                    opacity: 0.3,
+                    vertexColors: true,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const particleSystem = new THREE.Points(geometry, material);
+                scene.add(particleSystem);
+                return particleSystem;
+            }
+
+            setupHeaderEffects() {
+                window.addEventListener('scroll', () => {
+                    const header = document.querySelector('header');
+                    if (window.scrollY > 100) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+        }
+
+        // Video Demo Functions - Make them global for onclick attributes
+        window.showVideoDemo = function() {
+            // Use the existing download component system for lead capture
+            // The "file" parameter is used for tracking, actual video opens after capture
+            showDownloadForm('automlr-video-demo', 'AutoMLR Product Demo Video');
+        }
+
+        window.openVideoDemo = function() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('demoVideo');
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Play video when modal opens
+            video.currentTime = 0;
+            video.play().catch(e => {
+                console.log('Auto-play prevented:', e);
+            });
+        }
+
+        window.closeVideoDemo = function() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('demoVideo');
+            
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Pause video when modal closes
+            video.pause();
+            video.currentTime = 0;
+        }
+
+        // Close modal when clicking outside video content
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('videoModal');
+            const modalContent = document.querySelector('.video-modal-content');
+            
+            if (modal && modal.classList.contains('active') && 
+                !modalContent.contains(event.target)) {
+                closeVideoDemo();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modal = document.getElementById('videoModal');
+                if (modal && modal.classList.contains('active')) {
+                    closeVideoDemo();
+                }
+            }
+        });
+
+        // FAQ Toggle Function
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                toggle.textContent = '+';
+                toggle.style.transform = 'rotate(0deg)';
+            } else {
+                // Close other FAQs
+                document.querySelectorAll('.faq-answer.active').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-toggle').forEach(item => {
+                    item.textContent = '+';
+                    item.style.transform = 'rotate(0deg)';
+                });
+                
+                // Open clicked FAQ
+                answer.classList.add('active');
+                toggle.textContent = '−';
+                toggle.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Initialize app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new AutoMLRApp();
+            
+            // Ensure Calendly loads properly
+            setTimeout(() => {
+                if (typeof Calendly === 'undefined') {
+                    console.log('Calendly not loaded, trying to reload...');
+                    const script = document.createElement('script');
+                    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+                    script.async = true;
+                    document.head.appendChild(script);
+                }
+            }, 2000);
+            
+            // Override download component behavior for video demos
+            if (window.downloadComponent) {
+                // Override showDownloadForm to customize modal content for video
+                const originalShowDownloadForm = window.downloadComponent.showDownloadForm;
+                window.downloadComponent.showDownloadForm = function(fileUrl, fileName) {
+                    // Call original method first
+                    originalShowDownloadForm.call(this, fileUrl, fileName);
+                    
+                    // Customize modal content for video demo
+                    if (fileUrl === 'automlr-video-demo') {
+                        setTimeout(() => {
+                            // Update header
+                            const header = document.querySelector('.download-modal-header h3');
+                            if (header) header.innerHTML = '🎬 Watch AutoMLR Demo';
+                            
+                            const subtitle = document.getElementById('downloadResourceTitle');
+                            if (subtitle) subtitle.textContent = 'See AutoMLR in action with our product demo';
+                            
+                            // Update value props for video
+                            const valueProps = document.querySelectorAll('.value-prop');
+                            if (valueProps.length >= 3) {
+                                valueProps[0].innerHTML = '<span class="value-icon">⚡</span><span>See 90% faster review processing in action</span>';
+                                valueProps[1].innerHTML = '<span class="value-icon">🔍</span><span>Watch AI + human collaboration workflow</span>';
+                                valueProps[2].innerHTML = '<span class="value-icon">🎯</span><span>Understand Veeva Vault integration benefits</span>';
+                            }
+                            
+                            // Update submit button
+                            const submitBtn = document.querySelector('.download-submit-btn');
+                            if (submitBtn) {
+                                submitBtn.innerHTML = '<span class="download-icon">▶</span>Watch Demo Now - It\'s Free!';
+                            }
+                            
+                            // Update privacy notice
+                            const privacyNotice = document.querySelector('.download-privacy-notice');
+                            if (privacyNotice) {
+                                privacyNotice.innerHTML = 'We respect your privacy. Your information will only be used to provide you with relevant AutoMLR updates. You can unsubscribe at any time.';
+                            }
+                        }, 100);
+                    }
+                };
+                
+                const originalTriggerDownload = window.downloadComponent.triggerDownload;
+                window.downloadComponent.triggerDownload = function() {
+                    // Check if this is a video demo request
+                    if (this.currentDownload && this.currentDownload.fileUrl === 'automlr-video-demo') {
+                        // Open video modal instead of downloading a file
+                        openVideoDemo();
+                        
+                        // Show success message for video
+                        const successDiv = document.createElement('div');
+                        successDiv.style.cssText = `
+                            position: fixed;
+                            top: 20px;
+                            right: 20px;
+                            background: #00ff88;
+                            color: #000;
+                            padding: 1rem 1.5rem;
+                            border-radius: 8px;
+                            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+                            z-index: 1002;
+                            font-weight: 600;
+                            animation: slideInRight 0.4s ease;
+                        `;
+                        successDiv.innerHTML = `🎬 Opening AutoMLR demo video...`;
+                        
+                        document.body.appendChild(successDiv);
+                        
+                        setTimeout(() => {
+                            successDiv.style.animation = 'slideOutRight 0.4s ease';
+                            setTimeout(() => {
+                                if (successDiv.parentNode) {
+                                    document.body.removeChild(successDiv);
+                                }
+                            }, 400);
+                        }, 3000);
+                    } else {
+                        // Use original download behavior for actual files
+                        originalTriggerDownload.call(this);
+                    }
+                };
+                
+                // Override instant download message for video demos
+                const originalShowInstantDownloadMessage = window.downloadComponent.showInstantDownloadMessage;
+                window.downloadComponent.showInstantDownloadMessage = function(firstName) {
+                    if (this.currentDownload && this.currentDownload.fileUrl === 'automlr-video-demo') {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.style.cssText = `
+                            position: fixed;
+                            top: 20px;
+                            right: 20px;
+                            background: #00ff88;
+                            color: #000;
+                            padding: 1rem 1.5rem;
+                            border-radius: 8px;
+                            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+                            z-index: 1002;
+                            font-weight: 600;
+                            animation: slideInRight 0.4s ease;
+                        `;
+                        messageDiv.innerHTML = `👋 Welcome back, ${firstName}! Opening your demo...`;
+                        
+                        document.body.appendChild(messageDiv);
+                        
+                        setTimeout(() => {
+                            messageDiv.style.animation = 'slideOutRight 0.4s ease';
+                            setTimeout(() => {
+                                if (messageDiv.parentNode) {
+                                    document.body.removeChild(messageDiv);
+                                }
+                            }, 400);
+                        }, 2000);
+                        
+                        // Open video after brief delay
+                        setTimeout(() => {
+                            openVideoDemo();
+                        }, 1000);
+                    } else {
+                        // Use original behavior for actual downloads
+                        originalShowInstantDownloadMessage.call(this, firstName);
+                    }
+                };
+            }
+        });
+
+    </script>
+</body>
+</html>

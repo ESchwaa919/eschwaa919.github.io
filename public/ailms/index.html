@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Enrichment for LMS | Personalized, Interactive Learning Journeys</title>
+    <meta name="description" content="Transform static courses into adaptive, engaging learning experiences with AI-driven enrichment. Book a demo or download the whitepaper today.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theaiexpert.ai/ailms/">
+    <meta property="og:title" content="AI Enrichment for LMS | Personalized Learning Journeys">
+    <meta property="og:description" content="Transform static courses into adaptive, engaging learning experiences with AI-driven enrichment. Book a demo or download the whitepaper today.">
+    <meta property="og:image" content="https://theaiexpert.ai/theaiexpert-transparent-logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://theaiexpert.ai/ailms/">
+    <meta property="twitter:title" content="AI Enrichment for LMS | Personalized Learning Journeys">
+    <meta property="twitter:description" content="Transform static courses into adaptive, engaging learning experiences with AI-driven enrichment. Book a demo or download the whitepaper today.">
+    <meta property="twitter:image" content="https://theaiexpert.ai/theaiexpert-transparent-logo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- Calendly inline widget -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+    <!-- Three.js for animations -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+
+    <!-- Navigation CSS -->
+    <link rel="stylesheet" href="../navigation.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary-green: #22c55e;
+            --primary-blue: #3b82f6;
+            --light-green: #dcfce7;
+            --light-blue: #dbeafe;
+            --light-yellow: #fef3c7;
+            --text-dark: #1f2937;
+            --text-medium: #4b5563;
+            --text-light: #6b7280;
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-white);
+            overflow-x: hidden;
+        }
+
+        /* Main content adjustment for fixed header */
+        main {
+            margin-top: 80px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(240, 249, 255, 0.35) 0%, rgba(236, 253, 245, 0.35) 100%);
+            backdrop-filter: blur(0.8px);
+            overflow: hidden;
+        }
+
+
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .hero-headline {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-subtext {
+            font-size: 1.3rem;
+            color: var(--text-medium);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--primary-green) 0%, #16a34a 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--primary-blue);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Challenge Section */
+        .challenge-section {
+            padding: 6rem 0;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-headline {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .challenge-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .comparison-side {
+            text-align: center;
+        }
+
+        .comparison-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .static-side .comparison-icon {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .dynamic-side .comparison-icon {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        .comparison-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .pain-points {
+            list-style: none;
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .pain-points li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-medium);
+        }
+
+        .pain-points li::before {
+            content: "❌";
+            flex-shrink: 0;
+        }
+
+        .dynamic-side .pain-points li::before {
+            content: "✅";
+        }
+
+        /* Solution Section */
+        .solution-section {
+            padding: 6rem 0;
+            background: rgba(248, 250, 252, 0.8);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--light-blue) 100%);
+        }
+
+        .benefit-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .benefit-description {
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        /* Proof Section */
+        .proof-section {
+            padding: 6rem 0;
+            background: rgba(255, 255, 255, 0.8);
+            text-align: center;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .metric-card {
+            padding: 2rem;
+        }
+
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-green);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+
+        .testimonial {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 16px;
+            border-left: 4px solid var(--primary-green);
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+
+        /* How It Works Section */
+        .how-it-works-section {
+            padding: 6rem 0;
+            background: rgba(248, 250, 252, 0.8);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .step-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2rem;
+            height: 2rem;
+            background: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1rem 0;
+            color: var(--text-dark);
+        }
+
+        .step-description {
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 6rem 0;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: var(--bg-light);
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #e5e7eb;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Conversion Section */
+        .conversion-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.95) 0%, rgba(59, 130, 246, 0.95) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .conversion-headline {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .conversion-subtext {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .conversion-ctas {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .cta-white {
+            background: white;
+            color: var(--primary-green);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-outline {
+            background: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: 2px solid white;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-outline:hover {
+            background: white;
+            color: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
+        .trust-signals {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            opacity: 0.8;
+        }
+
+        .trust-signal {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Footer - matches main site */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-spacer {
+            height: 200px;
+            position: relative;
+            background: transparent;
+            z-index: auto;
+            overflow: visible;
+        }
+
+        /* Ensure all sections have proper z-index and transparency for animation visibility */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero section needs to be more transparent to show animation */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(240, 249, 255, 0.35) 0%, rgba(236, 253, 245, 0.35) 100%);
+            backdrop-filter: blur(0.8px);
+        }
+
+        .challenge-section {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .solution-section {
+            background: rgba(248, 250, 252, 0.8);
+        }
+
+        .proof-section {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .how-it-works-section {
+            background: rgba(248, 250, 252, 0.8);
+        }
+
+        .faq-section {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .conversion-section {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.95) 0%, rgba(59, 130, 246, 0.95) 100%) !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-headline {
+                font-size: 2.5rem;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .challenge-comparison {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-container {
+                padding: 0 1rem;
+            }
+
+            .conversion-ctas {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .trust-signals {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be injected by navigation.js -->
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-headline" id="heroHeadline">Turn Lessons Into Living Learning Journeys.</h1>
+            <p class="hero-subtext" id="heroSubtext">AI enrichment transforms static content into dynamic, personalized pathways that adapt to every learner.</p>
+            <div class="hero-ctas">
+                <button class="cta-primary" onclick="scrollToDemo()">
+                    <span>🚀</span>
+                    Book a Demo
+                </button>
+                <button class="cta-secondary" onclick="showDownloadForm('ailms-whitepaper.pdf', 'AI Enrichment for LMS Whitepaper')">
+                    <span>📄</span>
+                    Download Whitepaper
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-spacer"></div>
+
+    <!-- Challenge Section -->
+    <section class="challenge-section">
+        <div class="section-container">
+            <h2 class="section-headline">Traditional LMS experiences fall flat.</h2>
+            <div class="challenge-comparison">
+                <div class="comparison-side static-side">
+                    <div class="comparison-icon">📚</div>
+                    <h3 class="comparison-title">Static Learning</h3>
+                    <ul class="pain-points">
+                        <li>One-size-fits-all courses leave some students lost or bored</li>
+                        <li>Static lessons limit engagement and retention</li>
+                        <li>Content creators lack tools to adapt materials dynamically</li>
+                        <li>Linear progression ignores individual learning styles</li>
+                    </ul>
+                </div>
+                <div class="comparison-side dynamic-side">
+                    <div class="comparison-icon">🌱</div>
+                    <h3 class="comparison-title">AI-Enriched Learning</h3>
+                    <ul class="pain-points">
+                        <li>Personalized pathways adapt to each learner's needs</li>
+                        <li>Interactive experiences boost engagement and retention</li>
+                        <li>Smart content discovery surfaces relevant materials</li>
+                        <li>Branching scenarios accommodate different learning styles</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-spacer"></div>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="section-container">
+            <h2 class="section-headline">Personalized, adaptive learning powered by AI.</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛤️</div>
+                    <h3 class="benefit-title">Custom Learning Paths</h3>
+                    <p class="benefit-description">Adaptive journeys based on student needs and progress, ensuring every learner finds their optimal route to mastery.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3 class="benefit-title">Interactive Experiences</h3>
+                    <p class="benefit-description">Quizzes, simulations, conversational study guides that transform passive consumption into active engagement.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔍</div>
+                    <h3 class="benefit-title">Smarter Discovery</h3>
+                    <p class="benefit-description">AI surfaces related lessons and materials contextually, creating serendipitous learning moments.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔗</div>
+                    <h3 class="benefit-title">Seamless Integration</h3>
+                    <p class="benefit-description">Works with major LMS platforms without disrupting existing workflows or requiring content migration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-spacer"></div>
+
+    <!-- Proof of Impact Section -->
+    <section class="proof-section">
+        <div class="section-container">
+            <h2 class="section-headline">Proven Results That Transform Learning</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-number" data-target="70">0</span>
+                    <div class="metric-label">Higher learner engagement</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number" data-target="30">0</span>
+                    <div class="metric-label">Faster course completion rates</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number" data-target="85">0</span>
+                    <div class="metric-label">Improved knowledge retention</div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"This transformed how our students connected with material—learning finally feels alive. The personalized pathways have increased engagement across all our courses."</p>
+                <p class="testimonial-author">— Beta Educator, Early Access Program</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-spacer"></div>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section">
+        <div class="section-container">
+            <h2 class="section-headline">How It Works</h2>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Connect</h3>
+                    <p class="step-description">Plug into your LMS in minutes with our seamless API integration. No disruption to existing workflows.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Enrich</h3>
+                    <p class="step-description">AI analyzes your courses and builds adaptive paths, creating personalized learning journeys for each student.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Engage</h3>
+                    <p class="step-description">Students interact dynamically with enriched material through personalized quizzes, simulations, and guided discoveries.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Evolve</h3>
+                    <p class="step-description">AI learns from every interaction, continuously improving experiences and outcomes for all learners.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-spacer"></div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-container">
+            <h2 class="section-headline">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is AI Enrichment for LMS?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        AI Enrichment enhances your existing courses with personalization and interactivity to dramatically improve learning outcomes. It transforms static content into dynamic, adaptive experiences.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do I need to rebuild my courses?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        No, our AI enrichment works with your existing content and LMS platforms. There's no need to migrate or rebuild - we enhance what you already have.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Which LMS platforms are supported?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We support Canvas, Moodle, Blackboard, TalentLMS, and many others via our flexible API integration. Contact us to discuss your specific platform.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How does AI personalize learning paths?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Our AI adapts based on student behavior, preferences, and progress. It creates branching pathways, suggests relevant content, and adjusts difficulty in real-time.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do educators keep control?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely. Teachers can edit, override, or customize any AI suggestions. You maintain full control while benefiting from intelligent automation.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is student data safe?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we're fully GDPR, FERPA, and COPPA compliant with end-to-end encryption. Student privacy and data security are our top priorities.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What results can I expect?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Our beta users see 70% higher engagement, 30% faster completion rates, and significantly improved knowledge retention scores.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-spacer"></div>
+
+    <!-- Conversion Section -->
+    <section class="conversion-section" id="demo-section">
+        <div class="section-container">
+            <h2 class="conversion-headline" id="conversionHeadline">See AI Enrichment in Action.</h2>
+            <p class="conversion-subtext">Book a demo to see how AI transforms your courses, or download our whitepaper to explore the research behind adaptive learning.</p>
+            <div class="conversion-ctas">
+                <div id="calendly-embed" style="min-width:320px;height:630px;"></div>
+                <button class="cta-outline" onclick="showDownloadForm('ailms-whitepaper.pdf', 'AI Enrichment for LMS Whitepaper')">
+                    <span>📄</span>
+                    Download Whitepaper
+                </button>
+            </div>
+            <div class="trust-signals">
+                <div class="trust-signal">
+                    <span>✅</span>
+                    <span>Works with top LMS platforms</span>
+                </div>
+                <div class="trust-signal">
+                    <span>📈</span>
+                    <span>Proven to improve student engagement</span>
+                </div>
+                <div class="trust-signal">
+                    <span>🔒</span>
+                    <span>Compliant with global education privacy standards</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #f9fafb; border-top: 1px solid #e5e7eb; padding: 2rem 0; text-align: center; margin-top: 4rem;">
+        <div class="container">
+            <!-- Social Media Links -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <a href="https://www.linkedin.com/in/eschwaa/" target="_blank" rel="noopener noreferrer" style="color: #0077B5; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/ESchwaa" target="_blank" rel="noopener noreferrer" style="color: #000000; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/eschwaa/" target="_blank" rel="noopener noreferrer" style="color: #E4405F; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/ESchwaa" target="_blank" rel="noopener noreferrer" style="color: #1877F2; font-size: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <span style="color: #6b7280;">© 2025 aiexpert.ai</span>
+                <a href="/sitemap.html" style="color: #2563eb; text-decoration: underline;">Site Map</a>
+                <a href="/index.html" style="color: #2563eb; text-decoration: underline;">Privacy & Cookies</a>
+            </div>
+            <p style="color: #9ca3af; margin: 0; font-size: 0.875rem;">
+                "We don't track. Just helpful AI — no gimmicks."
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../navigation.js"></script>
+    <script src="../download-component.js"></script>
+
+    <script>
+        // Rotating Headlines
+        const headlines = [
+            {
+                headline: "Turn Lessons Into Living Learning Journeys.",
+                subtext: "AI enrichment transforms static content into dynamic, personalized pathways that adapt to every learner."
+            },
+            {
+                headline: "Your Courses, Reimagined with AI.",
+                subtext: "Enhance your LMS materials with intelligent interactivity that boosts engagement and retention."
+            },
+            {
+                headline: "Learning That Blooms with Every Click.",
+                subtext: "Our AI-driven enrichment grows alongside your students, unlocking curiosity and understanding."
+            },
+            {
+                headline: "No More One-Size-Fits-All Learning.",
+                subtext: "Deliver tailored experiences for each student—without rewriting your courses or switching LMS platforms."
+            },
+            {
+                headline: "Give Every Learner Their Own Path to Success.",
+                subtext: "AI personalization guides students to the right content at the right time, improving outcomes for all."
+            }
+        ];
+
+        const conversionHeadlines = [
+            "See AI Enrichment in Action.",
+            "In 30 Minutes, Discover Adaptive Learning Paths for Your Courses.",
+            "Make Every Lesson More Interactive and Impactful."
+        ];
+
+        // Set random headline on page load
+        function setRandomHeadline() {
+            const randomHeadline = headlines[Math.floor(Math.random() * headlines.length)];
+            document.getElementById('heroHeadline').textContent = randomHeadline.headline;
+            document.getElementById('heroSubtext').textContent = randomHeadline.subtext;
+            
+            const randomConversionHeadline = conversionHeadlines[Math.floor(Math.random() * conversionHeadlines.length)];
+            document.getElementById('conversionHeadline').textContent = randomConversionHeadline;
+        }
+
+        // High-Resolution Three.js Animation
+        let scene, camera, renderer, particleSystem1, particleSystem2, particleSystem3;
+
+        function initHeroAnimation() {
+            // Check if animation is already initialized
+            if (window.animationInitialized) {
+                console.log('Animation already initialized, skipping...');
+                return;
+            }
+            
+            // Create canvas dynamically and append to body (like AutoMLR)
+            const canvas = document.createElement('canvas');
+            canvas.style.position = 'fixed';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.width = '100vw';
+            canvas.style.height = '100vh';
+            canvas.style.zIndex = '-1';
+            canvas.style.opacity = '0.35';
+            canvas.style.pointerEvents = 'none';
+            
+            document.body.appendChild(canvas);
+            
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            
+            try {
+                renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+                console.log('WebGL renderer created successfully');
+            } catch (error) {
+                console.error('Failed to create WebGL renderer:', error);
+                return;
+            }
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+
+            // Create multiple high-resolution particle systems for depth
+            createParticleSystem1(); // Primary layer - 20,000 particles
+            createParticleSystem2(); // Secondary layer - 15,000 particles  
+            createParticleSystem3(); // Background layer - 10,000 particles
+
+            camera.position.z = 15;
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                const time = Date.now() * 0.001;
+                
+                // Plant-like swaying motion instead of rotation
+                if (particleSystem1) {
+                    // Main stems sway gently like plants in a breeze
+                    particleSystem1.rotation.z = Math.sin(time * 0.6) * 0.02;
+                    particleSystem1.position.x = Math.sin(time * 0.4) * 0.5;
+                    
+                    // Subtle color breathing effect for stems
+                    const colors = particleSystem1.geometry.attributes.color.array;
+                    for (let i = 0; i < colors.length; i += 3) {
+                        const breathing = Math.sin(time * 0.3 + i * 0.01) * 0.05;
+                        colors[i + 1] = Math.max(0.1, Math.min(0.8, colors[i + 1] + breathing)); // Green channel
+                    }
+                    particleSystem1.geometry.attributes.color.needsUpdate = true;
+                }
+                if (particleSystem2) {
+                    // Leaves flutter more than stems
+                    particleSystem2.rotation.z = Math.sin(time * 1.0) * 0.03;
+                    particleSystem2.position.x = Math.sin(time * 0.8) * 0.8;
+                    particleSystem2.position.y = Math.sin(time * 1.2) * 0.3;
+                    
+                    // Gentle color pulsing for leaves
+                    const colors = particleSystem2.geometry.attributes.color.array;
+                    for (let i = 0; i < colors.length; i += 3) {
+                        const pulsing = Math.sin(time * 0.5 + i * 0.02) * 0.03;
+                        colors[i + 1] = Math.max(0.2, Math.min(0.7, colors[i + 1] + pulsing)); // Green channel
+                    }
+                    particleSystem2.geometry.attributes.color.needsUpdate = true;
+                }
+                if (particleSystem3) {
+                    // Pollen and flowers drift in air currents
+                    particleSystem3.position.x = Math.sin(time * 0.2) * 1.2;
+                    particleSystem3.position.y = Math.sin(time * 0.3) * 0.6;
+                    particleSystem3.rotation.y = Math.sin(time * 0.4) * 0.01;
+                    
+                    // Subtle color shimmer for flowers and pollen
+                    const colors = particleSystem3.geometry.attributes.color.array;
+                    for (let i = 0; i < colors.length; i += 3) {
+                        const shimmer = Math.sin(time * 0.8 + i * 0.03) * 0.02;
+                        colors[i] = Math.max(0.3, Math.min(0.9, colors[i] + shimmer)); // Red channel
+                        colors[i + 1] = Math.max(0.3, Math.min(0.9, colors[i + 1] + shimmer)); // Green channel
+                        colors[i + 2] = Math.max(0.1, Math.min(0.8, colors[i + 2] + shimmer)); // Blue channel
+                    }
+                    particleSystem3.geometry.attributes.color.needsUpdate = true;
+                }
+                
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Handle resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            // Mark animation as initialized
+            window.animationInitialized = true;
+        }
+
+        function createParticleSystem1() {
+            // Primary layer - Plant stem and branch structures
+            const particleCount = 15000;
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            const sizes = new Float32Array(particleCount);
+            
+            for (let i = 0; i < particleCount; i++) {
+                const t = i / particleCount;
+                
+                // Create main plant stems growing upward from bottom
+                const stemCount = 8; // Number of main plant stems
+                const stemIndex = Math.floor(t * stemCount);
+                const stemProgress = (t * stemCount) - stemIndex;
+                
+                // Use seeded random for consistent, organic variation
+                const seed = i * 0.1;
+                const random1 = Math.sin(seed) * 0.5 + 0.5;
+                const random2 = Math.sin(seed * 1.5) * 0.5 + 0.5;
+                const random3 = Math.sin(seed * 2.3) * 0.5 + 0.5;
+                
+                // Each stem starts from bottom center and grows upward with slight curve
+                const baseX = (stemIndex - stemCount / 2) * 8 + (random1 - 0.5) * 3;
+                const stemHeight = stemProgress * 40; // Stems grow upward
+                const curvature = Math.sin(stemProgress * Math.PI * 2) * (2 + stemIndex * 0.5);
+                
+                // Add branching - secondary branches grow from main stems
+                const branchChance = stemProgress > 0.3 ? Math.sin(stemProgress * Math.PI * 8) : 0;
+                const branchOffset = branchChance * 6 * Math.cos(stemProgress * Math.PI * 12);
+                
+                positions[i * 3] = baseX + curvature + branchOffset;
+                positions[i * 3 + 1] = -20 + stemHeight + Math.sin(stemProgress * Math.PI * 6) * 2; // Start from bottom
+                positions[i * 3 + 2] = (random2 - 0.5) * 4;
+                
+                // Plant-like colors: earth to green gradient (deep and saturated)
+                const heightRatio = (positions[i * 3 + 1] + 20) / 40; // 0 at bottom, 1 at top
+                const colorVariation = random3 * 0.1; // Subtle organic variation
+                colors[i * 3] = Math.max(0, 0.3 - heightRatio * 0.2 + colorVariation);       // Red (brown at base) - deep
+                colors[i * 3 + 1] = 0.2 + heightRatio * 0.6 + colorVariation * 0.2;          // Green (darker at base, rich up top) - deep
+                colors[i * 3 + 2] = Math.max(0, 0.1 - heightRatio * 0.05 + colorVariation * 0.1);  // Blue (minimal, brownish at base) - deep
+                
+                // Size based on position in stem (thicker at base, finer at tips)
+                sizes[i] = (1.0 - stemProgress * 0.7) + random1 * 0.3;
+            }
+
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+            const material = new THREE.PointsMaterial({
+                size: 2.0,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.7,
+                vertexColors: true,
+                blending: THREE.NormalBlending,
+                depthWrite: false
+            });
+
+            particleSystem1 = new THREE.Points(geometry, material);
+            scene.add(particleSystem1);
+        }
+
+        function createParticleSystem2() {
+            // Secondary layer - Leaves and small branches
+            const particleCount = 12000;
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            const sizes = new Float32Array(particleCount);
+            
+            for (let i = 0; i < particleCount; i++) {
+                const t = i / particleCount;
+                
+                // Use seeded random for consistent, organic variation
+                const seed = i * 0.15;
+                const random1 = Math.sin(seed) * 0.5 + 0.5;
+                const random2 = Math.sin(seed * 1.7) * 0.5 + 0.5;
+                const random3 = Math.sin(seed * 2.9) * 0.5 + 0.5;
+                const random4 = Math.sin(seed * 3.1) * 0.5 + 0.5;
+                
+                // Create leaves that cluster around the main stems
+                const leafCluster = Math.floor(t * 6); // 6 main areas for leaf clusters
+                const clusterX = (leafCluster - 3) * 10 + (random1 - 0.5) * 8;
+                const clusterY = -10 + leafCluster * 8 + (random2 - 0.5) * 12;
+                
+                // Leaves spread outward from stem locations
+                const leafSpread = random3 * 8;
+                const leafAngle = random4 * Math.PI * 2;
+                
+                positions[i * 3] = clusterX + Math.cos(leafAngle) * leafSpread;
+                positions[i * 3 + 1] = clusterY + Math.sin(leafAngle) * leafSpread * 0.5;
+                positions[i * 3 + 2] = (random1 - 0.5) * 6;
+                
+                // Leaf colors: deep greens with rich variation
+                const leafVariation = random2 * 0.3;
+                colors[i * 3] = 0.1 + leafVariation * 0.2;       // Slight red for autumn variety - deep
+                colors[i * 3 + 1] = 0.3 + leafVariation * 0.5;   // Rich deep greens - deep
+                colors[i * 3 + 2] = 0.15 + leafVariation * 0.2;  // Slight blue undertone - deep
+                
+                sizes[i] = 0.8 + random3 * 0.4; // Leaf-sized particles
+            }
+
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.65,
+                vertexColors: true,
+                blending: THREE.NormalBlending,
+                depthWrite: false
+            });
+
+            particleSystem2 = new THREE.Points(geometry, material);
+            scene.add(particleSystem2);
+        }
+
+        function createParticleSystem3() {
+            // Background layer - Flowers and floating pollen/seeds
+            const particleCount = 8000;
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            const sizes = new Float32Array(particleCount);
+            
+            for (let i = 0; i < particleCount; i++) {
+                const t = i / particleCount;
+                
+                // Use seeded random for consistent, organic variation
+                const seed = i * 0.2;
+                const random1 = Math.sin(seed) * 0.5 + 0.5;
+                const random2 = Math.sin(seed * 1.9) * 0.5 + 0.5;
+                const random3 = Math.sin(seed * 2.7) * 0.5 + 0.5;
+                const random4 = Math.sin(seed * 3.3) * 0.5 + 0.5;
+                const random5 = Math.sin(seed * 4.1) * 0.5 + 0.5;
+                
+                if (random1 < 0.3) {
+                    // 30% are flowers - bright spots on upper portions of plants
+                    const flowerStem = Math.floor(random2 * 6);
+                    const flowerX = (flowerStem - 3) * 12 + (random3 - 0.5) * 4;
+                    const flowerY = 5 + random4 * 15; // Flowers at top of plants
+                    
+                    positions[i * 3] = flowerX;
+                    positions[i * 3 + 1] = flowerY;
+                    positions[i * 3 + 2] = (random5 - 0.5) * 3;
+                    
+                    // Deep flower colors - whites, yellows, light pinks (rich and saturated)
+                    const flowerType = random2;
+                    if (flowerType < 0.4) {
+                        // Amber
+                        colors[i * 3] = 0.95;
+                        colors[i * 3 + 1] = 0.75;
+                        colors[i * 3 + 2] = 0.25;
+                    } else if (flowerType < 0.7) {
+                        // Coral pink
+                        colors[i * 3] = 0.9;
+                        colors[i * 3 + 1] = 0.5;
+                        colors[i * 3 + 2] = 0.6;
+                    } else {
+                        // Soft lilac
+                        colors[i * 3] = 0.7;
+                        colors[i * 3 + 1] = 0.6;
+                        colors[i * 3 + 2] = 0.9;
+                    }
+                    
+                    sizes[i] = 1.2 + random3 * 0.8; // Larger flower particles
+                } else {
+                    // 70% are floating pollen/seeds - drift in air
+                    positions[i * 3] = (random1 - 0.5) * 50;
+                    positions[i * 3 + 1] = -5 + random2 * 30;
+                    positions[i * 3 + 2] = (random3 - 0.5) * 20;
+                    
+                    // Pollen colors - golden yellows and light greens (deep and rich)
+                    const pollenType = random4;
+                    if (pollenType < 0.6) {
+                        // Golden pollen
+                        colors[i * 3] = 0.8;
+                        colors[i * 3 + 1] = 0.7;
+                        colors[i * 3 + 2] = 0.3;
+                    } else {
+                        // Light green seeds
+                        colors[i * 3] = 0.4;
+                        colors[i * 3 + 1] = 0.8;
+                        colors[i * 3 + 2] = 0.4;
+                    }
+                    
+                    sizes[i] = 0.3 + random5 * 0.4; // Small pollen particles
+                }
+            }
+
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+            const material = new THREE.PointsMaterial({
+                size: 1.2,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.75,
+                vertexColors: true,
+                blending: THREE.NormalBlending,
+                depthWrite: false
+            });
+
+            particleSystem3 = new THREE.Points(geometry, material);
+            scene.add(particleSystem3);
+        }
+
+        // Animated counters
+        function animateCounters() {
+            const counters = document.querySelectorAll('.metric-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current) + '%';
+                }, 20);
+            });
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Scroll to demo section
+        function scrollToDemo() {
+            document.getElementById('demo-section').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Initialize Calendly
+        function initCalendly() {
+            if (window.Calendly) {
+                Calendly.initInlineWidget({
+                    url: 'https://calendly.com/eschwaa/60-minute-meeting',
+                    parentElement: document.getElementById('calendly-embed'),
+                    prefill: {},
+                    utm: {
+                        utmCampaign: 'ailms-landing',
+                        utmSource: 'website',
+                        utmMedium: 'inline'
+                    }
+                });
+            } else {
+                // Retry after a short delay if Calendly hasn't loaded yet
+                setTimeout(initCalendly, 500);
+            }
+        }
+
+        // Intersection Observer for animations
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('proof-section')) {
+                            animateCounters();
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.proof-section').forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            setRandomHeadline();
+            
+            // Ensure Three.js is loaded before initializing animation
+            if (window.THREE) {
+                initHeroAnimation();
+            } else {
+                console.error('Three.js not loaded');
+            }
+            
+            initScrollAnimations();
+            
+            // Wait a bit for Calendly to load
+            setTimeout(initCalendly, 1000);
+        });
+
+        // Customize download modal content for education theme
+        const originalShowDownloadForm = window.showDownloadForm;
+        window.showDownloadForm = function(fileUrl, fileName) {
+            // Call original function
+            originalShowDownloadForm(fileUrl, fileName);
+            
+            // Customize modal content for education theme
+            setTimeout(() => {
+                const modal = document.getElementById('downloadModal');
+                if (modal && fileName.includes('AI Enrichment')) {
+                    const header = modal.querySelector('.download-modal-header h3');
+                    const valueProps = modal.querySelector('.download-value-props');
+                    
+                    if (header) {
+                        header.innerHTML = '🌱 Get Your Free Educational AI Guide';
+                    }
+                    
+                    if (valueProps) {
+                        valueProps.innerHTML = `
+                            <div class="value-prop">
+                                <span class="value-icon">📚</span>
+                                <span>Research-backed strategies for AI in education</span>
+                            </div>
+                            <div class="value-prop">
+                                <span class="value-icon">🎯</span>
+                                <span>Practical implementation roadmaps for educators</span>
+                            </div>
+                            <div class="value-prop">
+                                <span class="value-icon">🌟</span>
+                                <span>Transform static courses into dynamic experiences</span>
+                            </div>
+                        `;
+                    }
+                }
+            }, 100);
+        };
+    </script>
+</body>
+</html>

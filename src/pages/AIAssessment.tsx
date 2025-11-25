@@ -429,20 +429,23 @@ const AIAssessment = () => {
     return (
       <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative min-h-[85vh] flex items-center bg-gradient-to-br from-[#1a365d] to-[#2d5a87] text-white">
+        <section className="relative min-h-[85vh] flex items-center bg-gradient-cyber overflow-hidden">
+          <div className="absolute inset-0 bg-background opacity-90" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                AI Competency Assessment
+              <h1 className="text-4xl md:text-6xl font-heading mb-6 leading-tight">
+                <span className="text-primary glow-green">AI COMPETENCY</span>
+                <br />
+                <span className="text-foreground">ASSESSMENT</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 opacity-90">
+              <p className="text-xl md:text-2xl mb-8 text-muted-foreground">
                 Evaluate your organization's AI readiness across 8 critical business dimensions and receive personalized insights to accelerate your AI journey.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button
                   size="lg"
                   onClick={() => setHasStarted(true)}
-                  className="bg-[#e2725b] hover:bg-[#d65d46] text-white text-lg px-10 py-7 rounded-full shadow-lg"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-10 py-7 rounded-full shadow-cyber glow-green"
                 >
                   Start Assessment
                 </Button>
@@ -450,23 +453,23 @@ const AIAssessment = () => {
                   size="lg"
                   variant="outline"
                   asChild
-                  className="bg-white/20 border-2 border-white/30 hover:bg-white/30 text-white text-lg px-10 py-7 rounded-full"
+                  className="border-2 border-primary text-primary hover:bg-primary/10 text-lg px-10 py-7 rounded-full"
                 >
                   <a href="/contact">Schedule Consultation</a>
                 </Button>
               </div>
               <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-                <div className="flex flex-col items-center gap-2">
+                <div className="flex flex-col items-center gap-2 text-primary">
                   <Award className="w-8 h-8" />
-                  <p className="text-sm opacity-90">Free & Confidential</p>
+                  <p className="text-sm text-muted-foreground">Free & Confidential</p>
                 </div>
-                <div className="flex flex-col items-center gap-2">
+                <div className="flex flex-col items-center gap-2 text-primary">
                   <BarChart3 className="w-8 h-8" />
-                  <p className="text-sm opacity-90">8 Key Dimensions</p>
+                  <p className="text-sm text-muted-foreground">8 Key Dimensions</p>
                 </div>
-                <div className="flex flex-col items-center gap-2">
+                <div className="flex flex-col items-center gap-2 text-primary">
                   <Target className="w-8 h-8" />
-                  <p className="text-sm opacity-90">Personalized Results</p>
+                  <p className="text-sm text-muted-foreground">Personalized Results</p>
                 </div>
               </div>
             </div>
@@ -474,38 +477,38 @@ const AIAssessment = () => {
         </section>
 
         {/* Features Section */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-[#1a365d]">
+            <h2 className="text-3xl md:text-4xl font-heading text-center mb-12 text-primary glow-green">
               What You'll Discover
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              <Card className="p-6 hover:shadow-lg transition-all">
-                <Target className="w-10 h-10 text-[#1a365d] mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Strategic Vision</h3>
-                <p className="text-gray-600 text-sm">How AI fits into your competitive positioning</p>
+              <Card className="p-6 hover:shadow-cyber transition-all bg-card border-2 border-border hover:border-primary">
+                <Target className="w-10 h-10 text-primary mb-4" />
+                <h3 className="text-lg font-heading text-foreground mb-2">Strategic Vision</h3>
+                <p className="text-muted-foreground text-sm">How AI fits into your competitive positioning</p>
               </Card>
-              <Card className="p-6 hover:shadow-lg transition-all">
-                <Users className="w-10 h-10 text-[#1a365d] mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Team Readiness</h3>
-                <p className="text-gray-600 text-sm">Workforce AI skills and culture</p>
+              <Card className="p-6 hover:shadow-cyber transition-all bg-card border-2 border-border hover:border-primary">
+                <Users className="w-10 h-10 text-primary mb-4" />
+                <h3 className="text-lg font-heading text-foreground mb-2">Team Readiness</h3>
+                <p className="text-muted-foreground text-sm">Workforce AI skills and culture</p>
               </Card>
-              <Card className="p-6 hover:shadow-lg transition-all">
-                <TrendingUp className="w-10 h-10 text-[#1a365d] mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Operational Maturity</h3>
-                <p className="text-gray-600 text-sm">Process automation and efficiency</p>
+              <Card className="p-6 hover:shadow-cyber transition-all bg-card border-2 border-border hover:border-primary">
+                <TrendingUp className="w-10 h-10 text-primary mb-4" />
+                <h3 className="text-lg font-heading text-foreground mb-2">Operational Maturity</h3>
+                <p className="text-muted-foreground text-sm">Process automation and efficiency</p>
               </Card>
-              <Card className="p-6 hover:shadow-lg transition-all">
-                <Lightbulb className="w-10 h-10 text-[#1a365d] mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Action Plan</h3>
-                <p className="text-gray-600 text-sm">Personalized next steps and recommendations</p>
+              <Card className="p-6 hover:shadow-cyber transition-all bg-card border-2 border-border hover:border-primary">
+                <Lightbulb className="w-10 h-10 text-primary mb-4" />
+                <h3 className="text-lg font-heading text-foreground mb-2">Action Plan</h3>
+                <p className="text-muted-foreground text-sm">Personalized next steps and recommendations</p>
               </Card>
             </div>
             <div className="text-center mt-12">
               <Button
                 size="lg"
                 onClick={() => setHasStarted(true)}
-                className="bg-[#1a365d] hover:bg-[#153c5a] text-white text-lg px-10 py-6 rounded-full"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-10 py-6 rounded-full shadow-cyber glow-green"
               >
                 Begin Your Assessment →
               </Button>
@@ -838,16 +841,16 @@ const AIAssessment = () => {
   const question = questions[currentQuestion];
 
   return (
-    <div className="min-h-screen pt-32 pb-20 bg-gray-50">
+    <div className="min-h-screen pt-32 pb-20 bg-background">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-[#1a365d]">AI COMPETENCY</span>
+          <h1 className="text-4xl md:text-5xl font-heading mb-4">
+            <span className="text-primary glow-green">AI COMPETENCY</span>
             <br />
-            <span className="text-gray-900">ASSESSMENT</span>
+            <span className="text-foreground">ASSESSMENT</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Evaluate your organisation's AI readiness across 8 critical business
             dimensions and receive personalized insights to accelerate your AI
             journey.
@@ -857,10 +860,10 @@ const AIAssessment = () => {
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">
+            <span className="text-sm text-muted-foreground">
               Question {currentQuestion + 1} of {questions.length}
             </span>
-            <span className="text-sm text-[#1a365d] font-semibold">
+            <span className="text-sm text-primary font-semibold glow-green">
               {Math.round(progress)}% Complete
             </span>
           </div>
@@ -868,12 +871,12 @@ const AIAssessment = () => {
         </div>
 
         {/* Question Card */}
-        <Card className="border-2 border-[#1a365d] shadow-xl mb-8 bg-white">
+        <Card className="border-2 border-primary shadow-cyber mb-8 bg-card">
           <CardContent className="p-10">
-            <h2 className="text-2xl font-bold text-[#2563eb] mb-4">
+            <h2 className="text-2xl font-heading text-primary glow-green mb-4">
               {question.title}
             </h2>
-            <p className="text-xl text-gray-900 mb-8 leading-relaxed">
+            <p className="text-xl text-foreground mb-8 leading-relaxed">
               {question.question}
             </p>
 
@@ -884,23 +887,23 @@ const AIAssessment = () => {
                   onClick={() => handleSelectOption(index)}
                   className={`w-full text-left p-6 rounded-lg border-2 transition-all ${
                     selectedOption === index
-                      ? "border-[#1a365d] bg-[#1a365d]/10 shadow-md"
-                      : "border-gray-300 bg-white hover:border-[#1a365d]/50 hover:bg-gray-50"
+                      ? "border-primary bg-primary/10 shadow-cyber glow-green"
+                      : "border-border bg-card hover:border-primary/50 hover:bg-muted"
                   }`}
                 >
                   <div className="flex items-start gap-4">
                     <div
                       className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-1 ${
                         selectedOption === index
-                          ? "border-[#1a365d] bg-[#1a365d]"
-                          : "border-gray-400"
+                          ? "border-primary bg-primary"
+                          : "border-muted-foreground"
                       }`}
                     >
                       {selectedOption === index && (
-                        <CheckCircle2 className="w-4 h-4 text-white" />
+                        <CheckCircle2 className="w-4 h-4 text-primary-foreground" />
                       )}
                     </div>
-                    <p className="text-gray-900 flex-1">{option.text}</p>
+                    <p className="text-foreground flex-1">{option.text}</p>
                   </div>
                 </button>
               ))}
@@ -915,7 +918,7 @@ const AIAssessment = () => {
             variant="outline"
             onClick={handlePrevious}
             disabled={currentQuestion === 0}
-            className="border-2 border-gray-300 text-gray-900 hover:bg-gray-100 font-semibold px-8 py-6"
+            className="border-2 border-border text-foreground hover:bg-muted font-semibold px-8 py-6"
           >
             <ChevronLeft className="w-5 h-5 mr-2" />
             Previous
@@ -924,7 +927,7 @@ const AIAssessment = () => {
             size="lg"
             onClick={handleNext}
             disabled={selectedOption === null}
-            className="bg-[#1a365d] hover:bg-[#153c5a] text-white font-semibold px-8 py-6 shadow-lg"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 shadow-cyber glow-green"
           >
             {currentQuestion === questions.length - 1
               ? "Complete Assessment"

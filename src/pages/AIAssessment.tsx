@@ -838,7 +838,7 @@ const AIAssessment = () => {
   const question = questions[currentQuestion];
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
+    <div className="min-h-screen pt-32 pb-20 bg-gray-50">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -868,12 +868,12 @@ const AIAssessment = () => {
         </div>
 
         {/* Question Card */}
-        <Card className="border-2 border-[#1a365d] shadow-xl mb-8">
+        <Card className="border-2 border-[#1a365d] shadow-xl mb-8 bg-white">
           <CardContent className="p-10">
-            <h2 className="text-2xl font-bold text-[#1a365d] mb-4">
+            <h2 className="text-2xl font-bold text-[#2563eb] mb-4">
               {question.title}
             </h2>
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+            <p className="text-xl text-gray-900 mb-8 leading-relaxed">
               {question.question}
             </p>
 

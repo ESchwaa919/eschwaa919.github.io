@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
-import { ChevronLeft, ChevronRight, CheckCircle2, ArrowRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, CheckCircle2, Target, TrendingUp, Users, Lightbulb, Award, BarChart3 } from "lucide-react";
 import { toast } from "sonner";
 import emailjs from "@emailjs/browser";
 
@@ -20,6 +20,7 @@ interface Answer {
 }
 
 const AIAssessment = () => {
+  const [hasStarted, setHasStarted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -152,75 +153,77 @@ const AIAssessment = () => {
       ],
     },
     {
-      title: "Risk Management & Governance",
+      title: "Data Infrastructure",
       question:
-        "How well does your organisation manage AI-related risks and governance?",
+        "How mature is your data infrastructure and readiness for AI applications?",
       options: [
         {
-          text: "Comprehensive AI governance framework with active risk management",
+          text: "We have a robust, well-governed data ecosystem powering AI initiatives",
           score: 4,
         },
         {
-          text: "Basic governance policies and risk assessment procedures in place",
+          text: "Data infrastructure is in place with some quality and access controls",
           score: 3,
         },
         {
-          text: "Awareness of AI risks but limited formal governance structures",
+          text: "Data exists but is siloed with limited governance or accessibility",
           score: 2,
         },
         {
-          text: "Minimal consideration of AI risks and governance requirements",
+          text: "Data infrastructure is minimal with significant gaps",
           score: 1,
         },
       ],
     },
     {
-      title: "Data & Decision Making",
+      title: "Governance & Ethics",
       question:
-        "How effectively does your organisation leverage data for AI-driven decision making?",
+        "How well has your organisation addressed AI governance, ethics, and responsible use?",
       options: [
         {
-          text: "High-quality, integrated data powers real-time AI-driven decisions",
+          text: "We have comprehensive AI governance frameworks and ethical guidelines",
           score: 4,
         },
         {
-          text: "Good data foundation with some AI-enhanced decision processes",
+          text: "We have established basic governance policies and review processes",
           score: 3,
         },
         {
-          text: "Basic data collection but limited AI-powered insights",
+          text: "We recognize the need for governance but have limited formal policies",
           score: 2,
         },
         {
-          text: "Data is fragmented with minimal analytics or AI application",
+          text: "AI governance and ethical considerations are not yet addressed",
           score: 1,
         },
       ],
     },
     {
-      title: "Growth & Market Expansion",
+      title: "Technology & Architecture",
       question:
-        "How well does your organisation use AI to drive growth and market opportunities?",
+        "How advanced is your technology stack and architecture for supporting AI initiatives?",
       options: [
         {
-          text: "AI enables new revenue streams and market expansion strategies",
+          text: "Modern, scalable infrastructure purpose-built for AI workloads",
           score: 4,
         },
         {
-          text: "We use AI for market analysis and some growth initiatives",
+          text: "We have cloud infrastructure with some AI-ready components",
           score: 3,
         },
         {
-          text: "Limited use of AI for market insights and growth planning",
+          text: "Legacy systems with limited AI compatibility",
           score: 2,
         },
         {
-          text: "Growth strategies are developed without AI-driven insights",
+          text: "Technology infrastructure is not suitable for AI implementation",
           score: 1,
         },
       ],
     },
   ];
+
+  const progress = (currentQuestion / questions.length) * 100;
 
   const handleSelectOption = (index: number) => {
     setSelectedOption(index);
@@ -230,22 +233,25 @@ const AIAssessment = () => {
     if (selectedOption === null) return;
 
     const question = questions[currentQuestion];
+    const selectedAnswer = question.options[selectedOption];
+
     const newAnswer: Answer = {
       question: question.title,
-      answer: question.options[selectedOption].text,
-      score: question.options[selectedOption].score,
+      answer: selectedAnswer.text,
+      score: selectedAnswer.score,
     };
 
-    const newAnswers = [...answers];
-    newAnswers[currentQuestion] = newAnswer;
-    setAnswers(newAnswers);
+    const updatedAnswers = [...answers];
+    updatedAnswers[currentQuestion] = newAnswer;
+    setAnswers(updatedAnswers);
 
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
-      // Check if next question already has an answer
-      const nextAnswer = newAnswers[currentQuestion + 1];
-      if (nextAnswer) {
-        const nextOptionIndex = question.options.findIndex(
+      // Check if there's an answer for the next question
+      if (updatedAnswers[currentQuestion + 1]) {
+        const nextAnswer = updatedAnswers[currentQuestion + 1];
+        const nextQuestion = questions[currentQuestion + 1];
+        const nextOptionIndex = nextQuestion.options.findIndex(
           (opt) => opt.text === nextAnswer.answer
         );
         setSelectedOption(nextOptionIndex);
@@ -334,22 +340,22 @@ const AIAssessment = () => {
 
     if (percentage >= 85) {
       readinessLevel = "AI Leader";
-      levelColor = "text-primary";
+      levelColor = "text-[#1a365d]";
       levelDescription =
         "Your organisation demonstrates advanced AI maturity with strong capabilities across all dimensions.";
     } else if (percentage >= 70) {
       readinessLevel = "AI Ready";
-      levelColor = "text-secondary";
+      levelColor = "text-blue-600";
       levelDescription =
         "Your organisation has solid foundations and is well-positioned for AI implementation.";
     } else if (percentage >= 50) {
       readinessLevel = "AI Developing";
-      levelColor = "text-yellow-500";
+      levelColor = "text-yellow-600";
       levelDescription =
         "Your organisation has identified AI opportunities and is building capabilities.";
     } else {
       readinessLevel = "AI Emerging";
-      levelColor = "text-orange-500";
+      levelColor = "text-orange-600";
       levelDescription =
         "Your organisation is beginning its AI journey with significant opportunities for growth.";
     }
@@ -397,158 +403,218 @@ const AIAssessment = () => {
         {
           title: "Strengthen Governance",
           description:
-            "Implement robust AI governance frameworks to ensure responsible AI use, compliance, and risk management.",
+            "Establish robust AI governance frameworks to ensure responsible deployment at scale while maintaining compliance and ethical standards.",
         }
       );
     } else {
       recommendations.push(
         {
-          title: "Drive Innovation Leadership",
+          title: "Drive Innovation",
           description:
-            "Leverage your AI maturity to create competitive advantages and explore cutting-edge AI applications that could reshape your industry.",
+            "Continue to innovate and explore cutting-edge AI capabilities to maintain your competitive advantage and thought leadership position.",
         },
         {
-          title: "Share Your Expertise",
+          title: "Share Knowledge",
           description:
-            "Consider partnering with other organisations or contributing to AI thought leadership to strengthen your position as an AI leader.",
+            "Consider contributing to the AI community through knowledge sharing, partnerships, and mentoring organizations beginning their AI journey.",
         }
       );
     }
 
-    // Add specific recommendations based on lowest scoring areas
-    const lowestScoring = [...answers]
-      .sort((a, b) => a.score - b.score)
-      .slice(0, 2);
-
-    lowestScoring.forEach((item) => {
-      if (item.score <= 2) {
-        switch (item.question) {
-          case "Vision & Strategic Differentiation":
-            recommendations.push({
-              title: "Develop AI Vision",
-              description:
-                "Create a clear AI vision statement and strategy that aligns with your business goals and competitive positioning.",
-            });
-            break;
-          case "Data & Decision Making":
-            recommendations.push({
-              title: "Improve Data Infrastructure",
-              description:
-                "Invest in data quality, integration, and analytics capabilities to support AI-driven decision making.",
-            });
-            break;
-          case "Talent & Culture":
-            recommendations.push({
-              title: "Build AI Culture",
-              description:
-                "Foster an AI-ready culture through training, change management, and demonstrating AI value to your team.",
-            });
-            break;
-        }
-      }
-    });
-
-    return recommendations.slice(0, 4);
+    return recommendations;
   };
 
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  // Landing page
+  if (!hasStarted) {
+    return (
+      <div className="min-h-screen">
+        {/* Hero Section */}
+        <section className="relative min-h-[85vh] flex items-center bg-gradient-to-br from-[#1a365d] to-[#2d5a87] text-white">
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                AI Competency Assessment
+              </h1>
+              <p className="text-xl md:text-2xl mb-8 opacity-90">
+                Evaluate your organization's AI readiness across 8 critical business dimensions and receive personalized insights to accelerate your AI journey.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <Button
+                  size="lg"
+                  onClick={() => setHasStarted(true)}
+                  className="bg-[#e2725b] hover:bg-[#d65d46] text-white text-lg px-10 py-7 rounded-full shadow-lg"
+                >
+                  Start Assessment
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  asChild
+                  className="bg-white/20 border-2 border-white/30 hover:bg-white/30 text-white text-lg px-10 py-7 rounded-full"
+                >
+                  <a href="/contact">Schedule Consultation</a>
+                </Button>
+              </div>
+              <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+                <div className="flex flex-col items-center gap-2">
+                  <Award className="w-8 h-8" />
+                  <p className="text-sm opacity-90">Free & Confidential</p>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <BarChart3 className="w-8 h-8" />
+                  <p className="text-sm opacity-90">8 Key Dimensions</p>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Target className="w-8 h-8" />
+                  <p className="text-sm opacity-90">Personalized Results</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
+        {/* Features Section */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-[#1a365d]">
+              What You'll Discover
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              <Card className="p-6 hover:shadow-lg transition-all">
+                <Target className="w-10 h-10 text-[#1a365d] mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Strategic Vision</h3>
+                <p className="text-gray-600 text-sm">How AI fits into your competitive positioning</p>
+              </Card>
+              <Card className="p-6 hover:shadow-lg transition-all">
+                <Users className="w-10 h-10 text-[#1a365d] mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Team Readiness</h3>
+                <p className="text-gray-600 text-sm">Workforce AI skills and culture</p>
+              </Card>
+              <Card className="p-6 hover:shadow-lg transition-all">
+                <TrendingUp className="w-10 h-10 text-[#1a365d] mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Operational Maturity</h3>
+                <p className="text-gray-600 text-sm">Process automation and efficiency</p>
+              </Card>
+              <Card className="p-6 hover:shadow-lg transition-all">
+                <Lightbulb className="w-10 h-10 text-[#1a365d] mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Action Plan</h3>
+                <p className="text-gray-600 text-sm">Personalized next steps and recommendations</p>
+              </Card>
+            </div>
+            <div className="text-center mt-12">
+              <Button
+                size="lg"
+                onClick={() => setHasStarted(true)}
+                className="bg-[#1a365d] hover:bg-[#153c5a] text-white text-lg px-10 py-6 rounded-full"
+              >
+                Begin Your Assessment →
+              </Button>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Results page
   if (showResults) {
     const { totalScore, percentage, readinessLevel, levelColor, levelDescription } =
       calculateResults();
     const recommendations = generateRecommendations();
 
     return (
-      <div className="min-h-screen pt-32 pb-20">
-        <div className="container mx-auto px-4 max-w-4xl">
+      <div className="min-h-screen bg-gray-50 py-20">
+        <div className="container mx-auto px-4 max-w-5xl">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-heading mb-4">
-              <span className="text-primary glow-green">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <span className="text-[#1a365d]">
                 YOUR AI ASSESSMENT RESULTS
               </span>
             </h1>
-            <p className="text-xl text-muted-foreground">
-              Here's your comprehensive AI readiness analysis
+            <p className="text-xl text-gray-600">
+              Here's how your organisation measures up across the 8 key AI competency dimensions
             </p>
           </div>
 
           {/* Overall Score */}
-          <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg mb-8">
+          <Card className="border-2 border-[#1a365d] shadow-xl mb-8">
             <CardContent className="p-12 text-center">
               <div
-                className="w-48 h-48 mx-auto mb-6 rounded-full flex items-center justify-center relative"
+                className="relative w-64 h-64 mx-auto mb-8"
                 style={{
-                  background: `conic-gradient(hsl(145 65% 48%) ${percentage}%, hsl(0 0% 20%) 0%)`,
+                  background: `conic-gradient(#1a365d ${percentage * 3.6}deg, #e5e7eb ${percentage * 3.6}deg)`,
+                  borderRadius: "50%",
                 }}
               >
-                <div className="absolute inset-4 bg-card rounded-full flex items-center justify-center flex-col">
-                  <div className="text-6xl font-heading text-primary glow-green mb-2">
+                <div className="absolute inset-4 bg-white rounded-full flex items-center justify-center flex-col">
+                  <div className="text-6xl font-bold text-[#1a365d] mb-2">
                     {percentage}%
                   </div>
-                  <div className="text-sm text-muted-foreground">
-                    {totalScore}/32
-                  </div>
+                  <div className="text-sm text-gray-600">AI Readiness Score</div>
                 </div>
               </div>
-              <h2 className={`text-3xl font-heading mb-3 ${levelColor}`}>
+              <div className={`text-3xl font-bold ${levelColor} mb-2`}>
                 {readinessLevel}
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              </div>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
                 {levelDescription}
               </p>
             </CardContent>
           </Card>
 
-          {/* Dimension Breakdown */}
+          {/* Dimension Scores */}
           <div className="mb-8">
-            <h3 className="text-2xl font-heading text-foreground mb-6 text-center">
-              <span className="text-secondary glow-pink">
-                DIMENSION BREAKDOWN
-              </span>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              Detailed Breakdown
             </h3>
-            <div className="space-y-4">
+            <div className="grid gap-4">
               {answers.map((answer, index) => {
                 const scorePercentage = (answer.score / 4) * 100;
                 let badgeColor = "";
                 let badgeText = "";
 
                 if (scorePercentage >= 85) {
-                  badgeColor = "bg-primary/20 text-primary border-primary";
+                  badgeColor = "bg-[#1a365d]/20 text-[#1a365d] border-[#1a365d]";
                   badgeText = "Excellent";
                 } else if (scorePercentage >= 70) {
-                  badgeColor = "bg-secondary/20 text-secondary border-secondary";
+                  badgeColor = "bg-blue-100 text-blue-700 border-blue-700";
                   badgeText = "Good";
                 } else if (scorePercentage >= 50) {
-                  badgeColor = "bg-yellow-500/20 text-yellow-500 border-yellow-500";
+                  badgeColor = "bg-yellow-100 text-yellow-700 border-yellow-700";
                   badgeText = "Developing";
                 } else {
-                  badgeColor = "bg-orange-500/20 text-orange-500 border-orange-500";
+                  badgeColor = "bg-orange-100 text-orange-700 border-orange-700";
                   badgeText = "Emerging";
                 }
 
                 return (
                   <Card
                     key={index}
-                    className="bg-card border-2 border-border shadow-cyber"
+                    className="border-2 shadow-md"
                   >
                     <CardContent className="p-6">
-                      <div className="flex items-center justify-between mb-3">
-                        <h4 className="text-lg font-heading text-foreground">
-                          {answer.question}
-                        </h4>
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
+                          <h4 className="font-semibold text-gray-900 mb-1">
+                            {questions[index].title}
+                          </h4>
+                          <p className="text-sm text-gray-600">
+                            Score: {answer.score}/4
+                          </p>
+                        </div>
                         <span
-                          className={`text-xs font-semibold px-3 py-1 rounded-full border ${badgeColor}`}
+                          className={`px-3 py-1 rounded-full text-xs font-semibold border ${badgeColor}`}
                         >
-                          {badgeText} ({answer.score}/4)
+                          {badgeText}
                         </span>
                       </div>
-                      <p className="text-sm text-muted-foreground mb-3">
+                      <p className="text-sm text-gray-700 mb-3">
                         {answer.answer}
                       </p>
-                      <div className="w-full bg-border rounded-full h-2">
+                      <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
-                          className="bg-primary h-2 rounded-full transition-all duration-500"
+                          className="bg-[#1a365d] h-2 rounded-full transition-all duration-500"
                           style={{ width: `${scorePercentage}%` }}
                         />
                       </div>
@@ -560,24 +626,24 @@ const AIAssessment = () => {
           </div>
 
           {/* Recommendations */}
-          <Card className="bg-gradient-cyber border-2 border-secondary shadow-cyber-lg mb-8">
+          <Card className="border-2 border-[#e2725b] shadow-xl mb-8">
             <CardContent className="p-10">
-              <h3 className="text-2xl font-heading text-secondary glow-pink mb-6 text-center">
-                YOUR PERSONALIZED RECOMMENDATIONS
+              <h3 className="text-2xl font-bold text-[#1a365d] mb-6 text-center">
+                Recommended Next Steps
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {recommendations.map((rec, index) => (
                   <div
                     key={index}
-                    className="bg-card border border-border rounded-lg p-6"
+                    className="bg-white border border-gray-200 rounded-lg p-6"
                   >
                     <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <CheckCircle2 className="w-6 h-6 text-[#e2725b] flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="text-lg font-heading text-foreground mb-2">
+                        <h4 className="font-semibold text-gray-900 mb-2">
                           {rec.title}
                         </h4>
-                        <p className="text-muted-foreground">{rec.description}</p>
+                        <p className="text-gray-700">{rec.description}</p>
                       </div>
                     </div>
                   </div>
@@ -587,23 +653,21 @@ const AIAssessment = () => {
           </Card>
 
           {/* CTA */}
-          <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg">
+          <Card className="border-2 border-[#1a365d] shadow-xl">
             <CardContent className="p-10 text-center">
-              <h3 className="text-2xl font-heading text-foreground mb-4">
-                READY TO ACCELERATE YOUR AI JOURNEY?
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Ready to Accelerate Your AI Journey?
               </h3>
-              <p className="text-lg text-muted-foreground mb-6">
-                Let's discuss how to implement these recommendations in your
-                organisation.
+              <p className="text-lg text-gray-600 mb-8">
+                Let's discuss a tailored strategy to improve your AI readiness and drive measurable results.
               </p>
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold px-10 py-6 shadow-cyber"
+                className="bg-[#e2725b] hover:bg-[#d65d46] text-white font-semibold px-10 py-6 shadow-lg"
                 asChild
               >
-                <a href="https://calendly.com/eschwaa/aiconsult">
-                  Book Your Strategy Call
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                <a href="https://calendly.com/eschwaa/aiconsult" target="_blank" rel="noopener noreferrer">
+                  Schedule Free Consultation
                 </a>
               </Button>
             </CardContent>
@@ -613,61 +677,59 @@ const AIAssessment = () => {
     );
   }
 
+  // Email capture form
   if (showEmailCapture) {
     return (
       <div className="min-h-screen pt-32 pb-20">
         <div className="container mx-auto px-4 max-w-2xl">
-          <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg">
+          <Card className="border-2 border-[#1a365d] shadow-xl">
             <CardContent className="p-10">
               <div className="text-center mb-8">
-                <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle2 className="w-10 h-10 text-primary" />
+                <div className="w-20 h-20 bg-[#1a365d]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle2 className="w-10 h-10 text-[#1a365d]" />
                 </div>
-                <h2 className="text-3xl font-heading text-primary glow-green mb-4">
+                <h2 className="text-3xl font-bold text-[#1a365d] mb-4">
                   GET YOUR PERSONALIZED RESULTS
                 </h2>
-                <p className="text-lg text-muted-foreground">
-                  You're just one step away from receiving your comprehensive AI
-                  readiness report with personalized recommendations.
+                <p className="text-gray-600">
+                  Enter your details below to receive your comprehensive AI readiness report
                 </p>
               </div>
 
               <form onSubmit={handleSubmitEmail} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm text-foreground mb-2 block font-semibold">
+                    <label className="block text-sm font-medium mb-2 text-gray-700">
                       First Name *
                     </label>
                     <Input
-                      type="text"
                       required
                       value={formData.firstName}
                       onChange={(e) =>
                         setFormData({ ...formData, firstName: e.target.value })
                       }
-                      className="bg-background border-2 border-border focus:border-primary"
+                      className="bg-white border-2 border-gray-300 focus:border-[#1a365d]"
                       placeholder="John"
                     />
                   </div>
                   <div>
-                    <label className="text-sm text-foreground mb-2 block font-semibold">
+                    <label className="block text-sm font-medium mb-2 text-gray-700">
                       Last Name *
                     </label>
                     <Input
-                      type="text"
                       required
                       value={formData.lastName}
                       onChange={(e) =>
                         setFormData({ ...formData, lastName: e.target.value })
                       }
-                      className="bg-background border-2 border-border focus:border-primary"
+                      className="bg-white border-2 border-gray-300 focus:border-[#1a365d]"
                       placeholder="Smith"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-sm text-foreground mb-2 block font-semibold">
+                  <label className="block text-sm font-medium mb-2 text-gray-700">
                     Email Address *
                   </label>
                   <Input
@@ -677,45 +739,41 @@ const AIAssessment = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="bg-background border-2 border-border focus:border-primary"
+                    className="bg-white border-2 border-gray-300 focus:border-[#1a365d]"
                     placeholder="john.smith@company.com"
                   />
                 </div>
 
                 <div>
-                  <label className="text-sm text-foreground mb-2 block font-semibold">
-                    Company Name *
+                  <label className="block text-sm font-medium mb-2 text-gray-700">
+                    Company
                   </label>
                   <Input
-                    type="text"
-                    required
                     value={formData.company}
                     onChange={(e) =>
                       setFormData({ ...formData, company: e.target.value })
                     }
-                    className="bg-background border-2 border-border focus:border-primary"
+                    className="bg-white border-2 border-gray-300 focus:border-[#1a365d]"
                     placeholder="Your Company"
                   />
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm text-foreground mb-2 block font-semibold">
-                      Job Title *
+                    <label className="block text-sm font-medium mb-2 text-gray-700">
+                      Job Title
                     </label>
                     <Input
-                      type="text"
-                      required
                       value={formData.jobTitle}
                       onChange={(e) =>
                         setFormData({ ...formData, jobTitle: e.target.value })
                       }
-                      className="bg-background border-2 border-border focus:border-primary"
+                      className="bg-white border-2 border-gray-300 focus:border-[#1a365d]"
                       placeholder="CEO"
                     />
                   </div>
                   <div>
-                    <label className="text-sm text-foreground mb-2 block font-semibold">
+                    <label className="block text-sm font-medium mb-2 text-gray-700">
                       Company Size
                     </label>
                     <select
@@ -723,20 +781,20 @@ const AIAssessment = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, companySize: e.target.value })
                       }
-                      className="w-full bg-background border-2 border-border rounded-md px-3 py-2 text-foreground focus:border-primary focus:outline-none"
+                      className="w-full bg-white border-2 border-gray-300 rounded-md px-3 py-2 text-gray-900 focus:border-[#1a365d] focus:outline-none"
                     >
                       <option value="">Select size</option>
                       <option value="1-10">1-10 employees</option>
                       <option value="11-50">11-50 employees</option>
                       <option value="51-200">51-200 employees</option>
-                      <option value="201-1000">201-1,000 employees</option>
-                      <option value="1000+">1,000+ employees</option>
+                      <option value="201-1000">201-1000 employees</option>
+                      <option value="1000+">1000+ employees</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-sm text-foreground mb-2 block font-semibold">
+                  <label className="block text-sm font-medium mb-2 text-gray-700">
                     Industry
                   </label>
                   <select
@@ -744,7 +802,7 @@ const AIAssessment = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, industry: e.target.value })
                     }
-                    className="w-full bg-background border-2 border-border rounded-md px-3 py-2 text-foreground focus:border-primary focus:outline-none"
+                    className="w-full bg-white border-2 border-gray-300 rounded-md px-3 py-2 text-gray-900 focus:border-[#1a365d] focus:outline-none"
                   >
                     <option value="">Select industry</option>
                     <option value="Technology">Technology</option>
@@ -752,11 +810,7 @@ const AIAssessment = () => {
                     <option value="Financial Services">Financial Services</option>
                     <option value="Manufacturing">Manufacturing</option>
                     <option value="Retail">Retail</option>
-                    <option value="Education">Education</option>
-                    <option value="Professional Services">
-                      Professional Services
-                    </option>
-                    <option value="Real Estate">Real Estate</option>
+                    <option value="Professional Services">Professional Services</option>
                     <option value="Other">Other</option>
                   </select>
                 </div>
@@ -764,16 +818,14 @@ const AIAssessment = () => {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold py-6 shadow-cyber"
+                  className="w-full bg-[#1a365d] hover:bg-[#153c5a] text-white font-semibold py-6 shadow-lg"
                 >
                   Get My AI Assessment Results
-                  <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
 
-                <p className="text-xs text-muted-foreground text-center">
-                  We respect your privacy. Your information will only be used to
-                  provide your assessment results and relevant AI insights. You can
-                  unsubscribe at any time.
+                <p className="text-xs text-gray-500 text-center">
+                  We respect your privacy. Your information will only be used to send you
+                  your assessment results and relevant AI insights.
                 </p>
               </form>
             </CardContent>
@@ -790,12 +842,12 @@ const AIAssessment = () => {
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-heading mb-4">
-            <span className="text-primary glow-green">AI COMPETENCY</span>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="text-[#1a365d]">AI COMPETENCY</span>
             <br />
-            <span className="text-foreground">ASSESSMENT</span>
+            <span className="text-gray-900">ASSESSMENT</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Evaluate your organisation's AI readiness across 8 critical business
             dimensions and receive personalized insights to accelerate your AI
             journey.
@@ -805,10 +857,10 @@ const AIAssessment = () => {
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-muted-foreground">
+            <span className="text-sm text-gray-600">
               Question {currentQuestion + 1} of {questions.length}
             </span>
-            <span className="text-sm text-primary font-semibold">
+            <span className="text-sm text-[#1a365d] font-semibold">
               {Math.round(progress)}% Complete
             </span>
           </div>
@@ -816,12 +868,12 @@ const AIAssessment = () => {
         </div>
 
         {/* Question Card */}
-        <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg mb-8">
+        <Card className="border-2 border-[#1a365d] shadow-xl mb-8">
           <CardContent className="p-10">
-            <h2 className="text-2xl font-heading text-primary glow-green mb-4">
+            <h2 className="text-2xl font-bold text-[#1a365d] mb-4">
               {question.title}
             </h2>
-            <p className="text-xl text-foreground mb-8 leading-relaxed">
+            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
               {question.question}
             </p>
 
@@ -832,23 +884,23 @@ const AIAssessment = () => {
                   onClick={() => handleSelectOption(index)}
                   className={`w-full text-left p-6 rounded-lg border-2 transition-all ${
                     selectedOption === index
-                      ? "border-primary bg-primary/10 shadow-cyber"
-                      : "border-border bg-card hover:border-primary/50 hover:bg-card/80"
+                      ? "border-[#1a365d] bg-[#1a365d]/10 shadow-md"
+                      : "border-gray-300 bg-white hover:border-[#1a365d]/50 hover:bg-gray-50"
                   }`}
                 >
                   <div className="flex items-start gap-4">
                     <div
                       className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-1 ${
                         selectedOption === index
-                          ? "border-primary bg-primary"
-                          : "border-border"
+                          ? "border-[#1a365d] bg-[#1a365d]"
+                          : "border-gray-400"
                       }`}
                     >
                       {selectedOption === index && (
-                        <CheckCircle2 className="w-4 h-4 text-primary-foreground" />
+                        <CheckCircle2 className="w-4 h-4 text-white" />
                       )}
                     </div>
-                    <p className="text-foreground flex-1">{option.text}</p>
+                    <p className="text-gray-900 flex-1">{option.text}</p>
                   </div>
                 </button>
               ))}
@@ -863,7 +915,7 @@ const AIAssessment = () => {
             variant="outline"
             onClick={handlePrevious}
             disabled={currentQuestion === 0}
-            className="border-2 border-border text-foreground hover:bg-border font-semibold px-8 py-6"
+            className="border-2 border-gray-300 text-gray-900 hover:bg-gray-100 font-semibold px-8 py-6"
           >
             <ChevronLeft className="w-5 h-5 mr-2" />
             Previous
@@ -872,7 +924,7 @@ const AIAssessment = () => {
             size="lg"
             onClick={handleNext}
             disabled={selectedOption === null}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold px-8 py-6 shadow-cyber"
+            className="bg-[#1a365d] hover:bg-[#153c5a] text-white font-semibold px-8 py-6 shadow-lg"
           >
             {currentQuestion === questions.length - 1
               ? "Complete Assessment"

@@ -299,7 +299,7 @@ const Services = () => {
                   </p>
 
                   {/* Metrics */}
-                  <div className="grid grid-cols-3 gap-4 mb-8 p-6 bg-background/50 rounded-lg border border-border">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-8 p-4 sm:p-6 bg-background/50 rounded-lg border border-border">
                     {product.metrics.map((metric, idx) => (
                       <div key={idx} className="text-center">
                         <div className="text-3xl font-heading text-primary mb-1">

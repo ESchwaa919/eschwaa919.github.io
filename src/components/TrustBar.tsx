@@ -29,7 +29,7 @@ const TrustBar = () => {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 max-w-4xl mx-auto">
           {companies.map((company, index) => (
             <div
               key={index}
@@ -50,7 +50,7 @@ const TrustBar = () => {
         </div>
 
         <div className="text-center mt-12">
-          <div className="inline-flex items-center gap-8 px-8 py-4 rounded-lg bg-primary/5 border border-primary/20">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-8 py-6 sm:py-4 rounded-lg bg-primary/5 border border-primary/20 max-w-3xl mx-auto">
             <div className="text-center">
               <div className="text-3xl font-heading text-primary glow-green">
                 20+
@@ -59,7 +59,7 @@ const TrustBar = () => {
                 Years Experience
               </div>
             </div>
-            <div className="w-px h-12 bg-border" />
+            <div className="hidden sm:block w-px h-12 bg-border mx-auto" />
             <div className="text-center">
               <div className="text-3xl font-heading text-primary glow-green">
                 $100M+
@@ -68,7 +68,7 @@ const TrustBar = () => {
                 Projects Delivered
               </div>
             </div>
-            <div className="w-px h-12 bg-border" />
+            <div className="hidden sm:block w-px h-12 bg-border mx-auto" />
             <div className="text-center">
               <div className="text-3xl font-heading text-secondary glow-pink">
                 Global

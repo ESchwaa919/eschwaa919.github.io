@@ -592,7 +592,7 @@ const ROICalculator = () => {
 
         {/* Calculator Form */}
         <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg mb-12">
-          <CardContent className="p-10">
+          <CardContent className="p-6 md:p-10">
             <h2 className="text-2xl font-heading text-primary glow-green mb-6 text-center">
               TELL US ABOUT YOUR BUSINESS
             </h2>
@@ -766,7 +766,7 @@ const ROICalculator = () => {
           <div className="space-y-8">
             {/* ROI Summary */}
             <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg">
-              <CardContent className="p-12 text-center">
+              <CardContent className="p-6 md:p-10 lg:p-12 text-center">
                 <h2 className="text-2xl font-heading text-foreground mb-6">
                   YOUR AI INVESTMENT RETURNS
                 </h2>
@@ -872,7 +872,7 @@ const ROICalculator = () => {
 
             {/* Yearly Breakdown */}
             <Card className="bg-gradient-cyber border-2 border-secondary shadow-cyber-lg">
-              <CardContent className="p-10">
+              <CardContent className="p-6 md:p-10">
                 <h3 className="text-2xl font-heading text-secondary glow-pink mb-6 text-center">
                   YOUR AI COMPOUND GROWTH PROJECTION
                 </h3>
@@ -919,7 +919,7 @@ const ROICalculator = () => {
 
             {/* Call to Action */}
             <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg">
-              <CardContent className="p-12 text-center">
+              <CardContent className="p-6 md:p-10 lg:p-12 text-center">
                 <div className="flex items-center justify-center gap-3 mb-4">
                   <CheckCircle2 className="w-8 h-8 text-primary" />
                   <h3 className="text-2xl font-heading text-foreground">
@@ -933,7 +933,7 @@ const ROICalculator = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button
                     size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold px-10 py-6 shadow-cyber"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold px-6 md:px-10 py-4 md:py-6 shadow-cyber"
                     asChild
                   >
                     <a href="https://calendly.com/eschwaa/aiconsult">
@@ -944,7 +944,7 @@ const ROICalculator = () => {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-primary text-primary hover:bg-primary/10 font-semibold px-10 py-6"
+                    className="border-2 border-primary text-primary hover:bg-primary/10 font-semibold px-6 md:px-10 py-4 md:py-6"
                     onClick={() => setShowLeadModal(true)}
                   >
                     Get Detailed Business Case
@@ -982,7 +982,7 @@ const ROICalculator = () => {
           </DialogHeader>
 
           <form onSubmit={handleLeadSubmit} className="space-y-4 mt-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Input
                   type="text"

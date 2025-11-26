@@ -82,8 +82,8 @@ const TrustSignals = () => {
           {/* Trust Stats */}
           <div className="max-w-4xl mx-auto">
             <Card className="bg-gradient-cyber border-2 border-primary/20">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <CardContent className="p-6 md:p-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
                   <div>
                     <div className="text-4xl font-heading text-primary glow-green mb-2">
                       20+

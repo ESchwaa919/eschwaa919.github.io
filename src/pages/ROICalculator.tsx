@@ -10,6 +10,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
   TrendingUp,
   DollarSign,
   Calendar,
@@ -19,6 +26,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { toast } from "sonner";
+import { jsPDF } from "jspdf";
+import emailjs from "@emailjs/browser";
 
 interface CalculatorInputs {
   industry: string;
@@ -57,6 +66,15 @@ const ROICalculator = () => {
 
   const [results, setResults] = useState<ROIResults | null>(null);
   const [showResults, setShowResults] = useState(false);
+
+  // Lead capture modal state
+  const [showLeadModal, setShowLeadModal] = useState(false);
+  const [leadForm, setLeadForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+  });
 
   // Calculate ROI in real-time as inputs change
   useEffect(() => {
@@ -238,6 +256,281 @@ const ROICalculator = () => {
 
   const formatCurrency = (value: number) => {
     return "£" + Math.round(value / 1000).toLocaleString() + "K";
+  };
+
+  const generateBusinessCasePDF = () => {
+    if (!results) return;
+
+    const doc = new jsPDF();
+
+    // Title Page
+    doc.setFontSize(24);
+    doc.setTextColor(220, 38, 38);
+    doc.text('AI BUSINESS CASE', 20, 30);
+
+    doc.setFontSize(18);
+    doc.setTextColor(0, 0, 0);
+    doc.text(leadForm.company, 20, 45);
+
+    doc.setFontSize(12);
+    doc.text(`Prepared for: ${leadForm.firstName} ${leadForm.lastName}`, 20, 60);
+    doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 70);
+    doc.text('Prepared by: theaiexpert.ai', 20, 80);
+
+    // Executive Summary
+    doc.setFontSize(16);
+    doc.setTextColor(220, 38, 38);
+    doc.text('EXECUTIVE SUMMARY', 20, 100);
+
+    doc.setFontSize(11);
+    doc.setTextColor(0, 0, 0);
+    const execSummary = [
+      `AI implementation for ${leadForm.company} represents a critical business opportunity`,
+      `that cannot be delayed without significant competitive and financial risk.`,
+      '',
+      `Key Financial Impact:`,
+      `• Expected 3-year ROI: ${results.netROI}%`,
+      `• Total projected value: £${Math.round(results.totalValue/1000)}K over 3 years`,
+      `• Implementation investment: £${Math.round(results.implementationCost/1000)}K`,
+      `• Cost of delaying 12 months: £${Math.round(results.costOfDelay/1000)}K`,
+      '',
+      'RECOMMENDATION: Begin AI implementation immediately to capture',
+      'maximum value and maintain competitive position.'
+    ];
+
+    let yPos = 115;
+    execSummary.forEach(line => {
+      doc.text(line, 25, yPos);
+      yPos += 6;
+    });
+
+    // Add new page for detailed analysis
+    doc.addPage();
+
+    // The Compound Interest Case
+    doc.setFontSize(16);
+    doc.setTextColor(220, 38, 38);
+    doc.text('AI: YOUR NEW COMPOUND INTEREST', 20, 30);
+
+    doc.setFontSize(11);
+    doc.setTextColor(0, 0, 0);
+    yPos = 45;
+
+    const compoundCase = [
+      'Like compound interest, AI returns accelerate over time. Every month',
+      'of delay means missing exponential gains that become harder to',
+      'recover as competitors build advantages.',
+      '',
+      'INDUSTRY EVIDENCE (Source: Leading Research Institutions):'
+    ];
+
+    // Add the industry evidence with clickable links
+    const industryEvidence = [
+      { text: '• 88% of companies see early returns on AI investments (PwC 2025)', url: 'https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-business-survey.html' },
+      { text: '• 40% productivity boost for skilled workers using AI properly (MIT/Harvard)', url: 'https://www.nber.org/papers/w31161' },
+      { text: '• 70% of CEOs expect AI to transform value creation (PwC Global CEO Survey)', url: 'https://www.pwc.com/gx/en/issues/c-suite-insights/ceo-survey.html' },
+      { text: '• 27% productivity growth in AI-exposed industries (PwC Jobs Barometer)', url: 'https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-jobs-barometer.html' },
+      { text: '• 49% of tech leaders have AI fully integrated into strategy (PwC 2025)', url: 'https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-business-survey.html' }
+    ];
+
+    const remainingCompoundCase = [
+      '',
+      'Your AI Compound Growth Projection:',
+      `• Year 1: £${Math.round(results.yearlyBreakdown.year1/1000)}K value created`,
+      `• Year 2: £${Math.round(results.yearlyBreakdown.year2/1000)}K value created`,
+      `• Year 3: £${Math.round(results.yearlyBreakdown.year3/1000)}K value created`,
+      '',
+      'The Mathematics of Delay:',
+      'Waiting 12 months costs your organization:',
+      `• Lost efficiency gains: £${Math.round((results.costOfDelay * 0.6)/1000)}K`,
+      `• Competitive disadvantage: £${Math.round((results.costOfDelay * 0.3)/1000)}K`,
+      `• Higher implementation costs: £${Math.round((results.costOfDelay * 0.1)/1000)}K`,
+      `• Total cost of delay: £${Math.round(results.costOfDelay/1000)}K`
+    ];
+
+    // Add the first part of compound case
+    compoundCase.forEach(line => {
+      if (yPos > 250) {
+        doc.addPage();
+        yPos = 30;
+      }
+      doc.text(line, 25, yPos);
+      yPos += 6;
+    });
+
+    // Add industry evidence with clickable links
+    industryEvidence.forEach(item => {
+      if (yPos > 250) {
+        doc.addPage();
+        yPos = 30;
+      }
+      doc.setTextColor(0, 100, 200);
+      doc.text(item.text, 25, yPos);
+      doc.link(25, yPos - 3, 160, 6, { url: item.url });
+      doc.setTextColor(0, 0, 0);
+      yPos += 6;
+    });
+
+    // Add remaining compound case content
+    remainingCompoundCase.forEach(line => {
+      if (yPos > 250) {
+        doc.addPage();
+        yPos = 30;
+      }
+      doc.text(line, 25, yPos);
+      yPos += 6;
+    });
+
+    // Add new page for implementation roadmap
+    doc.addPage();
+
+    doc.setFontSize(16);
+    doc.setTextColor(220, 38, 38);
+    doc.text('3-PHASE IMPLEMENTATION ROADMAP', 20, 30);
+
+    yPos = 50;
+    const roadmap = [
+      'PHASE 1: QUICK WINS (Months 1-2)',
+      '• Deploy AI productivity tools (ChatGPT, Copilot)',
+      '• Automate routine email responses and scheduling',
+      '• Implement basic customer service chatbots',
+      `• Expected value: £${Math.round((results.yearlyBreakdown.year1 * 0.3)/1000)}K`,
+      '',
+      'PHASE 2: CORE OPERATIONS (Months 3-6)',
+      '• AI-powered analytics and reporting',
+      '• Process automation for key workflows',
+      '• Personalized customer experiences',
+      `• Expected value: £${Math.round((results.yearlyBreakdown.year1 * 0.7)/1000)}K`,
+      '',
+      'PHASE 3: STRATEGIC ADVANTAGE (Months 6-12)',
+      '• Custom AI solutions for competitive advantage',
+      '• Predictive analytics for business insights',
+      '• AI-driven product/service innovation',
+      `• Expected value: £${Math.round(results.yearlyBreakdown.year2/1000)}K`,
+      '',
+      'SUCCESS METRICS:',
+      `• ROI positive by month ${results.timeToROI.includes('4-6') ? '5' : '7'}`,
+      '• 25%+ efficiency improvement by month 6',
+      '• Full implementation ROI within 18 months'
+    ];
+
+    roadmap.forEach(line => {
+      if (yPos > 260) {
+        doc.addPage();
+        yPos = 30;
+      }
+
+      if (line.startsWith('PHASE') || line.startsWith('SUCCESS')) {
+        doc.setFont(undefined, 'bold');
+      } else {
+        doc.setFont(undefined, 'normal');
+      }
+
+      doc.text(line, 25, yPos);
+      yPos += 6;
+    });
+
+    // Add final page with next steps
+    doc.addPage();
+
+    doc.setFontSize(16);
+    doc.setTextColor(220, 38, 38);
+    doc.text('NEXT STEPS', 20, 30);
+
+    doc.setFont(undefined, 'normal');
+    doc.setFontSize(11);
+    doc.setTextColor(0, 0, 0);
+
+    yPos = 50;
+    const nextSteps = [
+      'IMMEDIATE ACTIONS (This Week):',
+      '1. Share this business case with key stakeholders',
+      '2. Book an AI strategy consultation: calendly.com/eschwaa/aiconsult',
+      '3. Begin researching AI productivity tools for quick wins',
+      '',
+      'SHORT-TERM ACTIONS (Next 30 Days):',
+      '1. Develop detailed AI implementation budget',
+      '2. Identify internal AI champion/project manager',
+      '3. Create AI governance and risk management framework',
+      '',
+      'The Cost of Inaction:',
+      `Every month of delay costs ${leadForm.company} approximately`,
+      `£${Math.round((results.costOfDelay/12)/1000)}K in lost value and competitive position.`,
+      '',
+      'Time is your most valuable asset in the AI race.',
+      'Companies that act now will compound ahead of those who wait.',
+      '',
+      '───────────────────────────────────────────────',
+      '',
+      'Contact Information:',
+      'Erik Schwartz, Fractional CAIO',
+      'Email: eschwaa@gmail.com',
+      'Phone: +44-7946-235391',
+      'Website: theaiexpert.ai',
+      '',
+      '"AI isn\'t a tech project — it\'s compound interest for your business."'
+    ];
+
+    nextSteps.forEach(line => {
+      if (yPos > 260) {
+        doc.addPage();
+        yPos = 30;
+      }
+
+      if (line.startsWith('IMMEDIATE') || line.startsWith('SHORT-TERM') || line.startsWith('The Cost')) {
+        doc.setFont(undefined, 'bold');
+      } else if (line.startsWith('"')) {
+        doc.setFont(undefined, 'italic');
+      } else {
+        doc.setFont(undefined, 'normal');
+      }
+
+      doc.text(line, 25, yPos);
+      yPos += 6;
+    });
+
+    // Save the PDF
+    doc.save(`AI_Business_Case_${leadForm.company.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
+  };
+
+  const handleLeadSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!results) return;
+
+    try {
+      // Initialize EmailJS
+      emailjs.init("oI6t4dwMhBXNaBKXo");
+
+      // Send lead notification
+      await emailjs.send("theaiexpert_assessment", "template_dmkjg71", {
+        from_name: `${leadForm.firstName} ${leadForm.lastName}`,
+        from_email: leadForm.email,
+        company: leadForm.company,
+        downloaded_resource: 'AI ROI Calculator Business Case',
+        download_date: new Date().toLocaleString(),
+        lead_type: 'AI ROI Calculator',
+        lead_source: 'Website ROI Calculator'
+      });
+
+      // Close modal
+      setShowLeadModal(false);
+
+      // Generate and download PDF
+      setTimeout(() => {
+        generateBusinessCasePDF();
+        toast.success("Your AI Business Case is downloading!");
+      }, 300);
+
+    } catch (error) {
+      console.error('Lead submission error:', error);
+      // Still generate PDF even if email fails
+      setShowLeadModal(false);
+      setTimeout(() => {
+        generateBusinessCasePDF();
+        toast.success("Your AI Business Case is downloading!");
+      }, 300);
+    }
   };
 
   return (
@@ -652,11 +945,7 @@ const ROICalculator = () => {
                     size="lg"
                     variant="outline"
                     className="border-2 border-primary text-primary hover:bg-primary/10 font-semibold px-10 py-6"
-                    onClick={() => {
-                      toast.success(
-                        "Results saved! Contact us to receive your detailed business case."
-                      );
-                    }}
+                    onClick={() => setShowLeadModal(true)}
                   >
                     Get Detailed Business Case
                   </Button>
@@ -679,6 +968,75 @@ const ROICalculator = () => {
           </div>
         )}
       </div>
+
+      {/* Lead Capture Modal */}
+      <Dialog open={showLeadModal} onOpenChange={setShowLeadModal}>
+        <DialogContent className="bg-card border-2 border-primary">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-heading text-primary glow-green">
+              📊 Get Your AI Business Case
+            </DialogTitle>
+            <DialogDescription className="text-muted-foreground">
+              You're one step away from downloading your personalized AI ROI report. Enter your details below to receive your comprehensive business case PDF.
+            </DialogDescription>
+          </DialogHeader>
+
+          <form onSubmit={handleLeadSubmit} className="space-y-4 mt-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Input
+                  type="text"
+                  placeholder="First Name *"
+                  required
+                  value={leadForm.firstName}
+                  onChange={(e) => setLeadForm({ ...leadForm, firstName: e.target.value })}
+                  className="bg-background border-border text-foreground"
+                />
+              </div>
+              <div>
+                <Input
+                  type="text"
+                  placeholder="Last Name *"
+                  required
+                  value={leadForm.lastName}
+                  onChange={(e) => setLeadForm({ ...leadForm, lastName: e.target.value })}
+                  className="bg-background border-border text-foreground"
+                />
+              </div>
+            </div>
+
+            <Input
+              type="email"
+              placeholder="Email Address *"
+              required
+              value={leadForm.email}
+              onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
+              className="bg-background border-border text-foreground"
+            />
+
+            <Input
+              type="text"
+              placeholder="Company Name *"
+              required
+              value={leadForm.company}
+              onChange={(e) => setLeadForm({ ...leadForm, company: e.target.value })}
+              className="bg-background border-border text-foreground"
+            />
+
+            <p className="text-xs text-muted-foreground">
+              By downloading, you agree to receive occasional emails about AI strategy and implementation. Unsubscribe anytime.
+            </p>
+
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-cyber glow-green"
+            >
+              Download My AI Business Case
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

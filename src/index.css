@@ -85,12 +85,28 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    position: relative;
+  }
+
   body {
     @apply bg-background text-foreground font-body antialiased;
   }
 
+  #root {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading uppercase tracking-wide;
+  }
+
+  /* Prevent mobile horizontal scroll */
+  .container {
+    max-width: 100%;
   }
 }
 

@@ -262,6 +262,167 @@ const Services = () => {
         </div>
       </section>
 
+      {/* Detailed Service Sections */}
+      <section id="strategic" className="py-20 scroll-mt-32 bg-gradient-to-br from-card/50 to-background">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <Card className="border-2 border-primary/30 shadow-cyber">
+            <CardContent className="p-8 md:p-12">
+              <div className="flex items-center gap-4 mb-6">
+                <Lightbulb className="w-12 h-12 text-primary glow-green" />
+                <h2 className="text-3xl md:text-4xl font-heading text-primary">
+                  STRATEGIC GUIDANCE & FRACTIONAL CAIO
+                </h2>
+              </div>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                Transform your business vision into actionable AI strategy with fractional C-level expertise. Get the strategic guidance you need without the full-time executive overhead.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div>
+                  <h3 className="text-xl font-heading text-foreground mb-3">What's Included:</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> AI strategy development & roadmapping</li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Executive leadership & board presentations</li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Technology vendor evaluation & selection</li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> AI governance & risk management</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-heading text-foreground mb-3">Perfect For:</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2"><Target className="w-5 h-5 text-secondary mt-0.5" /> Growing SMBs needing strategic AI direction</li>
+                    <li className="flex items-start gap-2"><Target className="w-5 h-5 text-secondary mt-0.5" /> Companies exploring AI for the first time</li>
+                    <li className="flex items-start gap-2"><Target className="w-5 h-5 text-secondary mt-0.5" /> Organizations requiring board-level AI expertise</li>
+                  </ul>
+                </div>
+              </div>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-cyber glow-green" asChild>
+                <Link to="/contact">Start Strategic Engagement</Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <section id="implementation" className="py-20 scroll-mt-32">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <Card className="border-2 border-primary/30 shadow-cyber">
+            <CardContent className="p-8 md:p-12">
+              <div className="flex items-center gap-4 mb-6">
+                <Code className="w-12 h-12 text-primary glow-green" />
+                <h2 className="text-3xl md:text-4xl font-heading text-primary">
+                  IMPLEMENTATION & EXECUTION
+                </h2>
+              </div>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                Turn AI strategy into reality with hands-on implementation support. From POC to production, we guide every step of your AI transformation journey.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div>
+                  <h3 className="text-xl font-heading text-foreground mb-3">What's Included:</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Proof of concept development & validation</li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Production AI system deployment</li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Integration with existing tech stack</li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Performance monitoring & optimization</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-heading text-foreground mb-3">Perfect For:</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2"><Target className="w-5 h-5 text-secondary mt-0.5" /> Teams ready to build & deploy AI solutions</li>
+                    <li className="flex items-start gap-2"><Target className="w-5 h-5 text-secondary mt-0.5" /> Companies with clear AI use cases identified</li>
+                    <li className="flex items-start gap-2"><Target className="w-5 h-5 text-secondary mt-0.5" /> Organizations needing technical implementation support</li>
+                  </ul>
+                </div>
+              </div>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-cyber glow-green" asChild>
+                <Link to="/contact">Discuss Implementation</Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <section id="expert-network" className="py-20 scroll-mt-32 bg-gradient-to-br from-card/50 to-background">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <Card className="border-2 border-primary/30 shadow-cyber">
+            <CardContent className="p-8 md:p-12">
+              <div className="flex items-start gap-4 mb-6">
+                <Users className="w-12 h-12 text-primary glow-green" />
+                <h2 className="text-3xl md:text-4xl font-heading text-primary">
+                  EXPERT NETWORK & TEAM TRAINING
+                </h2>
+              </div>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                Build internal AI capabilities through comprehensive training and access to our curated network of AI specialists. Empower your team to own your AI transformation.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div>
+                  <h3 className="text-xl font-heading text-foreground mb-3">What's Included:</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Custom AI training programs for teams</li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Access to vetted AI specialist network</li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Prompt engineering & AI fluency workshops</li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Change management & adoption support</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-heading text-foreground mb-3">Perfect For:</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2"><Target className="w-5 h-5 text-secondary mt-0.5" /> Organizations building internal AI capabilities</li>
+                    <li className="flex items-start gap-2"><Target className="w-5 h-5 text-secondary mt-0.5" /> Teams needing AI skills development</li>
+                    <li className="flex items-start gap-2"><Target className="w-5 h-5 text-secondary mt-0.5" /> Companies seeking flexible expert resources</li>
+                  </ul>
+                </div>
+              </div>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-cyber glow-green" asChild>
+                <Link to="/contact">Explore Training Options</Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <section id="focused" className="py-20 scroll-mt-32">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <Card className="border-2 border-primary/30 shadow-cyber">
+            <CardContent className="p-8 md:p-12">
+              <div className="flex items-center gap-4 mb-6">
+                <Zap className="w-12 h-12 text-primary glow-green" />
+                <h2 className="text-3xl md:text-4xl font-heading text-primary">
+                  SPECIALIZED & FOCUSED SERVICES
+                </h2>
+              </div>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                Industry-specific AI solutions and niche expertise for unique challenges. From pharmaceutical compliance to education technology, we bring deep domain knowledge.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div>
+                  <h3 className="text-xl font-heading text-foreground mb-3">What's Included:</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Pharmaceutical medical-legal review automation</li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Educational AI & learning management systems</li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Industry-specific compliance & governance</li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5" /> Custom AI product development</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-heading text-foreground mb-3">Perfect For:</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2"><Target className="w-5 h-5 text-secondary mt-0.5" /> Highly regulated industries (pharma, healthcare)</li>
+                    <li className="flex items-start gap-2"><Target className="w-5 h-5 text-secondary mt-0.5" /> Educational institutions & EdTech companies</li>
+                    <li className="flex items-start gap-2"><Target className="w-5 h-5 text-secondary mt-0.5" /> Organizations with unique AI requirements</li>
+                  </ul>
+                </div>
+              </div>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-cyber glow-green" asChild>
+                <Link to="/contact">Discuss Your Needs</Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Featured Products Section */}
       <section className="py-20 bg-gradient-to-br from-background to-card/30 border-y border-border">
         <div className="container mx-auto px-4">

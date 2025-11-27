@@ -13,6 +13,7 @@ import {
   Target,
   Rocket,
   Calendar,
+  Zap,
 } from "lucide-react";
 
 const Services = () => {

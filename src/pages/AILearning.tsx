@@ -1,45 +1,138 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { BookOpen, Clock, Award, Target, Filter, TrendingUp, Users, Lightbulb } from "lucide-react"
+import {
+  BookOpen,
+  Clock,
+  Award,
+  Target,
+  Filter,
+  TrendingUp,
+  Users,
+  Lightbulb,
+  Sparkles,
+  ArrowRight,
+  Rocket,
+  Zap,
+  GraduationCap,
+  Brain
+} from "lucide-react"
 import { toast } from "sonner"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
+import cyberGrid from "@/assets/cyber-grid.jpg"
 
 const AILearning = () => {
   const navigate = useNavigate()
 
   const handleLaunchTool = () => {
-    // Legacy tool has been removed - redirect to contact for now
     toast.info("The AI Learning Path Generator is being updated with new features. Contact us to learn more!")
     navigate('/contact')
   }
 
+  const features = [
+    {
+      icon: Target,
+      title: "Tailored Topics",
+      description: "Focus on what matters most - Foundations, GenAI, Ethics, ROI, and more"
+    },
+    {
+      icon: Clock,
+      title: "Time-Optimized",
+      description: "Resources that fit your schedule, from 30-minute videos to full courses"
+    },
+    {
+      icon: Filter,
+      title: "Format Preferences",
+      description: "Choose from videos, interactive courses, or text-based learning"
+    },
+    {
+      icon: Award,
+      title: "Certifications",
+      description: "Option to prioritize courses with certificates and badges"
+    },
+  ]
+
+  const steps = [
+    {
+      number: "1",
+      title: "Set Your Preferences",
+      description: "Tell us which topics you want to cover, how much time you have per session, and your preferred learning formats"
+    },
+    {
+      number: "2",
+      title: "Smart Matching Algorithm",
+      description: "Our engine scores hundreds of verified resources based on topic coverage, time fit, format, and regional relevance"
+    },
+    {
+      number: "3",
+      title: "Get Your Personalized Path",
+      description: "Receive a curated learning journey with diverse sources from top providers like DeepLearning.AI, Google, Microsoft, and more"
+    },
+  ]
+
+  const topics = [
+    { icon: BookOpen, title: "AI Foundations", description: "Core concepts, machine learning basics, and AI history" },
+    { icon: Lightbulb, title: "Generative AI", description: "LLMs, ChatGPT, prompt engineering, and content generation" },
+    { icon: Target, title: "Responsible AI", description: "Ethics, bias mitigation, transparency, and governance" },
+    { icon: TrendingUp, title: "Business & ROI", description: "Use cases, implementation strategies, and value measurement" },
+    { icon: Users, title: "Leadership", description: "Change management, team building, and organizational readiness" },
+    { icon: Brain, title: "Technical Deep Dives", description: "Model training, fine-tuning, RAG, and advanced techniques" },
+  ]
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center bg-gradient-to-br from-[#1a365d] to-[#2d5a87] text-white">
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* Animated Background */}
+        <div
+          className="absolute inset-0 opacity-20 animate-data-stream"
+          style={{
+            backgroundImage: `url(${cyberGrid})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-cyber" />
+
+        <div className="container mx-auto px-4 relative z-10 py-32">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              AI Learning Path Generator
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-8">
+              <GraduationCap className="w-4 h-4 text-primary" />
+              <span className="text-sm font-heading text-primary">
+                Personalized AI Education
+              </span>
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-heading leading-tight mb-6">
+              <span className="text-primary glow-green">AI LEARNING</span>
+              <br />
+              <span className="text-foreground">PATH GENERATOR</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 opacity-90">
+
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Curated AI learning resources from verified, free sources tailored to your needs and schedule
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 size="lg"
                 onClick={handleLaunchTool}
-                className="bg-[#e2725b] hover:bg-[#d65d46] text-white text-lg px-8 py-6 rounded-full shadow-lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green text-lg font-semibold px-8 py-6 shadow-cyber transition-all hover:scale-105"
               >
-                🚀 Launch Learning Path Tool
+                <Rocket className="mr-2 w-5 h-5" />
+                Launch Learning Path Tool
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 asChild
-                className="bg-white/20 border-2 border-white/30 hover:bg-white/30 text-white text-lg px-8 py-6 rounded-full"
+                className="border-2 border-primary text-primary hover:bg-primary/10 text-lg font-semibold px-8 py-6 transition-all hover:scale-105"
               >
-                <a href="/contact">Request Custom Training</a>
+                <Link to="/contact">
+                  Request Custom Training
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
               </Button>
             </div>
           </div>
@@ -47,172 +140,148 @@ const AILearning = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-24">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-[#1a365d]">
-            Personalized AI Education
-          </h2>
-          <p className="text-center text-xl text-gray-600 max-w-3xl mx-auto mb-12">
-            Our intelligent learning path generator analyzes your needs, preferences, and available time to recommend the perfect mix of courses, videos, and resources.
-          </p>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-heading mb-6">
+              <span className="text-foreground">PERSONALIZED </span>
+              <span className="text-primary glow-green">AI EDUCATION</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Our intelligent learning path generator analyzes your needs, preferences, and available time to recommend the perfect mix of courses, videos, and resources.
+            </p>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            <Card className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-t-4 border-[#1a365d]">
-              <Target className="w-12 h-12 text-[#1a365d] mb-4" />
-              <h3 className="text-xl font-semibold mb-3 text-[#1a365d]">Tailored Topics</h3>
-              <p className="text-gray-600">
-                Focus on what matters most - Foundations, GenAI, Ethics, ROI, and more
-              </p>
-            </Card>
-
-            <Card className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-t-4 border-[#1a365d]">
-              <Clock className="w-12 h-12 text-[#1a365d] mb-4" />
-              <h3 className="text-xl font-semibold mb-3 text-[#1a365d]">Time-Optimized</h3>
-              <p className="text-gray-600">
-                Resources that fit your schedule, from 30-minute videos to full courses
-              </p>
-            </Card>
-
-            <Card className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-t-4 border-[#1a365d]">
-              <Filter className="w-12 h-12 text-[#1a365d] mb-4" />
-              <h3 className="text-xl font-semibold mb-3 text-[#1a365d]">Format Preferences</h3>
-              <p className="text-gray-600">
-                Choose from videos, interactive courses, or text-based learning
-              </p>
-            </Card>
-
-            <Card className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-t-4 border-[#1a365d]">
-              <Award className="w-12 h-12 text-[#1a365d] mb-4" />
-              <h3 className="text-xl font-semibold mb-3 text-[#1a365d]">Certifications</h3>
-              <p className="text-gray-600">
-                Option to prioritize courses with certificates and badges
-              </p>
-            </Card>
+            {features.map((feature, index) => {
+              const Icon = feature.icon
+              return (
+                <Card key={index} className="p-6 bg-card border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-cyber">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center border-2 border-primary mb-4">
+                    <Icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-heading text-foreground mb-3">{feature.title.toUpperCase()}</h3>
+                  <p className="text-muted-foreground">
+                    {feature.description}
+                  </p>
+                </Card>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-24 bg-card/50">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-[#1a365d]">
-            How It Works
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-heading mb-6">
+              <span className="text-foreground">HOW IT </span>
+              <span className="text-primary glow-green">WORKS</span>
+            </h2>
+          </div>
 
           <div className="max-w-4xl mx-auto space-y-8">
-            <div className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1a365d] text-white flex items-center justify-center text-xl font-bold">
-                1
+            {steps.map((step, index) => (
+              <div key={index} className="flex gap-6 items-start">
+                <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-primary/10 border-2 border-primary flex items-center justify-center">
+                  <span className="text-2xl font-heading text-primary glow-green">{step.number}</span>
+                </div>
+                <div className="pt-2">
+                  <h3 className="text-2xl font-heading text-foreground mb-2">{step.title.toUpperCase()}</h3>
+                  <p className="text-muted-foreground text-lg">
+                    {step.description}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-2xl font-semibold mb-2 text-gray-900">Set Your Preferences</h3>
-                <p className="text-gray-600 text-lg">
-                  Tell us which topics you want to cover, how much time you have per session, and your preferred learning formats
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1a365d] text-white flex items-center justify-center text-xl font-bold">
-                2
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold mb-2 text-gray-900">Smart Matching Algorithm</h3>
-                <p className="text-gray-600 text-lg">
-                  Our engine scores hundreds of verified resources based on topic coverage, time fit, format, and regional relevance
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1a365d] text-white flex items-center justify-center text-xl font-bold">
-                3
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold mb-2 text-gray-900">Get Your Personalized Path</h3>
-                <p className="text-gray-600 text-lg">
-                  Receive a curated learning journey with diverse sources from top providers like DeepLearning.AI, Google, Microsoft, and more
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Learning Topics Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-[#1a365d]">
-            Comprehensive Topic Coverage
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {[
-              { icon: <BookOpen className="w-8 h-8" />, title: "AI Foundations", description: "Core concepts, machine learning basics, and AI history" },
-              { icon: <Lightbulb className="w-8 h-8" />, title: "Generative AI", description: "LLMs, ChatGPT, prompt engineering, and content generation" },
-              { icon: <Target className="w-8 h-8" />, title: "Responsible AI", description: "Ethics, bias mitigation, transparency, and governance" },
-              { icon: <TrendingUp className="w-8 h-8" />, title: "Business & ROI", description: "Use cases, implementation strategies, and value measurement" },
-              { icon: <Users className="w-8 h-8" />, title: "Leadership", description: "Change management, team building, and organizational readiness" },
-              { icon: <Filter className="w-8 h-8" />, title: "Technical Deep Dives", description: "Model training, fine-tuning, RAG, and advanced techniques" },
-            ].map((topic, index) => (
-              <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="text-[#1a365d] mb-4">{topic.icon}</div>
-                <h3 className="text-xl font-semibold mb-2 text-[#1a365d]">{topic.title}</h3>
-                <p className="text-gray-600">{topic.description}</p>
-              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gray-50">
+      {/* Learning Topics Section */}
+      <section className="py-24">
         <div className="container mx-auto px-4">
-          <Card className="p-12 bg-gradient-to-br from-[#1a365d] to-[#2d5a87] text-white text-center max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Start Your AI Learning Journey Today
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-heading mb-6">
+              <span className="text-foreground">COMPREHENSIVE </span>
+              <span className="text-primary glow-green">TOPIC COVERAGE</span>
             </h2>
-            <p className="text-xl mb-8 opacity-90">
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {topics.map((topic, index) => {
+              const Icon = topic.icon
+              return (
+                <Card key={index} className="p-6 bg-card border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 shadow-cyber">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center border-2 border-primary mb-4">
+                    <Icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-heading text-foreground mb-2">{topic.title.toUpperCase()}</h3>
+                  <p className="text-muted-foreground">{topic.description}</p>
+                </Card>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-card/50">
+        <div className="container mx-auto px-4">
+          <Card className="p-12 bg-gradient-cyber border-2 border-primary/30 text-center max-w-4xl mx-auto shadow-cyber">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm font-heading text-primary">START LEARNING</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-heading mb-4 text-foreground">
+              START YOUR <span className="text-primary glow-green">AI LEARNING JOURNEY</span> TODAY
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Generate a personalized learning path in minutes. All resources are free, verified, and ready to use.
             </p>
             <Button
               size="lg"
               onClick={handleLaunchTool}
-              className="bg-[#e2725b] hover:bg-[#d65d46] text-white text-lg px-8 py-6 rounded-full shadow-lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green text-lg font-semibold px-8 py-6 shadow-cyber transition-all hover:scale-105"
             >
-              🚀 Launch Learning Path Tool
+              <Rocket className="mr-2 w-5 h-5" />
+              Launch Learning Path Tool
             </Button>
           </Card>
         </div>
       </section>
 
       {/* Support CTA */}
-      <section className="py-20">
+      <section className="py-24">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1a365d]">
-              Need Custom Training for Your Team?
+            <h2 className="text-4xl md:text-5xl font-heading mb-6">
+              <span className="text-foreground">NEED </span>
+              <span className="text-primary glow-green">CUSTOM TRAINING</span>
+              <span className="text-foreground"> FOR YOUR TEAM?</span>
             </h2>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-muted-foreground mb-8">
               Our learning path generator is perfect for self-directed learning. For team training, workshops, or customized curricula, let's talk.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
                 asChild
-                className="bg-[#e2725b] hover:bg-[#d65d46] text-white text-lg px-8 py-6 rounded-full"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green text-lg font-semibold px-8 py-6 shadow-cyber transition-all hover:scale-105"
               >
                 <a href="https://calendly.com/eschwaa/aiconsult" target="_blank" rel="noopener noreferrer">
                   Schedule Consultation
+                  <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 asChild
-                className="border-2 border-[#1a365d] text-[#1a365d] hover:bg-[#1a365d] hover:text-white text-lg px-8 py-6 rounded-full"
+                className="border-2 border-primary text-primary hover:bg-primary/10 text-lg font-semibold px-8 py-6 transition-all hover:scale-105"
               >
-                <a href="/contact">Contact Us</a>
+                <Link to="/contact">Contact Us</Link>
               </Button>
             </div>
           </div>

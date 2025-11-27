@@ -1,5 +1,7 @@
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
 import {
   CheckCircle2,
   Target,
@@ -19,14 +21,72 @@ import {
   Layers,
   ListOrdered,
   Layout,
-  Lightbulb
+  Lightbulb,
+  X
 } from "lucide-react"
 import { Link } from "react-router-dom"
+import { toast } from "sonner"
+import emailjs from "@emailjs/browser"
 import cyberGrid from "@/assets/cyber-grid.jpg"
 
 const PromptFluency = () => {
-  const handleDownload = () => {
-    window.open('/downloads/Prompt Fluency Toolkit.pdf', '_blank')
+  const [showDownloadModal, setShowDownloadModal] = useState(false)
+  const [email, setEmail] = useState("")
+  const [name, setName] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleDownloadClick = () => {
+    setShowDownloadModal(true)
+  }
+
+  const handleDownloadSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    try {
+      // Initialize EmailJS
+      emailjs.init("oI6t4dwMhBXNaBKXo")
+
+      // Send lead capture email via EmailJS
+      await emailjs.send(
+        "theaiexpert_assessment",
+        "template_dmkjg71",
+        {
+          from_name: name,
+          from_email: email,
+          company: "Not specified",
+          downloaded_resource: "Prompt Fluency Toolkit",
+          download_date: new Date().toLocaleString(),
+          lead_type: "Resource Download",
+          lead_source: "Prompt Fluency Page",
+        }
+      )
+
+      console.log("✅ Lead captured and notification sent!")
+
+      // Close modal and reset form
+      setShowDownloadModal(false)
+      setEmail("")
+      setName("")
+
+      // Show success message and trigger download
+      toast.success("Thank you! Your download is starting...")
+
+      // Trigger the actual download
+      window.open('/downloads/Prompt Fluency Toolkit.pdf', '_blank')
+
+    } catch (error) {
+      console.error("Error:", error)
+      toast.error("Something went wrong. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const closeModal = () => {
+    setShowDownloadModal(false)
+    setEmail("")
+    setName("")
   }
 
   const crispFramework = [
@@ -143,7 +203,7 @@ const PromptFluency = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 size="lg"
-                onClick={handleDownload}
+                onClick={handleDownloadClick}
                 className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green text-lg font-semibold px-8 py-6 shadow-cyber transition-all hover:scale-105"
               >
                 <Download className="mr-2 w-5 h-5" />
@@ -325,7 +385,7 @@ const PromptFluency = () => {
             </p>
             <Button
               size="lg"
-              onClick={handleDownload}
+              onClick={handleDownloadClick}
               className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green text-lg font-semibold px-8 py-6 shadow-cyber transition-all hover:scale-105"
             >
               <Download className="mr-2 w-5 h-5" />
@@ -370,6 +430,76 @@ const PromptFluency = () => {
           </div>
         </div>
       </section>
+
+      {/* Lead Capture Download Modal */}
+      {showDownloadModal && (
+        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <Card className="bg-card border-2 border-primary shadow-cyber max-w-md w-full">
+            <div className="p-8">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-heading text-primary">
+                  DOWNLOAD TOOLKIT
+                </h3>
+                <button
+                  onClick={closeModal}
+                  className="w-8 h-8 rounded-lg hover:bg-border flex items-center justify-center transition-colors"
+                >
+                  <X className="w-5 h-5 text-muted-foreground" />
+                </button>
+              </div>
+
+              <p className="text-muted-foreground mb-6">
+                Enter your details to download the <strong className="text-foreground">Prompt Fluency Toolkit</strong>
+              </p>
+
+              <form onSubmit={handleDownloadSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="name" className="text-sm text-foreground mb-2 block">
+                    Name *
+                  </label>
+                  <Input
+                    id="name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    className="bg-background border-border"
+                    placeholder="Your name"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="text-sm text-foreground mb-2 block">
+                    Email *
+                  </label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="bg-background border-border"
+                    placeholder="your.email@company.com"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold py-6"
+                >
+                  {isSubmitting ? "Processing..." : "Download Toolkit"}
+                  {!isSubmitting && <Download className="ml-2 w-4 h-4" />}
+                </Button>
+
+                <p className="text-xs text-muted-foreground text-center">
+                  We respect your privacy. No spam, ever.
+                </p>
+              </form>
+            </div>
+          </Card>
+        </div>
+      )}
     </div>
   )
 }

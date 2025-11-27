@@ -17,7 +17,6 @@ import AIAssessment from "./pages/AIAssessment";
 import ROICalculator from "./pages/ROICalculator";
 import PromptFluency from "./pages/PromptFluency";
 import AILearning from "./pages/AILearning";
-import Skills from "./pages/Skills";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
@@ -45,7 +44,6 @@ const App = () => (
           <Route path="/promptfluency" element={<PromptFluency />} />
           <Route path="/prompt-fluency" element={<PromptFluency />} />
           <Route path="/ai-learning" element={<AILearning />} />
-          <Route path="/skills" element={<Skills />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

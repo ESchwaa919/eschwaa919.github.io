@@ -41,6 +41,7 @@ const Resources = () => {
         "Turning AI hype into measurable ROI without a Fortune 500 budget. A practical roadmap for small and medium businesses ready to implement AI successfully.",
       link: "https://www.linkedin.com/pulse/ai-execution-playbook-smbs-turning-hype-roi-without-fortune-schwartz-76y6e/",
       icon: Target,
+      file: "/downloads/The-AI-Execution-Playbook-for-SMBs.pdf",
     },
     {
       title: "A Leader's Journey to AI Adoption",
@@ -49,6 +50,7 @@ const Resources = () => {
         "Real-world insights from leadership experiences in AI transformation. Navigate the challenges and opportunities of leading your organization through AI adoption.",
       link: "https://www.linkedin.com/posts/eschwaa_a-leaders-journey-to-ai-adoption-activity-7325771625394565120-LNsR",
       icon: Brain,
+      file: "/downloads/The-AI-Infused-Business-A-Leaders-Journey-to-AI-Adoption.pdf",
     },
     {
       title: "AI Workforce Revolution by 2045",
@@ -57,6 +59,7 @@ const Resources = () => {
         "How jobs, teams, and leadership will transform over the next two decades. Prepare your organization for the AI-driven future of work.",
       link: "https://www.linkedin.com/pulse/ai-workforce-revolution-how-jobs-teams-leadership-2045-erik-schwartz-bdn3e",
       icon: TrendingUp,
+      file: "/downloads/AI and the Future of Work.pdf",
     },
     {
       title: "AI in Healthcare: Overcoming Innovation Barriers",
@@ -232,6 +235,16 @@ const Resources = () => {
     );
   };
 
+  const handleInsightDownload = (insight: typeof insights[0]) => {
+    if (insight.file) {
+      checkAndDownload(
+        insight.title,
+        insight.file,
+        "Website Resources Page - Insights"
+      );
+    }
+  };
+
   return (
     <div className="min-h-screen pt-32 pb-20">
       <SEOHead
@@ -349,16 +362,28 @@ const Resources = () => {
                     <p className="text-muted-foreground mb-4 leading-relaxed flex-grow">
                       {insight.description}
                     </p>
-                    <Button
-                      variant="outline"
-                      className="border-primary text-primary hover:bg-primary/10 font-semibold"
-                      asChild
-                    >
-                      <a href={insight.link} target="_blank" rel="noopener noreferrer">
-                        Read More
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </a>
-                    </Button>
+                    <div className="flex flex-wrap gap-3">
+                      <Button
+                        variant="outline"
+                        className="border-primary text-primary hover:bg-primary/10 font-semibold"
+                        asChild
+                      >
+                        <a href={insight.link} target="_blank" rel="noopener noreferrer">
+                          Read Article
+                          <ArrowRight className="w-4 h-4 ml-2" />
+                        </a>
+                      </Button>
+                      {insight.file && (
+                        <Button
+                          variant="outline"
+                          className="border-secondary text-secondary hover:bg-secondary/10 font-semibold"
+                          onClick={() => handleInsightDownload(insight)}
+                        >
+                          <Download className="w-4 h-4 mr-2" />
+                          Download PDF
+                        </Button>
+                      )}
+                    </div>
                   </CardContent>
                 </Card>
               );

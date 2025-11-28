@@ -1,12 +1,9 @@
-import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import {
   BookOpen,
   Video,
-  Wrench,
   Download,
   ArrowRight,
   ExternalLink,
@@ -16,65 +13,24 @@ import {
   Lightbulb,
   Target,
   CheckCircle2,
-  X,
 } from "lucide-react";
-import { toast } from "sonner";
-import emailjs from "@emailjs/browser";
+import { useLeadCapture } from "@/hooks/useLeadCapture";
+import { LeadCaptureModal } from "@/components/LeadCaptureModal";
 
 const Resources = () => {
-  const [showDownloadModal, setShowDownloadModal] = useState(false);
-  const [selectedResource, setSelectedResource] = useState<string>("");
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const {
+    showModal,
+    isSubmitting,
+    name,
+    email,
+    setName,
+    setEmail,
+    checkAndDownload,
+    submitLead,
+    closeModal,
+    isLeadCaptured,
+  } = useLeadCapture();
 
-  const handleDownloadClick = (resourceTitle: string) => {
-    setSelectedResource(resourceTitle);
-    setShowDownloadModal(true);
-  };
-
-  const handleDownloadSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      // Initialize EmailJS
-      emailjs.init("oI6t4dwMhBXNaBKXo");
-
-      // Send email using EmailJS
-      await emailjs.send(
-        "theaiexpert_assessment",
-        "template_dmkjg71",
-        {
-          from_name: name,
-          from_email: email,
-          company: "Not specified",
-          downloaded_resource: selectedResource,
-          download_date: new Date().toLocaleString(),
-          lead_type: "Resource Download",
-          lead_source: "Website Resources Page",
-        }
-      );
-
-      console.log("✅ Download notification email sent successfully!");
-
-      toast.success("Download link sent to your email!");
-      setShowDownloadModal(false);
-      setEmail("");
-      setName("");
-    } catch (error) {
-      console.error("Error:", error);
-      toast.error("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const closeModal = () => {
-    setShowDownloadModal(false);
-    setEmail("");
-    setName("");
-  };
   // Featured insights/articles
   const insights = [
     {
@@ -137,7 +93,7 @@ const Resources = () => {
         "Master the art of prompt engineering with our comprehensive toolkit. Learn best practices, frameworks, and techniques for effective AI interactions.",
       icon: Lightbulb,
       cta: "Explore Toolkit",
-      link: "/promptfluency/",
+      link: "/promptfluency",
       color: "primary",
     },
     {
@@ -146,75 +102,66 @@ const Resources = () => {
         "Get a personalized AI learning path tailored to your role, industry, and learning preferences. From AI basics to advanced implementation.",
       icon: BookOpen,
       cta: "Generate Path",
-      link: "/ai-learning/",
+      link: "/ai-learning",
       color: "secondary",
-    },
-    {
-      name: "Skills Assessment",
-      description:
-        "Evaluate your AI skills and capabilities across different domains. Identify strengths and areas for development.",
-      icon: Target,
-      cta: "Assess Skills",
-      link: "/skills/",
-      color: "primary",
     },
   ];
 
-  // Downloadable resources
+  // Downloadable resources with actual file paths
   const downloads = [
     {
       title: "The AI Execution Playbook for SMBs",
       type: "PDF",
       description:
         "Practical roadmap for small and medium businesses to turn AI hype into measurable ROI without Fortune 500 budgets.",
-      size: "2.4 MB",
+      size: "2.1 MB",
       icon: FileText,
-      file: "The-AI-Execution-Playbook-for-SMBs.pdf",
+      file: "/downloads/The-AI-Execution-Playbook-for-SMBs.pdf",
     },
     {
       title: "AI Expert Methodology Guide",
       type: "PDF",
       description:
         "Comprehensive methodology for implementing AI successfully in your organization. From assessment to execution.",
-      size: "1.8 MB",
+      size: "64 KB",
       icon: Target,
-      file: "The AI Expert Methodology Guide.pdf",
+      file: "/downloads/The AI Expert Methodology Guide.pdf",
     },
     {
       title: "The AI-Infused Business: A Leader's Journey",
       type: "PDF",
       description:
         "Real-world insights from leadership experiences in AI transformation. Navigate challenges and opportunities of AI adoption.",
-      size: "1.5 MB",
+      size: "6 MB",
       icon: Brain,
-      file: "The-AI-Infused-Business-A-Leaders-Journey-to-AI-Adoption.pdf",
+      file: "/downloads/The-AI-Infused-Business-A-Leaders-Journey-to-AI-Adoption.pdf",
     },
     {
       title: "AI and the Future of Work",
       type: "PDF",
       description:
         "Research paper examining how jobs, teams, and leadership will transform by 2045. Comprehensive analysis of the AI-driven workplace.",
-      size: "2.1 MB",
+      size: "379 KB",
       icon: TrendingUp,
-      file: "AI and the Future of Work.pdf",
+      file: "/downloads/AI and the Future of Work.pdf",
     },
     {
       title: "The AI Competency Matrix",
       type: "PDF",
       description:
         "Comprehensive framework for assessing and developing AI capabilities across your organization at every level.",
-      size: "850 KB",
+      size: "208 KB",
       icon: CheckCircle2,
-      file: "The AI Competency Matrix.pdf",
+      file: "/downloads/The AI Competency Matrix.pdf",
     },
     {
-      title: "The Dawn of Intelligence as Infrastructure",
-      type: "Document",
+      title: "Prompt Fluency Toolkit",
+      type: "PDF",
       description:
-        "Deep dive into how AI is becoming the foundational infrastructure layer for modern businesses and organizations.",
-      size: "1.2 MB",
+        "Master the CRISP framework and advanced prompting techniques for effective AI communication.",
+      size: "137 KB",
       icon: Lightbulb,
-      file: "The Dawn of Intelligence as Infrastructure.docx",
+      file: "/downloads/Prompt Fluency Toolkit.pdf",
     },
   ];
 
@@ -276,6 +223,14 @@ const Resources = () => {
     },
   ];
 
+  const handleDownloadClick = (resource: typeof downloads[0]) => {
+    checkAndDownload(
+      resource.title,
+      resource.file,
+      "Website Resources Page"
+    );
+  };
+
   return (
     <div className="min-h-screen pt-32 pb-20">
       {/* Hero Section */}
@@ -292,6 +247,11 @@ const Resources = () => {
             Practical frameworks, tools, and insights to help you build AI
             capabilities and drive real business value.
           </p>
+          {isLeadCaptured && (
+            <p className="text-sm text-primary">
+              Welcome back! Downloads are instant for the next 24 hours.
+            </p>
+          )}
         </div>
       </section>
 
@@ -333,10 +293,10 @@ const Resources = () => {
                     } font-semibold py-6 shadow-cyber`}
                     asChild
                   >
-                    <a href={tool.link}>
+                    <Link to={tool.link}>
                       {tool.cta}
                       <ArrowRight className="w-5 h-5 ml-2" />
-                    </a>
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -387,7 +347,7 @@ const Resources = () => {
                       className="border-primary text-primary hover:bg-primary/10 font-semibold"
                       asChild
                     >
-                      <a href={insight.link}>
+                      <a href={insight.link} target="_blank" rel="noopener noreferrer">
                         Read More
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </a>
@@ -446,10 +406,10 @@ const Resources = () => {
                   <Button
                     variant="outline"
                     className="w-full border-secondary text-secondary hover:bg-secondary/10 font-semibold"
-                    onClick={() => handleDownloadClick(resource.title)}
+                    onClick={() => handleDownloadClick(resource)}
                   >
                     <Download className="w-4 h-4 mr-2" />
-                    Download {resource.type}
+                    {isLeadCaptured ? "Download Now" : `Download ${resource.type}`}
                   </Button>
                 </CardContent>
               </Card>
@@ -520,7 +480,7 @@ const Resources = () => {
                         className="text-primary hover:text-primary/80 p-0 h-auto font-semibold"
                         asChild
                       >
-                        <a href={item.link}>
+                        <a href={item.link} target="_blank" rel="noopener noreferrer">
                           Watch / Listen
                           <ExternalLink className="w-4 h-4 ml-2" />
                         </a>
@@ -559,7 +519,7 @@ const Resources = () => {
               </Button>
             </div>
             <p className="text-xs text-muted-foreground mt-4">
-              Join 5,000+ business leaders " Unsubscribe anytime " No spam, ever
+              Join 5,000+ business leaders • Unsubscribe anytime • No spam, ever
             </p>
           </CardContent>
         </Card>
@@ -585,74 +545,20 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Download Modal */}
-      {showDownloadModal && (
-        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <Card className="bg-card border-2 border-primary shadow-cyber-lg max-w-md w-full">
-            <CardContent className="p-8">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-heading text-primary">
-                  DOWNLOAD RESOURCE
-                </h3>
-                <button
-                  onClick={closeModal}
-                  className="w-8 h-8 rounded-lg hover:bg-border flex items-center justify-center transition-colors"
-                >
-                  <X className="w-5 h-5 text-muted-foreground" />
-                </button>
-              </div>
-
-              <p className="text-muted-foreground mb-6">
-                Enter your details to download: <strong className="text-foreground">{selectedResource}</strong>
-              </p>
-
-              <form onSubmit={handleDownloadSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="text-sm text-foreground mb-2 block">
-                    Name *
-                  </label>
-                  <Input
-                    id="name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    className="bg-background border-border"
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="text-sm text-foreground mb-2 block">
-                    Email *
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="bg-background border-border"
-                    placeholder="your.email@company.com"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold py-6"
-                >
-                  {isSubmitting ? "Sending..." : "Get Download Link"}
-                </Button>
-
-                <p className="text-xs text-muted-foreground text-center">
-                  We respect your privacy. No spam, ever.
-                </p>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      )}
+      {/* Lead Capture Modal */}
+      <LeadCaptureModal
+        isOpen={showModal}
+        onClose={closeModal}
+        onSubmit={submitLead}
+        isSubmitting={isSubmitting}
+        name={name}
+        email={email}
+        onNameChange={setName}
+        onEmailChange={setEmail}
+        title="DOWNLOAD RESOURCE"
+        buttonText="Download Now"
+        buttonIcon="download"
+      />
     </div>
   );
 };

@@ -1,32 +1,28 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
 import {
   BookOpen,
   Clock,
   Award,
   Target,
   TrendingUp,
-  Users,
   Lightbulb,
-  Sparkles,
   ArrowRight,
   Rocket,
   GraduationCap,
   Brain,
   ExternalLink,
-  CheckCircle2,
-  X,
   Play,
   FileText,
   Monitor,
-  Download
 } from "lucide-react"
 import { Link } from "react-router-dom"
 import { toast } from "sonner"
 import emailjs from "@emailjs/browser"
 import cyberGrid from "@/assets/cyber-grid.jpg"
+import { useLeadCapture } from "@/hooks/useLeadCapture"
+import { LeadCaptureModal } from "@/components/LeadCaptureModal"
 
 // Types
 interface Resource {
@@ -127,10 +123,22 @@ const AILearning = () => {
   const [catalog, setCatalog] = useState<Resource[]>([])
   const [loading, setLoading] = useState(true)
   const [generatedPath, setGeneratedPath] = useState<Session[] | null>(null)
+
+  // Use shared lead capture hook
+  const {
+    showModal,
+    isSubmitting,
+    name,
+    email,
+    setName,
+    setEmail,
+    closeModal,
+    isLeadCaptured,
+    leadData,
+  } = useLeadCapture()
+
   const [showLeadModal, setShowLeadModal] = useState(false)
-  const [email, setEmail] = useState("")
-  const [name, setName] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [localSubmitting, setLocalSubmitting] = useState(false)
 
   // Preferences state
   const [selectedTopics, setSelectedTopics] = useState<string[]>(["Foundations", "GenAI", "ResponsibleAI"])
@@ -182,23 +190,58 @@ const AILearning = () => {
     )
   }
 
-  const handleGeneratePath = () => {
+  const doGeneratePath = () => {
+    const prefs: Preferences = {
+      mustCover: selectedTopics,
+      formatBias: [preferredFormat, "video", "interactive", "text"].filter((v, i, a) => a.indexOf(v) === i),
+      slotMinutes,
+      wantCertificate
+    }
+    const path = generateLearningPath(catalog, prefs)
+    setGeneratedPath(path)
+    toast.success("Your personalized learning path is ready!")
+  }
+
+  const handleGeneratePath = async () => {
     if (selectedTopics.length === 0) {
       toast.error("Please select at least one topic")
       return
     }
-    setShowLeadModal(true)
+
+    // If lead already captured, generate directly with silent notification
+    if (isLeadCaptured && leadData) {
+      try {
+        emailjs.init("oI6t4dwMhBXNaBKXo")
+        await emailjs.send(
+          "theaiexpert_assessment",
+          "template_dmkjg71",
+          {
+            from_name: leadData.name,
+            from_email: leadData.email,
+            company: "Not specified",
+            downloaded_resource: "AI Learning Path Generator",
+            download_date: new Date().toLocaleString(),
+            lead_type: "Returning User - Learning Path",
+            lead_source: "AI Learning Page",
+          }
+        )
+      } catch (e) {
+        console.error("Silent notification failed:", e)
+      }
+      doGeneratePath()
+    } else {
+      // Show lead capture modal
+      setShowLeadModal(true)
+    }
   }
 
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
+    setLocalSubmitting(true)
 
     try {
-      // Initialize EmailJS
+      // Initialize EmailJS and send
       emailjs.init("oI6t4dwMhBXNaBKXo")
-
-      // Send lead capture
       await emailjs.send(
         "theaiexpert_assessment",
         "template_dmkjg71",
@@ -208,49 +251,34 @@ const AILearning = () => {
           company: "Not specified",
           downloaded_resource: "AI Learning Path Generator",
           download_date: new Date().toLocaleString(),
-          lead_type: "Learning Path Generation",
+          lead_type: "New Lead - Learning Path",
           lead_source: "AI Learning Page",
         }
       )
 
-      // Generate the path
-      const prefs: Preferences = {
-        mustCover: selectedTopics,
-        formatBias: [preferredFormat, "video", "interactive", "text"].filter((v, i, a) => a.indexOf(v) === i),
-        slotMinutes,
-        wantCertificate
+      // Store lead in localStorage for 24 hours
+      const leadStorage = {
+        name,
+        email,
+        timestamp: Date.now()
       }
+      localStorage.setItem("theaiexpert_lead", JSON.stringify(leadStorage))
 
-      const path = generateLearningPath(catalog, prefs)
-      setGeneratedPath(path)
       setShowLeadModal(false)
-      setEmail("")
-      setName("")
-
-      toast.success("Your personalized learning path is ready!")
+      doGeneratePath()
 
     } catch (error) {
       console.error("Error:", error)
       // Still generate path even if email fails
-      const prefs: Preferences = {
-        mustCover: selectedTopics,
-        formatBias: [preferredFormat, "video", "interactive", "text"].filter((v, i, a) => a.indexOf(v) === i),
-        slotMinutes,
-        wantCertificate
-      }
-      const path = generateLearningPath(catalog, prefs)
-      setGeneratedPath(path)
       setShowLeadModal(false)
-      toast.success("Your personalized learning path is ready!")
+      doGeneratePath()
     } finally {
-      setIsSubmitting(false)
+      setLocalSubmitting(false)
     }
   }
 
-  const closeModal = () => {
+  const handleCloseModal = () => {
     setShowLeadModal(false)
-    setEmail("")
-    setName("")
   }
 
   const formatDuration = (mins: number) => {
@@ -559,74 +587,20 @@ const AILearning = () => {
       </section>
 
       {/* Lead Capture Modal */}
-      {showLeadModal && (
-        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <Card className="bg-card border-2 border-primary shadow-cyber max-w-md w-full">
-            <div className="p-8">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-heading text-primary">
-                  GENERATE PATH
-                </h3>
-                <button
-                  onClick={closeModal}
-                  className="w-8 h-8 rounded-lg hover:bg-border flex items-center justify-center transition-colors"
-                >
-                  <X className="w-5 h-5 text-muted-foreground" />
-                </button>
-              </div>
-
-              <p className="text-muted-foreground mb-6">
-                Enter your details to generate your <strong className="text-foreground">personalized AI learning path</strong>
-              </p>
-
-              <form onSubmit={handleLeadSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="text-sm text-foreground mb-2 block">
-                    Name *
-                  </label>
-                  <Input
-                    id="name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    className="bg-background border-border"
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="text-sm text-foreground mb-2 block">
-                    Email *
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="bg-background border-border"
-                    placeholder="your.email@company.com"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold py-6"
-                >
-                  {isSubmitting ? "Generating..." : "Generate My Learning Path"}
-                  {!isSubmitting && <Rocket className="ml-2 w-4 h-4" />}
-                </Button>
-
-                <p className="text-xs text-muted-foreground text-center">
-                  We respect your privacy. No spam, ever.
-                </p>
-              </form>
-            </div>
-          </Card>
-        </div>
-      )}
+      <LeadCaptureModal
+        isOpen={showLeadModal}
+        onClose={handleCloseModal}
+        onSubmit={handleLeadSubmit}
+        isSubmitting={localSubmitting}
+        name={name}
+        email={email}
+        onNameChange={setName}
+        onEmailChange={setEmail}
+        title="GENERATE PATH"
+        resourceName="personalized AI learning path"
+        buttonText="Generate My Learning Path"
+        buttonIcon="rocket"
+      />
     </div>
   )
 }

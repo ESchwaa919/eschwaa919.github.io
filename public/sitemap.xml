@@ -116,25 +116,5 @@
         <priority>0.5</priority>
     </url>
 
-    <!-- Downloadable Resources -->
-    <url>
-        <loc>https://theaiexpert.ai/downloads/Prompt%20Fluency%20Toolkit.pdf</loc>
-        <lastmod>2025-11-25</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <url>
-        <loc>https://theaiexpert.ai/automlr/automlr-whitepaper.pdf</loc>
-        <lastmod>2025-11-24</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <url>
-        <loc>https://theaiexpert.ai/ailms/ailms-whitepaper.pdf</loc>
-        <lastmod>2025-11-24</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.6</priority>
-    </url>
+    <!-- Note: PDFs intentionally excluded to protect lead capture flow -->
 </urlset>

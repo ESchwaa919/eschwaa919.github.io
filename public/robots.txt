@@ -29,6 +29,10 @@ Allow: /
 User-agent: *
 Allow: /
 
+# Block indexing of downloadable PDFs (lead capture protected)
+Disallow: /downloads/
+Disallow: /*.pdf$
+
 Sitemap: https://theaiexpert.ai/sitemap.xml
 
 # LLM-specific information file

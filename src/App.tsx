@@ -19,6 +19,8 @@ import PromptFluency from "./pages/PromptFluency";
 import AILearning from "./pages/AILearning";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import AutoMLR from "./pages/AutoMLR";
+import AILMS from "./pages/AILMS";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -46,6 +48,8 @@ const App = () => (
           <Route path="/ai-learning" element={<AILearning />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/automlr" element={<AutoMLR />} />
+          <Route path="/ailms" element={<AILMS />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

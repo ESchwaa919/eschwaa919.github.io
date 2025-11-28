@@ -93,17 +93,17 @@
         <priority>0.8</priority>
     </url>
 
-    <!-- Static Microsites (with trailing slash for directory index) -->
+    <!-- Product Pages (React Routes - migrated from static microsites) -->
     <url>
-        <loc>https://theaiexpert.ai/automlr/</loc>
-        <lastmod>2025-11-25</lastmod>
+        <loc>https://theaiexpert.ai/automlr</loc>
+        <lastmod>2025-11-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://theaiexpert.ai/ailms/</loc>
-        <lastmod>2025-11-24</lastmod>
+        <loc>https://theaiexpert.ai/ailms</loc>
+        <lastmod>2025-11-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

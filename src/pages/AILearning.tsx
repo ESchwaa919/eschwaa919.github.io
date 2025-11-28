@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import SEOHead from "@/components/SEOHead"
 import { Card } from "@/components/ui/card"
 import {
   BookOpen,
@@ -300,6 +301,12 @@ const AILearning = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="AI Learning Path Generator | Personalised AI Education | The AI Expert"
+        description="Generate a personalised AI learning path from curated free resources. Tailored to your goals, schedule, and learning preferences with courses from top providers."
+        keywords="AI learning path, AI training, AI courses, learn AI, AI education, personalised AI learning, AI curriculum"
+        canonicalUrl="/ai-learning"
+      />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden">
         <div

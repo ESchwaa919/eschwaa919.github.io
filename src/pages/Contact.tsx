@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import SEOHead from "@/components/SEOHead";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import emailjs from "@emailjs/browser";
@@ -154,6 +155,12 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen pt-32 pb-20">
+      <SEOHead
+        title="Contact Erik Schwartz | AI Consulting Enquiries | The AI Expert"
+        description="Get in touch with Erik Schwartz for AI consulting, fractional CAIO services, or AI strategy discussions. Book a free 30-minute consultation or send a message."
+        keywords="contact AI consultant, AI consulting enquiry, book AI consultation, fractional CAIO contact, AI strategy discussion"
+        canonicalUrl="/contact"
+      />
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-5 gap-12 max-w-7xl mx-auto">
           {/* Contact Info Sidebar */}

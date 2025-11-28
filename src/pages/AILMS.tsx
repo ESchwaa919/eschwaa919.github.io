@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
+import SEOHead from "@/components/SEOHead"
+import { StructuredData, createProductSchema, createFAQSchema } from "@/components/StructuredData"
 import { Card } from "@/components/ui/card"
 import {
   BookOpen,
@@ -132,6 +134,19 @@ const AILMS = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="AI Enrichment for LMS | Transform Static Learning | The AI Expert"
+        description="Turn static LMS courses into dynamic, personalised learning journeys with AI enrichment. Adaptive pathways, interactive experiences, and smarter content discovery."
+        keywords="AI LMS, learning management system AI, adaptive learning, personalised learning, AI education, LMS enhancement, e-learning AI"
+        canonicalUrl="/ailms"
+        ogType="product"
+      />
+      <StructuredData schema={createProductSchema({
+        name: "AI Enrichment for LMS",
+        description: "AI-powered learning management system enhancement that transforms static courses into dynamic, personalised learning journeys with adaptive pathways.",
+        url: "https://theaiexpert.ai/ailms"
+      })} />
+      <StructuredData schema={createFAQSchema(faqs)} />
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         <div

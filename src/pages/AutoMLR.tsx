@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
+import SEOHead from "@/components/SEOHead"
+import { StructuredData, createProductSchema, createFAQSchema } from "@/components/StructuredData"
 import { Card } from "@/components/ui/card"
 import {
   FileText,
@@ -141,6 +143,19 @@ const AutoMLR = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="AutoMLR | AI-Powered Medical Legal Review for Pharma | The AI Expert"
+        description="Transform pharmaceutical compliance with AutoMLR's multi-agent AI. Accelerate medical legal review by 90% with human oversight, Veeva Vault integration, and regulatory compliance."
+        keywords="medical legal review, MLR automation, pharma compliance, Veeva Vault integration, pharmaceutical AI, regulatory compliance, FDA compliance"
+        canonicalUrl="/automlr"
+        ogType="product"
+      />
+      <StructuredData schema={createProductSchema({
+        name: "AutoMLR",
+        description: "AI-powered medical legal review automation for pharmaceutical companies. Multi-agent AI with human oversight, native Veeva Vault integration, and FDA/EMA compliance.",
+        url: "https://theaiexpert.ai/automlr"
+      })} />
+      <StructuredData schema={createFAQSchema(faqs)} />
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         <div

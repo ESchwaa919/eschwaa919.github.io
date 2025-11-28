@@ -40,6 +40,7 @@ const TrustBar = () => {
                   src={company.logo}
                   alt={company.name}
                   className="max-h-full max-w-full object-contain"
+                  loading="lazy"
                 />
               </div>
               <span className="text-sm text-muted-foreground text-center">

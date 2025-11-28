@@ -15,6 +15,8 @@ import {
   Calendar,
   Zap,
 } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
+import { StructuredData, createServiceSchema } from "@/components/StructuredData";
 
 const Services = () => {
   // Core service offerings
@@ -155,6 +157,18 @@ const Services = () => {
 
   return (
     <div className="min-h-screen pt-32 pb-20">
+      <SEOHead
+        title="AI Consulting Services | Fractional CAIO & Strategy"
+        description="Comprehensive AI consulting services including fractional Chief AI Officer, AI strategy development, implementation support, and team training. Expert guidance for every stage of your AI journey."
+        keywords="AI consulting services, fractional CAIO, AI strategy, AI implementation, AI training, AI governance, agentic workflows"
+        canonicalUrl="/services"
+      />
+      <StructuredData schema={createServiceSchema([
+        { name: "Fractional Chief AI Officer (CAIO)", description: "Enterprise-grade AI leadership, strategy development, and governance frameworks without full-time commitment.", url: "https://theaiexpert.ai/services#strategic" },
+        { name: "AI Implementation & Consulting", description: "Hands-on AI development from proof-of-concept to production deployment with LLM integration, RAG architectures, and custom ML models.", url: "https://theaiexpert.ai/services#implementation" },
+        { name: "AI Expert Network", description: "Access to 200+ vetted AI specialists across strategy, data science, ML engineering, and governance.", url: "https://theaiexpert.ai/services#expert-network" },
+        { name: "AI Training & Workshops", description: "Team workshops, hands-on training, and upskilling programs for AI adoption.", url: "https://theaiexpert.ai/services#focused" }
+      ])} />
       {/* Hero Section */}
       <section className="container mx-auto px-4 mb-20">
         <div className="max-w-4xl mx-auto text-center space-y-6">

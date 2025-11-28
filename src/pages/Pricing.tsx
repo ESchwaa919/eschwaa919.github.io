@@ -13,6 +13,7 @@ import {
   TrendingUp,
   Clock,
 } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 const Pricing = () => {
   // Engagement models
@@ -125,6 +126,12 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen pt-32 pb-20">
+      <SEOHead
+        title="AI Consulting Pricing | Flexible Engagement Models"
+        description="Transparent AI consulting pricing with flexible engagement models. From Strategy Sprints to ongoing Fractional CAIO partnerships. Find the right fit for your AI journey."
+        keywords="AI consulting pricing, fractional CAIO cost, AI strategy pricing, AI consulting rates, AI engagement models"
+        canonicalUrl="/pricing"
+      />
       {/* Hero Section */}
       <section className="container mx-auto px-4 mb-20">
         <div className="max-w-4xl mx-auto text-center space-y-6">

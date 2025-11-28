@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles } from "lucide-react";
-import heroImage from "@/assets/Erik-Headshot.png";
+import heroImage from "@/assets/Erik-Headshot.jpg";
 import cyberGrid from "@/assets/cyber-grid.jpg";
 
 const HeroSection = () => {

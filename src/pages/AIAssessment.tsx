@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import SEOHead from "@/components/SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
@@ -428,6 +429,12 @@ const AIAssessment = () => {
   if (!hasStarted) {
     return (
       <div className="min-h-screen">
+        <SEOHead
+          title="AI Readiness Assessment | Free AI Competency Evaluation | The AI Expert"
+          description="Take our free 10-minute AI readiness assessment. Evaluate your organisation's AI maturity across 8 critical dimensions and get personalised recommendations."
+          keywords="AI readiness assessment, AI maturity assessment, AI competency evaluation, business AI readiness, AI capability assessment"
+          canonicalUrl="/ai-assessment"
+        />
         {/* Hero Section */}
         <section className="relative min-h-[85vh] flex items-center bg-gradient-cyber overflow-hidden">
           <div className="absolute inset-0 bg-background opacity-90" />

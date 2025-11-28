@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 import {
   BookOpen,
   Video,
@@ -233,6 +234,12 @@ const Resources = () => {
 
   return (
     <div className="min-h-screen pt-32 pb-20">
+      <SEOHead
+        title="AI Resources & Tools | Free Downloads, Guides & Insights | The AI Expert"
+        description="Access free AI resources: interactive tools, downloadable guides, frameworks, and expert insights to accelerate your AI journey. Practical resources for business leaders."
+        keywords="AI resources, AI tools, AI guides, AI frameworks, prompt fluency toolkit, AI competency matrix, AI learning, free AI resources"
+        canonicalUrl="/resources"
+      />
       {/* Hero Section */}
       <section className="container mx-auto px-4 mb-20">
         <div className="max-w-4xl mx-auto text-center space-y-6">

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import SEOHead from "@/components/SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
@@ -535,6 +536,12 @@ const ROICalculator = () => {
 
   return (
     <div className="min-h-screen pt-32 pb-20">
+      <SEOHead
+        title="AI ROI Calculator | Calculate Your AI Investment Returns | The AI Expert"
+        description="Calculate your potential AI return on investment. Our free ROI calculator shows expected returns, cost of delay, and generates a personalised AI business case."
+        keywords="AI ROI calculator, AI investment returns, AI business case, cost of AI delay, AI value calculator"
+        canonicalUrl="/roi-calculator"
+      />
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Hero Section */}
         <div className="text-center mb-16">

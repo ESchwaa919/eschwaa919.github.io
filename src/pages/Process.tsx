@@ -19,6 +19,7 @@ import {
   Code,
   BarChart,
 } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 const Process = () => {
   // The 3 stages with comprehensive details
@@ -207,6 +208,12 @@ const Process = () => {
 
   return (
     <div className="min-h-screen pt-32 pb-20">
+      <SEOHead
+        title="Our 3-Stage AI Process | Discover, Design, Deploy"
+        description="Transform from AI-curious to AI-confident with our proven 3-stage methodology. Discover opportunities, design solutions, and deploy AI that delivers real business value."
+        keywords="AI process, AI methodology, AI implementation, discover design deploy, AI transformation, AI roadmap"
+        canonicalUrl="/process"
+      />
       {/* Hero Section */}
       <section className="container mx-auto px-4 mb-20">
         <div className="max-w-4xl mx-auto text-center space-y-6">

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import SEOHead from "@/components/SEOHead"
 import {
   CheckCircle2,
   Target,
@@ -123,6 +124,12 @@ const PromptFluency = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Prompt Fluency Toolkit | Master AI Communication | The AI Expert"
+        description="Master the art of AI communication with the CRISP framework. Download our free Prompt Fluency Toolkit with best practices, examples, and techniques for effective prompting."
+        keywords="prompt engineering, prompt fluency, CRISP framework, AI prompting, ChatGPT prompts, effective prompting, AI communication"
+        canonicalUrl="/promptfluency"
+      />
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         {/* Animated Background */}

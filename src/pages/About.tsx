@@ -14,7 +14,9 @@ import {
   Users,
   Shield,
 } from "lucide-react";
-import erikPhoto from "@/assets/Erik-Headshot.png";
+import erikPhoto from "@/assets/Erik-Headshot.jpg";
+import SEOHead from "@/components/SEOHead";
+import { StructuredData, personSchema } from "@/components/StructuredData";
 
 const About = () => {
   const experience = [
@@ -85,6 +87,13 @@ const About = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="About Erik Schwartz | AI Leadership & Consulting"
+        description="Meet Erik Schwartz, an AI consultant and fractional CAIO with enterprise experience at Microsoft, Comcast, and Hotwire. Expert AI strategy and implementation for SMBs."
+        keywords="Erik Schwartz, AI consultant, fractional CAIO, AI leadership, enterprise AI, Microsoft AI, AI strategy consultant"
+        canonicalUrl="/about"
+      />
+      <StructuredData schema={personSchema} />
       {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-cyber opacity-30" />
@@ -99,6 +108,7 @@ const About = () => {
                     src={erikPhoto}
                     alt="Erik Schwartz"
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="absolute -bottom-4 -right-4 bg-card border-2 border-primary px-6 py-3 rounded-lg shadow-cyber backdrop-blur-sm">

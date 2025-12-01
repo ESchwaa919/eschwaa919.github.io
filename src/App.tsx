@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import AmbientBackground from "@/components/AmbientBackground";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Process from "./pages/Process";
@@ -32,6 +33,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <AmbientBackground particleCount={40} showGrid={true} intensity="medium" />
         <Navigation />
         <Routes>
           <Route path="/" element={<Index />} />

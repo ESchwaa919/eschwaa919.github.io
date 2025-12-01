@@ -13,12 +13,23 @@ import {
   ExternalLink,
   Users,
   Shield,
+  Sparkles,
+  Zap,
 } from "lucide-react";
 import erikPhoto from "@/assets/Erik-Headshot.jpg";
 import SEOHead from "@/components/SEOHead";
 import { StructuredData, personSchema } from "@/components/StructuredData";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const About = () => {
+  // Scroll reveal hooks for each section
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: journeyRef, isVisible: journeyVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: visionRef, isVisible: visionVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: philosophyRef, isVisible: philosophyVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: differentiatorRef, isVisible: differentiatorVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: thoughtLeadershipRef, isVisible: thoughtLeadershipVisible } = useScrollReveal({ threshold: 0.1 });
+
   const experience = [
     {
       company: "Microsoft",
@@ -96,27 +107,53 @@ const About = () => {
       <StructuredData schema={personSchema} />
       {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-cyber opacity-30" />
+        {/* Subtle background glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-3xl" />
+        </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div
+          ref={heroRef}
+          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="grid lg:grid-cols-5 gap-12 items-center max-w-7xl mx-auto">
             {/* Photo */}
             <div className="lg:col-span-2 flex justify-center">
               <div className="relative">
-                <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 shadow-cyber">
-                  <img
-                    src={erikPhoto}
-                    alt="Erik Schwartz"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="absolute -bottom-4 -right-4 bg-card border-2 border-primary px-6 py-3 rounded-lg shadow-cyber backdrop-blur-sm">
-                  <div className="text-2xl font-heading text-primary glow-green">
-                    20+
+                {/* Glow backdrop */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 rounded-full blur-2xl opacity-50" />
+
+                {/* Photo container with cyber frame */}
+                <div className="relative">
+                  {/* Cyber corners */}
+                  <div className="absolute -top-3 -left-3 w-10 h-10 border-t-2 border-l-2 border-primary/60 rounded-tl-lg" />
+                  <div className="absolute -top-3 -right-3 w-10 h-10 border-t-2 border-r-2 border-primary/60 rounded-tr-lg" />
+                  <div className="absolute -bottom-3 -left-3 w-10 h-10 border-b-2 border-l-2 border-primary/60 rounded-bl-lg" />
+                  <div className="absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 border-primary/60 rounded-br-lg" />
+
+                  <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 shadow-elevated">
+                    <img
+                      src={erikPhoto}
+                      alt="Erik Schwartz"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    Years Experience
+                </div>
+
+                {/* Floating badge */}
+                <div className="absolute -bottom-4 -right-4 glass-card p-4 rounded-xl animate-float shadow-glow-card">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                      <Zap className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-heading text-primary glow-green">20+</div>
+                      <div className="text-xs text-muted-foreground">Years Experience</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -124,8 +161,16 @@ const About = () => {
 
             {/* Hero Content */}
             <div className="lg:col-span-3 space-y-6">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30">
+                <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
+                <span className="text-sm font-heading text-primary tracking-wider">
+                  FRACTIONAL CAIO
+                </span>
+              </div>
+
               <h1 className="text-4xl md:text-6xl font-heading leading-tight">
-                <span className="text-primary glow-green">MEET ERIK</span>
+                <span className="text-gradient-animate glow-green-intense">MEET ERIK</span>
                 <br />
                 <span className="text-foreground">SCHWARTZ</span>
               </h1>
@@ -134,7 +179,7 @@ const About = () => {
                 Your Fractional CAIO and Trusted AI Partner
               </p>
 
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
                 A seasoned technology executive with over two decades of
                 experience leading AI, search, and knowledge discovery at
                 Microsoft, Comcast, and Elsevier. Now helping forward-looking
@@ -144,7 +189,7 @@ const About = () => {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold"
+                  className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-6 py-5 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
                   asChild
                 >
                   <a
@@ -154,12 +199,13 @@ const About = () => {
                   >
                     <Calendar className="w-5 h-5 mr-2" />
                     Book a Strategy Call
+                    <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
                   </a>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-primary text-primary hover:bg-primary/10 font-semibold"
+                  className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary font-semibold px-6 py-5 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)]"
                   asChild
                 >
                   <a
@@ -178,21 +224,34 @@ const About = () => {
       </section>
 
       {/* Career Journey */}
-      <section className="py-24 bg-card/30">
-        <div className="container mx-auto px-4">
+      <section className="py-24 section-glow relative">
+        <div
+          ref={journeyRef}
+          className={`container mx-auto px-4 transition-all duration-1000 ${
+            journeyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-heading mb-6">
                 <span className="text-foreground">THE</span>{" "}
-                <span className="text-primary glow-green">JOURNEY</span>
+                <span className="text-gradient-animate glow-green">JOURNEY</span>
               </h2>
               <p className="text-xl text-muted-foreground">
                 From NYC to UK: Two decades building AI at enterprise scale
               </p>
             </div>
 
-            <Card className="bg-card border-2 border-border shadow-cyber">
-              <CardContent className="p-8 space-y-6">
+            {/* Card with cyber corners */}
+            <div className="relative">
+              {/* Cyber corners */}
+              <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-primary/50" />
+              <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-primary/50" />
+              <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-primary/50" />
+              <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-primary/50" />
+
+              <Card className="glass-card border border-primary/20 shadow-glow-card">
+                <CardContent className="p-8 space-y-6">
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Erik Schwartz is a technology leader and entrepreneur with more than twenty years of hands-on experience helping teams use AI to solve real business problems. He founded TheAiExpert.ai to make modern AI accessible to small and medium businesses — especially those who know they need to get started, but aren't sure how.
                 </p>
@@ -222,27 +281,27 @@ const About = () => {
                   {" "}shows his commitment to one thing: helping people find information faster, make better decisions, and unlock new opportunities. Today, Erik brings that same experience to business owners who want to understand AI, put it to work, and stay ahead of the curve.
                 </p>
 
-                <div className="pt-6 border-t border-border">
-                  <h3 className="text-xl font-heading text-primary mb-4">
+                <div className="pt-6 border-t border-border/50">
+                  <h3 className="text-xl font-heading text-primary mb-4 glow-green">
                     ENTERPRISE EXPERIENCE
                   </h3>
-                  <div className="space-y-4">
+                  <div className="grid md:grid-cols-3 gap-4">
                     {experience.map((exp, index) => (
                       <div
                         key={index}
-                        className="flex items-start gap-4 p-4 rounded-lg bg-primary/5 border border-primary/20"
+                        className="group flex flex-col gap-2 p-5 rounded-lg glass border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-[0_0_20px_hsla(155,100%,45%,0.1)]"
                       >
-                        <Building2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                        <div>
-                          <div className="font-heading text-foreground">
-                            {exp.company}
-                          </div>
-                          <div className="text-sm text-primary">
-                            {exp.role}
-                          </div>
-                          <div className="text-sm text-muted-foreground">
-                            {exp.years}
-                          </div>
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/30 group-hover:bg-primary/20 transition-colors">
+                          <Building2 className="w-5 h-5 text-primary" />
+                        </div>
+                        <div className="font-heading text-lg text-foreground group-hover:text-primary transition-colors">
+                          {exp.company}
+                        </div>
+                        <div className="text-sm text-primary font-medium">
+                          {exp.role}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          {exp.years}
                         </div>
                       </div>
                     ))}
@@ -250,69 +309,104 @@ const About = () => {
                 </div>
               </CardContent>
             </Card>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Vision & Mission */}
       <section className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-cyber opacity-30" />
+        {/* Subtle background effects */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/4 w-[600px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[300px] bg-secondary/5 rounded-full blur-3xl" />
+        </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div
+          ref={visionRef}
+          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
+            visionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="max-w-4xl mx-auto space-y-8">
             {/* Vision */}
-            <Card className="bg-card border-2 border-primary/30 shadow-cyber">
-              <CardContent className="p-10 space-y-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <Rocket className="w-14 h-14 text-primary glow-green" />
-                  <h3 className="text-3xl font-heading text-primary">
-                    VISION
-                  </h3>
-                </div>
-                <p className="text-2xl font-light text-foreground leading-relaxed">
-                  To help every ambitious business unlock the advantage of intelligence.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  AI is reshaping how organisations operate, compete, and grow. But the real opportunity is not in the tools — it's in what leaders choose to do with them. My vision is a world where small and medium businesses can access the same level of intelligence, automation, and capability that used to be reserved for global enterprises. A world where AI extends human capability, accelerates progress, and frees people to focus on the work that matters.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  I believe the next generation of successful companies will be the ones who embrace AI early, build competency within their teams, and redesign their operations around intelligent workflows. My role is to help them get there with clarity, confidence, and momentum.
-                </p>
-              </CardContent>
-            </Card>
+            <div className="relative group">
+              {/* Cyber corners */}
+              <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-primary/40 group-hover:border-primary/70 transition-colors" />
+              <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-primary/40 group-hover:border-primary/70 transition-colors" />
+              <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-primary/40 group-hover:border-primary/70 transition-colors" />
+              <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-primary/40 group-hover:border-primary/70 transition-colors" />
+
+              <Card className="glass-card border border-primary/20 hover:border-primary/40 shadow-glow-card transition-all duration-500 hover:shadow-[0_0_60px_hsla(155,100%,45%,0.1)]">
+                <CardContent className="p-10 space-y-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/30 animate-glow-pulse">
+                      <Rocket className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="text-3xl font-heading text-primary glow-green">
+                      VISION
+                    </h3>
+                  </div>
+                  <p className="text-2xl font-light text-foreground leading-relaxed">
+                    To help every ambitious business unlock the advantage of intelligence.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    AI is reshaping how organisations operate, compete, and grow. But the real opportunity is not in the tools — it's in what leaders choose to do with them. My vision is a world where small and medium businesses can access the same level of intelligence, automation, and capability that used to be reserved for global enterprises. A world where AI extends human capability, accelerates progress, and frees people to focus on the work that matters.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    I believe the next generation of successful companies will be the ones who embrace AI early, build competency within their teams, and redesign their operations around intelligent workflows. My role is to help them get there with clarity, confidence, and momentum.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
 
             {/* Mission */}
-            <Card className="bg-card border-2 border-secondary/30 shadow-cyber">
-              <CardContent className="p-10 space-y-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <Target className="w-14 h-14 text-secondary glow-pink" />
-                  <h3 className="text-3xl font-heading text-secondary">
-                    MISSION
-                  </h3>
-                </div>
-                <p className="text-2xl font-light text-foreground leading-relaxed">
-                  To guide forward-looking business owners from AI-curious to AI-powered through a simple, practical, three-stage journey.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  My mission is to remove the confusion and noise around AI and replace it with a grounded, evidence-based path that any organisation can follow. I work directly with leadership teams to build the literacy, strategy, and prototypes that prove value fast — and then scale into real operational impact.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  I don't hype. I don't theorise. I help you ship working solutions that save time, reduce cost, and strengthen your competitive position.
-                </p>
-              </CardContent>
-            </Card>
+            <div className="relative group">
+              {/* Cyber corners - secondary color */}
+              <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-secondary/40 group-hover:border-secondary/70 transition-colors" />
+              <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-secondary/40 group-hover:border-secondary/70 transition-colors" />
+              <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-secondary/40 group-hover:border-secondary/70 transition-colors" />
+              <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-secondary/40 group-hover:border-secondary/70 transition-colors" />
+
+              <Card className="glass-card border border-secondary/20 hover:border-secondary/40 transition-all duration-500 hover:shadow-[0_0_60px_hsla(320,85%,55%,0.1)]">
+                <CardContent className="p-10 space-y-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-16 h-16 rounded-xl bg-secondary/10 flex items-center justify-center border border-secondary/30">
+                      <Target className="w-8 h-8 text-secondary" />
+                    </div>
+                    <h3 className="text-3xl font-heading text-secondary glow-pink">
+                      MISSION
+                    </h3>
+                  </div>
+                  <p className="text-2xl font-light text-foreground leading-relaxed">
+                    To guide forward-looking business owners from AI-curious to AI-powered through a simple, practical, three-stage journey.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    My mission is to remove the confusion and noise around AI and replace it with a grounded, evidence-based path that any organisation can follow. I work directly with leadership teams to build the literacy, strategy, and prototypes that prove value fast — and then scale into real operational impact.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    I don't hype. I don't theorise. I help you ship working solutions that save time, reduce cost, and strengthen your competitive position.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Philosophy & Approach */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
+      <section className="py-24 section-glow relative">
+        <div
+          ref={philosophyRef}
+          className={`container mx-auto px-4 transition-all duration-1000 ${
+            philosophyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-heading mb-6">
                 <span className="text-foreground">PHILOSOPHY &</span>{" "}
-                <span className="text-primary glow-green">APPROACH</span>
+                <span className="text-gradient-animate glow-green">APPROACH</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Six core principles that guide every engagement
@@ -325,13 +419,13 @@ const About = () => {
                 return (
                   <Card
                     key={index}
-                    className="bg-card border-2 border-border hover:border-primary/50 transition-all shadow-cyber group"
+                    className="card-enhanced group"
                   >
                     <CardContent className="p-8 space-y-4">
-                      <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center border-2 border-primary/30 group-hover:bg-primary/20 group-hover:border-primary transition-all">
-                        <Icon className="w-7 h-7 text-primary group-hover:glow-green" />
+                      <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/60 group-hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)] transition-all duration-300">
+                        <Icon className="w-7 h-7 text-primary" />
                       </div>
-                      <h3 className="text-xl font-heading text-primary">
+                      <h3 className="text-xl font-heading text-primary group-hover:glow-green transition-all">
                         {principle.title}
                       </h3>
                       <p className="text-muted-foreground leading-relaxed">
@@ -347,66 +441,90 @@ const About = () => {
       </section>
 
       {/* What Makes This Different */}
-      <section className="py-24 bg-card/30">
-        <div className="container mx-auto px-4">
+      <section className="py-24 relative">
+        {/* Subtle glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+        </div>
+
+        <div
+          ref={differentiatorRef}
+          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
+            differentiatorVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="max-w-4xl mx-auto">
-            <Card className="bg-card border-2 border-primary/30 shadow-cyber">
-              <CardContent className="p-12">
-                <h2 className="text-3xl font-heading text-primary mb-8 text-center">
-                  WHAT MAKES THIS DIFFERENT
-                </h2>
+            {/* Card with cyber corners */}
+            <div className="relative">
+              <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-primary/50" />
+              <div className="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-primary/50" />
+              <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-primary/50" />
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-primary/50" />
 
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  {differentiators.map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                      <p className="text-muted-foreground">{item}</p>
-                    </div>
-                  ))}
-                </div>
+              <Card className="glass-card border border-primary/20 shadow-glow-card">
+                <CardContent className="p-12">
+                  <h2 className="text-3xl font-heading text-primary glow-green mb-8 text-center">
+                    WHAT MAKES THIS DIFFERENT
+                  </h2>
 
-                <div className="text-center pt-8 border-t border-border">
-                  <p className="text-lg text-muted-foreground italic mb-6">
-                    "The AI Expert: Where AI expertise meets real-world
-                    application."
-                  </p>
-
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button
-                      size="lg"
-                      className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold"
-                      asChild
-                    >
-                      <Link to="/contact">
-                        Let's Work Together
-                        <ArrowRight className="w-5 h-5 ml-2" />
-                      </Link>
-                    </Button>
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="border-2 border-primary text-primary hover:bg-primary/10 font-semibold"
-                      asChild
-                    >
-                      <Link to="/process">Explore The Process</Link>
-                    </Button>
+                  <div className="grid md:grid-cols-2 gap-6 mb-8">
+                    {differentiators.map((item, index) => (
+                      <div key={index} className="flex items-start gap-3 group">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all flex-shrink-0 mt-0.5">
+                          <CheckCircle2 className="w-4 h-4 text-primary" />
+                        </div>
+                        <p className="text-foreground/80 group-hover:text-foreground transition-colors">{item}</p>
+                      </div>
+                    ))}
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+
+                  <div className="text-center pt-8 border-t border-border/50">
+                    <p className="text-lg text-muted-foreground italic mb-6">
+                      "The AI Expert: Where AI expertise meets real-world
+                      application."
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <Button
+                        size="lg"
+                        className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-6 py-5 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
+                        asChild
+                      >
+                        <Link to="/contact">
+                          Let's Work Together
+                          <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                        </Link>
+                      </Button>
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary font-semibold px-6 py-5 transition-all duration-300 hover:scale-105"
+                        asChild
+                      >
+                        <Link to="/process">Explore The Process</Link>
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Thought Leadership Links */}
-      <section className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-cyber opacity-30" />
-
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-24 section-glow relative">
+        <div
+          ref={thoughtLeadershipRef}
+          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
+            thoughtLeadershipVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-heading text-primary mb-4">
-                EXPLORE ERIK'S THOUGHT LEADERSHIP
+              <h2 className="text-3xl font-heading mb-4">
+                <span className="text-foreground">EXPLORE ERIK'S</span>{" "}
+                <span className="text-primary glow-green">THOUGHT LEADERSHIP</span>
               </h2>
               <p className="text-muted-foreground">
                 Dive deeper into AI strategy, implementation, and industry
@@ -415,10 +533,12 @@ const About = () => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-card border-2 border-border hover:border-primary transition-all shadow-cyber group">
+              <Card className="card-enhanced group">
                 <CardContent className="p-8">
-                  <div className="text-4xl mb-4">📚</div>
-                  <h3 className="text-xl font-heading text-primary mb-2 group-hover:glow-green">
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/30 mb-4 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all">
+                    <Sparkles className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-heading text-primary mb-2 group-hover:glow-green transition-all">
                     AI Insights & Resources
                   </h3>
                   <p className="text-muted-foreground mb-4">
@@ -426,20 +546,23 @@ const About = () => {
                   </p>
                   <Button
                     variant="ghost"
-                    className="text-primary hover:text-primary/80 p-0 h-auto font-semibold"
+                    className="text-primary hover:text-primary/80 p-0 h-auto font-semibold group/btn"
                     asChild
                   >
-                    <Link to="/resources">
-                      Read Insights →
+                    <Link to="/resources" className="inline-flex items-center">
+                      Read Insights
+                      <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover/btn:translate-x-1" />
                     </Link>
                   </Button>
                 </CardContent>
               </Card>
 
-              <Card className="bg-card border-2 border-border hover:border-primary transition-all shadow-cyber group">
+              <Card className="card-enhanced group">
                 <CardContent className="p-8">
-                  <div className="text-4xl mb-4">🎙️</div>
-                  <h3 className="text-xl font-heading text-primary mb-2 group-hover:glow-green">
+                  <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center border border-secondary/30 mb-4 group-hover:bg-secondary/20 group-hover:border-secondary/50 transition-all">
+                    <ExternalLink className="w-7 h-7 text-secondary" />
+                  </div>
+                  <h3 className="text-xl font-heading text-secondary mb-2 group-hover:glow-pink transition-all">
                     Media & Speaking
                   </h3>
                   <p className="text-muted-foreground mb-4">
@@ -447,11 +570,12 @@ const About = () => {
                   </p>
                   <Button
                     variant="ghost"
-                    className="text-primary hover:text-primary/80 p-0 h-auto font-semibold"
+                    className="text-secondary hover:text-secondary/80 p-0 h-auto font-semibold group/btn"
                     asChild
                   >
-                    <Link to="/resources#media">
-                      Watch & Listen →
+                    <Link to="/resources#media" className="inline-flex items-center">
+                      Watch & Listen
+                      <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover/btn:translate-x-1" />
                     </Link>
                   </Button>
                 </CardContent>

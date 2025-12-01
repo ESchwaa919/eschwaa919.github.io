@@ -14,11 +14,20 @@ import {
   Lightbulb,
   Target,
   CheckCircle2,
+  Sparkles,
 } from "lucide-react";
 import { useLeadCapture } from "@/hooks/useLeadCapture";
 import { LeadCaptureModal } from "@/components/LeadCaptureModal";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Resources = () => {
+  // Scroll reveal hooks
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: toolsRef, isVisible: toolsVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: insightsRef, isVisible: insightsVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: downloadsRef, isVisible: downloadsVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: mediaRef, isVisible: mediaVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
   const {
     showModal,
     isSubmitting,
@@ -254,21 +263,40 @@ const Resources = () => {
         canonicalUrl="/resources"
       />
       {/* Hero Section */}
-      <section className="container mx-auto px-4 mb-20">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
+      <section className="container mx-auto px-4 mb-20 relative">
+        {/* Subtle background glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-[500px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-secondary/5 rounded-full blur-3xl" />
+        </div>
+
+        <div
+          ref={heroRef}
+          className={`max-w-4xl mx-auto text-center space-y-6 relative z-10 transition-all duration-1000 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30">
+            <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
+            <span className="text-sm font-heading text-primary tracking-wider">
+              FREE TOOLS & INSIGHTS
+            </span>
+          </div>
+
           <h1 className="text-5xl md:text-6xl font-heading leading-tight">
-            <span className="text-primary glow-green">AI RESOURCES</span>
+            <span className="text-gradient-animate glow-green-intense">AI RESOURCES</span>
             <br />
             <span className="text-foreground">
               TO ACCELERATE YOUR JOURNEY
             </span>
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             Practical frameworks, tools, and insights to help you build AI
             capabilities and drive real business value.
           </p>
           {isLeadCaptured && (
-            <p className="text-sm text-primary">
+            <p className="text-sm text-primary glow-green">
               Welcome back! Downloads are instant for the next 24 hours.
             </p>
           )}
@@ -276,61 +304,80 @@ const Resources = () => {
       </section>
 
       {/* Interactive Tools Section */}
-      <section className="container mx-auto px-4 mb-24" id="tools">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-heading mb-4">
-            <span className="text-primary glow-green">INTERACTIVE TOOLS</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Free tools to assess your AI readiness and calculate potential ROI
-          </p>
-        </div>
+      <section className="container mx-auto px-4 mb-24 section-glow" id="tools">
+        <div
+          ref={toolsRef}
+          className={`transition-all duration-1000 ${
+            toolsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-heading mb-4">
+              <span className="text-gradient-animate glow-green">INTERACTIVE TOOLS</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Free tools to assess your AI readiness and calculate potential ROI
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {tools.map((tool, index) => {
-            const Icon = tool.icon;
-            return (
-              <Card
-                key={index}
-                className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg group hover:shadow-cyber-xl transition-all h-full flex flex-col"
-              >
-                <CardContent className="p-10 flex-1 flex flex-col">
-                  <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-6 group-hover:glow-green transition-all">
-                    <Icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-heading text-foreground mb-4">
-                    {tool.name}
-                  </h3>
-                  <p className="text-muted-foreground mb-8 leading-relaxed flex-grow">
-                    {tool.description}
-                  </p>
-                  <Button
-                    size="lg"
-                    className={`w-full ${
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {tools.map((tool, index) => {
+              const Icon = tool.icon;
+              return (
+                <Card
+                  key={index}
+                  className="card-enhanced group h-full flex flex-col"
+                >
+                  <CardContent className="p-10 flex-1 flex flex-col">
+                    <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 border transition-all ${
                       tool.color === "primary"
-                        ? "bg-primary text-primary-foreground hover:bg-primary/90 glow-green"
-                        : "bg-secondary text-secondary-foreground hover:bg-secondary/90 glow-pink"
-                    } font-semibold py-6 shadow-cyber`}
-                    asChild
-                  >
-                    <Link to={tool.link}>
-                      {tool.cta}
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            );
-          })}
+                        ? "bg-primary/10 border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 group-hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)]"
+                        : "bg-secondary/10 border-secondary/30 group-hover:bg-secondary/20 group-hover:border-secondary/50 group-hover:shadow-[0_0_20px_hsla(320,85%,55%,0.2)]"
+                    }`}>
+                      <Icon className={`w-8 h-8 ${tool.color === "primary" ? "text-primary" : "text-secondary"}`} />
+                    </div>
+                    <h3 className={`text-2xl font-heading text-foreground mb-4 transition-colors ${
+                      tool.color === "primary" ? "group-hover:text-primary" : "group-hover:text-secondary"
+                    }`}>
+                      {tool.name}
+                    </h3>
+                    <p className="text-muted-foreground mb-8 leading-relaxed flex-grow">
+                      {tool.description}
+                    </p>
+                    <Button
+                      size="lg"
+                      className={`w-full group/btn ${
+                        tool.color === "primary"
+                          ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
+                          : "bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(320,85%,55%,0.4)]"
+                      } font-semibold py-6`}
+                      asChild
+                    >
+                      <Link to={tool.link}>
+                        {tool.cta}
+                        <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover/btn:translate-x-1" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       {/* Featured Insights */}
-      <section className="py-20 bg-gradient-to-br from-background to-card/30 border-y border-border">
-        <div className="container mx-auto px-4">
+      <section className="py-20 section-glow relative">
+        <div
+          ref={insightsRef}
+          className={`container mx-auto px-4 transition-all duration-1000 ${
+            insightsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-heading mb-4">
-              <span className="text-foreground">FEATURED INSIGHTS</span>
+              <span className="text-foreground">FEATURED </span>
+              <span className="text-gradient-animate glow-green">INSIGHTS</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Practical guidance from the front lines of AI transformation
@@ -343,18 +390,18 @@ const Resources = () => {
               return (
                 <Card
                   key={index}
-                  className="bg-card border-2 border-border hover:border-primary/50 transition-all shadow-cyber group h-full flex flex-col"
+                  className="card-enhanced group h-full flex flex-col"
                 >
                   <CardContent className="p-6 flex-1 flex flex-col">
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 border border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all">
                         <Icon className="w-6 h-6 text-primary" />
                       </div>
                       <div className="flex-1">
                         <span className="text-xs text-primary font-semibold uppercase tracking-wide">
                           {insight.category}
                         </span>
-                        <h3 className="text-xl font-heading text-foreground mt-1">
+                        <h3 className="text-xl font-heading text-foreground mt-1 group-hover:text-primary transition-colors">
                           {insight.title}
                         </h3>
                       </div>
@@ -365,18 +412,18 @@ const Resources = () => {
                     <div className="flex flex-wrap gap-3">
                       <Button
                         variant="outline"
-                        className="border-primary text-primary hover:bg-primary/10 font-semibold"
+                        className="border-primary/50 text-primary hover:bg-primary/10 hover:border-primary font-semibold group/btn"
                         asChild
                       >
                         <a href={insight.link} target="_blank" rel="noopener noreferrer">
                           Read Article
-                          <ArrowRight className="w-4 h-4 ml-2" />
+                          <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
                         </a>
                       </Button>
                       {insight.file && (
                         <Button
                           variant="outline"
-                          className="border-secondary text-secondary hover:bg-secondary/10 font-semibold"
+                          className="border-secondary/50 text-secondary hover:bg-secondary/10 hover:border-secondary font-semibold"
                           onClick={() => handleInsightDownload(insight)}
                         >
                           <Download className="w-4 h-4 mr-2" />
@@ -394,68 +441,80 @@ const Resources = () => {
 
       {/* Downloadable Resources */}
       <section className="container mx-auto px-4 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-heading mb-4">
-            <span className="text-secondary glow-pink">
-              DOWNLOADABLE RESOURCES
-            </span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Free frameworks, guides, and templates to support your AI journey
-          </p>
-        </div>
+        <div
+          ref={downloadsRef}
+          className={`transition-all duration-1000 ${
+            downloadsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-heading mb-4">
+              <span className="text-gradient-animate glow-pink" style={{ backgroundImage: 'linear-gradient(135deg, hsl(320, 85%, 55%), hsl(280, 85%, 55%), hsl(320, 85%, 55%))' }}>
+                DOWNLOADABLE RESOURCES
+              </span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Free frameworks, guides, and templates to support your AI journey
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-          {downloads.map((resource, index) => {
-            const Icon = resource.icon;
-            return (
-              <Card
-                key={index}
-                className="bg-card border-2 border-border hover:border-secondary/50 transition-all shadow-cyber group"
-              >
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-6 h-6 text-secondary" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs text-secondary font-semibold uppercase tracking-wide">
-                          {resource.type}
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          {resource.size}
-                        </span>
+          <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            {downloads.map((resource, index) => {
+              const Icon = resource.icon;
+              return (
+                <Card
+                  key={index}
+                  className="card-enhanced group"
+                >
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0 border border-secondary/30 group-hover:bg-secondary/20 group-hover:border-secondary/50 transition-all">
+                        <Icon className="w-6 h-6 text-secondary" />
                       </div>
-                      <h3 className="text-xl font-heading text-foreground">
-                        {resource.title}
-                      </h3>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-xs text-secondary font-semibold uppercase tracking-wide">
+                            {resource.type}
+                          </span>
+                          <span className="text-xs text-muted-foreground">
+                            {resource.size}
+                          </span>
+                        </div>
+                        <h3 className="text-xl font-heading text-foreground group-hover:text-secondary transition-colors">
+                          {resource.title}
+                        </h3>
+                      </div>
                     </div>
-                  </div>
-                  <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
-                    {resource.description}
-                  </p>
-                  <Button
-                    variant="outline"
-                    className="w-full border-secondary text-secondary hover:bg-secondary/10 font-semibold"
-                    onClick={() => handleDownloadClick(resource)}
-                  >
-                    <Download className="w-4 h-4 mr-2" />
-                    {isLeadCaptured ? "Download Now" : `Download ${resource.type}`}
-                  </Button>
-                </CardContent>
-              </Card>
-            );
-          })}
+                    <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                      {resource.description}
+                    </p>
+                    <Button
+                      variant="outline"
+                      className="w-full border-secondary/50 text-secondary hover:bg-secondary/10 hover:border-secondary font-semibold transition-all"
+                      onClick={() => handleDownloadClick(resource)}
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      {isLeadCaptured ? "Download Now" : `Download ${resource.type}`}
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       {/* Media & Speaking */}
-      <section className="py-20 bg-gradient-to-br from-background to-card/30 border-y border-border">
-        <div className="container mx-auto px-4">
+      <section className="py-20 section-glow relative" id="media">
+        <div
+          ref={mediaRef}
+          className={`container mx-auto px-4 transition-all duration-1000 ${
+            mediaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-heading mb-4">
-              <span className="text-primary glow-green">
+              <span className="text-gradient-animate glow-green">
                 MEDIA & SPEAKING
               </span>
             </h2>
@@ -468,11 +527,11 @@ const Resources = () => {
             {media.map((item, index) => (
               <Card
                 key={index}
-                className="bg-card border-2 border-border hover:border-primary/30 transition-all shadow-cyber"
+                className="card-enhanced group"
               >
                 <CardContent className="p-6">
                   <div className="flex items-start gap-6">
-                    <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 border border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all">
                       {(item.type === "Podcast" || item.type === "Video") && (
                         <Video className="w-8 h-8 text-primary" />
                       )}
@@ -528,33 +587,49 @@ const Resources = () => {
 
       {/* Newsletter CTA */}
       <section className="container mx-auto px-4 py-20">
-        <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg">
-          <CardContent className="p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
-              STAY AHEAD OF THE AI CURVE
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Get practical AI insights, frameworks, and case studies delivered
-              monthly. No hype, just actionable guidance.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-xl mx-auto">
-              <input
-                type="email"
-                placeholder="your.email@company.com"
-                className="flex-1 px-6 py-4 rounded-lg border-2 border-border bg-background text-foreground focus:border-primary focus:outline-none"
-              />
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold px-10 py-4 shadow-cyber"
-              >
-                Subscribe
-              </Button>
-            </div>
-            <p className="text-xs text-muted-foreground mt-4">
-              Join 5,000+ business leaders • Unsubscribe anytime • No spam, ever
-            </p>
-          </CardContent>
-        </Card>
+        <div
+          ref={ctaRef}
+          className={`transition-all duration-1000 ${
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className="relative max-w-4xl mx-auto">
+            {/* Cyber corners */}
+            <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-primary/60" />
+            <div className="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-primary/60" />
+            <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-primary/60" />
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-primary/60" />
+
+            <Card className="glass-card border border-primary/30 shadow-glow-card">
+              <CardContent className="p-12 text-center">
+                <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
+                  STAY AHEAD OF THE <span className="text-primary glow-green">AI CURVE</span>
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                  Get practical AI insights, frameworks, and case studies delivered
+                  monthly. No hype, just actionable guidance.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-xl mx-auto">
+                  <input
+                    type="email"
+                    placeholder="your.email@company.com"
+                    className="flex-1 px-6 py-4 rounded-lg border-2 border-border/50 bg-background/50 text-foreground focus:border-primary focus:outline-none transition-colors"
+                  />
+                  <Button
+                    size="lg"
+                    className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-10 py-4 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
+                  >
+                    Subscribe
+                    <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </div>
+                <p className="text-xs text-muted-foreground mt-4">
+                  Join 5,000+ business leaders • Unsubscribe anytime • No spam, ever
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </section>
 
       {/* Final CTA */}
@@ -566,12 +641,12 @@ const Resources = () => {
           <Button
             size="lg"
             variant="outline"
-            className="border-2 border-primary text-primary hover:bg-primary/10 font-semibold px-10 py-6"
+            className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary font-semibold px-10 py-6 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)]"
             asChild
           >
             <Link to="/contact">
               Book a Strategy Call
-              <ArrowRight className="w-5 h-5 ml-2" />
+              <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>

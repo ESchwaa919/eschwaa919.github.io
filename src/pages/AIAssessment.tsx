@@ -4,9 +4,10 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
-import { ChevronLeft, ChevronRight, CheckCircle2, Target, TrendingUp, Users, Lightbulb, Award, BarChart3 } from "lucide-react";
+import { ChevronLeft, ChevronRight, CheckCircle2, Target, TrendingUp, Users, Lightbulb, Award, BarChart3, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import emailjs from "@emailjs/browser";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface Question {
   title: string;
@@ -27,6 +28,12 @@ const AIAssessment = () => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showResults, setShowResults] = useState(false);
   const [showEmailCapture, setShowEmailCapture] = useState(false);
+
+  // Scroll reveal hooks
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: featuresRef, isVisible: featuresVisible } = useScrollReveal({ threshold: 0.1, delay: 200 });
+  const { ref: resultsRef, isVisible: resultsVisible } = useScrollReveal({ threshold: 0.1 });
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -438,10 +445,24 @@ const AIAssessment = () => {
         {/* Hero Section */}
         <section className="relative min-h-[85vh] flex items-center bg-gradient-cyber overflow-hidden">
           <div className="absolute inset-0 bg-background opacity-90" />
-          <div className="container mx-auto px-4 relative z-10">
+          {/* Background glow effects */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
+          <div
+            ref={heroRef}
+            className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
+              heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            }`}
+          >
             <div className="max-w-4xl mx-auto text-center">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-6">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Free AI Readiness Evaluation</span>
+              </div>
+
               <h1 className="text-4xl md:text-6xl font-heading mb-6 leading-tight">
-                <span className="text-primary glow-green">AI COMPETENCY</span>
+                <span className="text-gradient-animate">AI COMPETENCY</span>
                 <br />
                 <span className="text-foreground">ASSESSMENT</span>
               </h1>
@@ -452,7 +473,7 @@ const AIAssessment = () => {
                 <Button
                   size="lg"
                   onClick={() => setHasStarted(true)}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-10 py-7 rounded-full shadow-cyber glow-green"
+                  className="group relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-10 py-7 rounded-full shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
                 >
                   Start Assessment
                 </Button>
@@ -460,62 +481,63 @@ const AIAssessment = () => {
                   size="lg"
                   variant="outline"
                   asChild
-                  className="border-2 border-primary text-primary hover:bg-primary/10 text-lg px-10 py-7 rounded-full"
+                  className="border-2 border-primary text-primary hover:bg-primary/10 text-lg px-10 py-7 rounded-full transition-all duration-300 hover:scale-105"
                 >
                   <a href="/contact">Schedule Consultation</a>
                 </Button>
               </div>
               <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-                <div className="flex flex-col items-center gap-2 text-primary">
-                  <Award className="w-8 h-8" />
-                  <p className="text-sm text-muted-foreground">Free & Confidential</p>
-                </div>
-                <div className="flex flex-col items-center gap-2 text-primary">
-                  <BarChart3 className="w-8 h-8" />
-                  <p className="text-sm text-muted-foreground">8 Key Dimensions</p>
-                </div>
-                <div className="flex flex-col items-center gap-2 text-primary">
-                  <Target className="w-8 h-8" />
-                  <p className="text-sm text-muted-foreground">Personalized Results</p>
-                </div>
+                {[
+                  { icon: Award, label: "Free & Confidential" },
+                  { icon: BarChart3, label: "8 Key Dimensions" },
+                  { icon: Target, label: "Personalized Results" },
+                ].map((item, index) => (
+                  <div key={index} className="flex flex-col items-center gap-2 group">
+                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 group-hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)] transition-all">
+                      <item.icon className="w-7 h-7 text-primary" />
+                    </div>
+                    <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{item.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
         {/* Features Section */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-heading text-center mb-12 text-primary glow-green">
+        <section className="py-20 bg-background relative">
+          {/* Section glow */}
+          <div className="section-glow" />
+          <div
+            ref={featuresRef}
+            className={`container mx-auto px-4 transition-all duration-1000 delay-200 ${
+              featuresVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            }`}
+          >
+            <h2 className="text-3xl md:text-4xl font-heading text-center mb-12 text-gradient-animate">
               What You'll Discover
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              <Card className="p-6 hover:shadow-cyber transition-all bg-card border-2 border-border hover:border-primary">
-                <Target className="w-10 h-10 text-primary mb-4" />
-                <h3 className="text-lg font-heading text-foreground mb-2">Strategic Vision</h3>
-                <p className="text-muted-foreground text-sm">How AI fits into your competitive positioning</p>
-              </Card>
-              <Card className="p-6 hover:shadow-cyber transition-all bg-card border-2 border-border hover:border-primary">
-                <Users className="w-10 h-10 text-primary mb-4" />
-                <h3 className="text-lg font-heading text-foreground mb-2">Team Readiness</h3>
-                <p className="text-muted-foreground text-sm">Workforce AI skills and culture</p>
-              </Card>
-              <Card className="p-6 hover:shadow-cyber transition-all bg-card border-2 border-border hover:border-primary">
-                <TrendingUp className="w-10 h-10 text-primary mb-4" />
-                <h3 className="text-lg font-heading text-foreground mb-2">Operational Maturity</h3>
-                <p className="text-muted-foreground text-sm">Process automation and efficiency</p>
-              </Card>
-              <Card className="p-6 hover:shadow-cyber transition-all bg-card border-2 border-border hover:border-primary">
-                <Lightbulb className="w-10 h-10 text-primary mb-4" />
-                <h3 className="text-lg font-heading text-foreground mb-2">Action Plan</h3>
-                <p className="text-muted-foreground text-sm">Personalized next steps and recommendations</p>
-              </Card>
+              {[
+                { icon: Target, title: "Strategic Vision", desc: "How AI fits into your competitive positioning" },
+                { icon: Users, title: "Team Readiness", desc: "Workforce AI skills and culture" },
+                { icon: TrendingUp, title: "Operational Maturity", desc: "Process automation and efficiency" },
+                { icon: Lightbulb, title: "Action Plan", desc: "Personalized next steps and recommendations" },
+              ].map((item, index) => (
+                <Card key={index} className="card-enhanced group p-6">
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/30 mb-4 group-hover:bg-primary/20 group-hover:border-primary/50 group-hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)] transition-all">
+                    <item.icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-heading text-foreground mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm">{item.desc}</p>
+                </Card>
+              ))}
             </div>
             <div className="text-center mt-12">
               <Button
                 size="lg"
                 onClick={() => setHasStarted(true)}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-10 py-6 rounded-full shadow-cyber glow-green"
+                className="group relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-10 py-6 rounded-full shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
               >
                 Begin Your Assessment →
               </Button>
@@ -533,49 +555,65 @@ const AIAssessment = () => {
     const recommendations = generateRecommendations();
 
     return (
-      <div className="min-h-screen bg-gray-50 py-20">
-        <div className="container mx-auto px-4 max-w-5xl">
+      <div className="min-h-screen bg-background py-20">
+        <div
+          ref={resultsRef}
+          className={`container mx-auto px-4 max-w-5xl transition-all duration-1000 ${
+            resultsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
+        >
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-[#1a365d]">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-6">
+              <CheckCircle2 className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium text-primary">Assessment Complete</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-heading mb-4">
+              <span className="text-gradient-animate">
                 YOUR AI ASSESSMENT RESULTS
               </span>
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-muted-foreground">
               Here's how your organisation measures up across the 8 key AI competency dimensions
             </p>
           </div>
 
           {/* Overall Score */}
-          <Card className="border-2 border-[#1a365d] shadow-xl mb-8">
-            <CardContent className="p-12 text-center">
-              <div
-                className="relative w-64 h-64 mx-auto mb-8"
-                style={{
-                  background: `conic-gradient(#1a365d ${percentage * 3.6}deg, #e5e7eb ${percentage * 3.6}deg)`,
-                  borderRadius: "50%",
-                }}
-              >
-                <div className="absolute inset-4 bg-white rounded-full flex items-center justify-center flex-col">
-                  <div className="text-6xl font-bold text-[#1a365d] mb-2">
-                    {percentage}%
+          <div className="relative mb-8">
+            <div className="absolute -top-3 -left-3 w-10 h-10 border-t-2 border-l-2 border-primary/60" />
+            <div className="absolute -top-3 -right-3 w-10 h-10 border-t-2 border-r-2 border-primary/60" />
+            <div className="absolute -bottom-3 -left-3 w-10 h-10 border-b-2 border-l-2 border-primary/60" />
+            <div className="absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 border-primary/60" />
+            <Card className="glass-card border border-primary/30 shadow-glow-card">
+              <CardContent className="p-12 text-center">
+                <div
+                  className="relative w-64 h-64 mx-auto mb-8"
+                  style={{
+                    background: `conic-gradient(hsl(155, 100%, 45%) ${percentage * 3.6}deg, hsl(var(--border)) ${percentage * 3.6}deg)`,
+                    borderRadius: "50%",
+                  }}
+                >
+                  <div className="absolute inset-4 bg-card rounded-full flex items-center justify-center flex-col border border-border">
+                    <div className="text-6xl font-bold text-primary mb-2 glow-green">
+                      {percentage}%
+                    </div>
+                    <div className="text-sm text-muted-foreground">AI Readiness Score</div>
                   </div>
-                  <div className="text-sm text-gray-600">AI Readiness Score</div>
                 </div>
-              </div>
-              <div className={`text-3xl font-bold ${levelColor} mb-2`}>
-                {readinessLevel}
-              </div>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                {levelDescription}
-              </p>
-            </CardContent>
-          </Card>
+                <div className="text-3xl font-heading text-primary glow-green mb-2">
+                  {readinessLevel}
+                </div>
+                <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                  {levelDescription}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
 
           {/* Dimension Scores */}
           <div className="mb-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <h3 className="text-2xl font-heading text-foreground mb-6">
               Detailed Breakdown
             </h3>
             <div className="grid gap-4">
@@ -585,31 +623,31 @@ const AIAssessment = () => {
                 let badgeText = "";
 
                 if (scorePercentage >= 85) {
-                  badgeColor = "bg-[#1a365d]/20 text-[#1a365d] border-[#1a365d]";
+                  badgeColor = "bg-primary/20 text-primary border-primary/50";
                   badgeText = "Excellent";
                 } else if (scorePercentage >= 70) {
-                  badgeColor = "bg-blue-100 text-blue-700 border-blue-700";
+                  badgeColor = "bg-cyan-500/20 text-cyan-400 border-cyan-500/50";
                   badgeText = "Good";
                 } else if (scorePercentage >= 50) {
-                  badgeColor = "bg-yellow-100 text-yellow-700 border-yellow-700";
+                  badgeColor = "bg-yellow-500/20 text-yellow-400 border-yellow-500/50";
                   badgeText = "Developing";
                 } else {
-                  badgeColor = "bg-orange-100 text-orange-700 border-orange-700";
+                  badgeColor = "bg-secondary/20 text-secondary border-secondary/50";
                   badgeText = "Emerging";
                 }
 
                 return (
                   <Card
                     key={index}
-                    className="border-2 shadow-md"
+                    className="card-enhanced"
                   >
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
-                          <h4 className="font-semibold text-gray-900 mb-1">
+                          <h4 className="font-semibold text-foreground mb-1">
                             {questions[index].title}
                           </h4>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-muted-foreground">
                             Score: {answer.score}/4
                           </p>
                         </div>
@@ -619,12 +657,12 @@ const AIAssessment = () => {
                           {badgeText}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-700 mb-3">
+                      <p className="text-sm text-muted-foreground mb-3">
                         {answer.answer}
                       </p>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="w-full bg-border rounded-full h-2">
                         <div
-                          className="bg-[#1a365d] h-2 rounded-full transition-all duration-500"
+                          className="bg-primary h-2 rounded-full transition-all duration-500"
                           style={{ width: `${scorePercentage}%` }}
                         />
                       </div>
@@ -636,24 +674,26 @@ const AIAssessment = () => {
           </div>
 
           {/* Recommendations */}
-          <Card className="border-2 border-[#e2725b] shadow-xl mb-8">
+          <Card className="glass-card border border-secondary/30 shadow-glow-card mb-8">
             <CardContent className="p-10">
-              <h3 className="text-2xl font-bold text-[#1a365d] mb-6 text-center">
+              <h3 className="text-2xl font-heading text-gradient-animate mb-6 text-center">
                 Recommended Next Steps
               </h3>
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {recommendations.map((rec, index) => (
                   <div
                     key={index}
-                    className="bg-white border border-gray-200 rounded-lg p-6"
+                    className="card-enhanced p-6 group"
                   >
                     <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-[#e2725b] flex-shrink-0 mt-0.5" />
+                      <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center border border-secondary/30 group-hover:bg-secondary/20 group-hover:shadow-[0_0_15px_hsla(320,85%,55%,0.2)] transition-all flex-shrink-0">
+                        <CheckCircle2 className="w-5 h-5 text-secondary" />
+                      </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">
+                        <h4 className="font-semibold text-foreground mb-2">
                           {rec.title}
                         </h4>
-                        <p className="text-gray-700">{rec.description}</p>
+                        <p className="text-muted-foreground">{rec.description}</p>
                       </div>
                     </div>
                   </div>
@@ -663,25 +703,31 @@ const AIAssessment = () => {
           </Card>
 
           {/* CTA */}
-          <Card className="border-2 border-[#1a365d] shadow-xl">
-            <CardContent className="p-10 text-center">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Ready to Accelerate Your AI Journey?
-              </h3>
-              <p className="text-lg text-gray-600 mb-8">
-                Let's discuss a tailored strategy to improve your AI readiness and drive measurable results.
-              </p>
-              <Button
-                size="lg"
-                className="bg-[#e2725b] hover:bg-[#d65d46] text-white font-semibold px-10 py-6 shadow-lg"
-                asChild
-              >
-                <a href="https://calendly.com/eschwaa/aiconsult" target="_blank" rel="noopener noreferrer">
-                  Schedule Free Consultation
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
+          <div className="relative">
+            <div className="absolute -top-3 -left-3 w-10 h-10 border-t-2 border-l-2 border-secondary/60" />
+            <div className="absolute -top-3 -right-3 w-10 h-10 border-t-2 border-r-2 border-secondary/60" />
+            <div className="absolute -bottom-3 -left-3 w-10 h-10 border-b-2 border-l-2 border-secondary/60" />
+            <div className="absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 border-secondary/60" />
+            <Card className="glass-card border border-secondary/30 shadow-glow-card">
+              <CardContent className="p-10 text-center">
+                <h3 className="text-2xl font-heading text-foreground mb-4">
+                  Ready to Accelerate Your AI Journey?
+                </h3>
+                <p className="text-lg text-muted-foreground mb-8">
+                  Let's discuss a tailored strategy to improve your AI readiness and drive measurable results.
+                </p>
+                <Button
+                  size="lg"
+                  className="group relative overflow-hidden bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold px-10 py-6 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(320,85%,55%,0.4)] btn-shimmer"
+                  asChild
+                >
+                  <a href="https://calendly.com/eschwaa/30min" target="_blank" rel="noopener noreferrer">
+                    Schedule Free Consultation
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     );
@@ -690,156 +736,166 @@ const AIAssessment = () => {
   // Email capture form
   if (showEmailCapture) {
     return (
-      <div className="min-h-screen pt-32 pb-20">
+      <div className="min-h-screen pt-32 pb-20 bg-background">
         <div className="container mx-auto px-4 max-w-2xl">
-          <Card className="border-2 border-[#1a365d] shadow-xl">
-            <CardContent className="p-10">
-              <div className="text-center mb-8">
-                <div className="w-20 h-20 bg-[#1a365d]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle2 className="w-10 h-10 text-[#1a365d]" />
+          {/* Cyber corners */}
+          <div className="relative">
+            <div className="absolute -top-3 -left-3 w-10 h-10 border-t-2 border-l-2 border-primary/60" />
+            <div className="absolute -top-3 -right-3 w-10 h-10 border-t-2 border-r-2 border-primary/60" />
+            <div className="absolute -bottom-3 -left-3 w-10 h-10 border-b-2 border-l-2 border-primary/60" />
+            <div className="absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 border-primary/60" />
+            <Card className="glass-card border border-primary/30 shadow-glow-card">
+              <CardContent className="p-10">
+                <div className="text-center mb-8">
+                  <div className="relative inline-block">
+                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-primary/30">
+                      <CheckCircle2 className="w-10 h-10 text-primary animate-glow-pulse" />
+                    </div>
+                    <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full" />
+                  </div>
+                  <h2 className="text-3xl font-heading text-gradient-animate mb-4">
+                    GET YOUR PERSONALIZED RESULTS
+                  </h2>
+                  <p className="text-muted-foreground">
+                    Enter your details below to receive your comprehensive AI readiness report
+                  </p>
                 </div>
-                <h2 className="text-3xl font-bold text-[#1a365d] mb-4">
-                  GET YOUR PERSONALIZED RESULTS
-                </h2>
-                <p className="text-gray-600">
-                  Enter your details below to receive your comprehensive AI readiness report
-                </p>
-              </div>
 
-              <form onSubmit={handleSubmitEmail} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmitEmail} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-foreground">
+                        First Name *
+                      </label>
+                      <Input
+                        required
+                        value={formData.firstName}
+                        onChange={(e) =>
+                          setFormData({ ...formData, firstName: e.target.value })
+                        }
+                        className="bg-background border-border focus:border-primary"
+                        placeholder="John"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-foreground">
+                        Last Name *
+                      </label>
+                      <Input
+                        required
+                        value={formData.lastName}
+                        onChange={(e) =>
+                          setFormData({ ...formData, lastName: e.target.value })
+                        }
+                        className="bg-background border-border focus:border-primary"
+                        placeholder="Smith"
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-gray-700">
-                      First Name *
+                    <label className="block text-sm font-medium mb-2 text-foreground">
+                      Email Address *
                     </label>
                     <Input
+                      type="email"
                       required
-                      value={formData.firstName}
+                      value={formData.email}
                       onChange={(e) =>
-                        setFormData({ ...formData, firstName: e.target.value })
+                        setFormData({ ...formData, email: e.target.value })
                       }
-                      className="bg-white border-2 border-gray-300 focus:border-[#1a365d]"
-                      placeholder="John"
+                      className="bg-background border-border focus:border-primary"
+                      placeholder="john.smith@company.com"
                     />
                   </div>
+
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-gray-700">
-                      Last Name *
+                    <label className="block text-sm font-medium mb-2 text-foreground">
+                      Company
                     </label>
                     <Input
-                      required
-                      value={formData.lastName}
+                      value={formData.company}
                       onChange={(e) =>
-                        setFormData({ ...formData, lastName: e.target.value })
+                        setFormData({ ...formData, company: e.target.value })
                       }
-                      className="bg-white border-2 border-gray-300 focus:border-[#1a365d]"
-                      placeholder="Smith"
+                      className="bg-background border-border focus:border-primary"
+                      placeholder="Your Company"
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700">
-                    Email Address *
-                  </label>
-                  <Input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="bg-white border-2 border-gray-300 focus:border-[#1a365d]"
-                    placeholder="john.smith@company.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700">
-                    Company
-                  </label>
-                  <Input
-                    value={formData.company}
-                    onChange={(e) =>
-                      setFormData({ ...formData, company: e.target.value })
-                    }
-                    className="bg-white border-2 border-gray-300 focus:border-[#1a365d]"
-                    placeholder="Your Company"
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-gray-700">
-                      Job Title
-                    </label>
-                    <Input
-                      value={formData.jobTitle}
-                      onChange={(e) =>
-                        setFormData({ ...formData, jobTitle: e.target.value })
-                      }
-                      className="bg-white border-2 border-gray-300 focus:border-[#1a365d]"
-                      placeholder="CEO"
-                    />
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-foreground">
+                        Job Title
+                      </label>
+                      <Input
+                        value={formData.jobTitle}
+                        onChange={(e) =>
+                          setFormData({ ...formData, jobTitle: e.target.value })
+                        }
+                        className="bg-background border-border focus:border-primary"
+                        placeholder="CEO"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-foreground">
+                        Company Size
+                      </label>
+                      <select
+                        value={formData.companySize}
+                        onChange={(e) =>
+                          setFormData({ ...formData, companySize: e.target.value })
+                        }
+                        className="w-full bg-background border border-border rounded-md px-3 py-2 text-foreground focus:border-primary focus:outline-none transition-colors"
+                      >
+                        <option value="">Select size</option>
+                        <option value="1-10">1-10 employees</option>
+                        <option value="11-50">11-50 employees</option>
+                        <option value="51-200">51-200 employees</option>
+                        <option value="201-1000">201-1000 employees</option>
+                        <option value="1000+">1000+ employees</option>
+                      </select>
+                    </div>
                   </div>
+
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-gray-700">
-                      Company Size
+                    <label className="block text-sm font-medium mb-2 text-foreground">
+                      Industry
                     </label>
                     <select
-                      value={formData.companySize}
+                      value={formData.industry}
                       onChange={(e) =>
-                        setFormData({ ...formData, companySize: e.target.value })
+                        setFormData({ ...formData, industry: e.target.value })
                       }
-                      className="w-full bg-white border-2 border-gray-300 rounded-md px-3 py-2 text-gray-900 focus:border-[#1a365d] focus:outline-none"
+                      className="w-full bg-background border border-border rounded-md px-3 py-2 text-foreground focus:border-primary focus:outline-none transition-colors"
                     >
-                      <option value="">Select size</option>
-                      <option value="1-10">1-10 employees</option>
-                      <option value="11-50">11-50 employees</option>
-                      <option value="51-200">51-200 employees</option>
-                      <option value="201-1000">201-1000 employees</option>
-                      <option value="1000+">1000+ employees</option>
+                      <option value="">Select industry</option>
+                      <option value="Technology">Technology</option>
+                      <option value="Healthcare">Healthcare</option>
+                      <option value="Financial Services">Financial Services</option>
+                      <option value="Manufacturing">Manufacturing</option>
+                      <option value="Retail">Retail</option>
+                      <option value="Professional Services">Professional Services</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700">
-                    Industry
-                  </label>
-                  <select
-                    value={formData.industry}
-                    onChange={(e) =>
-                      setFormData({ ...formData, industry: e.target.value })
-                    }
-                    className="w-full bg-white border-2 border-gray-300 rounded-md px-3 py-2 text-gray-900 focus:border-[#1a365d] focus:outline-none"
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="group relative overflow-hidden w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 shadow-cyber transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
                   >
-                    <option value="">Select industry</option>
-                    <option value="Technology">Technology</option>
-                    <option value="Healthcare">Healthcare</option>
-                    <option value="Financial Services">Financial Services</option>
-                    <option value="Manufacturing">Manufacturing</option>
-                    <option value="Retail">Retail</option>
-                    <option value="Professional Services">Professional Services</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
+                    Get My AI Assessment Results
+                  </Button>
 
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-[#1a365d] hover:bg-[#153c5a] text-white font-semibold py-6 shadow-lg"
-                >
-                  Get My AI Assessment Results
-                </Button>
-
-                <p className="text-xs text-gray-500 text-center">
-                  We respect your privacy. Your information will only be used to send you
-                  your assessment results and relevant AI insights.
-                </p>
-              </form>
-            </CardContent>
-          </Card>
+                  <p className="text-xs text-muted-foreground text-center">
+                    We respect your privacy. Your information will only be used to send you
+                    your assessment results and relevant AI insights.
+                  </p>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     );

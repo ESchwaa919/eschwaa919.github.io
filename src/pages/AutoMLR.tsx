@@ -21,10 +21,12 @@ import {
   ChevronDown,
   X,
   ExternalLink,
+  Sparkles,
 } from "lucide-react"
 import cyberGrid from "@/assets/cyber-grid.jpg"
 import { useLeadCapture } from "@/hooks/useLeadCapture"
 import { LeadCaptureModal } from "@/components/LeadCaptureModal"
+import { useScrollReveal } from "@/hooks/useScrollReveal"
 
 const AutoMLR = () => {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null)

@@ -25,6 +25,7 @@ import { Link } from "react-router-dom"
 import cyberGrid from "@/assets/cyber-grid.jpg"
 import { useLeadCapture } from "@/hooks/useLeadCapture"
 import { LeadCaptureModal } from "@/components/LeadCaptureModal"
+import { useScrollReveal } from "@/hooks/useScrollReveal"
 
 const PromptFluency = () => {
   const {
@@ -38,6 +39,11 @@ const PromptFluency = () => {
     submitLead,
     closeModal,
   } = useLeadCapture()
+
+  // Scroll reveal hooks
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 })
+  const { ref: whyRef, isVisible: whyVisible } = useScrollReveal({ threshold: 0.1 })
+  const { ref: crispRef, isVisible: crispVisible } = useScrollReveal({ threshold: 0.1 })
 
   const handleDownloadClick = () => {
     checkAndDownload(
@@ -145,7 +151,12 @@ const PromptFluency = () => {
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-cyber" />
 
-        <div className="container mx-auto px-4 relative z-10 py-32">
+        <div
+          ref={heroRef}
+          className={`container mx-auto px-4 relative z-10 py-32 transition-all duration-1000 ${
+            heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
+        >
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-8">
               <Sparkles className="w-4 h-4 text-primary" />
@@ -155,7 +166,7 @@ const PromptFluency = () => {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-heading leading-tight mb-6">
-              <span className="text-primary glow-green">PROMPT FLUENCY</span>
+              <span className="text-gradient-animate">PROMPT FLUENCY</span>
               <br />
               <span className="text-foreground">TOOLKIT</span>
             </h1>
@@ -168,20 +179,20 @@ const PromptFluency = () => {
               <Button
                 size="lg"
                 onClick={handleDownloadClick}
-                className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green text-lg font-semibold px-8 py-6 shadow-cyber transition-all hover:scale-105"
+                className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 text-lg font-semibold px-8 py-6 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
               >
-                <Download className="mr-2 w-5 h-5" />
+                <Download className="mr-2 w-5 h-5 transition-transform group-hover:scale-110" />
                 Download Free Toolkit
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 asChild
-                className="border-2 border-primary text-primary hover:bg-primary/10 text-lg font-semibold px-8 py-6 transition-all hover:scale-105"
+                className="group border-2 border-primary text-primary hover:bg-primary/10 text-lg font-semibold px-8 py-6 transition-all duration-300 hover:scale-105"
               >
-                <a href="https://calendly.com/eschwaa/aiconsult" target="_blank" rel="noopener noreferrer">
+                <a href="https://calendly.com/eschwaa/30min" target="_blank" rel="noopener noreferrer">
                   Schedule Strategy Call
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                  <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
             </div>
@@ -190,12 +201,18 @@ const PromptFluency = () => {
       </section>
 
       {/* Why It Matters Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
+      <section className="py-24 relative">
+        <div className="section-glow" />
+        <div
+          ref={whyRef}
+          className={`container mx-auto px-4 transition-all duration-1000 ${
+            whyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
+        >
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-heading mb-6">
               <span className="text-foreground">WHY </span>
-              <span className="text-primary glow-green">PROMPT FLUENCY</span>
+              <span className="text-gradient-animate">PROMPT FLUENCY</span>
               <span className="text-foreground"> MATTERS</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -204,46 +221,37 @@ const PromptFluency = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card className="p-8 bg-card border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-cyber">
-              <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center border-2 border-primary mb-6">
-                <Target className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-2xl font-heading text-foreground mb-4">STRATEGIC FOUNDATION</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Move beyond trial-and-error to systematic, repeatable prompt strategies that deliver consistent results across your organization.
-              </p>
-            </Card>
-
-            <Card className="p-8 bg-card border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-cyber">
-              <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center border-2 border-primary mb-6">
-                <Zap className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-2xl font-heading text-foreground mb-4">PRODUCTIVITY MULTIPLIER</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Transform AI from a novelty into a productivity powerhouse by mastering the techniques that unlock its full capabilities.
-              </p>
-            </Card>
-
-            <Card className="p-8 bg-card border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-cyber">
-              <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center border-2 border-primary mb-6">
-                <Shield className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-2xl font-heading text-foreground mb-4">RISK MITIGATION</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Learn best practices for responsible AI use that protect your data, maintain quality, and ensure compliance.
-              </p>
-            </Card>
+            {[
+              { icon: Target, title: "STRATEGIC FOUNDATION", desc: "Move beyond trial-and-error to systematic, repeatable prompt strategies that deliver consistent results across your organization." },
+              { icon: Zap, title: "PRODUCTIVITY MULTIPLIER", desc: "Transform AI from a novelty into a productivity powerhouse by mastering the techniques that unlock its full capabilities." },
+              { icon: Shield, title: "RISK MITIGATION", desc: "Learn best practices for responsible AI use that protect your data, maintain quality, and ensure compliance." },
+            ].map((item, index) => (
+              <Card key={index} className="card-enhanced group p-8">
+                <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/30 mb-6 group-hover:bg-primary/20 group-hover:border-primary/50 group-hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)] transition-all">
+                  <item.icon className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-heading text-foreground mb-4">{item.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {item.desc}
+                </p>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CRISP Framework Section */}
-      <section className="py-24 bg-card/50">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-card/50 relative">
+        <div
+          ref={crispRef}
+          className={`container mx-auto px-4 transition-all duration-1000 ${
+            crispVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
+        >
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-heading mb-6">
               <span className="text-foreground">THE </span>
-              <span className="text-primary glow-green">CRISP</span>
+              <span className="text-gradient-animate">CRISP</span>
               <span className="text-foreground"> FRAMEWORK</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

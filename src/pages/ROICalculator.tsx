@@ -25,10 +25,12 @@ import {
   AlertCircle,
   CheckCircle2,
   ArrowRight,
+  Sparkles,
 } from "lucide-react";
 import { toast } from "sonner";
 import { jsPDF } from "jspdf";
 import emailjs from "@emailjs/browser";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface CalculatorInputs {
   industry: string;
@@ -67,6 +69,12 @@ const ROICalculator = () => {
 
   const [results, setResults] = useState<ROIResults | null>(null);
   const [showResults, setShowResults] = useState(false);
+
+  // Scroll reveal hooks
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal({ threshold: 0.1, delay: 100 });
+  const { ref: formRef, isVisible: formVisible } = useScrollReveal({ threshold: 0.1, delay: 200 });
+  const { ref: resultsRef, isVisible: resultsVisible } = useScrollReveal({ threshold: 0.1 });
 
   // Lead capture modal state
   const [showLeadModal, setShowLeadModal] = useState(false);
@@ -544,9 +552,20 @@ const ROICalculator = () => {
       />
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Hero Section */}
-        <div className="text-center mb-16">
+        <div
+          ref={heroRef}
+          className={`text-center mb-16 transition-all duration-1000 ${
+            heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-6">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-primary">Free ROI Analysis</span>
+          </div>
+
           <h1 className="text-4xl md:text-5xl font-heading mb-4">
-            <span className="text-primary glow-green">AI ROI CALCULATOR</span>
+            <span className="text-gradient-animate">AI ROI CALCULATOR</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Calculate your potential AI return on investment and see the cost of
@@ -555,54 +574,50 @@ const ROICalculator = () => {
         </div>
 
         {/* Stats Bar */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber">
-            <CardContent className="p-6 text-center">
-              <div className="text-3xl font-heading text-primary glow-green mb-2">
-                88%
-              </div>
-              <div className="text-sm text-muted-foreground">
-                see early returns on AI investments
-              </div>
-              <div className="text-xs text-muted-foreground/60 mt-1">
-                (PwC 2025)
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="bg-gradient-cyber border-2 border-secondary shadow-cyber">
-            <CardContent className="p-6 text-center">
-              <div className="text-3xl font-heading text-secondary glow-pink mb-2">
-                40%
-              </div>
-              <div className="text-sm text-muted-foreground">
-                productivity boost with proper AI use
-              </div>
-              <div className="text-xs text-muted-foreground/60 mt-1">
-                (Stanford/MIT)
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber">
-            <CardContent className="p-6 text-center">
-              <div className="text-3xl font-heading text-primary glow-green mb-2">
-                70%
-              </div>
-              <div className="text-sm text-muted-foreground">
-                of CEOs expect AI to transform value creation
-              </div>
-              <div className="text-xs text-muted-foreground/60 mt-1">
-                (PwC Global CEO Survey)
-              </div>
-            </CardContent>
-          </Card>
+        <div
+          ref={statsRef}
+          className={`grid md:grid-cols-3 gap-6 mb-16 transition-all duration-1000 delay-100 ${
+            statsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
+        >
+          {[
+            { value: "88%", label: "see early returns on AI investments", source: "PwC 2025", color: "primary" },
+            { value: "40%", label: "productivity boost with proper AI use", source: "Stanford/MIT", color: "secondary" },
+            { value: "70%", label: "of CEOs expect AI to transform value creation", source: "PwC Global CEO Survey", color: "primary" },
+          ].map((stat, index) => (
+            <Card key={index} className={`card-enhanced group border ${stat.color === "primary" ? "border-primary/30 hover:border-primary/50 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.15)]" : "border-secondary/30 hover:border-secondary/50 hover:shadow-[0_0_30px_hsla(320,85%,55%,0.15)]"}`}>
+              <CardContent className="p-6 text-center">
+                <div className={`text-3xl font-heading mb-2 ${stat.color === "primary" ? "text-primary glow-green" : "text-secondary glow-pink"}`}>
+                  {stat.value}
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  {stat.label}
+                </div>
+                <div className="text-xs text-muted-foreground/60 mt-1">
+                  ({stat.source})
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
         {/* Calculator Form */}
-        <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg mb-12">
-          <CardContent className="p-6 md:p-10">
-            <h2 className="text-2xl font-heading text-primary glow-green mb-6 text-center">
-              TELL US ABOUT YOUR BUSINESS
-            </h2>
+        <div
+          ref={formRef}
+          className={`relative mb-12 transition-all duration-1000 delay-200 ${
+            formVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
+        >
+          {/* Cyber corners */}
+          <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-primary/60" />
+          <div className="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-primary/60" />
+          <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-primary/60" />
+          <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-primary/60" />
+          <Card className="glass-card border border-primary/30 shadow-glow-card">
+            <CardContent className="p-6 md:p-10">
+              <h2 className="text-2xl font-heading text-gradient-animate mb-6 text-center">
+                TELL US ABOUT YOUR BUSINESS
+              </h2>
             <p className="text-center text-muted-foreground mb-8">
               Help us calculate your personalized AI ROI and cost of delay
             </p>
@@ -767,12 +782,18 @@ const ROICalculator = () => {
             </div>
           </CardContent>
         </Card>
+        </div>
 
         {/* Results Section */}
         {showResults && results && (
-          <div className="space-y-8">
+          <div
+            ref={resultsRef}
+            className={`space-y-8 transition-all duration-1000 ${
+              resultsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            }`}
+          >
             {/* ROI Summary */}
-            <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg">
+            <Card className="glass-card border border-primary/30 shadow-glow-card">
               <CardContent className="p-6 md:p-10 lg:p-12 text-center">
                 <h2 className="text-2xl font-heading text-foreground mb-6">
                   YOUR AI INVESTMENT RETURNS
@@ -827,10 +848,10 @@ const ROICalculator = () => {
               {Object.entries(results.insights).map(([key, metric]) => (
                 <Card
                   key={key}
-                  className="bg-card border-2 border-border shadow-cyber"
+                  className="card-enhanced group"
                 >
                   <CardContent className="p-6 text-center">
-                    <div className="text-3xl font-heading text-primary glow-green mb-2">
+                    <div className="text-3xl font-heading text-primary glow-green mb-2 group-hover:scale-110 transition-transform">
                       {metric.value}
                     </div>
                     <div className="text-sm text-muted-foreground">
@@ -841,9 +862,9 @@ const ROICalculator = () => {
               ))}
 
               {/* Total 3-Year Value */}
-              <Card className="bg-card border-2 border-border shadow-cyber">
+              <Card className="card-enhanced group">
                 <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-heading text-primary glow-green mb-2">
+                  <div className="text-3xl font-heading text-primary glow-green mb-2 group-hover:scale-110 transition-transform">
                     {formatCurrency(results.totalValue)}
                   </div>
                   <div className="text-sm text-muted-foreground">
@@ -853,9 +874,9 @@ const ROICalculator = () => {
               </Card>
 
               {/* Time to ROI */}
-              <Card className="bg-card border-2 border-border shadow-cyber">
+              <Card className="card-enhanced group">
                 <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-heading text-primary glow-green mb-2">
+                  <div className="text-3xl font-heading text-primary glow-green mb-2 group-hover:scale-110 transition-transform">
                     {results.timeToROI}
                   </div>
                   <div className="text-sm text-muted-foreground">
@@ -865,9 +886,9 @@ const ROICalculator = () => {
               </Card>
 
               {/* Implementation Cost */}
-              <Card className="bg-card border-2 border-border shadow-cyber">
+              <Card className="card-enhanced group border-secondary/30 hover:border-secondary/50">
                 <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-heading text-secondary glow-pink mb-2">
+                  <div className="text-3xl font-heading text-secondary glow-pink mb-2 group-hover:scale-110 transition-transform">
                     {formatCurrency(results.implementationCost)}
                   </div>
                   <div className="text-sm text-muted-foreground">
@@ -940,18 +961,18 @@ const ROICalculator = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button
                     size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold px-6 md:px-10 py-4 md:py-6 shadow-cyber"
+                    className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-6 md:px-10 py-4 md:py-6 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
                     asChild
                   >
-                    <a href="https://calendly.com/eschwaa/aiconsult">
+                    <a href="https://calendly.com/eschwaa/30min">
                       Book Your Strategy Call
-                      <ArrowRight className="w-5 h-5 ml-2" />
+                      <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                     </a>
                   </Button>
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-primary text-primary hover:bg-primary/10 font-semibold px-6 md:px-10 py-4 md:py-6"
+                    className="border-2 border-primary text-primary hover:bg-primary/10 font-semibold px-6 md:px-10 py-4 md:py-6 transition-all duration-300 hover:scale-105"
                     onClick={() => setShowLeadModal(true)}
                   >
                     Get Detailed Business Case
@@ -978,10 +999,10 @@ const ROICalculator = () => {
 
       {/* Lead Capture Modal */}
       <Dialog open={showLeadModal} onOpenChange={setShowLeadModal}>
-        <DialogContent className="bg-card border-2 border-primary">
+        <DialogContent className="glass-card border border-primary/30 shadow-glow-card">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-heading text-primary glow-green">
-              📊 Get Your AI Business Case
+            <DialogTitle className="text-2xl font-heading text-gradient-animate">
+              Get Your AI Business Case
             </DialogTitle>
             <DialogDescription className="text-muted-foreground">
               You're one step away from downloading your personalized AI ROI report. Enter your details below to receive your comprehensive business case PDF.
@@ -997,7 +1018,7 @@ const ROICalculator = () => {
                   required
                   value={leadForm.firstName}
                   onChange={(e) => setLeadForm({ ...leadForm, firstName: e.target.value })}
-                  className="bg-background border-border text-foreground"
+                  className="bg-background border-border text-foreground focus:border-primary transition-colors"
                 />
               </div>
               <div>
@@ -1007,7 +1028,7 @@ const ROICalculator = () => {
                   required
                   value={leadForm.lastName}
                   onChange={(e) => setLeadForm({ ...leadForm, lastName: e.target.value })}
-                  className="bg-background border-border text-foreground"
+                  className="bg-background border-border text-foreground focus:border-primary transition-colors"
                 />
               </div>
             </div>
@@ -1018,7 +1039,7 @@ const ROICalculator = () => {
               required
               value={leadForm.email}
               onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
-              className="bg-background border-border text-foreground"
+              className="bg-background border-border text-foreground focus:border-primary transition-colors"
             />
 
             <Input
@@ -1027,7 +1048,7 @@ const ROICalculator = () => {
               required
               value={leadForm.company}
               onChange={(e) => setLeadForm({ ...leadForm, company: e.target.value })}
-              className="bg-background border-border text-foreground"
+              className="bg-background border-border text-foreground focus:border-primary transition-colors"
             />
 
             <p className="text-xs text-muted-foreground">
@@ -1037,7 +1058,7 @@ const ROICalculator = () => {
             <Button
               type="submit"
               size="lg"
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-cyber glow-green"
+              className="group relative overflow-hidden w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-cyber transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
             >
               Download My AI Business Case
             </Button>

@@ -18,10 +18,19 @@ import {
   Shield,
   Code,
   BarChart,
+  Sparkles,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Process = () => {
+  // Scroll reveal hooks
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: whyRef, isVisible: whyVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: mapRef, isVisible: mapVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: pathsRef, isVisible: pathsVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: differentRef, isVisible: differentVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
   // The 3 stages with comprehensive details
   const stages = [
     {
@@ -215,16 +224,35 @@ const Process = () => {
         canonicalUrl="/process"
       />
       {/* Hero Section */}
-      <section className="container mx-auto px-4 mb-20">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
+      <section className="container mx-auto px-4 mb-20 relative">
+        {/* Subtle background glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-[500px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-secondary/5 rounded-full blur-3xl" />
+        </div>
+
+        <div
+          ref={heroRef}
+          className={`max-w-4xl mx-auto text-center space-y-6 relative z-10 transition-all duration-1000 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30">
+            <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
+            <span className="text-sm font-heading text-primary tracking-wider">
+              3-STAGE METHODOLOGY
+            </span>
+          </div>
+
           <h1 className="text-5xl md:text-6xl font-heading leading-tight">
             <span className="text-foreground">FROM</span>{" "}
             <span className="text-muted-foreground">AI-CURIOUS</span>
             <br />
             <span className="text-foreground">TO</span>{" "}
-            <span className="text-primary glow-green">AI-POWERED</span>
+            <span className="text-gradient-animate glow-green-intense">AI-POWERED</span>
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             Our proven 3-stage methodology takes you from confusion to
             confidence to capabilitywithout the typical pilot purgatory.
           </p>
@@ -233,53 +261,73 @@ const Process = () => {
 
       {/* Why This Process Works */}
       <section className="container mx-auto px-4 mb-24">
-        <Card className="bg-gradient-to-br from-card to-background border-2 border-border shadow-cyber-lg max-w-5xl mx-auto">
-          <CardContent className="p-10">
-            <div className="flex items-start gap-6">
-              <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
-                <AlertCircle className="w-8 h-8 text-secondary" />
-              </div>
-              <div>
-                <h2 className="text-3xl font-heading text-foreground mb-4">
-                  Why Most AI Initiatives Fail
-                </h2>
-                <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-                  They skip straight to implementation. Leadership can't
-                  evaluate proposals. No strategic alignment. No governance. The
-                  result? Expensive pilots that never reach production.
-                </p>
-                <p className="text-lg text-foreground font-semibold">
-                  We fix this by building capabilities in the right order.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <div
+          ref={whyRef}
+          className={`transition-all duration-1000 ${
+            whyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className="relative max-w-5xl mx-auto">
+            {/* Cyber corners */}
+            <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-secondary/50" />
+            <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-secondary/50" />
+            <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-secondary/50" />
+            <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-secondary/50" />
+
+            <Card className="glass-card border border-secondary/30 shadow-glow-card">
+              <CardContent className="p-10">
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0 border border-secondary/30">
+                    <AlertCircle className="w-8 h-8 text-secondary" />
+                  </div>
+                  <div>
+                    <h2 className="text-3xl font-heading text-secondary glow-pink mb-4">
+                      Why Most AI Initiatives Fail
+                    </h2>
+                    <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+                      They skip straight to implementation. Leadership can't
+                      evaluate proposals. No strategic alignment. No governance. The
+                      result? Expensive pilots that never reach production.
+                    </p>
+                    <p className="text-lg text-foreground font-semibold">
+                      We fix this by building capabilities in the right order.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </section>
 
       {/* Simple Journey Map Visual */}
-      <section className="container mx-auto px-4 mb-24">
-        <div className="max-w-6xl mx-auto">
+      <section className="container mx-auto px-4 mb-24 section-glow">
+        <div
+          ref={mapRef}
+          className={`max-w-6xl mx-auto transition-all duration-1000 ${
+            mapVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="grid md:grid-cols-3 gap-6">
             {stages.map((stage, index) => (
-              <div key={index} className="relative h-full">
+              <div key={index} className="relative h-full group">
                 <Card
-                  className={`bg-card border-2 ${
+                  className={`card-enhanced h-full flex flex-col text-center transition-all duration-500 ${
                     stage.color === "primary"
-                      ? "border-primary/50"
-                      : "border-secondary/50"
-                  } shadow-cyber text-center h-full flex flex-col`}
+                      ? "hover:border-primary/50 hover:shadow-[0_0_40px_hsla(155,100%,45%,0.1)]"
+                      : "hover:border-secondary/50 hover:shadow-[0_0_40px_hsla(320,85%,55%,0.1)]"
+                  }`}
                 >
                   <CardContent className="p-6">
-                    <div className="text-5xl font-heading text-muted-foreground/30 mb-2">
+                    <div className="text-5xl font-heading text-muted-foreground/20 mb-2">
                       {stage.number}
                     </div>
                     <div
-                      className={`w-16 h-16 rounded-full ${
+                      className={`w-16 h-16 rounded-xl ${
                         stage.color === "primary"
-                          ? "bg-primary/20"
-                          : "bg-secondary/20"
-                      } flex items-center justify-center mx-auto mb-4`}
+                          ? "bg-primary/10 border border-primary/30"
+                          : "bg-secondary/10 border border-secondary/30"
+                      } flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110`}
                     >
                       <stage.icon
                         className={`w-8 h-8 ${
@@ -289,7 +337,9 @@ const Process = () => {
                         }`}
                       />
                     </div>
-                    <h3 className="text-xl font-heading text-foreground mb-2">
+                    <h3 className={`text-xl font-heading text-foreground mb-2 transition-all ${
+                      stage.color === "primary" ? "group-hover:text-primary group-hover:glow-green" : "group-hover:text-secondary group-hover:glow-pink"
+                    }`}>
                       {stage.name}
                     </h3>
                     <p
@@ -309,7 +359,7 @@ const Process = () => {
                 {/* Arrow between stages */}
                 {index < stages.length - 1 && (
                   <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
-                    <ArrowRight className="w-6 h-6 text-primary" />
+                    <ArrowRight className="w-6 h-6 text-primary animate-pulse-glow" />
                   </div>
                 )}
               </div>
@@ -515,12 +565,17 @@ const Process = () => {
       </section>
 
       {/* Different Paths Through The Process */}
-      <section className="py-20 bg-gradient-to-br from-background to-card/30 border-y border-border">
-        <div className="container mx-auto px-4">
+      <section className="py-20 section-glow relative">
+        <div
+          ref={pathsRef}
+          className={`container mx-auto px-4 transition-all duration-1000 ${
+            pathsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-heading mb-4">
               <span className="text-foreground">YOUR PATH,</span>{" "}
-              <span className="text-primary glow-green">YOUR PACE</span>
+              <span className="text-gradient-animate glow-green">YOUR PACE</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               You don't have to follow a rigid sequence. Enter at the stage
@@ -532,17 +587,17 @@ const Process = () => {
             {journeyPaths.map((path, index) => (
               <Card
                 key={index}
-                className="bg-card border-2 border-border hover:border-primary/50 transition-all shadow-cyber"
+                className="card-enhanced group"
               >
                 <CardContent className="p-6">
-                  <h3 className="text-2xl font-heading text-foreground mb-3">
+                  <h3 className="text-2xl font-heading text-foreground mb-3 group-hover:text-primary transition-colors">
                     {path.name}
                   </h3>
-                  <div className="flex items-center gap-2 mb-4">
+                  <div className="flex flex-wrap items-center gap-2 mb-4">
                     {path.stages.map((stage, idx) => (
                       <span
                         key={idx}
-                        className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full border border-primary/30"
+                        className="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/30 group-hover:bg-primary/20 transition-colors"
                       >
                         {stage}
                       </span>
@@ -551,12 +606,12 @@ const Process = () => {
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                     {path.description}
                   </p>
-                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                  <div className="flex items-center justify-between pt-4 border-t border-border/50">
                     <div>
                       <div className="text-xs text-muted-foreground uppercase tracking-wide">
                         Timeline
                       </div>
-                      <div className="text-sm font-semibold text-primary">
+                      <div className="text-sm font-semibold text-primary glow-green">
                         {path.duration}
                       </div>
                     </div>
@@ -578,22 +633,29 @@ const Process = () => {
 
       {/* What Makes This Different */}
       <section className="container mx-auto px-4 py-20">
-        <div className="max-w-5xl mx-auto">
+        <div
+          ref={differentRef}
+          className={`max-w-5xl mx-auto transition-all duration-1000 ${
+            differentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-heading mb-4">
-              <span className="text-primary glow-green">
+              <span className="text-gradient-animate glow-green">
                 WHAT MAKES THIS DIFFERENT
               </span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="bg-card border-2 border-border">
+            <Card className="card-enhanced group">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <Zap className="w-8 h-8 text-primary flex-shrink-0" />
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all flex-shrink-0">
+                    <Zap className="w-6 h-6 text-primary" />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-heading text-foreground mb-2">
+                    <h3 className="text-lg font-heading text-foreground mb-2 group-hover:text-primary transition-colors">
                       No Pilot Purgatory
                     </h3>
                     <p className="text-sm text-muted-foreground">
@@ -605,12 +667,14 @@ const Process = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border-2 border-border">
+            <Card className="card-enhanced group">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <Target className="w-8 h-8 text-primary flex-shrink-0" />
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all flex-shrink-0">
+                    <Target className="w-6 h-6 text-primary" />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-heading text-foreground mb-2">
+                    <h3 className="text-lg font-heading text-foreground mb-2 group-hover:text-primary transition-colors">
                       Evidence-Based Decisions
                     </h3>
                     <p className="text-sm text-muted-foreground">
@@ -622,12 +686,14 @@ const Process = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border-2 border-border">
+            <Card className="card-enhanced group">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <Users className="w-8 h-8 text-primary flex-shrink-0" />
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all flex-shrink-0">
+                    <Users className="w-6 h-6 text-primary" />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-heading text-foreground mb-2">
+                    <h3 className="text-lg font-heading text-foreground mb-2 group-hover:text-primary transition-colors">
                       Knowledge Transfer
                     </h3>
                     <p className="text-sm text-muted-foreground">
@@ -639,12 +705,14 @@ const Process = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border-2 border-border">
+            <Card className="card-enhanced group">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <Rocket className="w-8 h-8 text-primary flex-shrink-0" />
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all flex-shrink-0">
+                    <Rocket className="w-6 h-6 text-primary" />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-heading text-foreground mb-2">
+                    <h3 className="text-lg font-heading text-foreground mb-2 group-hover:text-primary transition-colors">
                       Flexible Engagement
                     </h3>
                     <p className="text-sm text-muted-foreground">
@@ -661,43 +729,59 @@ const Process = () => {
 
       {/* Interactive Tools CTA */}
       <section className="container mx-auto px-4 py-20">
-        <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg max-w-4xl mx-auto">
-          <CardContent className="p-12">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
-                WHERE ARE YOU ON YOUR AI JOURNEY?
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Take our interactive assessment to find out which stage is right
-                for you
-              </p>
-            </div>
+        <div
+          ref={ctaRef}
+          className={`transition-all duration-1000 ${
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className="relative max-w-4xl mx-auto">
+            {/* Cyber corners */}
+            <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-primary/60" />
+            <div className="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-primary/60" />
+            <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-primary/60" />
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-primary/60" />
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green text-lg font-semibold px-10 py-6 shadow-cyber"
-                asChild
-              >
-                <a href="/ai-assessment.html">
-                  <Brain className="w-5 h-5 mr-2" />
-                  Take AI Assessment
-                </a>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-primary text-primary hover:bg-primary/10 text-lg font-semibold px-10 py-6"
-                asChild
-              >
-                <Link to="/contact">
-                  <Calendar className="w-5 h-5 mr-2" />
-                  Book Strategy Call
-                </Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+            <Card className="glass-card border border-primary/30 shadow-glow-card">
+              <CardContent className="p-12">
+                <div className="text-center mb-8">
+                  <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
+                    WHERE ARE YOU ON YOUR <span className="text-primary glow-green">AI JOURNEY</span>?
+                  </h2>
+                  <p className="text-lg text-muted-foreground">
+                    Take our interactive assessment to find out which stage is right
+                    for you
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button
+                    size="lg"
+                    className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 text-lg font-semibold px-10 py-6 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
+                    asChild
+                  >
+                    <a href="/ai-assessment.html">
+                      <Brain className="w-5 h-5 mr-2" />
+                      Take AI Assessment
+                      <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                    </a>
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary text-lg font-semibold px-10 py-6 transition-all duration-300 hover:scale-105"
+                    asChild
+                  >
+                    <Link to="/contact">
+                      <Calendar className="w-5 h-5 mr-2" />
+                      Book Strategy Call
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </section>
 
       {/* Final CTA */}
@@ -709,12 +793,12 @@ const Process = () => {
           <Button
             size="lg"
             variant="outline"
-            className="border-2 border-primary text-primary hover:bg-primary/10 font-semibold px-10 py-6"
+            className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary font-semibold px-10 py-6 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)]"
             asChild
           >
             <Link to="/pricing">
               View Pricing & Engagement Models
-              <ArrowRight className="w-5 h-5 ml-2" />
+              <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>

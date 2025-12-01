@@ -17,6 +17,7 @@ import {
   Play,
   FileText,
   Monitor,
+  Sparkles,
 } from "lucide-react"
 import { Link } from "react-router-dom"
 import { toast } from "sonner"
@@ -24,6 +25,7 @@ import emailjs from "@emailjs/browser"
 import cyberGrid from "@/assets/cyber-grid.jpg"
 import { useLeadCapture } from "@/hooks/useLeadCapture"
 import { LeadCaptureModal } from "@/components/LeadCaptureModal"
+import { useScrollReveal } from "@/hooks/useScrollReveal"
 
 // Types
 interface Resource {

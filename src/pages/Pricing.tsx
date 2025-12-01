@@ -12,10 +12,18 @@ import {
   Target,
   TrendingUp,
   Clock,
+  Sparkles,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Pricing = () => {
+  // Scroll reveal hooks
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: modelsRef, isVisible: modelsVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: addonsRef, isVisible: addonsVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
   // Engagement models
   const engagementModels = [
     {
@@ -133,14 +141,33 @@ const Pricing = () => {
         canonicalUrl="/pricing"
       />
       {/* Hero Section */}
-      <section className="container mx-auto px-4 mb-20">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
+      <section className="container mx-auto px-4 mb-20 relative">
+        {/* Subtle background glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-[500px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-secondary/5 rounded-full blur-3xl" />
+        </div>
+
+        <div
+          ref={heroRef}
+          className={`max-w-4xl mx-auto text-center space-y-6 relative z-10 transition-all duration-1000 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30">
+            <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
+            <span className="text-sm font-heading text-primary tracking-wider">
+              TRANSPARENT PRICING
+            </span>
+          </div>
+
           <h1 className="text-5xl md:text-6xl font-heading leading-tight">
-            <span className="text-primary glow-green">FLEXIBLE ENGAGEMENT</span>
+            <span className="text-gradient-animate glow-green-intense">FLEXIBLE ENGAGEMENT</span>
             <br />
             <span className="text-foreground">MODELS FOR YOUR JOURNEY</span>
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             No one-size-fits-all packages. We design engagements around your
             specific needs, timeline, and budget.
           </p>
@@ -166,32 +193,33 @@ const Pricing = () => {
       </section>
 
       {/* Engagement Models */}
-      <section className="container mx-auto px-4 mb-24">
-        <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+      <section className="container mx-auto px-4 mb-24 section-glow">
+        <div
+          ref={modelsRef}
+          className={`grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto transition-all duration-1000 ${
+            modelsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           {engagementModels.map((model, index) => {
             const Icon = model.icon;
             return (
               <Card
                 key={index}
-                className={`bg-card border-2 ${
+                className={`card-enhanced group ${
                   model.color === "primary"
-                    ? "border-primary/50"
-                    : "border-secondary/50"
-                } shadow-cyber-lg hover:shadow-cyber-xl transition-all group`}
+                    ? "hover:border-primary/50 hover:shadow-[0_0_40px_hsla(155,100%,45%,0.1)]"
+                    : "hover:border-secondary/50 hover:shadow-[0_0_40px_hsla(320,85%,55%,0.1)]"
+                }`}
               >
                 <CardContent className="p-8">
                   {/* Header */}
                   <div className="flex items-start gap-4 mb-6">
                     <div
-                      className={`w-16 h-16 rounded-full ${
+                      className={`w-16 h-16 rounded-xl border flex items-center justify-center flex-shrink-0 transition-all ${
                         model.color === "primary"
-                          ? "bg-primary/10"
-                          : "bg-secondary/10"
-                      } flex items-center justify-center flex-shrink-0 ${
-                        model.color === "primary"
-                          ? "group-hover:glow-green"
-                          : "group-hover:glow-pink"
-                      } transition-all`}
+                          ? "bg-primary/10 border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 group-hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)]"
+                          : "bg-secondary/10 border-secondary/30 group-hover:bg-secondary/20 group-hover:border-secondary/50 group-hover:shadow-[0_0_20px_hsla(320,85%,55%,0.2)]"
+                      }`}
                     >
                       <Icon
                         className={`w-8 h-8 ${
@@ -267,16 +295,16 @@ const Pricing = () => {
                   {/* CTA */}
                   <Button
                     size="lg"
-                    className={`w-full ${
+                    className={`w-full group/btn ${
                       model.color === "primary"
-                        ? "bg-primary text-primary-foreground hover:bg-primary/90 glow-green"
-                        : "bg-secondary text-secondary-foreground hover:bg-secondary/90 glow-pink"
-                    } font-semibold py-6 shadow-cyber`}
+                        ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
+                        : "bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(320,85%,55%,0.4)]"
+                    } font-semibold py-6`}
                     asChild
                   >
                     <Link to="/contact">
                       {model.cta}
-                      <ArrowRight className="w-5 h-5 ml-2" />
+                      <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover/btn:translate-x-1" />
                     </Link>
                   </Button>
                 </CardContent>
@@ -287,11 +315,17 @@ const Pricing = () => {
       </section>
 
       {/* Add-On Services */}
-      <section className="py-20 bg-gradient-to-br from-background to-card/30 border-y border-border">
-        <div className="container mx-auto px-4">
+      <section className="py-20 section-glow relative">
+        <div
+          ref={addonsRef}
+          className={`container mx-auto px-4 transition-all duration-1000 ${
+            addonsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-heading mb-4">
-              <span className="text-foreground">ADD-ON SERVICES</span>
+              <span className="text-foreground">ADD-ON </span>
+              <span className="text-gradient-animate glow-green">SERVICES</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Focused services to complement your main engagement
@@ -304,13 +338,13 @@ const Pricing = () => {
               return (
                 <Card
                   key={index}
-                  className="bg-card border-2 border-border hover:border-primary/30 transition-all text-center"
+                  className="card-enhanced text-center group"
                 >
                   <CardContent className="p-6">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 border border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all">
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
-                    <h3 className="text-lg font-heading text-foreground mb-2">
+                    <h3 className="text-lg font-heading text-foreground mb-2 group-hover:text-primary transition-colors">
                       {addon.name}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
@@ -458,31 +492,47 @@ const Pricing = () => {
 
       {/* Final CTA */}
       <section className="container mx-auto px-4 py-20">
-        <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg">
-          <CardContent className="p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
-              READY TO DISCUSS YOUR NEEDS?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Every engagement starts with a no-obligation 30-minute
-              consultation to understand your challenges and design the right
-              solution.
-            </p>
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green text-lg font-semibold px-10 py-6 shadow-cyber"
-              asChild
-            >
-              <Link to="/contact">
-                <Calendar className="w-5 h-5 mr-2" />
-                Book Your Consultation
-              </Link>
-            </Button>
-            <p className="text-sm text-muted-foreground mt-6">
-              No sales pitch • Just practical guidance • NDA available
-            </p>
-          </CardContent>
-        </Card>
+        <div
+          ref={ctaRef}
+          className={`transition-all duration-1000 ${
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className="relative max-w-4xl mx-auto">
+            {/* Cyber corners */}
+            <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-primary/60" />
+            <div className="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-primary/60" />
+            <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-primary/60" />
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-primary/60" />
+
+            <Card className="glass-card border border-primary/30 shadow-glow-card">
+              <CardContent className="p-12 text-center">
+                <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
+                  READY TO <span className="text-primary glow-green">DISCUSS YOUR NEEDS</span>?
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                  Every engagement starts with a no-obligation 30-minute
+                  consultation to understand your challenges and design the right
+                  solution.
+                </p>
+                <Button
+                  size="lg"
+                  className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 text-lg font-semibold px-10 py-6 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
+                  asChild
+                >
+                  <Link to="/contact">
+                    <Calendar className="w-5 h-5 mr-2" />
+                    Book Your Consultation
+                    <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+                <p className="text-sm text-muted-foreground mt-6">
+                  No sales pitch • Just practical guidance • NDA available
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </section>
     </div>
   );

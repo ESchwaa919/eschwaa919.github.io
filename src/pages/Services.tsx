@@ -14,11 +14,19 @@ import {
   Rocket,
   Calendar,
   Zap,
+  Sparkles,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { StructuredData, createServiceSchema } from "@/components/StructuredData";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Services = () => {
+  // Scroll reveal hooks
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: coreRef, isVisible: coreVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: productsRef, isVisible: productsVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: modelsRef, isVisible: modelsVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
   // Core service offerings
   const coreServices = [
     {
@@ -170,16 +178,35 @@ const Services = () => {
         { name: "AI Training & Workshops", description: "Team workshops, hands-on training, and upskilling programs for AI adoption.", url: "https://theaiexpert.ai/services#focused" }
       ])} />
       {/* Hero Section */}
-      <section className="container mx-auto px-4 mb-20">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
+      <section className="container mx-auto px-4 mb-20 relative">
+        {/* Subtle background glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-[500px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-secondary/5 rounded-full blur-3xl" />
+        </div>
+
+        <div
+          ref={heroRef}
+          className={`max-w-4xl mx-auto text-center space-y-6 relative z-10 transition-all duration-1000 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30">
+            <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
+            <span className="text-sm font-heading text-primary tracking-wider">
+              COMPREHENSIVE AI SERVICES
+            </span>
+          </div>
+
           <h1 className="text-5xl md:text-6xl font-heading leading-tight">
-            <span className="text-primary glow-green">AI EXPERTISE</span>
+            <span className="text-gradient-animate glow-green-intense">AI EXPERTISE</span>
             <br />
             <span className="text-foreground">
               ACROSS EVERY STAGE OF YOUR JOURNEY
             </span>
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             From initial strategy to production deployment, we provide the
             guidance, implementation support, and expert network you need to
             become AI-powered.
@@ -187,23 +214,24 @@ const Services = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green text-lg font-semibold px-10 py-6 shadow-cyber"
+              className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 text-lg font-semibold px-10 py-6 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
               asChild
             >
               <Link to="/contact">
                 <Calendar className="w-5 h-5 mr-2" />
                 Book a Consultation
+                <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-primary text-primary hover:bg-primary/10 text-lg font-semibold px-10 py-6"
+              className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary text-lg font-semibold px-10 py-6 transition-all duration-300 hover:scale-105"
               asChild
             >
               <a href="/ai-assessment.html">
                 Take AI Assessment
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
           </div>
@@ -211,69 +239,78 @@ const Services = () => {
       </section>
 
       {/* Core Services Grid */}
-      <section className="container mx-auto px-4 mb-24">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-heading mb-4">
-            <span className="text-primary glow-green">CORE SERVICES</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Comprehensive AI capabilities tailored to your organization's
-            maturity level and specific needs
-          </p>
-        </div>
+      <section className="container mx-auto px-4 mb-24 section-glow">
+        <div
+          ref={coreRef}
+          className={`transition-all duration-1000 ${
+            coreVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-heading mb-4">
+              <span className="text-gradient-animate glow-green">CORE SERVICES</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Comprehensive AI capabilities tailored to your organization's
+              maturity level and specific needs
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {coreServices.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <Card
-                key={index}
-                className="bg-card border-2 border-border hover:border-primary/50 transition-all shadow-cyber hover:shadow-cyber-lg group"
-              >
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:glow-green transition-all">
-                      <Icon className="w-7 h-7 text-primary" />
+          <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+            {coreServices.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <Card
+                  key={index}
+                  className="card-enhanced group"
+                >
+                  <CardContent className="p-8">
+                    <div className="flex items-start gap-4 mb-6">
+                      <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 border border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 group-hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)] transition-all">
+                        <Icon className="w-7 h-7 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-heading text-foreground mb-2 group-hover:text-primary transition-colors">
+                          {service.title}
+                        </h3>
+                        <p className="text-sm text-primary font-semibold uppercase tracking-wide">
+                          {service.tagline}
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-heading text-foreground mb-2">
-                        {service.title}
-                      </h3>
-                      <p className="text-sm text-primary font-semibold uppercase tracking-wide">
-                        {service.tagline}
-                      </p>
-                    </div>
-                  </div>
 
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
-                    {service.description}
-                  </p>
+                    <p className="text-muted-foreground mb-6 leading-relaxed">
+                      {service.description}
+                    </p>
 
-                  <ul className="space-y-3 mb-6">
-                    {service.benefits.map((benefit, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-muted-foreground">
-                          {benefit}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                    <ul className="space-y-3 mb-6">
+                      {service.benefits.map((benefit, idx) => (
+                        <li key={idx} className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
+                          </div>
+                          <span className="text-sm text-muted-foreground">
+                            {benefit}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
 
-                  <Button
-                    variant="outline"
-                    className="w-full border-2 border-primary text-primary hover:bg-primary/10 font-semibold"
-                    asChild
-                  >
-                    <a href={service.link}>
-                      {service.cta}
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-            );
-          })}
+                    <Button
+                      variant="outline"
+                      className="w-full border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary font-semibold transition-all group-hover:border-primary"
+                      asChild
+                    >
+                      <a href={service.link} className="group/btn">
+                        {service.cta}
+                        <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+                      </a>
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -439,11 +476,16 @@ const Services = () => {
       </section>
 
       {/* Featured Products Section */}
-      <section className="py-20 bg-gradient-to-br from-background to-card/30 border-y border-border">
-        <div className="container mx-auto px-4">
+      <section className="py-20 section-glow relative">
+        <div
+          ref={productsRef}
+          className={`container mx-auto px-4 transition-all duration-1000 ${
+            productsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-heading mb-4">
-              <span className="text-secondary glow-pink">
+              <span className="text-gradient-animate glow-pink" style={{ backgroundImage: 'linear-gradient(135deg, hsl(320, 85%, 55%), hsl(280, 85%, 55%), hsl(320, 85%, 55%))' }}>
                 SPECIALIZED PRODUCTS
               </span>
             </h2>
@@ -519,96 +561,118 @@ const Services = () => {
 
       {/* Service Delivery Models */}
       <section className="container mx-auto px-4 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-heading mb-4">
-            <span className="text-primary glow-green">
-              FLEXIBLE ENGAGEMENT MODELS
-            </span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We adapt to your needs, timeline, and budget. No one-size-fits-all
-            packages.
-          </p>
-        </div>
+        <div
+          ref={modelsRef}
+          className={`transition-all duration-1000 ${
+            modelsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-heading mb-4">
+              <span className="text-gradient-animate glow-green">
+                FLEXIBLE ENGAGEMENT MODELS
+              </span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              We adapt to your needs, timeline, and budget. No one-size-fits-all
+              packages.
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {deliveryModels.map((model, index) => {
-            const Icon = model.icon;
-            return (
-              <Card
-                key={index}
-                className="bg-card border-2 border-border hover:border-primary/30 transition-all text-center group"
-              >
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:glow-green transition-all">
-                    <Icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-heading text-foreground mb-3">
-                    {model.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {model.description}
-                  </p>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            {deliveryModels.map((model, index) => {
+              const Icon = model.icon;
+              return (
+                <Card
+                  key={index}
+                  className="card-enhanced text-center group"
+                >
+                  <CardContent className="p-6">
+                    <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 border border-primary/30 group-hover:bg-primary/20 group-hover:border-primary/50 group-hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)] transition-all">
+                      <Icon className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-heading text-foreground mb-3 group-hover:text-primary transition-colors">
+                      {model.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {model.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
 
-        <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-6">
-            Not sure which engagement model fits your needs?
-          </p>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-2 border-primary text-primary hover:bg-primary/10 font-semibold px-10 py-6"
-            asChild
-          >
-            <Link to="/pricing">
-              View Pricing & Packages
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Link>
-          </Button>
+          <div className="text-center mt-12">
+            <p className="text-muted-foreground mb-6">
+              Not sure which engagement model fits your needs?
+            </p>
+            <Button
+              size="lg"
+              variant="outline"
+              className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary font-semibold px-10 py-6 transition-all hover:scale-105"
+              asChild
+            >
+              <Link to="/pricing">
+                View Pricing & Packages
+                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* The Process Link */}
       <section className="container mx-auto px-4 py-20">
-        <Card className="bg-gradient-cyber border-2 border-primary shadow-cyber-lg">
-          <CardContent className="p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
-              READY TO START YOUR AI JOURNEY?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Our proven 3-stage process takes you from AI-curious to
-              AI-powered: Literacy → Strategy → Implementation
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green text-lg font-semibold px-10 py-6 shadow-cyber"
-                asChild
-              >
-                <Link to="/process">
-                  Explore The Process
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-primary text-primary hover:bg-primary/10 text-lg font-semibold px-10 py-6"
-                asChild
-              >
-                <Link to="/contact">
-                  <Calendar className="w-5 h-5 mr-2" />
-                  Book Strategy Call
-                </Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <div
+          ref={ctaRef}
+          className={`transition-all duration-1000 ${
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className="relative max-w-4xl mx-auto">
+            {/* Cyber corners */}
+            <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-primary/60" />
+            <div className="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-primary/60" />
+            <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-primary/60" />
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-primary/60" />
+
+            <Card className="glass-card border border-primary/30 shadow-glow-card">
+              <CardContent className="p-12 text-center">
+                <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
+                  READY TO START YOUR <span className="text-primary glow-green">AI JOURNEY</span>?
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                  Our proven 3-stage process takes you from AI-curious to
+                  AI-powered: Literacy → Strategy → Implementation
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button
+                    size="lg"
+                    className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 text-lg font-semibold px-10 py-6 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
+                    asChild
+                  >
+                    <Link to="/process">
+                      Explore The Process
+                      <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary text-lg font-semibold px-10 py-6 transition-all duration-300 hover:scale-105"
+                    asChild
+                  >
+                    <Link to="/contact">
+                      <Calendar className="w-5 h-5 mr-2" />
+                      Book Strategy Call
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </section>
     </div>
   );

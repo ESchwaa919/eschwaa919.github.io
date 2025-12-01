@@ -288,28 +288,30 @@ const Contact = () => {
                 </CardContent>
               </Card>
 
-              <Card className="card-enhanced group">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#0077B5]/10 flex items-center justify-center flex-shrink-0 border border-[#0077B5]/30 group-hover:bg-[#0077B5]/20 group-hover:border-[#0077B5]/50 group-hover:shadow-[0_0_20px_hsla(201,89%,36%,0.2)] transition-all">
-                      <Linkedin className="w-5 h-5 text-[#0077B5]" />
+              <a
+                href="https://www.linkedin.com/in/eschwaa/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Card className="card-enhanced group cursor-pointer">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-[#0077B5]/10 flex items-center justify-center flex-shrink-0 border border-[#0077B5]/30 group-hover:bg-[#0077B5]/20 group-hover:border-[#0077B5]/50 group-hover:shadow-[0_0_20px_hsla(201,89%,36%,0.2)] transition-all">
+                        <Linkedin className="w-5 h-5 text-[#0077B5]" />
+                      </div>
+                      <div>
+                        <h3 className="font-heading text-foreground mb-1">
+                          LinkedIn
+                        </h3>
+                        <span className="text-muted-foreground group-hover:text-[#0077B5] transition-colors">
+                          Connect with Erik
+                        </span>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-heading text-foreground mb-1">
-                        LinkedIn
-                      </h3>
-                      <a
-                        href="https://www.linkedin.com/in/eschwaa/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-[#0077B5] transition-colors"
-                      >
-                        Connect with Erik
-                      </a>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </a>
             </div>
 
             <div className="space-y-3 pt-6 border-t border-border/50">

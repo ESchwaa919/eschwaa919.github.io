@@ -15,7 +15,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden overflow-x-hidden">
       {/* Animated Cyber Grid Background - THE HERO VISUAL */}
       <div
         className="absolute inset-0 opacity-40 animate-data-stream"
@@ -40,7 +40,7 @@ const HeroSection = () => {
       <div className="container relative z-10 mx-auto px-4 py-24 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
-          <div className="space-y-8">
+          <div className="space-y-8 max-w-full overflow-hidden">
             {/* Badge */}
             <div
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30 transition-all duration-700 ${
@@ -55,7 +55,7 @@ const HeroSection = () => {
 
             {/* Main Headline */}
             <h1
-              className={`text-5xl md:text-6xl lg:text-7xl font-heading leading-[1.1] transition-all duration-700 delay-150 ${
+              className={`text-[1.6rem] xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading leading-[1.1] transition-all duration-700 delay-150 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
@@ -69,7 +69,7 @@ const HeroSection = () => {
 
             {/* Subheadline */}
             <p
-              className={`text-xl md:text-2xl lg:text-3xl text-foreground/90 font-light leading-relaxed transition-all duration-700 delay-300 ${
+              className={`text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-foreground/90 font-light leading-relaxed transition-all duration-700 delay-300 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
@@ -80,7 +80,7 @@ const HeroSection = () => {
 
             {/* Description */}
             <p
-              className={`text-lg text-muted-foreground max-w-xl leading-relaxed transition-all duration-700 delay-[450ms] ${
+              className={`text-sm sm:text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed transition-all duration-700 delay-[450ms] ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
@@ -96,13 +96,13 @@ const HeroSection = () => {
             >
               <Button
                 size="lg"
-                className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 text-lg font-semibold px-8 py-6 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
+                className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 text-sm sm:text-lg font-semibold px-4 sm:px-8 py-5 sm:py-6 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)] btn-shimmer"
                 asChild
               >
                 <Link to="/resources#assessment">
-                  <Zap className="mr-2 w-5 h-5 group-hover:animate-pulse" />
-                  Start Your AI Readiness Assessment
-                  <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  <Zap className="mr-2 w-4 sm:w-5 h-4 sm:h-5 group-hover:animate-pulse flex-shrink-0" />
+                  <span className="truncate">Start AI Assessment</span>
+                  <ArrowRight className="ml-2 w-4 sm:w-5 h-4 sm:h-5 transition-transform group-hover:translate-x-1 flex-shrink-0" />
                 </Link>
               </Button>
               <Button
@@ -167,12 +167,12 @@ const HeroSection = () => {
 
             {/* Floating Stats - Companies */}
             <div
-              className={`absolute -top-4 -right-4 lg:-top-6 lg:-right-8 glass-card p-4 lg:p-5 rounded-xl animate-float-delayed transition-all duration-700 delay-700 ${
+              className={`absolute -top-4 right-0 sm:-right-4 lg:-top-6 lg:-right-8 glass-card p-3 sm:p-4 lg:p-5 rounded-xl animate-float-delayed transition-all duration-700 delay-700 ${
                 isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}
             >
-              <div className="text-xl lg:text-2xl font-heading text-secondary glow-pink mb-1">Microsoft</div>
-              <div className="text-sm text-muted-foreground">Comcast • Elsevier</div>
+              <div className="text-lg sm:text-xl lg:text-2xl font-heading text-secondary glow-pink mb-1">Microsoft</div>
+              <div className="text-xs sm:text-sm text-muted-foreground">Comcast • Elsevier</div>
             </div>
           </div>
         </div>

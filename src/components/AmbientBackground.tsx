@@ -150,11 +150,11 @@ const AmbientBackground = ({
         className="absolute inset-0 animate-mesh"
         style={{
           background: `
-            radial-gradient(ellipse at 20% 20%, hsla(155, 100%, 45%, 0.04) 0%, transparent 50%),
-            radial-gradient(ellipse at 80% 80%, hsla(320, 85%, 55%, 0.03) 0%, transparent 50%),
-            radial-gradient(ellipse at 50% 50%, hsla(185, 100%, 50%, 0.02) 0%, transparent 60%)
+            radial-gradient(ellipse 80% 80% at 20% 20%, hsla(155, 100%, 45%, 0.06) 0%, transparent 50%),
+            radial-gradient(ellipse 80% 80% at 80% 80%, hsla(320, 85%, 55%, 0.05) 0%, transparent 50%),
+            radial-gradient(ellipse 60% 60% at 50% 50%, hsla(185, 100%, 50%, 0.03) 0%, transparent 60%)
           `,
-          backgroundSize: '100% 100%',
+          backgroundSize: '200% 200%',
         }}
       />
 

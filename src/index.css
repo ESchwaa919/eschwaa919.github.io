@@ -722,17 +722,20 @@
 }
 
 @keyframes mesh-movement {
-  0%, 100% {
+  0% {
     background-position: 0% 0%, 100% 100%, 50% 50%;
   }
   25% {
-    background-position: 25% 25%, 75% 75%, 50% 50%;
+    background-position: 100% 0%, 0% 100%, 25% 75%;
   }
   50% {
-    background-position: 50% 0%, 50% 100%, 50% 50%;
+    background-position: 100% 100%, 0% 0%, 75% 25%;
   }
   75% {
-    background-position: 75% 25%, 25% 75%, 50% 50%;
+    background-position: 0% 100%, 100% 0%, 50% 50%;
+  }
+  100% {
+    background-position: 0% 0%, 100% 100%, 50% 50%;
   }
 }
 

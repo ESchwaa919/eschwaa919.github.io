@@ -1,73 +1,73 @@
-# Welcome to your Lovable project
+# The AI Expert - Marketing Website
 
-## Project info
+Marketing website for [theaiexpert.ai](https://theaiexpert.ai), an AI consulting company offering fractional CAIO services, AI strategy, and implementation.
 
-**URL**: https://lovable.dev/projects/c15807c6-0176-4ed5-932f-0bc1dd8a5188
+## Live Site
 
-## How can I edit this code?
+**URL**: https://theaiexpert.ai
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Framework**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui (Radix UI primitives)
+- **Routing**: React Router DOM
+- **Deployment**: GitHub Pages via GitHub Actions
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c15807c6-0176-4ed5-932f-0bc1dd8a5188) and start prompting.
+## Development
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js 18+ and npm
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Local Development
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+# Install dependencies
+npm install
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start dev server (http://localhost:8080)
 npm run dev
+
+# Run linter
+npm run lint
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+### Project Structure
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```
+├── src/
+│   ├── components/     # React components
+│   │   └── ui/         # shadcn/ui components
+│   ├── pages/          # Page components
+│   ├── hooks/          # Custom React hooks
+│   ├── lib/            # Utilities
+│   └── assets/         # Images, fonts
+├── public/             # Static assets
+│   ├── downloads/      # PDF resources
+│   ├── ai-learning/    # AI Learning microsite
+│   ├── automlr/        # AutoMLR microsite
+│   ├── ailms/          # AILMS microsite
+│   └── promptfluency/  # Prompt Fluency microsite
+└── .github/workflows/  # GitHub Actions
+```
 
-**Use GitHub Codespaces**
+## Deployment
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Automatic deployment via GitHub Actions:
 
-## What technologies are used for this project?
+1. Push to `main` branch
+2. GitHub Actions builds the site
+3. Deploys to GitHub Pages
+4. Live at https://theaiexpert.ai within ~2-3 minutes
 
-This project is built with:
+## Documentation
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/c15807c6-0176-4ed5-932f-0bc1dd8a5188) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+See [CLAUDE.md](./CLAUDE.md) for detailed architecture documentation and development guidelines.

@@ -181,58 +181,112 @@ const Resources = () => {
   // Media appearances
   const media = [
     {
+      type: "Video",
+      title: "NHS 10-Year AI Plan: From Ambition to Reality",
+      outlet: "YouTube",
+      description:
+        "Session on the NHS 10-year AI roadmap and breaking down barriers to healthcare innovation.",
+      link: "https://www.youtube.com/watch?v=i_vUPfW6ssg",
+      date: "2025",
+    },
+    {
+      type: "Video",
+      title: "Trust, Growth, Risk, Opportunity: The AI Paradox",
+      outlet: "BusinessABC AI Global Summit",
+      description:
+        "Business track conversation on AI trust, growth, risk and opportunity at the AI Global Summit.",
+      link: "https://www.youtube.com/watch?v=Aw0cPgj3YsU",
+      date: "2025",
+    },
+    {
+      type: "Video",
+      title: "Go Beyond Search with Generative AI",
+      outlet: "OpenSource Connections",
+      description:
+        "How GenAI changes search, RAG patterns, and measurement strategies for modern search applications.",
+      link: "https://www.youtube.com/watch?v=iTzeveXVmeo",
+      date: "Jan 2024",
+    },
+    {
       type: "Podcast",
       title: "Aligning AI to Business Strategy, DeepSeek and AI Agents",
-      outlet: "The NeuralPod (Apple Podcasts)",
+      outlet: "The NeuralPod (Spotify)",
       description:
-        "In-depth conversation covering AI strategy, DeepSeek developments, the Paris AI Summit, agentic AI, and practical advice for companies looking to align AI with business goals.",
-      link: "https://podcasts.apple.com/us/podcast/erik-schwartz-aligning-ai-to-business-strategy-deepseek/id1761461659?i=1000698477968",
+        "Deep dive on aligning AI to business strategy, agents, ROI, and AI/dot-com parallels.",
+      link: "https://open.spotify.com/episode/19okJTgxevydVvAqXTtZiI",
       date: "Mar 2025",
+    },
+    {
+      type: "Podcast",
+      title: "AI Predictions for 2025",
+      outlet: "AI Horizons (Eden Smith)",
+      description:
+        "Predictions for 2025, ethics and regulation, workforce impact, and how organizations should prepare.",
+      link: "https://music.amazon.com/podcasts/a408a0af-eb75-4497-bac7-ba712b0366ce/episodes/18b22def-13e9-4a33-b123-ae4be936513f/eden-smith-ai-horizons-erik-schwartz-on-ai-predictions-for-2025",
+      date: "Jan 2025",
+    },
+    {
+      type: "Podcast",
+      title: "Agents, Autonomy, and the AI Workforce: A Year in Review",
+      outlet: "AI Horizons (Eden Smith)",
+      description:
+        "Year-in-review on predictions with focus on agentic AI, jobs, skills, and 2026 trends.",
+      link: "https://open.spotify.com/episode/0M9nvDu9p2PyAlMk4PxmA",
+      date: "2025",
     },
     {
       type: "Podcast",
       title: "Reimagining Work and AI",
       outlet: "Gaule's Question Time",
       description:
-        "A veteran in enterprise search and AI systems explores the transformative power of generative AI. From digitizing documents in the 90s to building knowledge discovery platforms at Comcast and Elsevier.",
+        "GenAI, agents, and rethinking work and business models with a veteran in enterprise search and AI.",
       link: "https://www.podomatic.com/podcasts/gaulesqt/episodes/2025-08-19T08_59_37-07_00",
       date: "Aug 2025",
-    },
-    {
-      type: "Podcast",
-      title: "The Future of AI in Business",
-      outlet: "Dinis Guarda YouTube Podcast",
-      description:
-        "Erik shares his journey from information retrieval to Chief AI Officer, discussing video intelligence at Comcast, building Elysia.ai Labs, and the challenges of AI entrepreneurship.",
-      link: "https://citiesabc.buzzsprout.com/1032388/episodes/17550370-erik-schwartz-co-founder-and-chief-ai-officer-of-elysia-ai-labs-the-future-of-ai-in-business",
-      date: "2025",
     },
     {
       type: "Podcast",
       title: "Insights from a Chief AI Officer",
       outlet: "Disruption Digest (Spotify)",
       description:
-        "Erik discusses the CAIO role, key components of AI strategy, how to get started with AI, and the future of AI in business.",
-      link: "https://open.spotify.com/episode/0M9vnvDu9pzPyAIMk4PxmA",
+        "Role of CAIO, components of AI strategy, where to start, and enterprise AI roadmap.",
+      link: "https://open.spotify.com/show/452ywgUOKV6yh759zNahhd",
       date: "Aug 2024",
     },
     {
-      type: "Article",
-      title: "Enterprise Search and AI Agents",
-      outlet: "GoSearch AI Innovators",
+      type: "Podcast",
+      title: "Chief AI Officer @ Tricon Infotech",
+      outlet: "Game Set Matchup! (Findr)",
       description:
-        "How AI is transforming enterprise search, agentic systems, and the modern workplace. Insights on leveraging AI to amplify human capabilities and unify knowledge.",
-      link: "https://www.gosearch.ai/resources/ai-innovators/erik-schwartz",
+        "Partnerships and scaling with data-driven approaches and joint-objective tracking.",
+      link: "https://podcasts.apple.com/dk/podcast/s6-ep6-erik-schwartz-chief-ai-officer-tricon-infotech/id1569210074?i=1000669804861",
       date: "2024",
     },
     {
-      type: "Article",
-      title: "Chief AI Officer Interview Series",
-      outlet: "Unite.AI",
+      type: "Podcast",
+      title: "The Future of AI in Business",
+      outlet: "Dinis Guarda Podcast",
       description:
-        "In-depth interview covering Erik's experience at Comcast, Elsevier, and Microsoft, and his insights on AI strategy, implementation, and the future of AI in business.",
-      link: "https://www.unite.ai/erik-schwartz-chief-ai-officer-caio-tricon-infotech-interview-series/",
-      date: "Jun 2024",
+        "Long-form origin story covering platforms like Comcast and Elsevier, plus future-of-AI-in-business discussion.",
+      link: "https://citiesabc.buzzsprout.com/1032388/episodes/17550370-erik-schwartz-co-founder-and-chief-ai-officer-of-elysia-ai-labs-the-future-of-ai-in-business",
+      date: "2025",
+    },
+    {
+      type: "Video",
+      title: "Tricon Kimolian Academy Graduation",
+      outlet: "YouTube",
+      description:
+        "Fireside chat about AI careers with the January 2025 graduation cohort.",
+      link: "https://www.youtube.com/watch?v=ypjBcdTww4Y",
+      date: "Jan 2025",
+    },
+    {
+      type: "Article",
+      title: "Enterprise Search, AI Agents, and the Future of Work",
+      outlet: "GoSearch AI Innovators",
+      description:
+        "Q&A profiling enterprise search work, agents, and the future of work.",
+      link: "https://www.gosearch.ai/blog/ai-innovators-erik-schwartz-enterprise-search-ai-agents/",
+      date: "2024",
     },
   ];
 
@@ -572,7 +626,7 @@ const Resources = () => {
                         asChild
                       >
                         <a href={item.link} target="_blank" rel="noopener noreferrer">
-                          {item.type === "Article" ? "Read Article" : "Listen Now"}
+                          {item.type === "Video" ? "Watch Now" : item.type === "Article" ? "Read Article" : "Listen Now"}
                           <ExternalLink className="w-4 h-4 ml-2" />
                         </a>
                       </Button>

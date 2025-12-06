@@ -581,7 +581,8 @@ const Resources = () => {
             {media.map((item, index) => (
               <Card
                 key={index}
-                className="card-enhanced group"
+                className="card-enhanced group cursor-pointer"
+                onClick={() => window.open(item.link, '_blank', 'noopener,noreferrer')}
               >
                 <CardContent className="p-6">
                   <div className="flex items-start gap-6">

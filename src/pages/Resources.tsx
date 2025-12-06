@@ -181,31 +181,31 @@ const Resources = () => {
   // Media appearances
   const media = [
     {
-      type: "Video",
-      title: "NHS 10-Year AI Plan: From Ambition to Reality",
-      outlet: "YouTube",
+      type: "Podcast",
+      title: "Aligning AI to Business Strategy, DeepSeek and AI Agents",
+      outlet: "The NeuralPod (Apple Podcasts)",
       description:
-        "Erik and James Morris react to the NHS 10-Year Health Plan, exploring the UK's vision for AI-enabled hospitals, innovation zones, and healthcare transformation.",
-      link: "https://youtu.be/i_vUPfW6ssg",
-      date: "Jan 2025",
+        "In-depth conversation covering AI strategy, DeepSeek developments, the Paris AI Summit, agentic AI, and practical advice for companies looking to align AI with business goals.",
+      link: "https://podcasts.apple.com/us/podcast/erik-schwartz-aligning-ai-to-business-strategy-deepseek/id1761461659?i=1000698477968",
+      date: "Mar 2025",
     },
     {
       type: "Podcast",
-      title: "AI Horizons: Predictions for 2025",
-      outlet: "Amazon Music Podcast",
+      title: "Reimagining Work and AI",
+      outlet: "Gaule's Question Time",
       description:
-        "Expert predictions and strategic insights into the future of AI technology. Discussing emerging trends, business implications, and key developments to watch.",
-      link: "https://music.amazon.com/podcasts/a408a0af-eb75-4497-bac7-ba712b0366ce/episodes/18b22def-13e9-4a33-b123-ae4be936513f/eden-smith-ai-horizons-erik-schwartz-on-ai-predictions-for-2025",
-      date: "Jan 2025",
+        "A veteran in enterprise search and AI systems explores the transformative power of generative AI. From digitizing documents in the 90s to building knowledge discovery platforms at Comcast and Elsevier.",
+      link: "https://www.podomatic.com/podcasts/gaulesqt/episodes/2025-08-19T08_59_37-07_00",
+      date: "Aug 2025",
     },
     {
-      type: "Video",
-      title: "Aligning AI to Business Strategy, DeepSeek and AI Agents",
-      outlet: "YouTube",
+      type: "Podcast",
+      title: "The Future of AI in Business",
+      outlet: "Dinis Guarda YouTube Podcast",
       description:
-        "Deep dive into business strategy alignment with AI implementation, covering the latest developments in DeepSeek technology and AI agents.",
-      link: "https://youtu.be/CnmClTT3AIw",
-      date: "Jan 2025",
+        "Erik shares his journey from information retrieval to Chief AI Officer, discussing video intelligence at Comcast, building Elysia.ai Labs, and the challenges of AI entrepreneurship.",
+      link: "https://citiesabc.buzzsprout.com/1032388/episodes/17550370-erik-schwartz-co-founder-and-chief-ai-officer-of-elysia-ai-labs-the-future-of-ai-in-business",
+      date: "2025",
     },
     {
       type: "Podcast",
@@ -217,22 +217,22 @@ const Resources = () => {
       date: "Aug 2024",
     },
     {
-      type: "Video",
-      title: "Harnessing the Power of AI: Knowledge Discovery",
-      outlet: "Findr Podcast (YouTube)",
+      type: "Article",
+      title: "Enterprise Search and AI Agents",
+      outlet: "GoSearch AI Innovators",
       description:
-        "Expert insights on leveraging AI for knowledge discovery and enterprise applications with practical implementation strategies.",
-      link: "https://youtu.be/9tX5W5vHJXw",
+        "How AI is transforming enterprise search, agentic systems, and the modern workplace. Insights on leveraging AI to amplify human capabilities and unify knowledge.",
+      link: "https://www.gosearch.ai/resources/ai-innovators/erik-schwartz",
       date: "2024",
     },
     {
-      type: "LinkedIn Live",
-      title: "The RAG Phenomenon: Cutting Through the Hype",
-      outlet: "LinkedIn Live",
+      type: "Article",
+      title: "Chief AI Officer Interview Series",
+      outlet: "Unite.AI",
       description:
-        "Exploring Retrieval-Augmented Generation (RAG) technology with Alessandro Benedetti from Sease.io.",
-      link: "https://www.linkedin.com/events/theragphenomenon-cuttingthrough7173632352642949122/theater/",
-      date: "Mar 2024",
+        "In-depth interview covering Erik's experience at Comcast, Elsevier, and Microsoft, and his insights on AI strategy, implementation, and the future of AI in business.",
+      link: "https://www.unite.ai/erik-schwartz-chief-ai-officer-caio-tricon-infotech-interview-series/",
+      date: "Jun 2024",
     },
   ];
 
@@ -572,7 +572,7 @@ const Resources = () => {
                         asChild
                       >
                         <a href={item.link} target="_blank" rel="noopener noreferrer">
-                          Watch / Listen
+                          {item.type === "Article" ? "Read Article" : "Listen Now"}
                           <ExternalLink className="w-4 h-4 ml-2" />
                         </a>
                       </Button>

@@ -12,6 +12,8 @@ This is the **marketing website for aiexpert.ai**, an AI consulting company offe
 **Live Site**: https://theaiexpert.ai (custom domain via GitHub Pages)
 **Project Location**: `/Users/eschwaa/Projects/new_website/new-site/`
 
+> **IMPORTANT**: All development work happens in `/Users/eschwaa/Projects/new_website/new-site/` only. The parent directory contains `old-site-backup/` with archived files from the previous static site - these should never be edited or used. When working on this project, always ensure you're editing files within `new-site/`, not the parent folder.
+
 ## Development Commands
 
 ### Local Development

@@ -20,6 +20,38 @@ import { useLeadCapture } from "@/hooks/useLeadCapture";
 import { LeadCaptureModal } from "@/components/LeadCaptureModal";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
+// Section navigation data
+const sections = [
+  { id: "tools", label: "Tools" },
+  { id: "insights", label: "Insights" },
+  { id: "downloads", label: "Downloads" },
+  { id: "media", label: "Videos" },
+];
+
+// Inter-section navigation component
+const SectionNav = ({ currentSection }: { currentSection: string }) => {
+  const currentIndex = sections.findIndex((s) => s.id === currentSection);
+
+  return (
+    <div className="flex items-center justify-center gap-2 mt-12 pt-8 border-t border-border/30">
+      <span className="text-xs text-muted-foreground mr-2">Jump to:</span>
+      {sections.map((section, index) => (
+        <a
+          key={section.id}
+          href={`#${section.id}`}
+          className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+            index === currentIndex
+              ? "bg-primary/20 text-primary border border-primary/40"
+              : "text-muted-foreground hover:text-primary hover:bg-primary/10"
+          }`}
+        >
+          {section.label}
+        </a>
+      ))}
+    </div>
+  );
+};
+
 const Resources = () => {
   // Scroll reveal hooks
   const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
@@ -382,6 +414,24 @@ const Resources = () => {
             </p>
           )}
         </div>
+
+        {/* Quick Navigation */}
+        <div className="flex flex-wrap justify-center gap-3 mt-10">
+          {[
+            { label: "Tools", href: "#tools" },
+            { label: "Insights", href: "#insights" },
+            { label: "Downloads", href: "#downloads" },
+            { label: "Videos", href: "#media" },
+          ].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="px-6 py-2 rounded-full border border-primary/30 text-primary hover:bg-primary/10 hover:border-primary/50 transition-all text-sm font-semibold"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
       </section>
 
       {/* Interactive Tools Section */}
@@ -444,11 +494,12 @@ const Resources = () => {
               );
             })}
           </div>
+          <SectionNav currentSection="tools" />
         </div>
       </section>
 
       {/* Featured Insights */}
-      <section className="py-20 section-glow relative">
+      <section className="py-20 section-glow relative" id="insights">
         <div
           ref={insightsRef}
           className={`container mx-auto px-4 transition-all duration-1000 ${
@@ -517,11 +568,12 @@ const Resources = () => {
               );
             })}
           </div>
+          <SectionNav currentSection="insights" />
         </div>
       </section>
 
       {/* Downloadable Resources */}
-      <section className="container mx-auto px-4 py-20">
+      <section className="container mx-auto px-4 py-20" id="downloads">
         <div
           ref={downloadsRef}
           className={`transition-all duration-1000 ${
@@ -583,6 +635,7 @@ const Resources = () => {
               );
             })}
           </div>
+          <SectionNav currentSection="downloads" />
         </div>
       </section>
 
@@ -665,6 +718,7 @@ const Resources = () => {
               </Card>
             ))}
           </div>
+          <SectionNav currentSection="media" />
         </div>
       </section>
 

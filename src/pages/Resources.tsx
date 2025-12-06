@@ -518,7 +518,8 @@ const Resources = () => {
               return (
                 <Card
                   key={index}
-                  className="card-enhanced group"
+                  className="card-enhanced group cursor-pointer"
+                  onClick={() => handleDownloadClick(resource)}
                 >
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4 mb-4">

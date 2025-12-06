@@ -176,6 +176,33 @@ const Resources = () => {
       icon: Lightbulb,
       file: "/downloads/Prompt Fluency Toolkit.pdf",
     },
+    {
+      title: "AI Governance - 10 Days",
+      type: "PDF",
+      description:
+        "Comprehensive 10-day guide to implementing AI governance in your organization. Covers risk management, compliance, and ethical AI practices.",
+      size: "531 KB",
+      icon: CheckCircle2,
+      file: "/downloads/AI Governance - 10 Days - The Ai Expert.pdf",
+    },
+    {
+      title: "Fractional Chief AI Officer (CAIO)",
+      type: "PDF",
+      description:
+        "Learn how a fractional CAIO can accelerate your AI strategy without the cost of a full-time executive. Ideal for SMBs and growing organizations.",
+      size: "526 KB",
+      icon: Brain,
+      file: "/downloads/Fractional Chief AI Officer (CAIO)  - The Ai Expert.pdf",
+    },
+    {
+      title: "ROI of AI Investment for UK SMBs",
+      type: "PDF",
+      description:
+        "Data-driven analysis of AI investment returns for UK small and medium businesses. Includes benchmarks, case studies, and ROI calculation frameworks.",
+      size: "222 KB",
+      icon: TrendingUp,
+      file: "/downloads/ROI of AI Investment for UK SMBs.pdf",
+    },
   ];
 
   // Media appearances

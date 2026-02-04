@@ -792,6 +792,7 @@
     content: '';
     position: absolute;
     inset: 0;
+    pointer-events: none;
     padding: 1px;
     border-radius: inherit;
     background: linear-gradient(

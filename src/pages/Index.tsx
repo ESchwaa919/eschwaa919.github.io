@@ -4,6 +4,7 @@ import ProcessOverview from "@/components/ProcessOverview";
 import WhyWorkWithErik from "@/components/WhyWorkWithErik";
 import LeadMagnet from "@/components/LeadMagnet";
 import TrustSignals from "@/components/TrustSignals";
+import CourseTestimonials from "@/components/CourseTestimonials";
 import FinalCTA from "@/components/FinalCTA";
 import SEOHead from "@/components/SEOHead";
 import { StructuredData, organizationSchema } from "@/components/StructuredData";
@@ -25,6 +26,10 @@ const Index = () => {
       <WhyWorkWithErik />
       <LeadMagnet />
       <TrustSignals />
+      <CourseTestimonials
+        title="Workshop Success Stories"
+        subtitle="What participants say about Ship an App in a Day"
+      />
       <FinalCTA />
     </div>
   );

@@ -7,7 +7,9 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import AmbientBackground from "@/components/AmbientBackground";
+import CourseBanner from "@/components/CourseBanner";
 import Index from "./pages/Index";
+import Courses from "./pages/Courses";
 import About from "./pages/About";
 import Process from "./pages/Process";
 import Services from "./pages/Services";
@@ -34,6 +36,7 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <AmbientBackground particleCount={40} showGrid={true} intensity="medium" />
+        <CourseBanner />
         <Navigation />
         <Routes>
           <Route path="/" element={<Index />} />
@@ -53,6 +56,7 @@ const App = () => (
           <Route path="/terms" element={<Terms />} />
           <Route path="/automlr" element={<AutoMLR />} />
           <Route path="/ailms" element={<AILMS />} />
+          <Route path="/courses" element={<Courses />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

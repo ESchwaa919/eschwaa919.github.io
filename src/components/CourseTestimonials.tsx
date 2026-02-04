@@ -1,13 +1,34 @@
+import { useEffect, useState, useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+  type CarouselApi,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 interface Testimonial {
   name: string;
-  linkedIn: string;
+  linkedIn?: string;
+  company?: string;
   quote: string;
 }
 
 const testimonials: Testimonial[] = [
+  {
+    name: "Jason Keen",
+    company: "The Aspirational Company",
+    quote: "Erik completely transformed my perspective on what's possible with AI. He has a remarkable gift for unpacking complex technical subjects and making them accessible to everyone. He didn't just teach us about AI tools; he opened our eyes to an entirely new world of possibility.",
+  },
+  {
+    name: "Ann Binnie",
+    linkedIn: "https://www.linkedin.com/in/annbinnie/",
+    quote: "Erik's expertise and skill at communicating it are remarkable. I write as one who wasn't even on the scale of AI-curious to AI-powered (more like AI-fearful!) when I took his app in a day course and what he guided me to creating was astonishing. Cannot recommend him too highly.",
+  },
   {
     name: "Leigh Allen",
     linkedIn: "https://www.linkedin.com/in/leighdallen/",
@@ -36,6 +57,29 @@ const CourseTestimonials = ({
   subtitle = "Real feedback from Ship an App in a Day graduates",
   compact = false
 }: CourseTestimonialsProps) => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      api?.scrollTo(index);
+    },
+    [api]
+  );
+
   return (
     <section className={compact ? "py-12" : "py-20"}>
       <div className="container mx-auto px-4">
@@ -50,35 +94,77 @@ const CourseTestimonials = ({
           </div>
         )}
 
-        <div className={`grid gap-6 max-w-5xl mx-auto ${
-          compact ? "md:grid-cols-3" : "md:grid-cols-1 lg:grid-cols-3"
-        }`}>
-          {testimonials.map((testimonial, index) => (
-            <Card
-              key={index}
-              className="card-enhanced group h-full"
-            >
-              <CardContent className="p-6 flex flex-col h-full">
-                <Quote className="w-8 h-8 text-primary/40 mb-4" />
-                <blockquote className="text-foreground/90 leading-relaxed flex-grow mb-4">
-                  "{testimonial.quote}"
-                </blockquote>
-                <div className="mt-auto pt-4 border-t border-border/30">
-                  <a
-                    href={testimonial.linkedIn}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:text-primary/80 font-semibold transition-colors"
-                  >
-                    {testimonial.name}
-                  </a>
-                  <p className="text-sm text-muted-foreground">
-                    Ship an App in a Day Graduate
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="max-w-6xl mx-auto px-12">
+          <Carousel
+            setApi={setApi}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 5000,
+                stopOnInteraction: true,
+                stopOnMouseEnter: true,
+              }),
+            ]}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem
+                  key={index}
+                  className="pl-4 md:basis-1/2 lg:basis-1/3"
+                >
+                  <Card className="card-enhanced group h-full">
+                    <CardContent className="p-6 flex flex-col h-full">
+                      <Quote className="w-8 h-8 text-primary/40 mb-4" />
+                      <blockquote className="text-foreground/90 leading-relaxed flex-grow mb-4">
+                        "{testimonial.quote}"
+                      </blockquote>
+                      <div className="mt-auto pt-4 border-t border-border/30">
+                        {testimonial.linkedIn ? (
+                          <a
+                            href={testimonial.linkedIn}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary hover:text-primary/80 font-semibold transition-colors"
+                          >
+                            {testimonial.name}
+                          </a>
+                        ) : (
+                          <span className="text-primary font-semibold">
+                            {testimonial.name}
+                          </span>
+                        )}
+                        <p className="text-sm text-muted-foreground">
+                          {testimonial.company || "Ship an App in a Day Graduate"}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="border-primary/30 hover:bg-primary/10 hover:border-primary" />
+            <CarouselNext className="border-primary/30 hover:bg-primary/10 hover:border-primary" />
+          </Carousel>
+
+          {/* Dot indicators */}
+          <div className="flex justify-center gap-2 mt-6">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollTo(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  current === index
+                    ? "bg-primary w-6"
+                    : "bg-primary/30 hover:bg-primary/50"
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

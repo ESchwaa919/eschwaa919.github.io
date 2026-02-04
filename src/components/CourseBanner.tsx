@@ -25,7 +25,7 @@ const CourseBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="relative bg-gradient-to-r from-background via-primary/10 to-background border-b border-primary/30">
+    <div className="fixed top-20 left-0 right-0 z-40 bg-gradient-to-r from-background via-primary/10 to-background border-b border-primary/30">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-center gap-3 text-sm md:text-base">
           <Rocket className="w-4 h-4 text-primary animate-pulse hidden sm:block" />

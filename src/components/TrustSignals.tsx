@@ -11,30 +11,30 @@ const TrustSignals = () => {
   const testimonials = [
     {
       quote:
-        "Erik helped us go from overwhelmed by AI hype to implementing real solutions that saved us 15 hours a week. Clear guidance, practical results.",
-      author: "James Wilson",
-      role: "Managing Director",
-      company: "Mid-Market Professional Services",
-      metric: "15hrs/week saved",
-      metricIcon: Clock,
-    },
-    {
-      quote:
-        "Finally, an AI consultant who speaks our language. Erik cut through the jargon and delivered a roadmap we could actually execute on our budget.",
-      author: "Sarah Thompson",
-      role: "Operations Director",
-      company: "Growing Tech Startup",
-      metric: "ROI in 3 months",
+        "Erik completely transformed my perspective on what's possible with AI. He has a remarkable gift for unpacking complex technical subjects and making them accessible to everyone.",
+      author: "Jason Keen",
+      role: "Founder",
+      company: "The Aspirational Company",
+      metric: "Perspective shift",
       metricIcon: TrendingUp,
     },
     {
       quote:
-        "We went from AI-curious to AI-powered in 6 months. Erik's hands-on approach and enterprise experience gave us the confidence to move fast.",
-      author: "Michael Chen",
-      role: "Founder & CEO",
-      company: "SMB Manufacturing",
-      metric: "40% faster ops",
+        "Erik's expertise and skill at communicating it are remarkable. I wasn't even AI-curious when I took his course—more like AI-fearful! What he guided me to creating was astonishing.",
+      author: "Ann Binnie",
+      role: "Workshop Graduate",
+      company: "Ship an App in a Day",
+      metric: "Fear → Confidence",
       metricIcon: Zap,
+    },
+    {
+      quote:
+        "Such a productive and inspirational day. It's so refreshing to leave a workshop with something to show for all your efforts. Highly recommended, even for non-techies like me.",
+      author: "Andrew Smith",
+      role: "Workshop Graduate",
+      company: "Ship an App in a Day",
+      metric: "Built in 1 day",
+      metricIcon: Clock,
     },
   ];
 

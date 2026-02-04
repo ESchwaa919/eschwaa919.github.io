@@ -38,6 +38,7 @@ const App = () => (
         <AmbientBackground particleCount={40} showGrid={true} intensity="medium" />
         <CourseBanner />
         <Navigation />
+        <main className="pt-[124px]">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
@@ -60,6 +61,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </main>
         <Footer />
       </BrowserRouter>
     </TooltipProvider>

@@ -58,6 +58,7 @@ const App = () => (
           <Route path="/automlr" element={<AutoMLR />} />
           <Route path="/ailms" element={<AILMS />} />
           <Route path="/courses" element={<Courses />} />
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

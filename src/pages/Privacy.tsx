@@ -1,8 +1,14 @@
 import { Card, CardContent } from "@/components/ui/card";
+import SEOHead from "@/components/SEOHead";
 
 const Privacy = () => {
   return (
     <div className="min-h-screen pt-32 pb-20">
+      <SEOHead
+        title="Privacy Policy"
+        description="Privacy policy for theaiexpert.ai. We take your privacy seriously - no tracking, no data selling, no invasive analytics."
+        canonicalUrl="/privacy"
+      />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-heading mb-6">

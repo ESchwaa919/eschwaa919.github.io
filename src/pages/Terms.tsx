@@ -1,8 +1,14 @@
 import { Card, CardContent } from "@/components/ui/card";
+import SEOHead from "@/components/SEOHead";
 
 const Terms = () => {
   return (
     <div className="min-h-screen pt-32 pb-20">
+      <SEOHead
+        title="Terms of Service"
+        description="Terms of service for theaiexpert.ai. By accessing or using our site, you agree to be bound by these terms."
+        canonicalUrl="/terms"
+      />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-heading mb-6">

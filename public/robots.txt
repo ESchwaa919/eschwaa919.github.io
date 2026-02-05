@@ -2,8 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /downloads/
 Disallow: /*.pdf$
-Disallow: /7
-
 Sitemap: https://theaiexpert.ai/sitemap.xml
 
 # LLM-specific information file

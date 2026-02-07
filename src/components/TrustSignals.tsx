@@ -1,11 +1,11 @@
-import { Quote, ArrowRight, Star, TrendingUp, Clock, Zap } from "lucide-react";
+import { Quote, ArrowRight, Star, TrendingUp, Clock, Zap, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useScrollReveal, useStaggeredReveal } from "@/hooks/useScrollReveal";
 
 const TrustSignals = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollReveal({ threshold: 0.2 });
-  const { containerRef: testimonialsRef, visibleItems: testimonialsVisible } = useStaggeredReveal(3, { threshold: 0.1 });
+  const { containerRef: testimonialsRef, visibleItems: testimonialsVisible } = useStaggeredReveal(4, { threshold: 0.1 });
   const { ref: statsRef, isVisible: statsVisible } = useScrollReveal({ threshold: 0.3 });
 
   const testimonials = [
@@ -35,6 +35,15 @@ const TrustSignals = () => {
       company: "Ship an App in a Day",
       metric: "Built in 1 day",
       metricIcon: Clock,
+    },
+    {
+      quote:
+        "I had the good fortune to choose Erik Schwartz as my AI expert, and he has exceeded my expectations from the very start. Erik brings an exceptional level of expertise in AI and consistently delivers exactly what he commits to. What truly sets Erik apart is the care and effort he puts into understanding my objectives.",
+      author: "James Knight",
+      role: "Founder",
+      company: "iMA Technologies",
+      metric: "Exceeds expectations",
+      metricIcon: Award,
     },
   ];
 
@@ -72,7 +81,7 @@ const TrustSignals = () => {
         </div>
 
         {/* Testimonials Grid */}
-        <div ref={testimonialsRef} className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
+        <div ref={testimonialsRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
           {testimonials.map((testimonial, index) => {
             const MetricIcon = testimonial.metricIcon;
             return (

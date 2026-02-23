@@ -27,6 +27,32 @@
     { num: 10, title: 'Earth 2.0 Licensing Bootcamp', file: 'course-10.html' }
   ];
 
+  // Section image mapping: keyed by "courseNum:label" for transition slides
+  // Break/lunch slides use shared images; module slides use per-course section images
+  const BREAK_KEYWORDS = ['break', '☕', 'lunch'];
+  const BREAK_IMAGES = {
+    'lunch': 'images/break-lunch.png',
+    '45': 'images/break-lunch.png',
+    'default': 'images/break-short.png',
+    'long': 'images/break-long.png',
+    '15': 'images/break-long.png',
+  };
+
+  // Section images per course: maps course number to ordered list of section image files
+  // Ordered by appearance in the course (matches module/phase numbering)
+  const SECTION_IMAGES = {
+    '01': ['section-01-01.png','section-01-02.png','section-01-03.png','section-01-04.png','section-01-05.png'],
+    '02': ['section-02-01.png','section-02-02.png','section-02-03.png'],
+    '03': ['section-03-01.png','section-03-02.png','section-03-03.png'],
+    '04': ['section-04-01.png','section-04-02.png','section-04-03.png','section-04-04.png'],
+    '05': ['section-05-01.png','section-05-02.png','section-05-03.png','section-05-04.png','section-05-05.png'],
+    '06': ['section-06-01.png','section-06-02.png','section-06-03.png','section-06-04.png','section-06-05.png'],
+    '07': ['section-07-01.png','section-07-02.png','section-07-03.png','section-07-04.png'],
+    '08': ['section-08-01.png','section-08-02.png','section-08-03.png','section-08-04.png','section-08-05.png','section-08-06.png','section-08-07.png'],
+    '09': ['section-09-01.png','section-09-02.png','section-09-03.png','section-09-04.png'],
+    '10': ['section-10-01.png','section-10-02.png','section-10-03.png','section-10-04.png','section-10-05.png','section-10-06.png','section-10-07.png'],
+  };
+
   // --- DOM Generation ---
 
   function buildPresentation() {
@@ -69,17 +95,48 @@
 
   const courseNum = getCourseNum();
 
+  // Track section image index per course (increments for each non-break transition)
+  let sectionImageIndex = 0;
+
+  function getTransitionImage(cNum, data, slideIndex) {
+    const label = (data.label || '').toLowerCase();
+    const title = (data.title || '').toLowerCase();
+    const combined = label + ' ' + title;
+
+    // Check if this is a break/lunch slide
+    const isBreak = BREAK_KEYWORDS.some(k => combined.includes(k));
+    if (isBreak) {
+      if (combined.includes('lunch') || combined.includes('45')) return BREAK_IMAGES['lunch'];
+      if (combined.includes('15')) return BREAK_IMAGES['long'];
+      return BREAK_IMAGES['default'];
+    }
+
+    // Module/phase/section slide — use next section image in order
+    const images = SECTION_IMAGES[cNum];
+    if (images && sectionImageIndex < images.length) {
+      return 'images/' + images[sectionImageIndex++];
+    }
+
+    return null;
+  }
+
   function createSlide(data, index) {
     const section = document.createElement('section');
     section.className = 'slide';
     section.dataset.type = data.type || 'content';
     section.dataset.index = index;
 
-    // Apply hero image to title slides, bg image to all others
+    // Apply images based on slide type
     if (courseNum) {
       if (data.type === 'title') {
         section.dataset.hero = '1';
         section.style.backgroundImage = `url('images/hero-${courseNum}.png')`;
+      } else if (data.type === 'transition') {
+        const img = getTransitionImage(courseNum, data, index);
+        if (img) {
+          section.dataset.hero = '1';
+          section.style.backgroundImage = `url('${img}')`;
+        }
       } else {
         section.dataset.bgImg = '1';
         section.style.backgroundImage = `url('images/bg-${courseNum}.png')`;

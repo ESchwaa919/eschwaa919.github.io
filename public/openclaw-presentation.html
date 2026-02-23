@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw & the Agent Revolution</title>
+<link rel="icon" type="image/svg+xml" href="https://openclaw.ai/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://openclaw.ai/favicon-32.png">
+<link rel="apple-touch-icon" href="https://openclaw.ai/apple-touch-icon.png">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-deep: #050810;
+  --bg-surface: #0a0f1a;
+  --bg-elevated: #111827;
+  --coral-mid: #e63946;
+  --coral-dark: #991b1b;
+  --coral-bright: #ff4d4d;
+  --cyan-mid: #14b8a6;
+  --cyan-bright: #00e5cc;
+  --text-primary: #f0f4ff;
+  --text-secondary: #8892b0;
+  --text-muted: #5a6480;
+  --border-subtle: rgba(136, 146, 176, .15);
+  --border-accent: rgba(255, 77, 77, .3);
+  --surface-card: rgba(10, 15, 26, .65);
+  --surface-card-strong: rgba(10, 15, 26, .8);
+  --surface-coral-soft: rgba(255, 77, 77, .15);
+  --surface-cyan-soft: rgba(0, 229, 204, .15);
+  --font-display: "Clash Display", system-ui, sans-serif;
+  --font-body: "Satoshi", system-ui, sans-serif;
+  --font-mono: "SF Mono", "Fira Code", "JetBrains Mono", monospace;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+/* ── Starfield Canvas ── */
+#starfield {
+  position: fixed; inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Glow orbs ── */
+.glow-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+.glow-orb.coral {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(230, 57, 70, .18) 0%, transparent 70%);
+  top: -120px; right: -80px;
+  animation: orbFloat 20s ease-in-out infinite;
+}
+.glow-orb.cyan {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(0, 229, 204, .1) 0%, transparent 70%);
+  bottom: -100px; left: -80px;
+  animation: orbFloat 25s ease-in-out infinite reverse;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(30px, -20px); }
+  66% { transform: translate(-20px, 15px); }
+}
+
+/* ── Slides Container ── */
+#deck {
+  position: relative;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 80px;
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity .55s cubic-bezier(.22, 1, .36, 1), transform .55s cubic-bezier(.22, 1, .36, 1);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+.slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.slide.exit-left {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+.slide-inner {
+  max-width: 1100px;
+  width: 100%;
+}
+
+/* ── Typography ── */
+.slide-number {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--coral-mid);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: .7;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+h1 .accent { color: var(--coral-mid); }
+h1 .cyan { color: var(--cyan-bright); }
+
+h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+h2::before {
+  content: "\276F";
+  color: var(--coral-mid);
+  margin-right: 14px;
+  font-weight: 400;
+}
+
+.subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.6vw, 20px);
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--coral-mid);
+  margin-bottom: 24px;
+}
+
+.slide-subtitle {
+  font-size: 17px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  font-style: italic;
+}
+
+/* ── Bullet list ── */
+.bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bullets li {
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  padding-left: 28px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: bulletIn .5s ease forwards;
+}
+
+.slide.active .bullets li {
+  opacity: 0;
+  animation: bulletIn .5s ease forwards;
+}
+
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 11px;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  background: var(--coral-mid);
+  opacity: .7;
+}
+
+.bullets li strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.bullets li em {
+  color: var(--cyan-bright);
+  font-style: normal;
+}
+
+.bullets.cyan li::before { background: var(--cyan-bright); }
+.bullets.warn li::before { background: #f59e0b; }
+
+@keyframes bulletIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Cards ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 24px;
+  transition: border-color .3s, transform .3s;
+}
+
+.card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.card p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+/* ── Risk card ── */
+.card.risk {
+  border-color: rgba(255, 77, 77, .25);
+  background: linear-gradient(135deg, rgba(255, 77, 77, .06), var(--surface-card));
+}
+
+/* ── Comparison table ── */
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 24px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+
+.comparison-table th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 16px 24px;
+  text-align: left;
+  background: rgba(230, 57, 70, .12);
+  color: var(--coral-mid);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.comparison-table td {
+  padding: 14px 24px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  background: var(--surface-card);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.comparison-table tr:last-child td { border-bottom: none; }
+
+.comparison-table td:first-child {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  width: 45%;
+}
+
+.comparison-table td:last-child {
+  color: var(--text-primary);
+}
+
+/* ── Timeline ── */
+.timeline {
+  position: relative;
+  padding-left: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--coral-mid), var(--cyan-bright));
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  opacity: 0;
+  transform: translateX(15px);
+}
+
+.slide.active .timeline-item { animation: bulletIn .5s ease forwards; }
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -32px; top: 8px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--bg-deep);
+  border: 2px solid var(--coral-mid);
+}
+
+.timeline-item:last-child::before { border-color: var(--cyan-bright); }
+
+.timeline-item .date {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--coral-mid);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.timeline-item .desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.timeline-item .desc strong { color: var(--text-primary); }
+
+/* ── Action items ── */
+.action-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.action-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.slide.active .action-list li { animation: bulletIn .5s ease forwards; }
+
+.action-icon {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+
+.action-icon.stop { background: var(--surface-coral-soft); }
+.action-icon.go { background: var(--surface-cyan-soft); }
+.action-icon.watch { background: rgba(245, 158, 11, .15); }
+
+/* ── Progression diagram ── */
+.progression {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 28px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.progression .stage {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.progression .stage.past {
+  background: var(--surface-card);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+}
+
+.progression .stage.current {
+  background: var(--surface-coral-soft);
+  color: var(--coral-bright);
+  border: 1px solid var(--border-accent);
+}
+
+.progression .stage.future {
+  background: var(--surface-cyan-soft);
+  color: var(--cyan-bright);
+  border: 1px solid rgba(0, 229, 204, .3);
+}
+
+.progression .arrow {
+  color: var(--text-muted);
+  font-size: 20px;
+  padding: 0 8px;
+}
+
+/* ── Quote callout ── */
+.callout {
+  border-left: 3px solid var(--coral-mid);
+  padding: 16px 24px;
+  background: var(--surface-card);
+  border-radius: 0 12px 12px 0;
+  margin: 20px 0;
+}
+
+.callout p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.callout .attr {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  font-style: normal;
+}
+
+/* ── Stat highlight ── */
+.stat-row {
+  display: flex;
+  gap: 24px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.stat {
+  flex: 1;
+  min-width: 140px;
+  text-align: center;
+  padding: 20px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+}
+
+.stat .num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 40px);
+  color: var(--coral-mid);
+  line-height: 1;
+}
+
+.stat .num.cyan { color: var(--cyan-bright); }
+
+.stat .label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  letter-spacing: .5px;
+}
+
+/* ── Bottom line big text ── */
+.big-question {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(20px, 2.8vw, 34px);
+  line-height: 1.35;
+  color: var(--text-primary);
+  margin: 20px 0;
+  text-align: center;
+}
+
+.big-question .highlight {
+  color: var(--cyan-bright);
+  position: relative;
+}
+
+.closing-note {
+  font-size: 18px;
+  color: var(--coral-mid);
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-align: center;
+  margin-top: 28px;
+  letter-spacing: 1px;
+}
+
+/* ── Title slide mascot ── */
+.mascot {
+  font-size: 72px;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 40px rgba(230, 57, 70, .4));
+  animation: mascotPulse 4s ease-in-out infinite;
+}
+
+@keyframes mascotPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 40px rgba(230, 57, 70, .4)); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 60px rgba(230, 57, 70, .6)); }
+}
+
+/* ── Navigation ── */
+.nav-controls {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 100;
+}
+
+.nav-btn {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-card-strong);
+  color: var(--text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+  backdrop-filter: blur(12px);
+}
+
+.nav-btn:hover {
+  border-color: var(--border-accent);
+  color: var(--coral-mid);
+  background: var(--surface-coral-soft);
+}
+
+.slide-counter {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  min-width: 64px;
+  text-align: center;
+}
+
+/* ── Progress bar ── */
+.progress-track {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: rgba(136, 146, 176, .1);
+  z-index: 100;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--coral-mid), var(--cyan-bright));
+  transition: width .5s cubic-bezier(.22, 1, .36, 1);
+  border-radius: 0 2px 2px 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .slide { padding: 40px 28px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .comparison-table th, .comparison-table td { padding: 10px 14px; font-size: 13px; }
+  .progression { gap: 4px; }
+  .progression .stage { padding: 6px 10px; font-size: 11px; }
+  .stat-row { gap: 12px; }
+  .stat { padding: 14px; }
+}
+
+/* ── Animation delays ── */
+.slide.active .bullets li:nth-child(1) { animation-delay: .1s; }
+.slide.active .bullets li:nth-child(2) { animation-delay: .2s; }
+.slide.active .bullets li:nth-child(3) { animation-delay: .3s; }
+.slide.active .bullets li:nth-child(4) { animation-delay: .4s; }
+.slide.active .bullets li:nth-child(5) { animation-delay: .5s; }
+.slide.active .bullets li:nth-child(6) { animation-delay: .6s; }
+.slide.active .bullets li:nth-child(7) { animation-delay: .7s; }
+
+.slide.active .timeline-item:nth-child(1) { animation-delay: .1s; }
+.slide.active .timeline-item:nth-child(2) { animation-delay: .25s; }
+.slide.active .timeline-item:nth-child(3) { animation-delay: .4s; }
+.slide.active .timeline-item:nth-child(4) { animation-delay: .55s; }
+.slide.active .timeline-item:nth-child(5) { animation-delay: .7s; }
+
+.slide.active .action-list li:nth-child(1) { animation-delay: .1s; }
+.slide.active .action-list li:nth-child(2) { animation-delay: .22s; }
+.slide.active .action-list li:nth-child(3) { animation-delay: .34s; }
+.slide.active .action-list li:nth-child(4) { animation-delay: .46s; }
+.slide.active .action-list li:nth-child(5) { animation-delay: .58s; }
+
+/* ── Warning banner ── */
+.warning-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: rgba(255, 77, 77, .08);
+  border: 1px solid rgba(255, 77, 77, .2);
+  border-radius: 10px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: var(--coral-bright);
+  font-weight: 500;
+}
+
+/* ── Annotation badge ── */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: .5px;
+}
+.badge.coral { background: var(--surface-coral-soft); color: var(--coral-bright); }
+.badge.cyan { background: var(--surface-cyan-soft); color: var(--cyan-bright); }
+
+/* ── Mac mini hero image ── */
+.mac-mini-hero {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto 24px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 0 60px rgba(0, 229, 204, .08), 0 4px 30px rgba(0,0,0,.4);
+}
+.mac-mini-hero img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.mac-mini-hero .overlay-badge {
+  position: absolute;
+  bottom: 12px; right: 12px;
+  background: rgba(10, 15, 26, .85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-accent);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--coral-bright);
+  letter-spacing: .5px;
+}
+
+/* ── Split layout for Mac mini slide ── */
+.split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .split-layout { grid-template-columns: 1fr; }
+}
+
+/* ── Hardware wave timeline ── */
+.hw-wave {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+.hw-wave .wave-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.hw-wave .wave-item.past {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  opacity: .6;
+}
+.hw-wave .wave-item.now {
+  background: var(--surface-coral-soft);
+  border: 1px solid var(--border-accent);
+  color: var(--text-primary);
+}
+.hw-wave .wave-item .era {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  min-width: 60px;
+}
+.hw-wave .wave-item.now .era { color: var(--coral-mid); }
+
+/* ── Three-column section for learning slide ── */
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+@media (max-width: 900px) {
+  .three-col { grid-template-columns: 1fr; }
+}
+.three-col .col {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 20px;
+}
+.three-col .col.yes { border-color: rgba(0, 229, 204, .25); }
+.three-col .col.no { border-color: rgba(255, 77, 77, .25); }
+.three-col .col.shift { border-color: rgba(245, 158, 11, .25); }
+
+.col-header {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.col-header.green { color: var(--cyan-bright); }
+.col-header.red { color: var(--coral-bright); }
+.col-header.amber { color: #f59e0b; }
+
+.col-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.col-list li {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  padding-left: 16px;
+  position: relative;
+}
+.col-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 7px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+}
+.col.yes .col-list li::before { background: var(--cyan-bright); opacity: .5; }
+.col.no .col-list li::before { background: var(--coral-mid); opacity: .5; }
+.col.shift .col-list li::before { background: #f59e0b; opacity: .5; }
+.col-list li strong { color: var(--text-primary); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div class="glow-orb coral"></div>
+<div class="glow-orb cyan"></div>
+
+<div class="progress-track">
+  <div class="progress-fill" id="progress"></div>
+</div>
+
+<div id="deck">
+
+  <!-- ═══════ SLIDE 1: TITLE ═══════ -->
+  <div class="slide active" data-slide="0">
+    <div class="slide-inner" style="text-align:center;">
+      <div class="mascot">🦞</div>
+      <h1 style="font-size:clamp(42px,6vw,80px);margin-bottom:8px;">Open<span class="accent">Claw</span></h1>
+      <div class="subtitle">& the Agent Revolution</div>
+      <p style="font-size:18px;color:var(--text-secondary);max-width:640px;margin:0 auto 32px;">
+        What Small Business Leaders Need to Know Right Now
+      </p>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+        <div class="badge coral">AUTONOMOUS AI</div>
+        <div class="badge cyan">OPEN SOURCE</div>
+        <div class="badge coral">100K+ STARS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 2: THE HEADLINE ═══════ -->
+  <div class="slide" data-slide="1">
+    <div class="slide-inner">
+      <div class="slide-number">Slide 01</div>
+      <h2 style="margin-bottom:4px;">The AI That Actually Does Things</h2>
+      <div class="slide-subtitle">From chatbot to operator</div>
+      <ul class="bullets">
+        <li>Most AI tools <strong>answer questions</strong>. OpenClaw <em>acts</em>.</li>
+        <li>It manages your email, books appointments, shops for you, and <strong>runs while you sleep</strong>.</li>
+        <li>One user's agent negotiated <em>$4,200 off a car purchase</em> &mdash; overnight, autonomously.</li>
+        <li>This is the shift from <strong>AI as assistant</strong> to <strong>AI as operator</strong>.</li>
+      </ul>
+      <div class="stat-row" style="margin-top:32px;">
+        <div class="stat">
+          <div class="num">$4,200</div>
+          <div class="label">Negotiated autonomously</div>
+        </div>
+        <div class="stat">
+          <div class="num cyan">24/7</div>
+          <div class="label">Always running</div>
+        </div>
+        <div class="stat">
+          <div class="num">0</div>
+          <div class="label">Prompts needed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 3: WHAT IS OPENCLAW ═══════ -->
+  <div class="slide" data-slide="2">
+    <div class="slide-inner">
+      <div class="slide-number">Slide 02</div>
+      <h2>What Is OpenClaw?</h2>
+      <div class="slide-subtitle">A 60-second explainer</div>
+      <ul class="bullets">
+        <li><strong>Open-source autonomous AI agent</strong>, built by one developer as a weekend project (November 2025)</li>
+        <li>Connects to AI models (<em>Claude, ChatGPT, Gemini</em>) and runs on your own computer or server</li>
+        <li>You control it through messaging apps you already use &mdash; <strong>WhatsApp, Telegram, Slack, iMessage</strong></li>
+        <li>Key differentiator: <em>persistent memory</em> &mdash; it remembers your habits and preferences across weeks and months</li>
+        <li><strong>100,000+ GitHub stars in under a week</strong> &mdash; one of the fastest-growing open-source projects in history</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 4: NAME CONFUSION ═══════ -->
+  <div class="slide" data-slide="3">
+    <div class="slide-inner">
+      <div class="slide-number">Slide 03</div>
+      <h2>The Name Confusion</h2>
+      <div class="slide-subtitle">Why you may have heard three names</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="date">NOV 2025</div>
+          <div class="desc">Started as <strong>Clawdbot</strong> &mdash; named after Claude AI</div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">JAN 27, 2026</div>
+          <div class="desc">Became <strong>Moltbot</strong> &mdash; renamed after Anthropic trademark dispute</div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">JAN 30, 2026</div>
+          <div class="desc">Became <strong>OpenClaw</strong> &mdash; final name, moving to open-source foundation</div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">FEB 2026</div>
+          <div class="desc">Creator <strong>Peter Steinberger</strong> joined <em>OpenAI</em> to build next-generation personal agents</div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">NOW</div>
+          <div class="desc">The product lives on; the <strong>ecosystem is growing</strong> without him</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 5: WHAT CAN IT DO ═══════ -->
+  <div class="slide" data-slide="4">
+    <div class="slide-inner">
+      <div class="slide-number">Slide 04</div>
+      <h2>What Can It Actually Do?</h2>
+      <div class="slide-subtitle">Real use cases being documented today</div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">📧</div>
+          <h3>Email Management</h3>
+          <p>Reading, drafting, deleting, and responding to emails autonomously</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📅</div>
+          <h3>Calendar & Scheduling</h3>
+          <p>Booking meetings, setting reminders, managing your calendar</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔍</div>
+          <h3>Web Research</h3>
+          <p>Deep web research and PDF summarisation on demand</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛒</div>
+          <h3>Shopping & Bookings</h3>
+          <p>Online shopping, bookings, and form-filling across the web</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚖️</div>
+          <h3>Legal Rebuttals</h3>
+          <p>Filing legal rebuttals to insurance denials &mdash; a real documented case</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💓</div>
+          <h3>Heartbeat Mode</h3>
+          <p>Runs continuously on a schedule &mdash; no prompt needed every time</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 5b: THE MAC MINI MOMENT ═══════ -->
+  <div class="slide" data-slide="5">
+    <div class="slide-inner">
+      <div class="slide-number">Slide 04b</div>
+      <h2>The Mac Mini Moment</h2>
+      <div class="slide-subtitle">When software hype becomes hardware reality</div>
+      <div class="split-layout">
+        <div>
+          <div class="mac-mini-hero">
+            <img src="https://www.apple.com/v/mac-mini/aa/images/overview/welcome/hero_endframe__d9kro8y76v42_large.jpg" alt="Mac mini" loading="lazy">
+            <div class="overlay-badge">PERSONAL AI SERVER</div>
+          </div>
+          <div class="hw-wave">
+            <div class="wave-item past"><span class="era">1990s</span> Linux servers &rarr; web era</div>
+            <div class="wave-item past"><span class="era">2010s</span> GPUs &rarr; crypto &amp; deep learning</div>
+            <div class="wave-item now"><span class="era">2026</span> <strong>Mac minis &rarr; personal AI agents</strong></div>
+          </div>
+        </div>
+        <div>
+          <ul class="bullets">
+            <li>A measurable <strong>buying surge of Mac minis</strong> has emerged &mdash; specifically to run OpenClaw as dedicated always-on agent machines</li>
+            <li>Mac mini &amp; Mac Studio models with high RAM now have <em>delivery delays of weeks</em> due to demand</li>
+            <li>Why the Mac mini? <strong>Cheap, silent, power-efficient</strong>, designed to run continuously &mdash; the ideal personal AI server</li>
+            <li>When people start <strong>buying hardware for a software category</strong>, the category is real</li>
+            <li>This is likely the <em>first consumer hardware cycle driven entirely by autonomous AI agents</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 6: MOLTBOOK ═══════ -->
+  <div class="slide" data-slide="6">
+    <div class="slide-inner">
+      <div class="slide-number">Slide 05</div>
+
+      <h2>Moltbook: The "Agent Internet"</h2>
+      <div class="slide-subtitle">The part that went truly viral</div>
+      <ul class="bullets">
+        <li>A <strong>Reddit-style social network exclusively for AI agents</strong> &mdash; humans can only watch</li>
+        <li>Launched January 28, 2026; <em>1.5M+ agent identities</em> registered within weeks</li>
+        <li>Agents post, debate, share instructions, form communities ("submolts"), and <strong>coordinate behaviour</strong></li>
+      </ul>
+      <div class="callout" style="margin:24px 0;">
+        <p>"The most incredible sci-fi takeoff-adjacent thing I've seen"</p>
+        <div class="attr">&mdash; Andrej Karpathy, ex-Tesla AI Director</div>
+      </div>
+      <ul class="bullets">
+        <li>The honest caveat: much of this activity is <strong>human-prompted</strong>; true full autonomy is disputed</li>
+      </ul>
+      <div class="stat-row" style="margin-top:24px;">
+        <div class="stat">
+          <div class="num">1.5M+</div>
+          <div class="label">Agent identities</div>
+        </div>
+        <div class="stat">
+          <div class="num cyan">AI-only</div>
+          <div class="label">Humans can only watch</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 7: WHY IT MATTERS ═══════ -->
+  <div class="slide" data-slide="7">
+    <div class="slide-inner">
+      <div class="slide-number">Slide 06</div>
+      <h2>Why This Matters Strategically</h2>
+      <div class="slide-subtitle">The signal beneath the noise</div>
+      <div class="progression">
+        <div class="stage past">Chatbots</div>
+        <div class="arrow">&rarr;</div>
+        <div class="stage past">Copilots</div>
+        <div class="arrow">&rarr;</div>
+        <div class="stage current">Autonomous Agents</div>
+        <div class="arrow">&rarr;</div>
+        <div class="stage future">Agent Networks</div>
+      </div>
+      <ul class="bullets" style="margin-top:28px;">
+        <li>OpenAI hiring OpenClaw's creator is a <strong>declaration of direction</strong></li>
+        <li><strong>IBM, Palo Alto Networks, Cisco, and 1Password</strong> are all publishing analysis &mdash; this isn't a meme</li>
+        <li>The pattern &mdash; persistent, tool-operating, continuously running AI &mdash; will be <em>mainstream within 2&ndash;3 years</em></li>
+      </ul>
+      <div class="callout" style="margin-top:24px;">
+        <p>This is a technology inflection point, not a trend.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 8: THE REAL RISKS ═══════ -->
+  <div class="slide" data-slide="8">
+    <div class="slide-inner">
+      <div class="slide-number">Slide 07</div>
+      <h2>The Real Risks</h2>
+      <div class="warning-banner">
+        <span style="font-size:20px;">&#9888;</span>
+        <span>Do Not Skip This Slide &mdash; What small business leaders must understand</span>
+      </div>
+      <ul class="bullets warn">
+        <li><strong>Security is genuinely immature.</strong> Over <em>42,000 publicly exposed instances</em> discovered by researchers.</li>
+        <li>Agents require access to your <strong>passwords, files, email, and messaging</strong> &mdash; a breach means full system compromise</li>
+        <li>Cisco found third-party "skills" performing <strong>data exfiltration</strong> without user awareness</li>
+        <li>Fake versions carrying <strong>trojans</strong> have already been distributed</li>
+        <li>Multiple companies have <strong>banned it outright</strong> on corporate devices</li>
+      </ul>
+      <div class="callout" style="margin-top:20px;">
+        <p>"Don't run it on your main computer &mdash; it's the wild west"</p>
+        <div class="attr">&mdash; Andrej Karpathy</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 9: LINUX ANALOGY ═══════ -->
+  <div class="slide" data-slide="9">
+    <div class="slide-inner">
+      <div class="slide-number">Slide 08</div>
+      <h2>The Linux 1993 Analogy</h2>
+      <div class="slide-subtitle">How to think about where we are</div>
+      <table class="comparison-table">
+        <tr>
+          <th>1993</th>
+          <th>2026</th>
+        </tr>
+        <tr>
+          <td>Linux &mdash; powerful, raw, dangerous</td>
+          <td>OpenClaw &mdash; powerful, raw, dangerous</td>
+        </tr>
+        <tr>
+          <td>Required command-line expertise</td>
+          <td>Requires technical setup and security awareness</td>
+        </tr>
+        <tr>
+          <td>Not ready for most businesses</td>
+          <td>Not ready for most businesses</td>
+        </tr>
+        <tr>
+          <td>Became the foundation of the internet</td>
+          <td>Becoming the prototype of agentic computing</td>
+        </tr>
+      </table>
+      <div style="text-align:center;margin-top:32px;">
+        <p style="font-size:17px;color:var(--text-secondary);max-width:680px;margin:0 auto;">
+          The point isn't to <strong style="color:var(--text-primary)">use</strong> OpenClaw.
+          The point is to understand what it <strong style="color:var(--cyan-bright)">proves is now technically possible</strong>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 9b: DOES IT ACTUALLY LEARN? ═══════ -->
+  <div class="slide" data-slide="10">
+    <div class="slide-inner">
+      <div class="slide-number">Slide 08b</div>
+      <h2 style="font-size:clamp(24px,3vw,40px);">Does It Actually Learn?</h2>
+      <div class="slide-subtitle">Separating signal from mythology</div>
+      <div class="three-col">
+        <div class="col yes">
+          <div class="col-header green">&#10003; What it genuinely does</div>
+          <ul class="col-list">
+            <li><strong>Chains tools autonomously</strong> &mdash; reads email, extracts data, updates spreadsheets, sends Slack alerts from a single goal</li>
+            <li>Uses <strong>persistent memory</strong> to improve &mdash; if an approach fails, it tries a different one and remembers what worked</li>
+            <li>On Moltbook, agents <strong>read other agents' workflows</strong> and adopt better strategies &mdash; knowledge transfer at scale</li>
+          </ul>
+        </div>
+        <div class="col no">
+          <div class="col-header red">&#10007; What it does NOT do</div>
+          <ul class="col-list">
+            <li>Cannot <strong>modify its own neural network</strong> or invent capabilities beyond its tools</li>
+            <li>Not truly self-directed &mdash; remains <strong>goal-driven, tool-constrained, model-bounded</strong></li>
+            <li>What looks like learning is <strong>memory-guided behavioural adaptation</strong>, not model retraining</li>
+          </ul>
+        </div>
+        <div class="col shift">
+          <div class="col-header amber">&#9670; The real shift</div>
+          <ul class="col-list">
+            <li>Traditional software only does what you <strong>explicitly coded</strong></li>
+            <li>Agent systems <strong>discover useful combinations</strong> of existing capabilities without explicit programming</li>
+            <li><strong>Dynamic workflow composition</strong> instead of fixed workflows &mdash; genuinely new</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:20px;">
+        <p>"Instead of building fixed workflows, you deploy an agent and let it assemble them dynamically."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 10: WHAT TO DO ═══════ -->
+  <div class="slide" data-slide="11">
+    <div class="slide-inner">
+      <div class="slide-number">Slide 09</div>
+      <h2>What Should Leaders Do?</h2>
+      <div class="slide-subtitle">Practical guidance for right now</div>
+      <ul class="action-list">
+        <li>
+          <div class="action-icon stop">&#10007;</div>
+          <div><strong style="color:var(--coral-bright)">Do not deploy OpenClaw in your business today</strong> &mdash; the security risks are not acceptable</div>
+        </li>
+        <li>
+          <div class="action-icon go">&#10003;</div>
+          <div><strong style="color:var(--cyan-bright)">Start a conversation internally</strong> about what tasks you'd want an autonomous agent to handle</div>
+        </li>
+        <li>
+          <div class="action-icon watch">&#9672;</div>
+          <div><strong style="color:#f59e0b">Watch the enterprise versions arriving</strong> &mdash; OpenAI, IBM, Anthropic, and Microsoft are all building enterprise-safe equivalents</div>
+        </li>
+        <li>
+          <div class="action-icon go">&#10003;</div>
+          <div><strong style="color:var(--cyan-bright)">Identify your highest-value automation candidates:</strong> email triage, scheduling, research, customer follow-up</div>
+        </li>
+        <li>
+          <div class="action-icon stop">&#10007;</div>
+          <div><strong style="color:var(--coral-bright)">Governance first:</strong> decide your policy on AI agents before employees start experimenting on their own (they already may be)</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 12: BOTTOM LINE ═══════ -->
+  <div class="slide" data-slide="12">
+    <div class="slide-inner" style="text-align:center;">
+      <div class="slide-number">Slide 10</div>
+      <h2 style="justify-content:center;display:flex;">The Bottom Line</h2>
+      <p style="font-size:17px;color:var(--text-secondary);margin:8px 0 28px;">What to take away from this room</p>
+      <div style="max-width:780px;margin:0 auto;">
+        <ul class="bullets" style="text-align:left;margin-bottom:28px;">
+          <li>OpenClaw is a <strong>prototype, not a product</strong> &mdash; but it proves the architecture works</li>
+          <li>The question for your business is <em>not</em> "should we use OpenClaw?"</li>
+        </ul>
+        <div class="big-question">
+          "When autonomous agents become enterprise-safe in 12&ndash;24 months, <span class="highlight">which parts of our business are we ready to hand them?</span>"
+        </div>
+        <div class="closing-note">That conversation starts now.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav-controls">
+  <button class="nav-btn" id="prevBtn" aria-label="Previous slide">&#8592;</button>
+  <div class="slide-counter" id="counter">1 / 11</div>
+  <button class="nav-btn" id="nextBtn" aria-label="Next slide">&#8594;</button>
+</div>
+
+<script>
+// ── Starfield ──
+(function initStarfield() {
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  const STAR_COUNT = 180;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < STAR_COUNT; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.4 + 0.3,
+        a: Math.random() * 0.6 + 0.15,
+        pulse: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.003 + 0.001
+      });
+    }
+  }
+
+  function draw(time) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const s of stars) {
+      s.pulse += s.speed;
+      const alpha = s.a * (0.6 + 0.4 * Math.sin(s.pulse));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(240,244,255,${alpha})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); createStars(); });
+  resize();
+  createStars();
+  requestAnimationFrame(draw);
+})();
+
+// ── Slide Engine ──
+(function initDeck() {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  function updateProgress() {
+    const pct = ((current) / (total - 1)) * 100;
+    progress.style.width = pct + '%';
+    counter.textContent = (current + 1) + ' / ' + total;
+  }
+
+  function goTo(index, direction) {
+    if (index < 0 || index >= total || index === current) return;
+    const prev = slides[current];
+    const next = slides[index];
+
+    // Remove active, add exit class
+    prev.classList.remove('active');
+    if (direction === 'forward') {
+      prev.classList.add('exit-left');
+      next.style.transform = 'translateX(60px)';
+    } else {
+      prev.style.transform = 'translateX(60px)';
+      next.classList.add('exit-left');
+    }
+
+    // Force reflow
+    void next.offsetWidth;
+
+    // Remove exit, activate
+    next.classList.remove('exit-left');
+    next.classList.add('active');
+
+    // Reset previous after transition
+    setTimeout(() => {
+      prev.classList.remove('exit-left');
+      prev.style.transform = '';
+    }, 600);
+
+    current = index;
+    updateProgress();
+  }
+
+  function nextSlide() { goTo(current + 1, 'forward'); }
+  function prevSlide() { goTo(current - 1, 'backward'); }
+
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      e.preventDefault();
+      nextSlide();
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      prevSlide();
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      goTo(0, 'backward');
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      goTo(total - 1, 'forward');
+    }
+  });
+
+  // Buttons
+  prevBtn.addEventListener('click', prevSlide);
+  nextBtn.addEventListener('click', nextSlide);
+
+  // Touch swipe
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? nextSlide() : prevSlide();
+    }
+  });
+
+  updateProgress();
+})();
+</script>
+</body>
+</html>

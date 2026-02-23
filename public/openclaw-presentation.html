@@ -655,6 +655,73 @@ h2::before {
 .badge.coral { background: var(--surface-coral-soft); color: var(--coral-bright); }
 .badge.cyan { background: var(--surface-cyan-soft); color: var(--cyan-bright); }
 
+/* ── Top-right home link ── */
+.home-link {
+  position: fixed;
+  top: 16px; right: 20px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 10px;
+  background: var(--surface-card-strong);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+  transition: all .25s;
+}
+.home-link:hover {
+  color: var(--coral-mid);
+  border-color: var(--border-accent);
+  background: var(--surface-coral-soft);
+}
+.home-link span { font-size: 18px; }
+
+/* ── CTA links row ── */
+.cta-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  transition: all .25s;
+}
+.cta-link.primary {
+  background: var(--coral-mid);
+  color: var(--text-primary);
+  border: 1px solid var(--coral-mid);
+}
+.cta-link.primary:hover {
+  background: var(--coral-bright);
+  box-shadow: 0 0 24px rgba(255, 77, 77, .3);
+}
+.cta-link.secondary {
+  background: transparent;
+  color: var(--cyan-bright);
+  border: 1px solid rgba(0, 229, 204, .3);
+}
+.cta-link.secondary:hover {
+  background: var(--surface-cyan-soft);
+  border-color: var(--cyan-bright);
+  box-shadow: 0 0 24px rgba(0, 229, 204, .15);
+}
+
 /* ── Mac mini hero image ── */
 .mac-mini-hero {
   position: relative;
@@ -798,6 +865,10 @@ h2::before {
 <div class="progress-track">
   <div class="progress-fill" id="progress"></div>
 </div>
+
+<a href="https://openclaw.ai/" target="_blank" rel="noopener" class="home-link">
+  <span>🦞</span> openclaw.ai
+</a>
 
 <div id="deck">
 
@@ -1168,6 +1239,10 @@ h2::before {
           "When autonomous agents become enterprise-safe in 12&ndash;24 months, <span class="highlight">which parts of our business are we ready to hand them?</span>"
         </div>
         <div class="closing-note">That conversation starts now.</div>
+        <div class="cta-row">
+          <a href="https://openclaw.ai/" target="_blank" rel="noopener" class="cta-link primary">🦞 Visit OpenClaw</a>
+          <a href="https://openclaw.ai/#code-oneliner" target="_blank" rel="noopener" class="cta-link secondary">&#9654; Quick Start Guide</a>
+        </div>
       </div>
     </div>
   </div>

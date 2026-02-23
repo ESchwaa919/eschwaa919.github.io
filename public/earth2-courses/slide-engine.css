@@ -131,6 +131,37 @@ body {
 .slide.active .slide-inner > *:nth-child(3) { animation-delay: 280ms; }
 .slide.active .slide-inner > *:nth-child(4) { animation-delay: 360ms; }
 
+/* --- Hero / Background Image Support --- */
+.slide[data-hero],
+.slide[data-bg-img] {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Dark overlay for readability on image slides */
+.slide[data-hero] .slide-inner,
+.slide[data-bg-img] .slide-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.slide[data-hero]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(11, 17, 32, 0.55) 0%, rgba(11, 17, 32, 0.82) 100%);
+  z-index: 1;
+}
+
+.slide[data-bg-img]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 17, 32, 0.65);
+  z-index: 1;
+}
+
 /* --- Slide Type: Title --- */
 .slide[data-type="title"] {
   text-align: center;

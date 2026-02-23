@@ -58,11 +58,33 @@
     goToSlide(currentSlide);
   }
 
+  // Detect course number for image paths
+  function getCourseNum() {
+    if (typeof COURSE_INFO !== 'undefined' && COURSE_INFO.number) {
+      return String(COURSE_INFO.number).padStart(2, '0');
+    }
+    const match = location.pathname.match(/course-(\d+)/);
+    return match ? match[1] : null;
+  }
+
+  const courseNum = getCourseNum();
+
   function createSlide(data, index) {
     const section = document.createElement('section');
     section.className = 'slide';
     section.dataset.type = data.type || 'content';
     section.dataset.index = index;
+
+    // Apply hero image to title slides, bg image to all others
+    if (courseNum) {
+      if (data.type === 'title') {
+        section.dataset.hero = '1';
+        section.style.backgroundImage = `url('images/hero-${courseNum}.png')`;
+      } else {
+        section.dataset.bgImg = '1';
+        section.style.backgroundImage = `url('images/bg-${courseNum}.png')`;
+      }
+    }
 
     const inner = document.createElement('div');
     inner.className = 'slide-inner';

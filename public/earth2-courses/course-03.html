@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course 3: AI Hygiene for Real People | Earth 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slide-engine.css">
+</head>
+<body>
+
+<script>
+const SLIDES = [
+  {
+    type: 'title',
+    title: 'AI Hygiene for Real People',
+    subtitle: 'Earth 2.0 AI Capability Programme',
+    content: ['Course 3 of 10 \u2014 MANDATORY FOR ALL PARTICIPANTS', 'AI Curious Ltd'],
+    notes: 'Welcome to Course 3. This course is mandatory for every participant in the Earth 2.0 programme, regardless of level. That\'s deliberate. Safety isn\'t something you graduate past. It\'s the foundation.'
+  },
+  {
+    type: 'content',
+    title: 'This Course Is Mandatory',
+    content: [
+      'Mandatory for <strong>ALL</strong> programme participants',
+      'Whether you\'re brand new or experienced',
+      'AI Driving Licence requires this badge',
+      'No exceptions. No skipping.',
+      'This is not a compliance exercise. This is a <strong>practical workshop</strong>.'
+    ],
+    notes: 'Let me be clear about why this is mandatory. It\'s not because regulators told us to. It\'s because every other skill in this programme \u2014 prompting, workflow design, risk management \u2014 sits on top of safety. If the foundation is weak, everything above it is at risk. Today gives you that foundation.'
+  },
+  {
+    type: 'content',
+    title: 'Why Hygiene?',
+    content: [
+      '"Hygiene" = habits so ingrained they become <strong>automatic</strong>',
+      'You don\'t think about brushing your teeth. You just do it.',
+      'AI hygiene is the same: <strong>safe defaults</strong>, not safe exceptions',
+      'Today we build those habits'
+    ],
+    notes: 'We chose the word "hygiene" deliberately. You don\'t have a meeting every morning to decide whether to brush your teeth. You just do it. It\'s automatic. That\'s what we\'re building today for AI: habits that become automatic. Classify before you paste. Check your settings monthly. Know your red lines without thinking about them.'
+  },
+  {
+    type: 'content',
+    title: 'Real-World Consequences',
+    content: [
+      'Employee pastes client data into ChatGPT \u2014 it appears in another user\'s session',
+      'Company strategy document used to train an AI model \u2014 competitors benefit',
+      'Teacher inputs student names and grades \u2014 privacy breach',
+      'These are <strong>real incidents</strong>. Not hypotheticals.'
+    ],
+    notes: 'These aren\'t hypothetical scenarios. These have happened. An employee shared client data and it surfaced in another conversation. A company\'s strategy document was used for model training because nobody checked the settings. A teacher put student details into an AI tool without thinking about the privacy implications. Today, we make sure this doesn\'t happen to you.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 1',
+    title: 'Data Classification: What Can and Can\'t Go Into AI',
+    notes: 'The most fundamental question in AI hygiene: what data can you put into an AI tool, and what data must stay out? The answer isn\'t "never share anything." The answer is: it depends on the classification.'
+  },
+  {
+    type: 'content',
+    title: 'The Four Levels',
+    content: [
+      '<strong>Public</strong> \u2014 Already publicly available \u2192 Safe to use',
+      '<strong>Internal</strong> \u2014 Not public, not sensitive \u2192 Use with caution',
+      '<strong>Confidential</strong> \u2014 Sensitive to org/individual \u2192 Do NOT use (or anonymise fully)',
+      '<strong>Restricted</strong> \u2014 Highest sensitivity \u2192 NEVER use'
+    ],
+    notes: 'Four levels. Public: it\'s already out there, anyone can Google it. Internal: your team knows it, the public doesn\'t, but it\'s not sensitive. Confidential: this could cause harm if exposed \u2014 client names, financial figures, strategy documents. Restricted: this could cause serious harm \u2014 passwords, health records, government IDs. Never. Under any circumstances.'
+  },
+  {
+    type: 'content',
+    title: 'Classify First, Prompt Second',
+    content: [
+      'Most people think about what they want the AI to do',
+      'Then paste whatever data they need',
+      'The habit we\'re building: <strong>classify the data FIRST</strong>',
+      'Then decide if it\'s safe to share',
+      'When in doubt, classify <strong>UP</strong>, not down'
+    ],
+    notes: 'Here\'s the key habit change. Right now, most people think: "I want AI to do X" and then paste whatever data they need. From today: classify first, prompt second. Before anything goes into that text box, ask: what level is this data? And if you\'re not sure, classify up. Treat it as more sensitive, not less.'
+  },
+  {
+    type: 'content',
+    title: 'Grey Areas Are Real',
+    content: [
+      'A project timeline with no names = Internal',
+      'The same timeline with client names = Confidential',
+      'Context matters. Classification isn\'t always obvious.',
+      'Grey areas require <strong>judgment</strong>, not just rules',
+      'The answer to uncertainty: <strong>classify UP</strong>'
+    ],
+    notes: 'Some data is easy. Your password is Restricted. A news article is Public. But the grey areas are where mistakes happen. The same document can be Internal without names and Confidential with names. The same meeting notes can be Internal if they\'re routine and Confidential if they discuss strategy. When you hit a grey area, classify up. Treating something as Confidential when it was actually Internal costs you nothing. Treating something as Internal when it was actually Confidential could cost everything.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 1: The Classification Drill',
+    content: [
+      '20 data items to classify',
+      'Work individually first (8 minutes)',
+      'Then compare with your group (5 minutes)',
+      'Focus on items where you disagree \u2014 that\'s where the learning is',
+      'Debrief: 2 minutes'
+    ],
+    notes: 'Open your workbooks to Lab 1. You\'ll find 20 data items. Classify each one: Public, Internal, Confidential, or Restricted. Work alone first \u2014 8 minutes. Then compare with your group. The items where you disagree are the most valuable ones. That\'s where judgment matters.'
+  },
+  {
+    type: 'checkpoint',
+    title: 'Classification Debrief',
+    content: [
+      'Items that generated the most disagreement',
+      'The Restricted items (4, 8, 13, 19, 20) are <strong>non-negotiable</strong>',
+      'Grey areas require judgment \u2014 and that\'s OK',
+      'When in doubt: <strong>classify UP</strong>'
+    ],
+    notes: 'Let\'s debrief. Which items generated the most disagreement in your groups? Key point: items 4, 8, 13, 19, and 20 are Restricted. Period. Bank accounts, medical diagnoses, National Insurance numbers, student results with names, passwords. If any of those weren\'t obvious, we need to fix that now. The grey areas \u2014 meeting agendas, project timelines, draft emails \u2014 those are where your judgment matters. And the golden rule when you\'re unsure: classify up.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 2',
+    title: 'Tool Settings & Safe Defaults',
+    notes: 'You can now classify data. But even when the data is safe to share, there\'s another question: are your tools configured to protect it? Most people never look at their AI tool\'s privacy settings. We\'re about to fix that.'
+  },
+  {
+    type: 'content',
+    title: 'Your Tools Have Settings',
+    content: [
+      'Just like your phone has privacy settings, AI tools have data controls',
+      'The defaults are <strong>NOT always in your best interest</strong>',
+      'Most people have never looked at them',
+      'Today you will. And you\'ll configure them correctly.'
+    ],
+    notes: 'Your AI tools have settings that control what happens to your data. Model training, chat history, shared links, connected apps. Most of these are configured with the tool maker\'s interest in mind, not yours. Today, you\'ll find every one of these settings and configure them for YOUR safety.'
+  },
+  {
+    type: 'activity',
+    title: 'ChatGPT Settings Walkthrough',
+    content: [
+      'ChatGPT \u2192 Settings \u2192 Data Controls',
+      'Setting 1: "Improve the model for everyone" \u2192 <strong>Turn OFF</strong>',
+      'Setting 2: Chat History \u2192 Understand what it means',
+      'Setting 3: Shared Links \u2192 Review and clean up',
+      'Follow along on your own device'
+    ],
+    notes: 'I\'m going to share my screen and walk through ChatGPT\'s settings. Follow along on your own device. We\'ll do this together. The big one: "Improve the model for everyone." This is on by default. It means your conversations may be used to train future versions of ChatGPT. Turn it off. Your tool works exactly the same. The only difference is your conversations stay your conversations.'
+  },
+  {
+    type: 'activity',
+    title: 'Claude Settings Walkthrough',
+    content: [
+      'Claude \u2192 Settings',
+      'Review data usage settings',
+      'Understand conversation storage',
+      'Configure based on your needs'
+    ],
+    notes: 'Now Claude. Same principle, different interface. Let\'s walk through it. Claude\'s approach to data differs from ChatGPT. Anthropic has a different philosophy about data use. But the principle is the same: find the settings, understand them, configure them.'
+  },
+  {
+    type: 'quote',
+    title: 'Opt OUT by default. Opt IN by choice.',
+    attribution: 'Earth 2.0 Safety Principle',
+    notes: 'This is your principle for every AI tool you\'ll ever use. Opt out by default. Opt in by choice. Start with everything at the safest level. Then make conscious, informed decisions to change specific settings when you have a clear reason. If you don\'t understand what a setting does, leave it off. You can always turn it on later.'
+  },
+  {
+    type: 'transition',
+    label: 'Break',
+    title: '10 Minute Break',
+    notes: 'Good work. Take 10 minutes. When we come back, you\'ll configure your own tools and then draft your personal AI Use Policy.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 2: Settings Audit',
+    content: [
+      'Configure <strong>YOUR</strong> tools right now',
+      'ChatGPT: Settings \u2192 Data Controls (7 min)',
+      'Claude: Settings \u2192 Privacy (5 min)',
+      'Other tools: list them for your 48-hour audit (3 min)',
+      'Follow along with my screen'
+    ],
+    notes: 'This is a doing lab. Open ChatGPT. Go to Settings. I\'ll have my screen shared as a reference. Configure each setting. Then do the same for Claude. If you use other tools, list them in your workbook for your 48-hour follow-up. Let\'s go.'
+  },
+  {
+    type: 'checkpoint',
+    title: 'Settings Complete',
+    content: [
+      'Raise your hand if you turned off model training in ChatGPT',
+      'Raise your hand if you reviewed your Claude settings',
+      'Raise your hand if you found a setting you didn\'t know existed',
+      'You\'re now safer than most AI users in the world.'
+    ],
+    notes: 'Quick show of hands. Who turned off model training in ChatGPT? Who reviewed Claude settings? Who found a setting they didn\'t know existed? Congratulations. You\'re now more informed about your AI tools\' data handling than the vast majority of users. That\'s not hyperbole. Most people never check.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 3',
+    title: 'Red Lines & Policy Patterns',
+    notes: 'You can classify data. Your tools are configured. Now the final piece: knowing your absolute limits and putting everything into a written policy.'
+  },
+  {
+    type: 'content',
+    title: 'What\'s a Red Line?',
+    content: [
+      'A red line is something you will <strong>NEVER</strong> do with AI',
+      'Not a guideline. Not a "usually don\'t." An <strong>absolute</strong>.',
+      'Regardless of context, convenience, or pressure',
+      'Everyone has them. Most people haven\'t written them down.'
+    ],
+    notes: 'A red line is not a guideline. It\'s an absolute. Something you will never do, regardless of context, convenience, or time pressure. Your manager asks you to. A deadline is tight. The client is waiting. Doesn\'t matter. A red line is a red line. Most people have instinctive red lines but have never written them down. Today, you write them down.'
+  },
+  {
+    type: 'content',
+    title: 'Universal Red Lines',
+    content: [
+      'These apply to <strong>EVERYONE</strong>:',
+      '<strong>1.</strong> Never input passwords, bank details, or government IDs',
+      '<strong>2.</strong> Never use AI for medical, legal, or financial decisions without expert review',
+      '<strong>3.</strong> Never present AI work as your own without disclosure (where expected)',
+      '<strong>4.</strong> Never input other people\'s personal data without consent',
+      '<strong>5.</strong> Never use AI to create misleading or deceptive content'
+    ],
+    notes: 'Five universal red lines. These apply to every single person in this room, regardless of your role, your industry, or your experience level. Read them. Memorise them. These are non-negotiable.'
+  },
+  {
+    type: 'discussion',
+    title: 'What\'s a red line specific to YOUR role or industry?',
+    content: [
+      'Teachers: student names and grades',
+      'Healthcare: patient information in any form',
+      'Legal: case details and privileged information',
+      'HR/Management: performance review data',
+      'What are yours?'
+    ],
+    notes: 'Those are the universal red lines. Now let\'s get specific. What\'s a red line for YOUR role? If you\'re a teacher, student data. Healthcare? Patient information. Legal? Case details. I want to hear yours. Call them out and I\'ll capture them on the board.'
+  },
+  {
+    type: 'content',
+    title: 'What a Good Policy Includes',
+    content: [
+      'A good AI Use Policy needs <strong>6 things</strong>:',
+      '<strong>1.</strong> Permitted tools (name them)',
+      '<strong>2.</strong> Data classification rules (what can/can\'t go in)',
+      '<strong>3.</strong> Disclosure requirements (when to say AI helped)',
+      '<strong>4.</strong> Red lines (absolute no-go areas)',
+      '<strong>5.</strong> Review process (who checks high-stakes outputs)',
+      '<strong>6.</strong> Review date (policies need updating)',
+      'One page is enough.'
+    ],
+    notes: 'A good AI Use Policy isn\'t 50 pages. It\'s one page with six clear sections. Permitted tools. Data rules. Disclosure rules. Red lines. Review process. And a date to review and update it. Most organisations don\'t have this. Most individuals don\'t have this. In 10 minutes, you will.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 3: Draft Your AI Use Policy',
+    content: [
+      'Open your workbook to the policy template',
+      'Complete all 6 sections',
+      'Be specific: name your tools, list your data types, write your red lines',
+      'Duration: 10 minutes'
+    ],
+    notes: 'Open your workbooks to the AI Use Policy template. You have 10 minutes to draft your policy. Be specific. Don\'t write "I\'ll be careful with data." Write "I will never input client names into ChatGPT without anonymising them." Specificity is what makes a policy useful.'
+  },
+  {
+    type: 'activity',
+    title: 'Pair Review',
+    content: [
+      'Pair up with a neighbour',
+      'Read your partner\'s policy (1 min each)',
+      'Give one constructive suggestion: "Have you considered\u2026?"',
+      'Note the feedback (30 sec each)',
+      'Duration: 5 minutes total'
+    ],
+    notes: 'Pair up. Read your partner\'s policy. Give them one constructive suggestion. Not "this is good." Something like "Have you considered adding a rule about shared AI-generated documents?" or "You might want to be more specific about which tools." One suggestion each.'
+  },
+  {
+    type: 'content',
+    title: 'What You Built Today',
+    content: [
+      '<strong>Three practical outputs:</strong>',
+      '<strong>1.</strong> Data classification skill (20 items sorted and discussed)',
+      '<strong>2.</strong> Properly configured AI tools (settings audited and updated)',
+      '<strong>3.</strong> A written AI Use Policy (with peer review)',
+      'You are now the most responsible AI user in most rooms.',
+      'Course 3: <strong>MANDATORY checkpoint COMPLETE</strong>.'
+    ],
+    notes: 'Three outputs. A data classification skill you can apply to anything. Properly configured AI tools with the safest settings. And a written AI Use Policy you drafted yourself. These aren\'t theoretical. These are things you have, right now, that you can use from today. You\'ve completed the mandatory safety checkpoint of the Earth 2.0 programme. That\'s significant.'
+  },
+  {
+    type: 'title',
+    title: 'Your 48-Hour Commitment',
+    subtitle: 'The 48-Hour Rule',
+    content: [
+      'Complete your AI Use Policy (if not finished)',
+      'Share it with at least one colleague',
+      'Start the conversation about responsible AI',
+      'Next: Course 4 \u2014 Reality Check: AI Errors & Hallucinations',
+      'Earth 2.0 AI Capability Programme | AI Curious Ltd'
+    ],
+    notes: 'Your 48-Hour commitment. If your policy isn\'t finished, complete it. Then share it with at least one colleague or team member. Not for approval. For conversation. "Here\'s what I\'m thinking about AI use. What do you think?" That conversation is how responsible AI practices spread. Course 4 is next: Reality Check. Now you know what data to protect and how to configure your tools. Next, you learn to evaluate whether the outputs are any good. Open your workbook. Write your commitment. Sign it. Thank you.'
+  }
+];
+</script>
+
+<script src="slide-engine.js"></script>
+</body>
+</html>

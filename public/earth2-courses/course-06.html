@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course 6: From Prompts to Playbooks | Earth 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slide-engine.css">
+</head>
+<body>
+
+<script>
+const SLIDES = [
+  {
+    type: 'title',
+    title: 'From Prompts to Playbooks',
+    subtitle: 'Earth 2.0 AI Capability Programme',
+    content: ['Course 6 of 10', 'AI Curious Ltd'],
+    notes: 'Welcome back to Earth 2.0. This is Course 6: From Prompts to Playbooks. In Course 5, you became a better prompter. Today, you become someone who makes your entire team better at AI.'
+  },
+  {
+    type: 'content',
+    title: 'The Capability Shift',
+    content: [
+      'Course 5: Individual prompting skill (<strong>YOU</strong> are better)',
+      'Course 6: Team/organisational capability (<strong>YOUR TEAM</strong> is better)',
+      'The bridge: <strong>documentation, governance, sharing</strong>',
+      'Progression: <strong>Competent \u2192 Operator</strong>'
+    ],
+    notes: 'Here\u2019s the shift. Course 5 was about you. Course 6 is about your team. The best prompts in the world are worthless if they live in one person\u2019s head. Today we document them, version them, quality-check them, and share them. After today, you\u2019re an Operator \u2014 someone who enables AI capability across a team.'
+  },
+  {
+    type: 'content',
+    title: 'Today\u2019s Mission',
+    content: [
+      '5 modules, 3 labs, 2 breaks',
+      'The <strong>7-component AI SOP framework</strong>',
+      'Version control without developer tools',
+      'Quality gates and review processes',
+      'Governance and sharing',
+      'Build a working <strong>3-SOP playbook</strong>',
+      'Peer review: stress-test your documentation'
+    ],
+    notes: 'Five modules, three labs, two breaks. The centrepiece is the 7-component SOP framework. You\u2019ll also learn version control, quality gates, and governance. And you\u2019ll build a real playbook with three SOPs. Lab 3 is where your partner tries to follow your SOP without any help from you. That\u2019s the ultimate test.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 1',
+    title: 'What Is a Playbook?',
+    notes: 'Let\u2019s start with foundations. What exactly is a playbook, and why does your team need one?'
+  },
+  {
+    type: 'content',
+    title: 'The Documentation Spectrum',
+    content: [
+      '<strong>Notes:</strong> "I asked AI and it worked" \u2192 Only you, maybe',
+      '<strong>Prompt Library:</strong> ICC prompt with variables \u2192 You + skilled prompters',
+      '<strong>SOP:</strong> Prompt + purpose + scope + quality check + escalation \u2192 Anyone on the team',
+      '<strong>Playbook:</strong> Multiple SOPs + governance \u2192 Whole team or organisation',
+      'Today: <strong>Prompt Library \u2192 Playbook</strong>'
+    ],
+    notes: 'There\u2019s a spectrum. Most people are at "Notes" \u2014 something informal that only they can understand. Course 5 got you to "Prompt Library." Today we go all the way to Playbook. A playbook is a document that anyone on your team can pick up and follow, even if they weren\u2019t in this room.'
+  },
+  {
+    type: 'content',
+    title: 'Why AI Work Needs SOPs',
+    content: [
+      'AI outputs vary \u2014 same prompt, different day, different results',
+      'The person who found the "right prompt" holds knowledge the team needs',
+      'New joiners can\u2019t access wisdom trapped in chat histories',
+      'SOPs reduce variation, catch errors, and provide escalation paths',
+      'SOPs answer: <strong>"What do I do when the AI gets it wrong?"</strong>'
+    ],
+    notes: 'Traditional software is deterministic \u2014 click this button, get this result. AI isn\u2019t. The same prompt can produce different outputs tomorrow. An SOP captures not just the prompt, but the quality checks and escalation paths that handle that variation. It\u2019s the difference between "Sarah knows how to do that" and "anyone can do that."'
+  },
+  {
+    type: 'content',
+    title: 'SOP Walkthrough: Real Example',
+    content: [
+      '<strong>SOP: Weekly Customer Feedback Summary</strong>',
+      'Purpose: Summarise feedback for leadership',
+      'Scope: Zendesk/NPS/Trustpilot (NOT individual complaints)',
+      'Prerequisites: Access, tools, training',
+      'Prompt: Full ICC with [VARIABLES]',
+      'Expected Output: 5 themes, supporting quotes, trends',
+      'Quality Check: Verify themes, check quotes, compare to last week',
+      'Escalation: Critical issue \u2192 flag to Head of CS'
+    ],
+    notes: 'Let me walk you through a real example. This SOP is for generating a weekly customer feedback summary. Notice: it\u2019s not just the prompt. It tells you when to use it, what you need before starting, what good looks like, how to check the output, and what to do when things go wrong. This is what a colleague could follow without calling you.'
+  },
+  {
+    type: 'quote',
+    title: 'A prompt only you can use is a skill. A playbook anyone can follow is a capability.',
+    attribution: 'Earth 2.0',
+    notes: 'This is the line that defines today. Skills are personal. Capabilities are organisational. You\u2019ve built the skills. Now we build the capability.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 2',
+    title: 'The Anatomy of an AI SOP',
+    notes: 'Seven components. Each one serves a specific purpose. Miss one, and the SOP has a gap. Let\u2019s go through each.'
+  },
+  {
+    type: 'content',
+    title: 'Component 1: Purpose',
+    content: [
+      '<strong>Purpose = Why this SOP exists</strong>',
+      'What business outcome does it support?',
+      'One or two sentences.',
+      '<strong>Good:</strong> "Generate a weekly customer feedback summary that identifies the top 5 themes for the leadership team meeting."',
+      '<strong>Bad:</strong> "Use AI to do customer feedback stuff."'
+    ],
+    notes: 'Purpose is the "why." Not "what the AI does" but "what the business outcome is." If someone reads only the Purpose, they should know whether this SOP is relevant to them or not.'
+  },
+  {
+    type: 'content',
+    title: 'Component 2: Scope',
+    content: [
+      '<strong>Scope = When to use AND when NOT to use</strong>',
+      'Use when: [specific situations]',
+      'Do NOT use when: [exclusions]',
+      'The "Do NOT use when" <strong>prevents misuse</strong>',
+      'Most overlooked component'
+    ],
+    notes: 'Scope is the most overlooked and most important safety net. "Use when" is easy. "Do NOT use when" is what prevents someone from applying this SOP to a situation where it could cause harm. If your SOP doesn\u2019t have a "Do NOT use when" section, add one.'
+  },
+  {
+    type: 'content',
+    title: 'Component 3: Prerequisites',
+    content: [
+      '<strong>Prerequisites = What you need before starting</strong>',
+      'Tools (which AI account?)',
+      'Access (what systems, what data?)',
+      'Prior knowledge (what training?)',
+      'Input data (what do you need to prepare?)'
+    ],
+    notes: 'Everything someone needs to have, know, or access before they start. If a prerequisite is missing, they\u2019ll get stuck mid-process and waste time. List every dependency. Don\u2019t assume.'
+  },
+  {
+    type: 'content',
+    title: 'Component 4: The Prompt(s)',
+    content: [
+      '<strong>The Prompt(s) = Exact text with [VARIABLE] placeholders</strong>',
+      'Full ICC-structured prompt from your Course 5 library',
+      '[BRACKETS] for every detail that changes',
+      'If multiple prompts: number them, explain the sequence',
+      'This is the engine of the SOP'
+    ],
+    notes: 'This is the core. The actual prompt text. Not a summary. Not a description. The exact prompt with brackets for everything that changes between uses. If the process requires multiple prompts in sequence \u2014 chain prompting \u2014 number them and explain what output from Prompt 1 feeds into Prompt 2.'
+  },
+  {
+    type: 'content',
+    title: 'Component 5: Expected Output',
+    content: [
+      '<strong>Expected Output = What "good" looks like</strong>',
+      'Concrete description of format, length, content',
+      'Not "a good summary" but "300\u2013400 words, 5 themes, supporting quotes, trend comparison"',
+      'The standard against which you evaluate the AI\u2019s work'
+    ],
+    notes: 'If you can\u2019t describe what good looks like, how will you know if the AI produced it? Expected Output is your quality standard. Be concrete. "A 300-word summary with 5 numbered themes" is checkable. "A good summary" is not.'
+  },
+  {
+    type: 'content',
+    title: 'Component 6: Quality Check',
+    content: [
+      '<strong>Quality Check = How to verify the output</strong>',
+      'Specific, verifiable steps anyone can follow',
+      'Not "check it looks okay"',
+      'Cross-reference themes against raw data',
+      'Verify quotes are real (not hallucinated)',
+      'Check trend comparison against last week',
+      'Read aloud: would a non-expert understand this?'
+    ],
+    notes: 'The quality check is your defence against hallucination, bias, and error. Every step should be something a colleague can do without judgment calls. "Cross-reference themes against raw data" is verifiable. "Make sure it\u2019s accurate" is not.'
+  },
+  {
+    type: 'content',
+    title: 'Component 7: Escalation',
+    content: [
+      '<strong>Escalation = What to do when things go wrong</strong>',
+      '"If [situation], then [action]"',
+      'Wrong output \u2192 re-run or manual override',
+      'Sensitive content \u2192 stop and consult',
+      'Beyond AI capability \u2192 involve a human decision-maker',
+      'The safety net for the SOP'
+    ],
+    notes: 'Escalation is the "what if" section. What if the AI hallucinates? What if the output reveals a critical issue? What if the task turns out to be beyond AI capability? Without escalation, people either forge ahead with bad output or freeze. Escalation tells them exactly what to do.'
+  },
+  {
+    type: 'content',
+    title: 'All 7 Together',
+    content: [
+      '<strong>1. Purpose</strong> \u2014 why',
+      '<strong>2. Scope</strong> \u2014 when (and when not)',
+      '<strong>3. Prerequisites</strong> \u2014 what you need',
+      '<strong>4. Prompt(s)</strong> \u2014 the engine',
+      '<strong>5. Expected Output</strong> \u2014 what good looks like',
+      '<strong>6. Quality Check</strong> \u2014 how to verify',
+      '<strong>7. Escalation</strong> \u2014 what to do when it goes wrong'
+    ],
+    notes: 'Seven components. Each one answers a specific question. Together, they create a document that anyone can follow. Purpose answers why. Scope answers when. Prerequisites answers what you need. The Prompt is the engine. Expected Output is the standard. Quality Check is the verification. Escalation is the safety net.'
+  },
+  {
+    type: 'checkpoint',
+    title: 'Quick Check: Name That Component',
+    content: [
+      'I\u2019ll read 7 statements',
+      'You call out which SOP component it belongs to',
+      'Purpose? Scope? Prerequisites? Prompt? Expected Output? Quality Check? Escalation?'
+    ],
+    notes: 'Quick check. I\u2019ll read a statement. You tell me which component it belongs to. Ready? [Read statements from the formative assessment. Pause for responses. Correct any confusion immediately.]'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 1: SOP from Scratch',
+    content: [
+      'Take one prompt from your Course 5 library',
+      'Convert it into a <strong>full 7-component SOP</strong>',
+      'Use the template in your workbook',
+      'All 7 components, no shortcuts',
+      'Test the prompt in your AI tool',
+      '<strong>20 minutes</strong>',
+      'Workbook: SOP Template section'
+    ],
+    notes: 'This is the big one. Take your best prompt from Course 5 and build a complete SOP around it. All seven components. The template is in your workbook. If you didn\u2019t bring your prompt library, there are three backup prompts in the lab instructions. You\u2019ve got 20 minutes.'
+  },
+  {
+    type: 'transition',
+    label: '\u2615',
+    title: '10 Minute Break',
+    notes: 'Well done. You\u2019ve built your first formal SOP. Take 10 minutes. When we come back, we add version control and quality gates \u2014 the mechanisms that keep your SOP reliable over time.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 3',
+    title: 'Version Control for Non-Developers',
+    notes: 'Version control. Sounds technical. It isn\u2019t. We\u2019re going to learn a simple system that works without any developer tools.'
+  },
+  {
+    type: 'content',
+    title: 'The Naming Convention',
+    content: [
+      'Format: <strong>[SOP-Name]_v[Major].[Minor]_[Date]</strong>',
+      'Example: Weekly-Feedback-Summary_v1.0_2026-01-15',
+      'Example: Weekly-Feedback-Summary_v1.1_2026-02-03',
+      'Example: Weekly-Feedback-Summary_v2.0_2026-04-01',
+      'Major (v1 \u2192 v2): significant change',
+      'Minor (v1.0 \u2192 v1.1): small adjustment',
+      '<strong>Always include the date. Never overwrite.</strong>'
+    ],
+    notes: 'One naming convention. Everyone follows it. Major version number changes when the prompt, purpose, or process changes significantly. Minor version changes for small tweaks. Date always included. And the golden rule: never overwrite. Save the new version alongside the old.'
+  },
+  {
+    type: 'content',
+    title: 'The Changelog',
+    content: [
+      'Simple table at the top of each SOP:',
+      '<strong>Version | Date | Changed By | What Changed | Why</strong>',
+      'v1.0 | Jan 15 | Sarah | Initial version | First documentation',
+      'v1.1 | Feb 03 | Sarah | Added tone constraint | Output was too formal',
+      'v2.0 | Apr 01 | James | Rewrote for GPT-5 | Model update broke v1'
+    ],
+    notes: 'The changelog answers: what changed, when, by whom, and why. When something breaks three months from now, the changelog tells you what happened. When a new team member wants to understand the SOP\u2019s history, the changelog is the story.'
+  },
+  {
+    type: 'content',
+    title: 'The Two-Version Rule',
+    content: [
+      'Always keep accessible:',
+      '<strong>Current version</strong> (what everyone uses)',
+      '<strong>Previous version</strong> (rollback if current breaks)',
+      'Archive older versions',
+      'If the current version breaks tomorrow, can you go back?',
+      '<strong>This is insurance, not bureaucracy.</strong>'
+    ],
+    notes: 'Two versions always accessible. The current one and the one before. If a model update breaks your current SOP, you need to be able to roll back quickly. Everything older can be archived but shouldn\u2019t be deleted. This isn\u2019t bureaucracy. This is insurance.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 4',
+    title: 'Quality Gates & Review Processes',
+    notes: 'Versioning tells you what changed. Quality gates tell you whether the change is any good. Three gates. One of them is non-negotiable.'
+  },
+  {
+    type: 'content',
+    title: 'The Three Quality Gates',
+    content: [
+      '<strong>Gate 1: Author Test</strong> \u2014 Run the prompt 3+ times with varied inputs. Consistent results?',
+      '<strong>Gate 2: Peer Test</strong> \u2014 Someone else follows the SOP from scratch without help. Can they do it?',
+      '<strong>Gate 3: Review Approval</strong> \u2014 Formal check against team standards and policies.'
+    ],
+    notes: 'Three gates. Gate 1: you test your own work. Gate 2: someone else tests it without your help. Gate 3: a reviewer checks it against standards. These gates exist to catch problems before they reach your team.'
+  },
+  {
+    type: 'content',
+    title: 'Gate 2: The Non-Negotiable',
+    content: [
+      'If nobody else can follow your SOP without you standing over their shoulder, <strong>it\u2019s not an SOP</strong>',
+      'It\u2019s a personal note',
+      'Gate 2 tests the <strong>documentation</strong>, not the process',
+      'The reviewer follows literally. No improvising. No asking.',
+      'Where they get stuck = where your documentation has a gap'
+    ],
+    notes: 'Gate 2 is the one that matters most. Here\u2019s the test: hand your SOP to a colleague. Walk away. Can they produce the expected output by following your document alone? If they have to call you, your SOP has a gap. Every gap discovered in Gate 2 is a gap that won\u2019t trip up your team later.'
+  },
+  {
+    type: 'content',
+    title: 'The Review Checklist',
+    content: [
+      'Purpose is clear and specific',
+      'Scope includes "when NOT to use"',
+      'Prerequisites are complete',
+      'Prompts use [BRACKETS] for variables',
+      'Expected Output is concrete',
+      'Quality Check has verifiable steps',
+      'Escalation covers failure modes',
+      'No sensitive data in prompt text',
+      'Version number and changelog updated',
+      'Tested by someone other than the author'
+    ],
+    notes: 'Ten items. This is the checklist for Gate 3 review. It\u2019s in your workbook and you\u2019ll use it in Lab 3 when you review your partner\u2019s SOP. Notice item 10: tested by someone other than the author. That\u2019s Gate 2, built into Gate 3.'
+  },
+  {
+    type: 'content',
+    title: 'Who Reviews?',
+    content: [
+      '<strong>Small team (2\u20135):</strong> Peers review each other\u2019s SOPs',
+      '<strong>Medium team (6\u201315):</strong> Designated AI champion reviews all SOPs',
+      '<strong>Large team (15+):</strong> Review committee or tiered review by risk level',
+      'No perfect answer \u2014 pick what works and be consistent.'
+    ],
+    notes: 'Who reviews depends on team size. Small teams: peer review, like we\u2019ll do in Lab 3. Medium teams: designate one person as the AI documentation owner. Large teams: a review committee or tiered approach where high-risk SOPs get more scrutiny. The answer that works is the one your team will actually follow.'
+  },
+  {
+    type: 'content',
+    title: 'Case Study: When Gate 2 Catches a Gap',
+    content: [
+      'Author wrote an SOP for summarising client meeting notes',
+      '<strong>Gate 1 passed:</strong> Author ran it 3 times, worked every time',
+      '<strong>Gate 2 failed:</strong> Peer got stuck at "paste the meeting notes"',
+      'Why? Author assumed notes would be in a specific format from a specific tool',
+      'Peer used a different note-taking tool with a different format',
+      '<strong>Fix:</strong> Added a "Prepare your notes" step in Prerequisites',
+      '<strong>Lesson:</strong> What\u2019s obvious to you is invisible to others'
+    ],
+    notes: 'Real scenario. An author built a perfectly good SOP. It passed Gate 1 three times. Then a colleague tried to follow it and got stuck immediately because the notes were in a different format. The author had assumed everyone used the same note-taking tool. They didn\u2019t. A one-sentence addition to Prerequisites fixed it. This is why Gate 2 exists.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 2: Playbook Build',
+    content: [
+      'Build a playbook with <strong>3 SOPs</strong>',
+      'SOP 1: from Lab 1 (detailed)',
+      'SOPs 2 & 3: abbreviated (all 7 components, less detail)',
+      'Add cover page and governance section',
+      'Ideally: 3 SOPs that form a workflow',
+      '<strong>20 minutes</strong>',
+      'Workbook: Playbook Build section'
+    ],
+    notes: 'Build your playbook. SOP 1 is your detailed work from Lab 1. Add two more SOPs \u2014 they can be abbreviated but must have all 7 components. Think about SOPs that form a natural workflow. And don\u2019t skip the cover page and governance section. You\u2019ve got 20 minutes.'
+  },
+  {
+    type: 'transition',
+    label: '\u2615',
+    title: '10 Minute Break',
+    notes: 'Your playbook exists. Three SOPs, governance, version control. Take 10 minutes. When we come back, we talk about who owns this thing and how to share it. Then your partner tries to follow it.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 5',
+    title: 'Governance & Sharing',
+    notes: 'The final module before the big test. A playbook without governance is a document that decays. Let\u2019s make sure yours doesn\u2019t.'
+  },
+  {
+    type: 'content',
+    title: 'Every Playbook Needs an Owner',
+    content: [
+      'An owner is responsible for:',
+      'Keeping the playbook current',
+      'Responding to user feedback',
+      'Coordinating reviews',
+      'Retiring outdated SOPs',
+      '<strong>Without an owner, playbooks decay.</strong>',
+      'Decay timeline: ~3\u20136 months without maintenance.'
+    ],
+    notes: 'Documentation without ownership decays. It\u2019s not a matter of if. In my experience, an unowned playbook becomes unreliable within 3\u20136 months. AI models update, team needs change, new people join. Someone has to keep the playbook alive.'
+  },
+  {
+    type: 'content',
+    title: 'The Governance Record',
+    content: [
+      'Playbook cover page must include:',
+      '<strong>Playbook Owner</strong> \u2014 [Name]',
+      '<strong>Created</strong> \u2014 [Date]',
+      '<strong>Last Reviewed</strong> \u2014 [Date]',
+      '<strong>Review Frequency</strong> \u2014 Quarterly',
+      '<strong>Approved By</strong> \u2014 [Name/Role]',
+      '<strong>Distribution</strong> \u2014 [Team/Department]'
+    ],
+    notes: 'Simple governance. Six fields on the cover page. Owner, creation date, last review date, review frequency, approver, and distribution. This takes 2 minutes to complete and is the difference between a living document and a dead one.'
+  },
+  {
+    type: 'content',
+    title: 'The Knowledge Circular Economy',
+    content: [
+      '<strong>P2: Knowledge Circular Economy</strong>',
+      'Knowledge is not hoarded. It is systematised and shared.',
+      'Store playbooks where teams can find them',
+      'Point new joiners to playbooks during onboarding',
+      'Build feedback loops: "This SOP didn\u2019t work because\u2026"',
+      'Celebrate and share good SOPs across teams'
+    ],
+    notes: 'This is P2 in action. The Knowledge Circular Economy means: when someone figures out a better way to do something with AI, that knowledge doesn\u2019t stay with them. It\u2019s documented, shared, and improved. Your playbook is the vehicle. Share it.'
+  },
+  {
+    type: 'content',
+    title: 'The Feedback Loop',
+    content: [
+      'Every SOP needs a way for users to report issues:',
+      '"This step was unclear"',
+      '"The prompt didn\u2019t produce the expected output"',
+      '"I found a better approach"',
+      'Contact: the playbook owner',
+      '<strong>Culture: reporting problems is valued, not criticised</strong>',
+      'Every report makes the SOP better'
+    ],
+    notes: 'The playbook is never "done." Users will encounter gaps, model changes will break prompts, and someone will inevitably find a better approach. Build in a simple feedback mechanism. And build a culture where reporting a problem with an SOP is seen as a contribution, not a complaint.'
+  },
+  {
+    type: 'content',
+    title: 'When to Retire an SOP',
+    content: [
+      'Retire when:',
+      'The task no longer exists',
+      'The process has fundamentally changed',
+      'The AI model no longer supports the approach',
+      'A better SOP has replaced it',
+      'Mark as: <strong>[RETIRED]</strong> in the title',
+      'Archive (don\u2019t delete) for historical reference'
+    ],
+    notes: 'SOPs don\u2019t live forever. When a task changes or a better approach exists, retire the old SOP. Mark it clearly. Keep it archived for reference \u2014 someone might need to understand why it was retired or revert to the old approach. Never delete outright.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 3: Peer Review',
+    content: [
+      'Exchange playbooks with your partner',
+      'Pick one SOP and <strong>follow it literally</strong>',
+      '<strong>NO verbal help</strong> from the author',
+      'Note where you get stuck',
+      'Complete the review checklist',
+      'Write feedback: what worked, what was unclear, one suggestion',
+      '<strong>15 minutes</strong> \u2014 This is Gate 2 in action.'
+    ],
+    notes: 'The ultimate test. Swap playbooks. Pick one SOP. Follow it literally. Do not ask the author for help. Do not fill in gaps with assumptions. If you get stuck, write down exactly where and why. That feedback is the most valuable thing you\u2019ll give your partner today. You\u2019ve got 15 minutes. Rules: no verbal explanations. The document must work on its own. If your partner has to explain it, the SOP has a gap. That\u2019s not failure \u2014 that\u2019s learning.'
+  },
+  {
+    type: 'content',
+    title: 'Your Operator Toolkit',
+    content: [
+      'The 7-Component AI SOP Framework',
+      'Version control with naming conventions and changelogs',
+      'Quality gates: Author Test, Peer Test, Review Approval',
+      'Governance: ownership, feedback loops, review cycles',
+      'A working 3-SOP playbook',
+      'Progression: <strong>Competent \u2192 Operator</strong>',
+      'Next: <strong>Course 7 \u2014 Human-in-the-Loop Systems</strong>'
+    ],
+    notes: 'Look at what you\u2019ve built. A complete SOP framework. Version control. Quality gates. Governance. And a working playbook with three SOPs. You came in with individual prompts. You\u2019re leaving with team documentation. Course 7 takes you into system design \u2014 how humans and AI work together in workflows with proper oversight.'
+  },
+  {
+    type: 'quote',
+    title: 'Knowledge is not hoarded. It is systematised, shared, and improved.',
+    attribution: 'P2: Knowledge Circular Economy',
+    notes: 'One principle to take away above all others today. P2: the Knowledge Circular Economy. Your playbook is not a personal asset. It\u2019s a team resource. Share it. Welcome feedback. Help your colleagues build theirs. That\u2019s how individual skill becomes organisational capability.'
+  },
+  {
+    type: 'title',
+    title: 'Your 48-Hour Commitment',
+    subtitle: 'Execution over everything.',
+    content: [
+      'Share one SOP with a colleague. Get their feedback.',
+      'Open your workbook. Write your commitment. Sign it.',
+      'Thank you.',
+      'Earth 2.0 AI Capability Programme | AI Curious Ltd'
+    ],
+    notes: 'Final commitment. Open your workbook. Write down: which SOP you\u2019ll share, which colleague you\u2019ll share it with, and when you\u2019ll do it. Within 48 hours. Not next month. Not when it\u2019s perfect. Within 48 hours. Share it. Get feedback. Improve it. That\u2019s the Knowledge Circular Economy in action. Thank you.'
+  }
+];
+</script>
+
+<script src="slide-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course 4: Reality Check: AI Errors & Hallucinations | Earth 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slide-engine.css">
+</head>
+<body>
+
+<script>
+const SLIDES = [
+  {
+    type: 'title',
+    title: 'Reality Check',
+    subtitle: 'AI Errors & Hallucinations',
+    content: ['Course 4 of 10 \u2014 Earth 2.0 AI Capability Programme', 'AI Curious Ltd'],
+    notes: 'Welcome to Course 4: Reality Check. This is where you learn the most important lesson about AI. Not how to use it. Not how to configure it. But how to tell when it\'s lying to you. And I use that word deliberately \u2014 it sounds like it\'s telling the truth, even when it\'s not.'
+  },
+  {
+    type: 'content',
+    title: 'The Foundation So Far',
+    content: [
+      'Course 1: You learned what AI is (<strong>understanding</strong>)',
+      'Course 2: You learned to use it (<strong>practical skills</strong>)',
+      'Course 3: You learned to use it safely (<strong>data hygiene</strong>)',
+      'Course 4: You learn to evaluate whether it\'s right (<strong>critical evaluation</strong>)',
+      'After today: your foundation is <strong>complete</strong>'
+    ],
+    notes: 'Quick recap of where you\'ve been. Course 1 gave you understanding. Course 2 gave you practical skills. Course 3 gave you safety. Today completes the foundation: the ability to evaluate whether AI outputs are actually correct. After today, you\'ll have all four foundation skills. That\'s significant.'
+  },
+  {
+    type: 'activity',
+    title: 'The Confidence Problem',
+    content: [
+      'Live Demo: Watch what happens when I ask AI something specific',
+      'Does the response sound confident?',
+      'Is it actually correct?',
+      'Let\'s find out.'
+    ],
+    notes: 'I\'m going to show you something right now. I\'ll ask the AI a specific factual question. Watch how confident the response sounds. Then we\'ll check if it\'s actually right. See that? Completely confident. Partially wrong. And you wouldn\'t have known unless you checked.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 1',
+    title: 'How AI Gets It Wrong',
+    notes: 'That confident-sounding answer had errors. And unless you checked, you wouldn\'t have known. Let\'s understand why this happens \u2014 because once you understand the mechanism, you can predict when it\'s most likely to go wrong.'
+  },
+  {
+    type: 'content',
+    title: 'The Four Types of AI Errors',
+    content: [
+      '<strong>Hallucination:</strong> Fabricates information that doesn\'t exist',
+      '<strong>Confident inaccuracy:</strong> States something wrong with full confidence',
+      '<strong>Plausible fabrication:</strong> Creates something that sounds right but isn\'t',
+      '<strong>Outdated information:</strong> Provides info that\'s since changed',
+      'All four sound equally confident.'
+    ],
+    notes: 'Four types of errors. Hallucination: making things up entirely \u2014 inventing people, papers, events that never existed. Confident inaccuracy: getting a specific fact wrong \u2014 a date, a number, a name. Plausible fabrication: generating something that sounds plausible but is false \u2014 a quote someone never said, a study that was never conducted. Outdated information: stating something that was true when the AI was trained but isn\'t true anymore. All four are delivered with exactly the same confident tone. That\'s the problem.'
+  },
+  {
+    type: 'content',
+    title: 'Why It Happens',
+    content: [
+      'AI is a <strong>prediction engine</strong>, not a truth engine (from Course 1)',
+      'It predicts the most plausible next word',
+      'It has no "truth detector"',
+      'When it doesn\'t know, it doesn\'t leave a blank \u2014 it fills with the best guess',
+      'It doesn\'t know what it doesn\'t know'
+    ],
+    notes: 'Remember Course 1? AI is a prediction engine. It predicts the most likely next word based on patterns. It doesn\'t have a truth detector. It doesn\'t cross-reference facts. And critically: when it doesn\'t know something, it doesn\'t say "I don\'t know." It fills the gap with the most plausible-sounding prediction. That\'s not a bug. That\'s how the technology works. Your job is to know this and plan for it.'
+  },
+  {
+    type: 'content',
+    title: 'When It\'s Most Dangerous',
+    content: [
+      'You don\'t have domain expertise to spot the error',
+      'The output is used for <strong>high-stakes decisions</strong> without verification',
+      'The error is buried in specific details within accurate content',
+      'You\'re in a hurry and skip verification',
+      'Someone else trusts YOUR AI output because YOU shared it'
+    ],
+    notes: 'AI errors are most dangerous in five situations. When you don\'t know enough about the topic to spot the mistake. When the output feeds into an important decision. When the error is a wrong date or statistic buried inside an otherwise accurate paragraph. When you\'re rushing. And perhaps the most overlooked: when someone else trusts your work because you shared it \u2014 and you didn\'t verify it. You become the source of the error.'
+  },
+  {
+    type: 'content',
+    title: 'The 80/20 Trap',
+    content: [
+      'AI outputs are often ~80% accurate',
+      'That\'s enough to sound <strong>completely credible</strong>',
+      'The 20% that\'s wrong is scattered through the accurate content',
+      'This is <strong>MORE dangerous</strong> than being 100% wrong',
+      'Because you\'re less likely to check something that sounds right'
+    ],
+    notes: 'This is the trap. If AI gave you something 100% wrong, you\'d notice immediately. But 80% right? That sounds credible. You read it, it makes sense, the structure is good, the language is professional. And buried in there are wrong dates, fabricated sources, or inaccurate statistics. You don\'t check because it feels right. That\'s the 80/20 trap. The most dangerous AI output isn\'t the one that\'s obviously wrong. It\'s the one that\'s mostly right.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 1: Hallucination Detection Drills',
+    content: [
+      '5 AI-generated paragraphs with embedded errors',
+      'Your mission: <strong>find every error</strong>',
+      'Work individually first (15 min)',
+      'Then compare with your group (7 min)',
+      'Think of it as detective work',
+      'Red pens ready.'
+    ],
+    notes: 'Time for detective work. In your workbook, you\'ll find 5 paragraphs generated by AI. Each one contains errors \u2014 hallucinations, inaccuracies, fabrications, and outdated information. Your job: find them all. Work alone first. Use your instincts. Circle anything that feels off. Then compare with your group. You have 15 minutes. Red pens ready. Let\'s hunt.'
+  },
+  {
+    type: 'checkpoint',
+    title: 'Detection Debrief',
+    content: [
+      'Answer key reveal (paragraph by paragraph)',
+      'Which errors did everyone catch?',
+      'Which did only a few people catch?',
+      'Which did nobody catch?',
+      'The ones you missed are the ones that\'ll catch you in real life.'
+    ],
+    notes: 'Let\'s see how you did. I\'ll go through each paragraph and reveal the errors. The errors you missed? Those are exactly the type that catch people in real-world AI use. Not the obvious ones. The subtle ones. The fabricated expert with a plausible name. The statistic that\'s close but not right. That\'s why we verify.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 2',
+    title: 'The Verification Framework',
+    notes: 'You can spot errors when you\'re looking for them. But spotting is only step one. How do you confirm whether something is right or wrong? That\'s the verification framework.'
+  },
+  {
+    type: 'content',
+    title: 'Flag, Check, Label',
+    content: [
+      '<strong>Step 1: FLAG</strong> \u2014 Mark every claim that matters (facts, numbers, names, dates, quotes)',
+      '<strong>Step 2: CHECK</strong> \u2014 Verify each flagged claim against a reliable source',
+      '<strong>Step 3: LABEL</strong> \u2014 Mark each claim: Verified / Unverified / Incorrect',
+      'Three steps. Every time.'
+    ],
+    notes: 'Three steps. Flag: read the output and circle every specific claim. Not opinions, not general statements \u2014 specific facts, numbers, names, dates, quotes, citations. Check: verify each flagged claim against a reliable, independent source. Not another AI tool. Label: mark each claim as Verified, Unverified, or Incorrect. Three steps. Simple. Systematic. Effective.'
+  },
+  {
+    type: 'content',
+    title: 'What Counts as Reliable?',
+    content: [
+      '<strong>Reliable:</strong> Primary sources, established references, domain experts, official databases',
+      '<strong>NOT reliable:</strong> Another AI tool, the first Google result, social media, unverified blogs',
+      'The principle: go to the <strong>SOURCE</strong>, not a summary of the source',
+      'If you can\'t verify it, you can\'t vouch for it'
+    ],
+    notes: 'What\'s a reliable source? Primary sources \u2014 the original research, the official document. Established references \u2014 encyclopaedias, government databases, peer-reviewed journals. Domain experts \u2014 people with verified expertise. What\'s NOT reliable? Another AI tool. Asking Claude to verify what ChatGPT said is like asking one student to mark another\'s exam. The first result on Google \u2014 check what\'s behind it. And if you can\'t verify a claim? Then you can\'t vouch for it. Simple as that.'
+  },
+  {
+    type: 'content',
+    title: 'Risk-Proportionate Verification',
+    content: [
+      '<strong>Low stakes</strong> (brainstorming, notes): Spot-check 1\u20132 claims',
+      '<strong>Medium stakes</strong> (internal docs, team comms): Verify all facts and figures',
+      '<strong>High stakes</strong> (public content, client work, decisions): Verify everything',
+      'The effort matches the risk.'
+    ],
+    notes: 'Not everything needs the same level of checking. Brainstorming ideas for a team meeting? Spot-check one or two claims. Writing an internal report? Verify the specific facts and figures. Preparing a client proposal? Verify everything. Every number. Every source. Every claim. The effort matches the risk. That\'s not laziness at the low end or paranoia at the high end. It\'s proportionate.'
+  },
+  {
+    type: 'activity',
+    title: 'Live Demo: Verification in Action',
+    content: [
+      'Watch: I\'ll take an AI output and run the 3-step process live',
+      '<strong>1.</strong> Flag the claims',
+      '<strong>2.</strong> Check them against real sources',
+      '<strong>3.</strong> Label the results',
+      'See what survives verification.'
+    ],
+    notes: 'Let me show you verification in action. I\'ll take an AI output, flag every claim, check a few against real sources, and label the results. Watch the process.'
+  },
+  {
+    type: 'transition',
+    label: 'Break',
+    title: '10 Minute Break',
+    notes: 'Good work. You can detect errors and you have a systematic framework for verification. After the break, you\'ll practice verification with real sources, calibrate your confidence, and build a checklist you\'ll use every time you work with AI.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 2: Source Verification',
+    content: [
+      'Work in pairs',
+      '5 AI-generated claims to fact-check',
+      'Use <strong>REAL sources</strong> (not other AI tools)',
+      'For each claim: Flag, Check, Label',
+      'Duration: 15 minutes for verification, 5 minutes for debrief'
+    ],
+    notes: 'Pair up. You\'ll find 5 claims in your workbook. Divide them between you. For each one, apply Flag-Check-Label. Use real sources \u2014 government websites, official databases, original publications. Not another AI. You have 15 minutes.'
+  },
+  {
+    type: 'checkpoint',
+    title: 'Verification Debrief',
+    content: [
+      'Which claims were accurate? Partially accurate? Wrong?',
+      'What sources did you use?',
+      'Key insight: <strong>"partially accurate" is more common than "completely wrong"</strong>'
+    ],
+    notes: 'Let\'s debrief. Here\'s the key insight: most AI claims aren\'t completely wrong. They\'re partially accurate. The general shape is right but specific details are wrong. Marie Curie DID win two Nobel Prizes, but the second was in Chemistry, not Biology. London IS a large European city, but the population figure is off. Partial accuracy is more dangerous than total inaccuracy because it\'s harder to catch.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 3',
+    title: 'Confidence Calibration',
+    notes: 'You can detect errors and verify claims. One more skill: knowing how much to trust your own judgment about AI outputs.'
+  },
+  {
+    type: 'content',
+    title: 'The Confidence Scale',
+    content: [
+      '<strong>High confidence:</strong> Claims verified, matches domain knowledge \u2192 Use with minor edits',
+      '<strong>Medium confidence:</strong> Some verified, some not \u2192 Use with caution, note gaps',
+      '<strong>Low confidence:</strong> Key claims unverified or wrong \u2192 Rework or discard',
+      'Calibrated confidence, not blind trust or blanket distrust'
+    ],
+    notes: 'Three levels. High confidence: you\'ve verified the key claims and they match what you know. Use it. Medium: some parts check out, others you haven\'t verified. Use it but flag the gaps. Low: key claims are wrong or you can\'t verify them. Rework it or throw it out. The goal isn\'t to trust everything or distrust everything. It\'s calibrated confidence based on evidence.'
+  },
+  {
+    type: 'activity',
+    title: 'Your Blind Spot',
+    content: [
+      'Think of the last AI output you used',
+      'Your confidence BEFORE checking: ___/10',
+      'Your estimated confidence AFTER checking: ___/10',
+      'The gap = your blind spot',
+      'The bigger the gap, the bigger the risk'
+    ],
+    notes: 'Quick exercise. Think of the last AI output you used or would use. Rate your confidence before checking \u2014 how much would you trust it? Now imagine you verified every claim. Would your confidence go up or down? The gap between those two numbers is your blind spot. And your blind spot is where AI errors sneak through.'
+  },
+  {
+    type: 'quote',
+    title: 'AI can\'t assess its own confidence. You can. That\'s Hybrid Intelligence.',
+    attribution: 'Earth 2.0 Philosophy',
+    notes: 'Here\'s why you matter. AI can\'t assess its own confidence. It doesn\'t know what it doesn\'t know. But you do. Your expertise, your experience, your common sense \u2014 these are the things AI lacks. When you evaluate an AI output, you\'re providing what the technology can\'t provide for itself: judgment. That\'s not a workaround. That\'s Hybrid Intelligence by design.'
+  },
+  {
+    type: 'transition',
+    label: 'Lab 3',
+    title: 'Build Your "Trust But Verify" Checklist',
+    notes: 'You have the detection skills, the verification framework, and the confidence calibration. Now let\'s package all of it into a practical tool you\'ll use every day.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 3: Build Your Checklist',
+    content: [
+      'Open your workbook to Lab 3',
+      'Start with the 5 universal checks',
+      'Add checks specific to YOUR work',
+      'Define your stakes (low/medium/high)',
+      'Identify your red flags',
+      'Duration: 10 minutes'
+    ],
+    notes: 'Open your workbooks to Lab 3. You\'ll see 5 universal checks already there. Your job: add at least 3 more that are specific to your work. What would you need to check in YOUR outputs? What sources would you use? What triggers extra verification in your context? You have 10 minutes.'
+  },
+  {
+    type: 'activity',
+    title: 'Group Comparison',
+    content: [
+      'Share your checklist with your group',
+      'Steal the best ideas from each other',
+      'What checks did others include that you missed?',
+      'Remember: the best checklist is one you\'ll actually use',
+      'Duration: 5 minutes'
+    ],
+    notes: 'Compare checklists with your group. Look at what others included. Steal good ideas. One rule: the best checklist is the one you\'ll actually use. If it\'s 20 items, you probably won\'t. If it\'s 8\u201310 focused, specific checks? You\'ll use it every time. Quality over quantity.'
+  },
+  {
+    type: 'content',
+    title: 'The Foundation Is Complete',
+    content: [
+      'Course 1: Understanding (what AI is)',
+      'Course 2: Practical skills (how to use it)',
+      'Course 3: Safety (how to use it responsibly)',
+      'Course 4: Critical evaluation (how to tell when it\'s wrong)',
+      '<strong>Foundation complete. You are Competent.</strong>',
+      'Next: Courses 5\u20139 take you toward Practitioner and Licensed Citizen.'
+    ],
+    notes: 'Four courses. Four foundation skills. Understanding. Practical skills. Safety. And now critical evaluation. This is the complete foundation of the Earth 2.0 programme. Every course that follows builds on this. You are now Competent on the maturity scale. The next five courses take you toward Practitioner and ultimately Licensed Citizen.'
+  },
+  {
+    type: 'quote',
+    title: 'AI sounds equally confident whether it\'s right or wrong. Now you know how to tell the difference.',
+    attribution: 'Earth 2.0 Anchor Phrase',
+    notes: 'One phrase to remember from the entire foundation layer. AI sounds equally confident whether it\'s right or wrong. You learned that in Course 1. Today, you learned what to do about it. Detect. Verify. Calibrate. That\'s your skill now. Use it.'
+  },
+  {
+    type: 'title',
+    title: 'Your 48-Hour Commitment',
+    subtitle: 'The 48-Hour Rule',
+    content: [
+      'Use your "Trust But Verify" checklist on your next AI output',
+      'Record what you catch. Share it in the Community Circle.',
+      'Next: Course 5 \u2014 Prompting That Actually Works',
+      'Earth 2.0 AI Capability Programme | AI Curious Ltd'
+    ],
+    notes: 'Your commitment. Within 48 hours, use your "Trust But Verify" checklist on a real AI output. Could be something you generate. Could be something a colleague shares with you. Apply the checklist. Record what you find \u2014 what passed, what failed, what you caught. Share it in the Community Circle. The more examples we collect, the sharper we all get. Open your workbook. Write your commitment. Sign it. Well done.'
+  }
+];
+</script>
+
+<script src="slide-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course 5: Prompting That Actually Works | Earth 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slide-engine.css">
+</head>
+<body>
+
+<script>
+const SLIDES = [
+  {
+    type: 'title',
+    title: 'Prompting That Actually Works',
+    subtitle: 'Earth 2.0 AI Capability Programme',
+    content: ['Course 5 of 10', 'AI Curious Ltd'],
+    notes: 'Welcome back to Earth 2.0. This is Course 5: Prompting That Actually Works. You\u2019ve been using AI for a few weeks now. Some prompts worked. Some didn\u2019t. Today we find out why \u2014 and we fix it permanently.'
+  },
+  {
+    type: 'content',
+    title: 'Your Journey So Far',
+    content: [
+      'Course 1: You understood what AI is',
+      'Course 2: You wrote your first prompts',
+      'Course 3: You learned the safety rules',
+      'Course 4: You separated hype from reality',
+      '<strong>Course 5: You make prompting a professional skill</strong>',
+      'Progression: <strong>Competent \u2192 Practitioner</strong>'
+    ],
+    notes: 'Let\u2019s take stock. You\u2019ve come a long way. You understand AI, you\u2019ve used it, you know the safety framework, and you can spot hype. Today, we add professional-grade prompting technique. After today, you\u2019ll move from Competent to Practitioner on the maturity scale.'
+  },
+  {
+    type: 'content',
+    title: 'Today\u2019s Mission',
+    content: [
+      '5 modules, 4 labs, 2 breaks',
+      'The <strong>ICC Framework</strong> (Intent, Context, Constraints)',
+      'Role prompting',
+      'Rubric-based prompting',
+      'Chain and negative prompting',
+      'Build a personal prompt library',
+      '<strong>Everything is hands-on</strong>'
+    ],
+    notes: 'Here\u2019s what we\u2019re covering today. Five modules and four labs. The ICC Framework is the centrepiece \u2014 it\u2019s the structure that makes every prompt reliable. Then we add role prompting, rubric prompting, and you build a personal library of templates you\u2019ll use every day. Everything is hands-on. You\u2019ll need your laptop and your AI tool open.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 1',
+    title: 'Why Your Prompts Fail',
+    notes: 'Let\u2019s start with an uncomfortable truth. Most of your prompts are probably failing in predictable ways. And I can show you exactly why.'
+  },
+  {
+    type: 'content',
+    title: 'The Vague Prompt Epidemic',
+    content: [
+      'Most people prompt AI the way they text a friend:',
+      'Minimal context \u2014 Assumed knowledge \u2014 No format requirements',
+      'AI doesn\u2019t know you, your role, your audience, or your standards',
+      '<strong>It fills in the blanks with guesses</strong>'
+    ],
+    notes: 'Here\u2019s the core problem. When you text a friend "meeting tomorrow?" they know which meeting, which tomorrow, and what you\u2019re really asking. AI has none of that context. It\u2019s working with exactly what you give it \u2014 nothing more. When you give it vague instructions, you get vague results.'
+  },
+  {
+    type: 'activity',
+    title: 'Live Comparison',
+    content: [
+      'Same task. Two prompts.',
+      '<strong>Bad:</strong> "Write me a project update."',
+      '<strong>Good:</strong> Full ICC-structured prompt',
+      'Watch the difference.'
+    ],
+    notes: 'Let me show you. Same task: project update. Two approaches. Watch what happens. [Switch to browser. Run the bad prompt. Show output. Then run the ICC-structured prompt. Show output. Compare side by side.] The bad prompt gives you something generic you\u2019d never send. The structured prompt gives you something you could send with minor edits. That\u2019s the power of structure.'
+  },
+  {
+    type: 'content',
+    title: 'The Five Failure Patterns',
+    content: [
+      '<strong>1. Vagueness</strong> \u2014 "Write something about marketing"',
+      '<strong>2. Missing Context</strong> \u2014 "Summarise this" (for whom? what level?)',
+      '<strong>3. No Constraints</strong> \u2014 "Write an email" (how long? what tone?)',
+      '<strong>4. Assumed Knowledge</strong> \u2014 "Do the usual format"',
+      '<strong>5. Kitchen Sink</strong> \u2014 15 requirements crammed into one prompt'
+    ],
+    notes: 'Five patterns. Nearly every failed prompt falls into one of these. Vagueness is the most common. Kitchen Sink is the most frustrating \u2014 you give it everything and get back a mess because the requirements conflict with each other. Let\u2019s do a quick self-check: which of these do you recognise in your own prompting? Make a note in your workbook.'
+  },
+  {
+    type: 'quote',
+    title: 'The fix is not longer prompts. It\u2019s structured prompts.',
+    attribution: 'A 3-sentence structured prompt can outperform a 3-paragraph rambling one.',
+    notes: 'This is the key insight. People think the answer is to write more. It isn\u2019t. The answer is to write with structure. A focused, structured prompt with clear intent, relevant context, and specific constraints will beat a rambling paragraph every time. And that structure has a name.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 2',
+    title: 'The ICC Framework',
+    notes: 'ICC. Three letters. The framework that turns inconsistent prompting into a reliable professional skill. Let\u2019s break it down.'
+  },
+  {
+    type: 'content',
+    title: 'Intent',
+    content: [
+      '<strong>Intent = What you actually want</strong>',
+      'Not "write me something" but the specific outcome',
+      'What am I trying to achieve?',
+      'What will I do with the output?',
+      'What does "good" look like?',
+      '<strong>Weak:</strong> "Write about customer feedback"',
+      '<strong>Strong:</strong> "Create a summary of the top 5 themes from Q3 feedback for a 10-minute leadership presentation"'
+    ],
+    notes: 'Intent is the what and the why. Not just "write me an email" but "write a project status email that my manager can scan in 30 seconds and know whether we\u2019re on track." The stronger your intent, the less editing you\u2019ll do after.'
+  },
+  {
+    type: 'content',
+    title: 'Context',
+    content: [
+      '<strong>Context = The background the AI needs</strong>',
+      'Everything you know that the AI doesn\u2019t',
+      'Who is the audience?',
+      'What domain is this in?',
+      'What\u2019s already happened?',
+      '<strong>No context:</strong> "Write a response to this complaint"',
+      '<strong>Rich context:</strong> "3-year customer, billing error we caused, frustrated but polite, our policy is refund + goodwill gesture"'
+    ],
+    notes: 'Context is everything you carry in your head that the AI doesn\u2019t have. Your industry, your audience, the specific situation. The more relevant context you provide, the less the AI has to guess. And guessing is where hallucination and irrelevance come from.'
+  },
+  {
+    type: 'content',
+    title: 'Constraints',
+    content: [
+      '<strong>Constraints = The boundaries and requirements</strong>',
+      'Format, length, tone, includes, excludes',
+      '<strong>No constraints:</strong> "Write a blog post"',
+      '<strong>Clear constraints:</strong> "800\u20131000 words. Professional but approachable. 3 subheadings. UK English. No jargon. End with a call to action."'
+    ],
+    notes: 'Constraints are your quality specifications. Without them, the AI makes its own choices about length, tone, format, and structure. Those choices rarely match what you actually wanted. With constraints, you get what you asked for on the first attempt.'
+  },
+  {
+    type: 'activity',
+    title: 'ICC in Action',
+    content: [
+      '<strong>ICC = Intent + Context + Constraints</strong>',
+      'Every professional prompt needs all three',
+      'Miss one: quality drops',
+      'Miss two: you\u2019re gambling'
+    ],
+    notes: 'All three. Every time. For anything that matters. Miss the Intent and the AI doesn\u2019t know what you want. Miss the Context and the AI guesses your situation. Miss the Constraints and the AI picks its own format. ICC is your insurance against all five failure patterns.'
+  },
+  {
+    type: 'activity',
+    title: 'Building an ICC Prompt Together',
+    content: [
+      'Let\u2019s build one together',
+      'Task: "Prepare for a quarterly business review"',
+      '[Intent] + [Context] + [Constraints]',
+      'Live construction with the room'
+    ],
+    notes: 'Let\u2019s do this together. The task: prepare a quarterly business review agenda. I\u2019ll ask for your input on each component. What\u2019s the Intent? What Context does the AI need? What Constraints should we set? [Build the ICC prompt collaboratively. Capture on screen. Run it live. Show the output.]'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 1: ICC in Practice',
+    content: [
+      'Transform <strong>5 bad prompts</strong> into ICC prompts',
+      'Run both versions in your AI tool',
+      'Compare the outputs',
+      '<strong>20 minutes</strong>',
+      'Workbook: Lab 1 section'
+    ],
+    notes: 'Your turn. In your workbook, you\u2019ll find 5 bad prompts. Rewrite each one using ICC. Then run the original AND your rewrite in your AI tool. Compare the results. You\u2019ve got 20 minutes. The sample rewrites are there if you get stuck, but try it yourself first.'
+  },
+  {
+    type: 'transition',
+    label: '\u2615',
+    title: '10 Minute Break',
+    notes: 'Good work. Take 10 minutes. When we come back, we add a powerful new technique: role prompting.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 3',
+    title: 'Role Prompting',
+    notes: 'Welcome back. ICC gives you structure. Now let\u2019s add perspective. Role prompting changes who the AI thinks it is \u2014 and that changes everything.'
+  },
+  {
+    type: 'content',
+    title: 'What Is Role Prompting?',
+    content: [
+      'Assign the AI a <strong>specific role, persona, or expertise</strong>',
+      'Changes how the AI responds: vocabulary, tone, perspective, depth',
+      'Works because AI was trained on text written by people in different roles',
+      'A doctor explains differently than a teacher',
+      'An executive summarises differently than a journalist'
+    ],
+    notes: 'Role prompting is one of the most powerful techniques available to you. When you tell the AI "you are a senior HR manager," it shifts its patterns toward how HR managers communicate. The vocabulary changes. The tone changes. The priorities change. It\u2019s still the same AI, but it\u2019s drawing from different patterns.'
+  },
+  {
+    type: 'content',
+    title: 'The Role Prompt Pattern',
+    content: [
+      '"You are a <strong>[role]</strong> with expertise in <strong>[domain]</strong>. Your task is to <strong>[specific task]</strong>."',
+      '<strong>Example:</strong> "You are a senior employment lawyer with 15 years of experience in UK discrimination law."',
+      '<strong>Example:</strong> "You are a primary school teacher explaining concepts to 8-year-olds."',
+      '<strong>Example:</strong> "You are a financial analyst preparing a briefing for a non-technical board."'
+    ],
+    notes: 'The pattern is simple. "You are a [role] with expertise in [domain]." Specificity matters. "You are an expert" is almost useless. "You are a senior employment lawyer with 15 years of experience in UK discrimination law" \u2014 that produces a dramatically different output.'
+  },
+  {
+    type: 'content',
+    title: 'When to Use Role Prompting',
+    content: [
+      'You need <strong>domain-specific language</strong> or perspective',
+      'The <strong>tone or approach</strong> matters',
+      'You want evaluation from a <strong>specific viewpoint</strong>',
+      'You\u2019re preparing content for a <strong>professional context</strong>',
+      'Role fits into the <strong>Context component</strong> of ICC'
+    ],
+    notes: 'Role prompting isn\u2019t for every prompt. For a simple "what\u2019s the weather" query, it\u2019s overkill. But whenever the perspective, tone, or domain expertise matters, role prompting is your tool. And it slots right into the Context component of ICC \u2014 it provides the "who is writing this" context.'
+  },
+  {
+    type: 'activity',
+    title: 'Role + ICC Demo',
+    content: [
+      'Same prompt, <strong>with and without</strong> a role',
+      'Watch how the output changes'
+    ],
+    notes: 'Let me show you the difference. I\u2019ll run the same prompt twice \u2014 once without a role, once with a specific role assignment. Watch what happens to the tone, the vocabulary, and the usefulness. [Run demo. Show side-by-side comparison.]'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 2: Role Prompting Workshop',
+    content: [
+      'Build <strong>3 role-based prompts</strong> for your domain',
+      'Combine Role + ICC',
+      'Test each in your AI tool',
+      '<strong>15 minutes</strong>',
+      'Workbook: Lab 2 section'
+    ],
+    notes: 'Your turn. Build three role-based prompts relevant to your actual work. Combine role prompting with ICC. Test each one. You\u2019ve got 15 minutes.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 4',
+    title: 'Rubric-Based Prompting',
+    notes: 'Structure from ICC. Perspective from role prompting. Now let\u2019s add precision. Rubric-based prompting is how you tell AI exactly what "good" means.'
+  },
+  {
+    type: 'content',
+    title: 'The Quality Problem',
+    content: [
+      '"Make it good" means nothing to an AI',
+      '"Good" is subjective',
+      'You\u2019ve been revising AI outputs because you couldn\u2019t define what you wanted',
+      '<strong>Rubric prompting replaces "good" with measurable criteria</strong>'
+    ],
+    notes: 'How many times have you looked at an AI output and thought "that\u2019s not quite right" but couldn\u2019t explain why? That\u2019s the quality problem. Without criteria, you\u2019re relying on a feeling. With a rubric, you know exactly what you\u2019re checking for. And so does the AI.'
+  },
+  {
+    type: 'content',
+    title: 'Generation Rubrics',
+    content: [
+      'Criteria the AI must meet when creating something:',
+      '<strong>1.</strong> Under 150 words',
+      '<strong>2.</strong> Mentions at least 3 key features',
+      '<strong>3.</strong> Written for a non-technical consumer',
+      '<strong>4.</strong> Includes a benefit statement',
+      '<strong>5.</strong> Ends with a call to action',
+      '<strong>6.</strong> No superlatives'
+    ],
+    notes: 'A generation rubric tells the AI: here are the criteria your output must meet. This example has six criteria for a product description. When the output comes back, you check each one. If it misses criterion 4, you know exactly what to ask for in the revision. No more vague "try again."'
+  },
+  {
+    type: 'content',
+    title: 'Evaluation Rubrics',
+    content: [
+      'Criteria for the AI to <strong>assess</strong> something:',
+      '<strong>1.</strong> Empathy \u2014 does it acknowledge the frustration?',
+      '<strong>2.</strong> Clarity \u2014 is the resolution clearly explained?',
+      '<strong>3.</strong> Actionability \u2014 does the reader know what to do next?',
+      '<strong>4.</strong> Tone \u2014 professional but warm?',
+      '<strong>5.</strong> Completeness \u2014 all questions addressed?',
+      '"Score each 1\u20135 and explain."'
+    ],
+    notes: 'Evaluation rubrics work the other way. Instead of telling the AI what to create, you tell it what to check. This is powerful for reviewing work \u2014 your own or others\u2019. The AI becomes a structured reviewer that checks against the criteria you defined.'
+  },
+  {
+    type: 'content',
+    title: 'The Full Stack: Role + ICC + Rubric',
+    content: [
+      '<strong>Role + ICC + Rubric = Professional-grade prompting</strong>',
+      '"You are a [ROLE]. [INTENT]. [CONTEXT]. The output must meet these criteria: [RUBRIC]."',
+      'Example: LinkedIn post with role, intent, context, and 6 quality criteria'
+    ],
+    notes: 'This is the full stack. Role gives you perspective. ICC gives you structure. Rubric gives you precision. Put them together and you have professional-grade prompting. This is the standard you\u2019ll work to from now on.'
+  },
+  {
+    type: 'activity',
+    title: 'Rubric Demo',
+    content: [
+      'Same task: <strong>with rubric vs without</strong>',
+      'Watch the precision difference'
+    ],
+    notes: 'One more demo. Same task, two approaches. Without a rubric, the output is acceptable. With a rubric, it\u2019s precise. Watch which one you\u2019d actually use without editing. [Run demo. Compare outputs against rubric criteria.]'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 3: Rubric Prompting',
+    content: [
+      'Create a rubric for a <strong>real task</strong> in your domain',
+      'Build the full prompt: <strong>Role + ICC + Rubric</strong>',
+      'Test and evaluate against your own criteria',
+      '<strong>15 minutes</strong>',
+      'Workbook: Lab 3 section'
+    ],
+    notes: 'Build a rubric for something you actually do at work. Something where you\u2019ve said "that\u2019s not quite right" to AI output before. Define 3\u20137 criteria. Build the full prompt. Test it. You\u2019ve got 15 minutes.'
+  },
+  {
+    type: 'transition',
+    label: '\u2615',
+    title: '10 Minute Break',
+    notes: 'Last break. When we come back, we tie everything together with your prompt library. This is where all the techniques become reusable assets.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 5',
+    title: 'Building Your Prompt Library',
+    notes: 'The final module. Everything you\u2019ve learned today is powerful. But it\u2019s only powerful if you can reuse it. That\u2019s what a prompt library gives you.'
+  },
+  {
+    type: 'content',
+    title: 'Why a Library, Not a List',
+    content: [
+      'A list gets long and messy',
+      'A library is:',
+      '<strong>Organised</strong> by category',
+      '<strong>Tagged</strong> by use case',
+      '<strong>Versioned</strong> (so you know what works)',
+      '<strong>Sharable</strong> (so your team benefits)',
+      'The difference between a junk drawer and a filing system'
+    ],
+    notes: 'If you\u2019ve been saving prompts in a notes app or a chat history, you have a list. Lists become junk drawers. A library is organised, versioned, and designed to be shared. That\u2019s what we\u2019re building.'
+  },
+  {
+    type: 'content',
+    title: 'The Prompt Library Template',
+    content: [
+      '<strong>Name</strong> \u2014 descriptive title',
+      '<strong>Category</strong> \u2014 Communication / Analysis / Creative / Review',
+      '<strong>The Prompt</strong> \u2014 full ICC with [VARIABLE] placeholders',
+      '<strong>Example Output</strong> \u2014 what "good" looks like',
+      '<strong>Version</strong> \u2014 v1.0, v1.1, etc.',
+      '<strong>Last Tested</strong> \u2014 date and tool',
+      '<strong>Notes</strong> \u2014 tips, quirks, what to watch for'
+    ],
+    notes: 'Seven fields per template. Name it clearly. Categorise it. Capture the full prompt with variables in brackets. Describe what good output looks like. Version it. Record when you last tested it. Add any notes for future you or future colleagues.'
+  },
+  {
+    type: 'content',
+    title: 'Variables and Placeholders',
+    content: [
+      '<strong>[BRACKETS]</strong> for anything that changes between uses',
+      '"You are a [ROLE] at a [COMPANY TYPE]. Write a [DOCUMENT TYPE] for [AUDIENCE]."',
+      'Variables make templates reusable',
+      '<strong>One template, many uses</strong>'
+    ],
+    notes: 'The key to reusability. Every detail that changes gets wrapped in square brackets. Your role, the company type, the document type, the audience. When you use the template next week, you fill in the brackets. When a colleague uses it, they fill in their brackets. One template, infinite uses.'
+  },
+  {
+    type: 'content',
+    title: 'Versioning Basics',
+    content: [
+      'When you improve a prompt, <strong>save both versions</strong>',
+      'v1.0 \u2192 v1.1 = small change',
+      'v1.0 \u2192 v2.0 = significant change',
+      'Note what changed and why',
+      'Foundation for <strong>Course 6: SOPs and Playbooks</strong>'
+    ],
+    notes: 'Don\u2019t overwrite. Save both. If the new version breaks, you can go back. If the new version works better, you know what changed and why. This discipline is the foundation for Course 6, where we formalise everything into documented SOPs and team playbooks.'
+  },
+  {
+    type: 'content',
+    title: 'Additional Patterns: Chain & Negative',
+    content: [
+      '<strong>Chain prompting:</strong> Break complex tasks into sequential steps',
+      'Prompt 1: Analyse \u2192 Prompt 2: Summarise \u2192 Prompt 3: Create questions',
+      '<strong>Negative prompting:</strong> Explicitly state what to avoid',
+      '"Do not include jargon. Avoid passive voice. Do not exceed 300 words."'
+    ],
+    notes: 'Two more patterns for your toolkit. Chain prompting breaks complex tasks into manageable steps \u2014 each prompt builds on the last. Negative prompting tells the AI what to avoid. Both combine with ICC, role, and rubric. You now have five patterns to draw from.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 4: Template Library Build',
+    content: [
+      'Build <strong>3 production-ready prompt templates</strong>',
+      'Use ICC + Role + Rubric + [VARIABLES]',
+      'Templates for tasks you do <strong>at least weekly</strong>',
+      'Test at least one with real data',
+      '<strong>15 minutes</strong> (includes wrap-up)',
+      'Workbook: Lab 4 section'
+    ],
+    notes: 'Final lab. Build three templates you\u2019ll actually use. Tasks you do every week. Use everything you\u2019ve learned: ICC structure, role prompting, rubric criteria, and variable placeholders. Test at least one with real data. You\u2019ve got 15 minutes, and the last 5 include our wrap-up.'
+  },
+  {
+    type: 'content',
+    title: 'Quick Reference: All Patterns',
+    content: [
+      '<strong>ICC</strong> \u2014 Every professional prompt',
+      '<strong>Role</strong> \u2014 Need domain perspective',
+      '<strong>Rubric</strong> \u2014 Quality criteria matter',
+      '<strong>Chain</strong> \u2014 Complex multi-step tasks',
+      '<strong>Negative</strong> \u2014 Things to explicitly avoid'
+    ],
+    notes: 'Your cheat sheet. Five patterns. ICC for everything. Role when perspective matters. Rubric when quality is defined. Chain for complex tasks. Negative for explicit exclusions. You\u2019ll find this reference in your workbook.'
+  },
+  {
+    type: 'content',
+    title: 'Your Practitioner Toolkit',
+    content: [
+      'ICC Framework for every prompt',
+      'Role prompting for domain expertise',
+      'Rubric prompting for quality standards',
+      'Chain and negative prompting for complex tasks',
+      'A personal prompt library with versioned templates',
+      'Progression: <strong>Competent \u2192 Practitioner</strong>',
+      'Next: <strong>Course 6 \u2014 From Prompts to Playbooks</strong>'
+    ],
+    notes: 'Look at what you\u2019ve built today. A framework that works every time. Four advanced patterns. A library of reusable templates. You came in with prompts that sometimes worked. You\u2019re leaving with a system that reliably works. That\u2019s the Practitioner upgrade. Course 6 takes this further \u2014 your individual prompts become team playbooks.'
+  },
+  {
+    type: 'title',
+    title: 'Your 48-Hour Commitment',
+    subtitle: 'Execution over everything.',
+    content: [
+      'Use one ICC prompt for a real task. Add it to your library.',
+      'Open your workbook. Write your commitment. Sign it.',
+      'Thank you.',
+      'Earth 2.0 AI Capability Programme | AI Curious Ltd'
+    ],
+    notes: 'One last thing. Open your workbook to the 48-Hour Action Plan. Write down one real task you\u2019ll tackle with an ICC prompt within 48 hours. Then add it to your library. Sign it. That\u2019s your commitment. You showed up today with curiosity. You\u2019re leaving with capability. That\u2019s a significant upgrade. Thank you.'
+  }
+];
+</script>
+
+<script src="slide-engine.js"></script>
+</body>
+</html>

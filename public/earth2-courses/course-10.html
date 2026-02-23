@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course 10: Earth 2.0 Licensing Bootcamp | Earth 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slide-engine.css">
+</head>
+<body>
+
+<script>
+const SLIDES = [
+  // ============================================================
+  // DAY 1
+  // ============================================================
+
+  // Slide 1: Earth 2.0 Licensing Bootcamp
+  {
+    type: 'title',
+    title: 'Earth 2.0 Licensing Bootcamp',
+    subtitle: 'Earth 2.0 AI Capability Programme',
+    content: ['Course 10 of 10', 'Day 1 of 2', 'AI Curious Ltd'],
+    notes: 'Welcome to Course 10. The Licensing Bootcamp. This is the capstone of the Earth 2.0 AI Capability Programme. Over the next two days, you will demonstrate everything you have learned across nine courses. The standard is high. The credential is real. And you are ready.'
+  },
+  // Slide 2: Welcome to the Capstone
+  {
+    type: 'content',
+    title: 'Welcome to the Capstone',
+    content: [
+      'You have completed <strong>9 courses</strong>',
+      'You have built skills across prompting, verification, policy, SOPs, HITL design, workflow discovery, and risk management',
+      'Today and tomorrow, you demonstrate it all',
+      'This is not a lecture. <strong>This is a proving ground.</strong>'
+    ],
+    notes: 'Look around this room. Everyone here has completed the full programme. That\'s an achievement in itself. You didn\'t just attend \u2014 you built things. Prompt libraries, SOPs, risk registers, system designs. Now you demonstrate that you can use all of it together, under pressure, at a professional standard.'
+  },
+  // Slide 3: Two Days. Ten Hours. One Credential.
+  {
+    type: 'content',
+    title: 'Two Days. Ten Hours. One Credential.',
+    content: [
+      '<strong>Day 1:</strong> 3 assessed practicals + modules on your journey, the standard, and ethics',
+      '<strong>Day 2:</strong> 2 assessed practicals + knowledge exam + evidence pack + badge ceremony',
+      '6 practicals. 1 exam. 1 evidence pack.',
+      'Pass all 3 components = <strong>Earth 2.0 AI Driving Licence</strong>'
+    ],
+    notes: 'Let me be completely transparent about what\'s ahead. No surprises. Two days. Six practicals, a knowledge exam, and your evidence pack review. You must pass all three components. The practicals test your skills in action. The exam tests your knowledge across the whole programme. The evidence pack proves you\'ve been building a professional portfolio since Course 1.'
+  },
+  // Slide 4: Assessment Structure
+  {
+    type: 'content',
+    title: 'Assessment Structure',
+    content: [
+      '<strong>Knowledge Exam:</strong> 20 questions, 30 min \u2014 pass: 14/20 (70%)',
+      '<strong>Practicals:</strong> 6 assessed scenarios \u2014 pass: 4 of 6',
+      '<strong>Evidence Pack:</strong> 10-item portfolio \u2014 all 10 items meet standard',
+      'Pass all 3 = Earth 2.0 AI Driving Licence',
+      '"Not Yet" not "Fail" \u2014 specific feedback, clear re-assessment path'
+    ],
+    notes: 'Three components. All must be passed. The knowledge exam covers everything from Course 1 through today. The practicals test you in real scenarios \u2014 individual, pair, and group work. The evidence pack is the portfolio you\'ve been building since day one. If you don\'t meet the standard on something, the result is "Not Yet" \u2014 not "Fail." You\'ll get specific feedback and a clear path to try again. We want you to pass. The system is designed to support you, not trip you up.'
+  },
+  // Slide 5: Your Support System
+  {
+    type: 'content',
+    title: 'Your Support System',
+    content: [
+      'Your instructor is your assessor <strong>AND</strong> your ally',
+      'You can ask for clarification on any instruction',
+      'You cannot receive guidance on answers',
+      'Breaks are built into every session',
+      'If you\'re struggling, raise your hand \u2014 don\'t suffer in silence'
+    ],
+    notes: 'I want to be clear about my role. I\'m here to assess your work \u2014 that\'s real, and I\'ll be rigorous about it. But I\'m also here because I want you to succeed. During practicals, you can always ask me to clarify an instruction. I will not hint at answers or guide your thinking, because this needs to be your work. But I\'ll make sure you understand every task before the clock starts.'
+  },
+  // Slide 6: Today\'s Schedule: Day 1
+  {
+    type: 'content',
+    title: 'Today\'s Schedule: Day 1',
+    content: [
+      '<strong>09:00</strong> Welcome + Bootcamp Briefing',
+      '<strong>09:15</strong> Module 1: Your Journey So Far',
+      '<strong>09:40</strong> Module 2: The Licensed Citizen Standard',
+      '<strong>10:00</strong> Practical 1: End-to-End AI Task Execution (50 min)',
+      '<strong>10:50</strong> Break',
+      '<strong>11:05</strong> Practical 2: HITL System Design Challenge (50 min)',
+      '<strong>11:55</strong> Lunch',
+      '<strong>12:40</strong> Module 3: Ethical AI in Practice',
+      '<strong>13:05</strong> Practical 3: Risk Assessment Scenario (40 min)',
+      '<strong>13:45</strong> Break',
+      '<strong>14:00</strong> Day 1 Debrief + Day 2 Preview'
+    ],
+    notes: 'Here\'s your full Day 1 schedule. Three assessed practicals today. The morning is intense \u2014 two practicals back to back with a break in between. After lunch, we refresh our ethical framework and then you tackle the risk assessment. We finish at 2:10. Tonight, review your evidence pack materials \u2014 you\'ll need them tomorrow.'
+  },
+  // Slide 7: Your Journey So Far
+  {
+    type: 'transition',
+    label: 'Module 1',
+    title: 'Your Journey So Far',
+    notes: 'Before we look forward, let\'s look back. You have covered an extraordinary amount of ground. Let\'s walk through each course and reconnect with what you learned and how it changed your practice. I\'ll name each course \u2014 and I want to hear from you. What do you remember most? What changed for you?'
+  },
+  // Slide 8: Course 1: AI Without Fear
+  {
+    type: 'content',
+    title: 'Course 1: AI Without Fear',
+    content: [
+      'From <strong>AI Never</strong> to <strong>Curious</strong>',
+      'You learned what AI is and isn\'t',
+      'You wrote your first AI Stance',
+      '<strong>Core skill:</strong> Adoption mindset'
+    ],
+    notes: 'Course 1. For many of you, this was the first time you ever talked to an AI tool. You were nervous, maybe sceptical. By the end, you had a clear understanding of what GenAI actually is \u2014 and isn\'t. You wrote your first AI Stance. That document is in your evidence pack. Look at how much it\'s changed since then. Who wants to share \u2014 what do you remember most from Course 1?'
+  },
+  // Slide 9: Course 2: Your First 60 Minutes
+  {
+    type: 'content',
+    title: 'Course 2: Your First 60 Minutes',
+    content: [
+      'Hands-on from minute one',
+      'You built <strong>5 working prompts</strong>',
+      'You created your first reusable template',
+      '<strong>Core skill:</strong> Prompt fundamentals'
+    ],
+    notes: 'Course 2 was where you got your hands dirty. Five prompts in 60 minutes. You learned that the quality of what AI gives you depends on the quality of what you give it. You created your first reusable prompt template. That template was the seed of the prompt library you now carry in your evidence pack.'
+  },
+  // Slide 10: Course 3: AI Hygiene
+  {
+    type: 'content',
+    title: 'Course 3: AI Hygiene',
+    content: [
+      'What to share, what to keep, what to <strong>never</strong> put into an AI tool',
+      'You built your personal AI policy',
+      '<strong>Core skill:</strong> Data awareness and responsible use boundaries'
+    ],
+    notes: 'Course 3 taught you the rules of engagement. Not the abstract rules \u2014 your rules. What data you will and won\'t share with AI. When to use it and when not to. You built a personal or team AI policy document. That\'s item 3 in your evidence pack.'
+  },
+  // Slide 11: Course 4: Reality Check
+  {
+    type: 'content',
+    title: 'Course 4: Reality Check',
+    content: [
+      'AI sounds confident even when it\'s wrong',
+      'You learned to <strong>verify before you trust</strong>',
+      'You built a verification checklist',
+      '<strong>Core skill:</strong> Critical evaluation'
+    ],
+    notes: 'Course 4 was the wake-up call. AI hallucination is not a bug \u2014 it\'s a feature of how the technology works. You learned to verify every output. You built a verification checklist and applied it to real AI outputs. That discipline \u2014 verify before you trust \u2014 is fundamental to everything that follows.'
+  },
+  // Slide 12: Course 5: Prompting That Works
+  {
+    type: 'content',
+    title: 'Course 5: Prompting That Works',
+    content: [
+      'The <strong>ICC framework:</strong> Intent \u2013 Context \u2013 Constraints',
+      'You mastered structured prompt engineering',
+      'You built 3 production-ready templates',
+      '<strong>Core skill:</strong> Professional prompt design'
+    ],
+    notes: 'Course 5 gave you the ICC framework \u2014 Intent, Context, Constraints. This is the single most practical skill in the programme. You\'ll use it in Practical 1 today. Your evidence pack includes three production-ready templates using ICC. These aren\'t just prompts you wrote for yourself \u2014 they\'re templates someone else could pick up and use.'
+  },
+  // Slide 13: Course 6: Prompts to Playbooks
+  {
+    type: 'content',
+    title: 'Course 6: Prompts to Playbooks',
+    content: [
+      'From one-off prompts to <strong>repeatable processes</strong>',
+      'You built a complete AI SOP/playbook',
+      '<strong>Core skill:</strong> Process documentation'
+    ],
+    notes: 'Course 6 is where you stopped doing things once and started building systems. A prompt is a one-time interaction. A playbook is a repeatable, documented process that anyone can follow. You built a complete SOP. That\'s in your evidence pack, and you\'ll build another one in Practical 1 today.'
+  },
+  // Slide 14: Course 7: Human in the Loop
+  {
+    type: 'content',
+    title: 'Course 7: Human in the Loop',
+    content: [
+      'AI should enhance humans, <strong>never replace human judgment</strong>',
+      'You designed a HITL system',
+      'Escalation, oversight, override',
+      '<strong>Core skill:</strong> Human oversight design'
+    ],
+    notes: 'Course 7 is the most important course in the programme when it comes to safety. AI should never make consequential decisions without human oversight. You learned to design systems with clear checkpoints, escalation triggers, and override procedures. You\'ll put this into practice in Practical 2 today \u2014 a pair exercise designing a HITL system for a high-stakes scenario.'
+  },
+  // Slide 15: Course 8: Workflow Discovery Sprint
+  {
+    type: 'content',
+    title: 'Course 8: Workflow Discovery Sprint',
+    content: [
+      'Finding AI opportunities in <strong>real workflows</strong>',
+      'You conducted a sprint and prioritised opportunities',
+      '<strong>Core skill:</strong> Systematic opportunity identification'
+    ],
+    notes: 'Course 8 zoomed out from individual tasks to whole workflows. You learned to map a process, identify where AI adds value, and prioritise based on effort and impact. You\'ll do a compressed version of this in Practical 4 tomorrow \u2014 as a group, under time pressure.'
+  },
+  // Slide 16: Course 9: AI Risk Management
+  {
+    type: 'content',
+    title: 'Course 9: AI Risk Management',
+    content: [
+      'If you\'re deploying AI, you\'re managing risk',
+      'You built a complete risk register',
+      'Likelihood, impact, mitigation',
+      '<strong>Core skill:</strong> Systematic risk assessment'
+    ],
+    notes: 'Course 9 brought it all together from a risk perspective. Every AI deployment carries risks \u2014 technical, human, ethical, reputational. You built a risk register and learned to write mitigations that are specific and actionable, not vague hand-waving. Practical 3 this afternoon will test that skill in depth.'
+  },
+  // Slide 17: The Skills Compound
+  {
+    type: 'content',
+    title: 'The Skills Compound',
+    content: [
+      'You can\'t build a risk register without understanding the workflow',
+      'You can\'t design oversight without verifying outputs',
+      'You can\'t write an SOP without strong prompts',
+      'Every skill builds on what came before',
+      'Today you prove you can <strong>use them all together</strong>'
+    ],
+    notes: 'This is the key insight. None of these skills exist in isolation. They compound. The prompting skills from Course 5 feed the SOPs in Course 6. The verification from Course 4 makes the HITL design in Course 7 meaningful. The workflow mapping from Course 8 gives the risk register in Course 9 something to assess. Today, you demonstrate the integration. That\'s what a Licensed Citizen does \u2014 brings it all together.'
+  },
+  // Slide 18: The Licensed Citizen Standard
+  {
+    type: 'transition',
+    label: 'Module 2',
+    title: 'The Licensed Citizen Standard',
+    notes: 'You\'ve reflected on where you\'ve been. Now let\'s talk about where you\'re going. The Licensed Citizen is not a title. It is a practice.'
+  },
+  // Slide 19: Four Pillars
+  {
+    type: 'content',
+    title: 'Four Pillars',
+    content: [
+      '<strong>Execution</strong> \u2014 Take an AI task from start to finish with quality',
+      '<strong>Judgment</strong> \u2014 Know when to use AI and when not to; verify everything',
+      '<strong>Responsibility</strong> \u2014 Assess risks, design oversight, apply ethics',
+      '<strong>Citizenship</strong> \u2014 Share knowledge, mentor others, contribute to community'
+    ],
+    notes: 'Four pillars. This is what a Licensed Citizen looks like in practice. Execution means you can do the work. Judgment means you know when and how to apply AI appropriately. Responsibility means you think about consequences and build safeguards. Citizenship means you don\'t keep it to yourself \u2014 you teach, share, and bring others along. Every practical today and tomorrow tests at least two of these pillars.'
+  },
+  // Slide 20: Tier 2 Membership
+  {
+    type: 'content',
+    title: 'Tier 2 Membership',
+    content: [
+      'Pass the bootcamp = qualify for <strong>Tier 2 admission</strong>',
+      'Tier 2 includes: peer network, advanced resources, mentoring, governance, continuing development',
+      'Ongoing expectation: contribute at least 1 artefact or mentoring session per quarter',
+      'This is not a certificate you frame. It\'s a <strong>community you join</strong>.'
+    ],
+    notes: 'When you pass this bootcamp, you don\'t just get a badge. You qualify for Tier 2 membership in the Earth 2.0 community. That means access to a peer network of Licensed Citizens, advanced masterclasses, mentoring opportunities \u2014 both as mentor and mentee \u2014 and a voice in community governance. The expectation is ongoing contribution. At least one artefact or mentoring session per quarter. The licence is active, not passive.'
+  },
+  // Slide 21: The Commitment
+  {
+    type: 'quote',
+    title: 'The Earth 2.0 AI Driving Licence is not a certificate you frame and forget. It\'s a commitment to practice responsibly, to keep learning, and to bring others along.',
+    attribution: 'Earth 2.0',
+    notes: 'Let that land for a moment. This is what you\'re working toward. Not a piece of paper. A practice. A commitment. A community. Ready? Let\'s begin.'
+  },
+  // Slide 22: Practical 1: End-to-End AI Task Execution
+  {
+    type: 'activity',
+    title: 'Practical 1: End-to-End AI Task Execution',
+    content: [
+      '<strong>Duration:</strong> 50 minutes',
+      '<strong>Type:</strong> Individual',
+      '<strong>Assessed</strong>',
+      'Read your scenario sheet carefully',
+      'All deliverables must be completed before time is called',
+      'Quality over speed'
+    ],
+    notes: 'Practical 1. This is individual. You have 50 minutes to execute a complete AI-augmented workflow. Read your scenario sheet carefully. You need to produce six deliverables: task scoping, ICC prompts, AI outputs, verification, a human checkpoint, and a documented SOP. The clock starts now.'
+  },
+  // Slide 23: Practical 1: Scenario Brief
+  {
+    type: 'content',
+    title: 'Practical 1: Scenario Brief',
+    content: [
+      'You are the AI lead for a marketing agency',
+      'Task: Create a repeatable process for AI-drafted client proposal executive summaries',
+      '<strong>Deliver:</strong> Scoped task, ICC prompts (2+), verified output, HITL checkpoint, complete SOP'
+    ],
+    notes: 'Here\'s your scenario in brief. The full details are on your scenario sheet. Read the sheet \u2014 it has the specifics. You\'re building a repeatable process, not just doing a one-off task. The SOP is the most important deliverable. Someone else must be able to follow it.'
+  },
+  // Slide 24: Practical 1: Deliverables Checklist
+  {
+    type: 'content',
+    title: 'Practical 1: Deliverables Checklist',
+    content: [
+      '\u2610 Scoped task definition',
+      '\u2610 ICC prompts (minimum 2)',
+      '\u2610 AI outputs (saved)',
+      '\u2610 Verification checklist (completed)',
+      '\u2610 HITL checkpoint documentation',
+      '\u2610 SOP document'
+    ],
+    notes: 'Keep this checklist visible as you work. Before you submit, check every box. If an item is missing, it affects your assessment.'
+  },
+  // Slide 25: Break
+  {
+    type: 'transition',
+    label: 'Break',
+    title: '15 Minute Break',
+    notes: 'Fifteen minutes. Step away from your screen. Practical 2 is a pair exercise \u2014 different skills, different energy. Come back ready to collaborate.'
+  },
+  // Slide 26: Practical 2: HITL System Design Challenge
+  {
+    type: 'activity',
+    title: 'Practical 2: HITL System Design Challenge',
+    content: [
+      '<strong>Duration:</strong> 50 minutes (35 design + 15 presentation)',
+      '<strong>Type:</strong> Pair',
+      '<strong>Assessed</strong> (individually)',
+      'Design a human-in-the-loop system for a high-stakes AI deployment',
+      'You will present and defend your design'
+    ],
+    notes: 'Practical 2. You\'re working in pairs. I\'ve assigned your partners. You have 35 minutes to design a HITL system, then 15 minutes for pair presentations \u2014 3 to 4 minutes each, followed by a question from me. Both partners will be assessed individually based on your contribution and the quality of the design.'
+  },
+  // Slide 27: Practical 2: Scenario Brief
+  {
+    type: 'content',
+    title: 'Practical 2: Scenario Brief',
+    content: [
+      '<strong>NHS trust</strong> deploying AI for patient appointment triage',
+      'AI categorises urgency: Routine / Soon / Urgent / Emergency',
+      'Your task: Design the human-in-the-loop framework',
+      'Must address: <strong>oversight, escalation, override, failure modes, audit trail</strong>'
+    ],
+    notes: 'Read your scenario sheet for the full details. This is a healthcare scenario \u2014 the stakes are high. A wrong categorisation could delay urgent care. Your HITL design must ensure no patient is harmed. Think about automation boundaries, human checkpoints, and what happens when the system gets it wrong.'
+  },
+  // Slide 28: Practical 2: Presentation Timer
+  {
+    type: 'activity',
+    title: 'Practical 2: Presentation Timer',
+    content: [
+      'Pair presentations: <strong>3\u20134 minutes each</strong>',
+      'Present your design',
+      'Defend your decisions',
+      'One question from the instructor'
+    ],
+    notes: 'Presentation time. Each pair has 3 to 4 minutes. Present your design clearly: what the AI does, what humans do, where the checkpoints are, what happens when it fails. I\'ll ask one question. Be ready to defend your choices.'
+  },
+  // Slide 29: Lunch
+  {
+    type: 'transition',
+    label: 'Lunch',
+    title: '45 Minute Lunch',
+    notes: 'Forty-five minutes for lunch. Please eat properly \u2014 this is a long day and you need fuel. This afternoon we refresh our ethical framework and then you tackle the risk assessment practical. Come back with fresh energy.'
+  },
+  // Slide 30: Ethical AI in Practice
+  {
+    type: 'transition',
+    label: 'Module 3',
+    title: 'Ethical AI in Practice',
+    notes: 'Welcome back. Module 3 is about ethics in practice. Not theory \u2014 practice. Every course in this programme has had an ethical dimension. Course 3 was about policy. Course 4 about truth. Course 7 about accountability. Course 9 about harm prevention. Now we integrate it all into a single framework that you\'ll carry as a Licensed Citizen.'
+  },
+  // Slide 31: The Licensed Citizen Ethical Framework
+  {
+    type: 'content',
+    title: 'The Licensed Citizen Ethical Framework',
+    content: [
+      'Five questions to ask when facing any AI ethics decision:',
+      '<strong>1. Who is affected?</strong> (especially those without a voice)',
+      '<strong>2. What could go wrong?</strong> (failure modes, misuse, unintended consequences)',
+      '<strong>3. Is there a human checkpoint?</strong> (never automate decisions affecting lives without oversight)',
+      '<strong>4. Can you explain it?</strong> (if you can\'t explain it, you can\'t responsibly act on it)',
+      '<strong>5. Would you be comfortable if this was public?</strong> (the transparency test)'
+    ],
+    notes: 'Five questions. Memorise them. They should become automatic. When you\'re asked to deploy AI, when someone suggests automating a decision, when a vendor says "trust the algorithm" \u2014 run through these five questions. They won\'t give you easy answers. But they\'ll ensure you\'re asking the right questions.'
+  },
+  // Slide 32: Case Study: The Housing Repairs Algorithm
+  {
+    type: 'content',
+    title: 'Case Study: The Housing Repairs Algorithm',
+    content: [
+      'A local council uses AI to prioritise housing repairs',
+      'AI consistently ranks older properties higher',
+      'Newer social housing \u2014 where residents are less likely to complain \u2014 gets deprioritised',
+      '<strong>What do you do?</strong>'
+    ],
+    notes: 'Let me walk you through a real dilemma. A council automates repair prioritisation. It\'s faster, more consistent. But the data shows that newer social housing \u2014 often home to communities who may not complain as loudly \u2014 is being systematically deprioritised. The AI isn\'t being malicious. It\'s following the data. But the outcome is inequitable. Let\'s apply our five questions. Who is affected? What could go wrong? Is there a human checkpoint?'
+  },
+  // Slide 33: Practical 3: Risk Assessment Scenario
+  {
+    type: 'activity',
+    title: 'Practical 3: Risk Assessment Scenario',
+    content: [
+      '<strong>Duration:</strong> 40 minutes',
+      '<strong>Type:</strong> Individual',
+      '<strong>Assessed</strong>',
+      'Build a complete risk register',
+      'Minimum 8 risks across multiple categories',
+      'Specific, actionable mitigations required'
+    ],
+    notes: 'Practical 3. Individual. You have 40 minutes to build a complete risk register for the scenario on your sheet. At least 8 risks. Cover multiple categories \u2014 technical, human, ethical, legal, reputational. Your mitigations must be specific. "Monitor closely" is not a mitigation. Tell me who monitors what, how often, and what triggers escalation.'
+  },
+  // Slide 34: Day 1 Complete
+  {
+    type: 'transition',
+    label: 'Day 1',
+    title: 'Day 1 Complete',
+    notes: 'That\'s Day 1. Three assessed practicals complete. I won\'t share individual results until everything is done. What I can say is that I saw real capability in this room today. Tonight, review your evidence pack materials. Make sure all 10 items are ready to compile tomorrow. If anything is missing, tonight is your last chance to prepare it. Rest well. Tomorrow at 9 o\'clock, we finish what we started.'
+  },
+
+  // ============================================================
+  // DAY 2
+  // ============================================================
+
+  // Slide 35: Day 2: Collaboration, Assessment & Certification
+  {
+    type: 'transition',
+    label: 'Day 2',
+    title: 'Collaboration, Assessment & Certification',
+    notes: 'Day 2. Welcome back. Today we finish the bootcamp with two more practicals, the knowledge exam, your evidence pack assembly, and something special at the end. Let\'s begin with a quick check-in.'
+  },
+  // Slide 36: Energy Check-In
+  {
+    type: 'activity',
+    title: 'Energy Check-In',
+    content: [
+      '<strong>One word:</strong> How are you feeling right now?',
+      'Go around the room.',
+      'All feelings are valid. Nerves are normal. Confidence is earned.'
+    ],
+    notes: 'Before we dive in: one word. How are you feeling right now? Go around the room. There\'s no right answer. If you\'re nervous, say so. If you\'re excited, say so. If you\'re tired, that\'s fine too. I just want to know where you are.'
+  },
+  // Slide 37: Today's Schedule: Day 2
+  {
+    type: 'content',
+    title: 'Today\'s Schedule: Day 2',
+    content: [
+      '<strong>09:00</strong> Day 2 Welcome + Check-in',
+      '<strong>09:10</strong> Practical 4: Workflow Discovery Mini-Sprint (60 min)',
+      '<strong>10:10</strong> Break',
+      '<strong>10:25</strong> Practical 5: Ethical Dilemma Panel (40 min)',
+      '<strong>11:05</strong> Module 4: Knowledge Circular Economy',
+      '<strong>11:20</strong> Lunch',
+      '<strong>12:05</strong> Knowledge Exam (30 min)',
+      '<strong>12:35</strong> Break',
+      '<strong>12:50</strong> Practical 6: Evidence Pack Assembly (30 min)',
+      '<strong>13:20</strong> Module 5: Your Commitment',
+      '<strong>13:35</strong> Badge Ceremony + Celebration'
+    ],
+    notes: 'Here\'s today\'s schedule. Two practicals this morning: the workflow sprint in groups and the ethical dilemma panel. Then after lunch, the knowledge exam \u2014 20 questions, 30 minutes, closed book. After that, you assemble your evidence pack and we close with the Licensed Citizen pledge and badge ceremony.'
+  },
+  // Slide 38: Practical 4: Workflow Discovery Mini-Sprint
+  {
+    type: 'activity',
+    title: 'Practical 4: Workflow Discovery Mini-Sprint',
+    content: [
+      '<strong>Duration:</strong> 60 minutes (45 sprint + 15 presentation)',
+      '<strong>Type:</strong> Group (3\u20134)',
+      '<strong>Assessed</strong> (individually)',
+      'Map, identify, prioritise, recommend, present'
+    ],
+    notes: 'Practical 4. The longest practical of the bootcamp. You\'re working in groups of 3 to 4. I\'ve assigned your groups. You have 45 minutes to conduct a compressed workflow discovery sprint on the scenario I\'ll give you, then 15 minutes for group presentations. Each individual will be assessed on their contribution.'
+  },
+  // Slide 39: Practical 4: Scenario Brief
+  {
+    type: 'content',
+    title: 'Practical 4: Scenario Brief',
+    content: [
+      'Accounting firm, 80 employees, 2,000 tax returns per season',
+      '7-step workflow from data collection to post-filing',
+      'Your task: Map the workflow, find AI opportunities, prioritise, recommend top 3',
+      'Present your findings in 3\u20134 minutes'
+    ],
+    notes: 'Read your scenario sheet for the full details. This is a real-world workflow \u2014 an accounting firm processing tax returns. Seven steps from client data collection to post-filing queries. Your job is to map it, find where AI adds value, prioritise based on effort and impact, and present your top 3 recommendations.'
+  },
+  // Slide 40: Practical 4: Sprint Stages
+  {
+    type: 'content',
+    title: 'Practical 4: Sprint Stages',
+    content: [
+      '<strong>Map the workflow</strong> \u2014 10 min \u2014 Current state + pain points',
+      '<strong>Identify opportunities</strong> \u2014 10 min \u2014 Where can AI help?',
+      '<strong>Assess and prioritise</strong> \u2014 10 min \u2014 Effort vs. impact',
+      '<strong>Build recommendations</strong> \u2014 10 min \u2014 Top 3 with detail',
+      '<strong>Prepare presentation</strong> \u2014 5 min \u2014 Assign roles, key messages'
+    ],
+    notes: 'Here\'s a suggested time breakdown for your sprint. You don\'t have to follow this exactly, but if you spend 25 minutes mapping and only 5 minutes on recommendations, you\'ll run out of time. Manage the clock. That\'s part of the assessment.'
+  },
+  // Slide 41: Practical 4: Presentation Timer
+  {
+    type: 'activity',
+    title: 'Practical 4: Presentation Timer',
+    content: [
+      'Group presentations: <strong>3\u20134 minutes each</strong>',
+      'Present your top 3 recommendations',
+      'Justify your prioritisation',
+      'One question from the instructor'
+    ],
+    notes: 'Presentation time. Each group has 3 to 4 minutes. Focus on your top 3 recommendations and why you prioritised them. I\'ll ask one question about your prioritisation decisions.'
+  },
+  // Slide 42: Break
+  {
+    type: 'transition',
+    label: 'Break',
+    title: '15 Minute Break',
+    notes: 'Fifteen minutes. When we come back, the ethical dilemma panel. This is a debate exercise. You\'ll be arguing, disagreeing, and finding resolution. Come back with your thinking cap on.'
+  },
+  // Slide 43: Practical 5: Ethical Dilemma Panel
+  {
+    type: 'activity',
+    title: 'Practical 5: Ethical Dilemma Panel',
+    content: [
+      '<strong>Duration:</strong> 40 minutes (15 prep + 20 debate + 5 resolution)',
+      '<strong>Type:</strong> Group (whole cohort)',
+      '<strong>Assessed</strong> (individually)',
+      'Prepare, debate, resolve'
+    ],
+    notes: 'Practical 5. This is a group debate. The entire cohort will engage with an ethical dilemma. You\'ll have 15 minutes to prepare your position, 20 minutes of structured debate, and 5 minutes to reach a group resolution. Individual assessment is based on the quality of your reasoning, not the volume of your contribution.'
+  },
+  // Slide 44: Practical 5: The Housing Algorithm
+  {
+    type: 'content',
+    title: 'Practical 5: The Housing Algorithm',
+    content: [
+      'Greendale Borough Council, 85,000 population',
+      'AI system prioritising social housing applications for 18 months',
+      'Faster processing, more consistent decisions',
+      '<strong>BUT:</strong> demographic disparity detected \u2014 two postcodes systematically deprioritised',
+      'Council must decide: what to do immediately and long-term'
+    ],
+    notes: 'Read your scenario sheet for the full details. This is a real-type dilemma. An AI system that\'s faster and more consistent \u2014 but producing inequitable outcomes. There\'s political pressure, a vendor saying the system is working as designed, and a community being systematically disadvantaged. There is no easy answer. That\'s the point.'
+  },
+  // Slide 45: Practical 5: Role Assignments
+  {
+    type: 'content',
+    title: 'Practical 5: Role Assignments',
+    content: [
+      '<strong>Council Leader</strong> \u2014 Balance efficiency, fairness, public trust',
+      '<strong>Head of Housing</strong> \u2014 Operational responsibility',
+      '<strong>Data Protection Officer</strong> \u2014 Legal compliance',
+      '<strong>Community Advocate</strong> \u2014 Equity and voice',
+      '<strong>AI Vendor</strong> \u2014 Technical solutions',
+      '<strong>Independent Auditor</strong> \u2014 Transparency and accountability'
+    ],
+    notes: 'Here are your role assignments. Each of you will argue from a specific perspective. This is not about what you personally believe \u2014 it\'s about whether you can reason from a defined position using ethical frameworks. Prepare your arguments in the next 15 minutes.'
+  },
+  // Slide 46: Practical 5: Debate Structure
+  {
+    type: 'content',
+    title: 'Practical 5: Debate Structure',
+    content: [
+      '<strong>Preparation:</strong> 15 minutes (prepare your position, 3 arguments, counter-arguments)',
+      '<strong>Debate:</strong> 20 minutes (position statements 1\u20132 min each, then open discussion)',
+      '<strong>Resolution:</strong> 5 minutes (group must reach a defensible recommendation)',
+      'Must address: immediate action, long-term solution, accountability, transparency'
+    ],
+    notes: 'Here\'s the structure. Fifteen minutes to prepare. Then each role-holder presents their position in 1\u20132 minutes. After all positions are heard, open discussion. The group must reach a recommendation in the final 5 minutes. The recommendation must address what to do right now, what to do long-term, who\'s accountable, and how to be transparent with the affected communities.'
+  },
+  // Slide 47: Knowledge Circular Economy in Action
+  {
+    type: 'transition',
+    label: 'Module 4',
+    title: 'Knowledge Circular Economy in Action',
+    notes: 'The practicals are done. Well done. Let\'s shift gears. Module 4 is about what happens after you earn the licence. The Knowledge Circular Economy is one of Earth 2.0\'s core principles: knowledge flows in circles, not lines. You learn, you apply, you teach, you learn more from teaching. As a Licensed Citizen, you have a responsibility to share what you know.'
+  },
+  // Slide 48: Knowledge Flows in Circles
+  {
+    type: 'content',
+    title: 'Knowledge Flows in Circles',
+    content: [
+      '<strong>Linear:</strong> Learn \u2192 Apply \u2192 Stop',
+      '<strong>Circular:</strong> Learn \u2192 Apply \u2192 Teach \u2192 Learn from teaching \u2192 Apply better',
+      'Every Licensed Citizen is a node in the knowledge network',
+      'The more you share, the more the system grows'
+    ],
+    notes: 'Most professional development is linear. You learn something, you apply it, and that\'s the end. The Knowledge Circular Economy is different. When you teach what you\'ve learned, you deepen your own understanding. When you share an artefact, someone else improves it. When you mentor, you learn what gaps exist that you didn\'t know about. The circle is the architecture of change.'
+  },
+  // Slide 49: What Knowledge Transfer Looks Like
+  {
+    type: 'content',
+    title: 'What Knowledge Transfer Looks Like',
+    content: [
+      'Run a lunch-and-learn using your prompt library',
+      'Share your AI SOP with your team and adapt it together',
+      'Mentor someone starting their AI journey',
+      'Contribute a case study to the Earth 2.0 library',
+      'Review and improve someone else\'s risk register'
+    ],
+    notes: 'This is not abstract. These are concrete things you can do in the next month. Run a lunch-and-learn. Share a document. Mentor a colleague. Contribute to the community library. Review someone else\'s work. None of these require permission or a budget. They require commitment.'
+  },
+  // Slide 50: The Multiplier Effect
+  {
+    type: 'content',
+    title: 'The Multiplier Effect',
+    content: [
+      'If every Licensed Citizen enables 2 more people to use AI responsibly\u2026',
+      'The programme\'s impact doubles with every cohort',
+      'This is not marketing. This is the <strong>architecture of change</strong>.',
+      'What will YOUR first knowledge transfer action be?'
+    ],
+    notes: 'Simple maths. If every Licensed Citizen helps just two people use AI more responsibly, the programme\'s impact doubles every cycle. That\'s not a marketing pitch \u2014 it\'s the fundamental design of the Earth 2.0 model. Start thinking now: what will your first knowledge transfer action be?'
+  },
+  // Slide 51: Lunch
+  {
+    type: 'transition',
+    label: 'Lunch',
+    title: '45 Minute Lunch',
+    notes: 'Forty-five minutes for lunch. After lunch, the knowledge exam. My advice: don\'t try to cram. You\'ve been studying for this since Course 1. Either you know it or you don\'t. Rest your brain, eat well, come back fresh.'
+  },
+  // Slide 52: Knowledge Exam
+  {
+    type: 'activity',
+    title: 'Knowledge Exam',
+    content: [
+      '<strong>Duration:</strong> 30 minutes',
+      '<strong>Format:</strong> 20 multiple-choice questions',
+      '<strong>Conditions:</strong> Closed book. No AI tools. No notes. No discussion.',
+      '<strong>Pass mark:</strong> 14/20 (70%)'
+    ],
+    notes: 'Knowledge exam. You have 30 minutes. Twenty questions, four options each, one correct answer per question. No AI tools, no notes, no talking. This tests what you know \u2014 across the entire programme. I\'ll announce halfway and five minutes remaining. Ready? Papers face down. Turn them over\u2026 now.'
+  },
+  // Slide 53: Exam Rules
+  {
+    type: 'content',
+    title: 'Exam Rules',
+    content: [
+      'Read each question carefully before answering',
+      'One correct answer per question',
+      'If unsure, eliminate options you know are wrong, then choose your best answer',
+      'Do not leave questions blank \u2014 there is no negative marking',
+      'Halfway: 15 minutes',
+      'Warning: 5 minutes remaining',
+      'Time: pens down, papers forward'
+    ],
+    notes: 'These rules stay on screen during the exam. If you finish early, review your answers. Do not leave any question blank \u2014 there\'s no penalty for guessing.'
+  },
+  // Slide 54: Break
+  {
+    type: 'transition',
+    label: 'Break',
+    title: '15 Minute Break',
+    notes: 'Exam done. Fifteen minutes. When you come back, you\'ll assemble your evidence pack \u2014 the final assessed practical. After that, we close with your Licensed Citizen pledge and the badge ceremony. We\'re nearly there.'
+  },
+  // Slide 55: Practical 6: Evidence Pack Assembly
+  {
+    type: 'activity',
+    title: 'Practical 6: Evidence Pack Assembly',
+    content: [
+      '<strong>Duration:</strong> 30 minutes',
+      '<strong>Type:</strong> Individual',
+      '<strong>Assessed</strong>',
+      'Compile, organise, quality-check, submit',
+      'All 10 items must be present'
+    ],
+    notes: 'Practical 6 \u2014 the final practical. You have 30 minutes to organise your evidence pack against the 10-point checklist. Ensure every item is present, labelled, and in order. If a bootcamp practical produced stronger work than your prework, you may substitute it. Think of this as your professional portfolio. Present it as you would to an external auditor.'
+  },
+  // Slide 56: Evidence Pack: 10-Point Checklist
+  {
+    type: 'content',
+    title: 'Evidence Pack: 10-Point Checklist',
+    content: [
+      '<strong>1.</strong> "My AI Stance" (updated from Course 1)',
+      '<strong>2.</strong> Personal prompt library (10+ prompts)',
+      '<strong>3.</strong> AI policy document',
+      '<strong>4.</strong> Verification checklist (with real application)',
+      '<strong>5.</strong> 3 ICC prompt templates',
+      '<strong>6.</strong> 1 complete AI SOP/playbook',
+      '<strong>7.</strong> 1 HITL system design',
+      '<strong>8.</strong> Workflow discovery outputs',
+      '<strong>9.</strong> 1 complete risk register',
+      '<strong>10.</strong> "My AI Journey" reflection (500 words)'
+    ],
+    notes: 'Your 10 items. Check each one. Is it present? Is it labelled? Is it your best work? You have 30 minutes. Focus on completeness first, then quality. If something is missing, that\'s a problem. If something is present but weak, it\'s recoverable. Missing is not.'
+  },
+  // Slide 57: Your Commitment as a Licensed Citizen
+  {
+    type: 'transition',
+    label: 'Module 5',
+    title: 'Your Commitment as a Licensed Citizen',
+    notes: 'Your evidence packs are submitted. The assessment work is done. What you\'ve compiled represents your entire AI learning journey. That\'s something to be proud of \u2014 regardless of what the results say. Now let\'s talk about what it means to carry this credential. This is the moment where the programme ends and the practice begins.'
+  },
+  // Slide 58: The Licensed Citizen Pledge
+  {
+    type: 'content',
+    title: 'The Licensed Citizen Pledge',
+    content: [
+      '<strong>As a Licensed Citizen of Earth 2.0, I commit to:</strong>',
+      'Using AI responsibly, with human judgment at the centre of every decision',
+      'Verifying before trusting, questioning before accepting, and documenting before sharing',
+      'Designing systems that serve people, not replace them',
+      'Sharing my knowledge freely and mentoring those who are earlier in their journey',
+      'Holding myself and others to the ethical standards I have learned',
+      'Continuing to learn, adapt, and improve as AI technology evolves',
+      'Representing the Earth 2.0 community with integrity in every context'
+    ],
+    notes: 'I\'d like us to read this together. Aloud. This is the Licensed Citizen Pledge. It\'s in your workbook. Let\'s read it together, from the top. This is what you\'re signing up for. Not just a badge. A commitment.'
+  },
+  // Slide 59: Your 48-Hour Action
+  {
+    type: 'activity',
+    title: 'Your 48-Hour Action',
+    content: [
+      'The 48-Hour Rule has applied to every course in this programme',
+      'Your final 48-Hour Action: your <strong>first act as a Licensed Citizen</strong>',
+      'What will you do within 48 hours?',
+      'Write it in your workbook now. (3 minutes)'
+    ],
+    notes: 'Every course has ended with a 48-Hour Action. This one is special. This is your first act as a Licensed Citizen. Not your first act as a student. Your first act as a practitioner. What will you do? Mentor someone? Share a document? Run a session? Write a policy? Take 3 minutes now. Write it in your workbook. Make it specific. Make it real.'
+  },
+  // Slide 60: What Comes Next: Tier 2
+  {
+    type: 'content',
+    title: 'What Comes Next: Tier 2',
+    content: [
+      'Assessment results within <strong>5 business days</strong>',
+      '<strong>Pass:</strong> Tier 2 invitation + digital badge',
+      '<strong>Not Yet:</strong> Specific feedback + re-assessment within 30 days',
+      'Tier 2 onboarding: community access, mentoring matching, advanced resources',
+      'The journey continues'
+    ],
+    notes: 'Here\'s what happens next. I\'ll have your results within 5 business days. If you pass, you\'ll receive a Tier 2 invitation and your digital badge. If the result is Not Yet, you\'ll receive specific feedback on exactly what to improve, and a clear path to re-assessment within 30 days. Either way, this is not the end. It\'s the beginning of your practice.'
+  },
+  // Slide 61: Badge Ceremony
+  {
+    type: 'transition',
+    label: 'Ceremony',
+    title: 'Badge Ceremony',
+    notes: 'Before we begin the ceremony, I want to say something. Whatever the formal assessment results tell us in 5 days, every person in this room showed up. You did the work. You tackled difficult practicals under time pressure. You debated ethics with genuine conviction. You built portfolios that represent months of learning and effort. That is worth celebrating. And that is what we\'re about to do.'
+  },
+  // Slide 62: The Earth 2.0 AI Driving Licence
+  {
+    type: 'content',
+    title: 'The Earth 2.0 AI Driving Licence',
+    content: [
+      '<strong>Earth 2.0 AI Driving Licence</strong>',
+      'A verifiable digital credential',
+      'Certifies competency across:',
+      'AI fundamentals and adoption',
+      'Prompt engineering and process design',
+      'Verification and critical evaluation',
+      'Human-in-the-loop system design',
+      'Workflow discovery and optimisation',
+      'Risk management and ethics',
+      'Knowledge transfer and citizenship'
+    ],
+    notes: 'This is the Earth 2.0 AI Driving Licence. It\'s not just a badge. It certifies competency across seven areas \u2014 from the fundamentals you learned in Course 1 to the ethics and citizenship you demonstrated today. It\'s verifiable, shareable, and it means something. Because you earned it through demonstrated capability, not just attendance.'
+  },
+  // Slide 63: [Participant Name] - Licensed Citizen
+  {
+    type: 'activity',
+    title: 'Licensed Citizen Recognition',
+    content: [
+      '[Participant Name]',
+      'Earth 2.0 Licensed Citizen',
+      '[Personal observation from instructor]',
+      '[Date]'
+    ],
+    notes: 'Customise for each participant. Call each person forward. Share one specific, genuine observation about their bootcamp performance. Present the Earth 2.0 Licensing Bootcamp certificate. Handshake or equivalent. Photo. Applause.'
+  },
+  // Slide 64: People First. Technology Second. Execution Over Everything.
+  {
+    type: 'quote',
+    title: 'People first. Technology second. Execution over everything.',
+    attribution: 'Earth 2.0',
+    notes: 'This is where we started. Course 1, Slide 1. People first. Technology second. Execution over everything. You\'ve lived that philosophy across ten courses. Now you carry it forward.'
+  },
+  // Slide 65: Welcome to the Community
+  {
+    type: 'title',
+    title: 'Welcome to the Community',
+    subtitle: 'You walked in as participants. You leave as practitioners.',
+    content: ['Welcome to the community.', 'Earth 2.0 AI Capability Programme', 'AI Curious Ltd'],
+    notes: 'You walked in as participants. You leave as practitioners. Welcome to the community. Thank you for your trust, your effort, and your commitment. I look forward to seeing what you do next. Now \u2014 tea, coffee, and conversation. I\'m here for any questions. And congratulations.'
+  }
+];
+</script>
+
+<script src="slide-engine.js"></script>
+</body>
+</html>

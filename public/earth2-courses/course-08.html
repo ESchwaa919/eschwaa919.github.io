@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course 8: Workflow Discovery Sprint | Earth 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slide-engine.css">
+</head>
+<body>
+
+<script>
+const SLIDES = [
+  // Slide 1: Workflow Discovery Sprint
+  {
+    type: 'title',
+    title: 'Workflow Discovery Sprint',
+    subtitle: 'Earth 2.0 AI Capability Programme',
+    content: ['Course 8 of 10', 'AI Curious Ltd'],
+    notes: 'Welcome to the Workflow Discovery Sprint. Six hours. Seven phases. Five concrete outputs. This is not a workshop. This is a sprint. Let\'s go.'
+  },
+  // Slide 2: This Is Not a Workshop
+  {
+    type: 'content',
+    title: 'This Is Not a Workshop',
+    content: [
+      'This is a <strong>SPRINT</strong>',
+      'No slides for most of the day \u2014 you\'ll be on your feet, at the walls',
+      'Time-boxed. Fast-paced. Output-focused.',
+      'By 6pm, you will leave with a plan',
+      'Wear comfortable shoes'
+    ],
+    notes: 'Let me set expectations. Most of today, this screen will be dark. You\'ll be standing at walls, writing on sticky notes, debating priorities, and building artifacts. I\'m your facilitator, not your lecturer. My job is to keep you moving, keep you honest, and keep you on time. Your job is to produce five concrete outputs. Ready?'
+  },
+  // Slide 3: Your Five Outputs
+  {
+    type: 'content',
+    title: 'Your Five Outputs',
+    content: [
+      'By the end of today, you will have:',
+      '<strong>1. Process Map</strong> \u2014 your workflows visualised',
+      '<strong>2. Opportunity Matrix</strong> \u2014 where AI adds value',
+      '<strong>3. Prioritised Backlog</strong> \u2014 ranked by impact and effort',
+      '<strong>4. KPI Baselines</strong> \u2014 measurable starting points',
+      '<strong>5. Implementation Roadmap</strong> \u2014 timeline with owners and 48-hour actions'
+    ],
+    notes: 'Five outputs. Not ideas. Not insights. Not "learnings." Outputs. Tangible artifacts you take away and use on Monday morning. A process map. An opportunity matrix. A prioritised backlog. KPI baselines. And a roadmap. That\'s what we\'re building today.'
+  },
+  // Slide 4: Sprint Rules
+  {
+    type: 'content',
+    title: 'Sprint Rules',
+    content: [
+      '<strong>Time-boxes are sacred</strong> (timer goes off = we move on)',
+      '<strong>Progress beats perfection</strong> (start with what you know)',
+      '<strong>Stand up and move</strong> (this is physical work)',
+      '<strong>Every output gets an owner</strong> (no orphan items)',
+      '<strong>48-Hour Rule applies</strong> (your #1 starts within 48 hours)'
+    ],
+    notes: 'Five rules. One: when the timer goes off, we move on. Doesn\'t matter if you\'re mid-sentence. Time discipline is how sprints work. Two: don\'t wait for perfect data \u2014 estimate and refine later. Three: stand up, move, write on walls. Four: every output needs a name on it. Five: your top priority starts within 48 hours. Not next quarter. 48 hours.'
+  },
+  // Slide 5: Team Formation
+  {
+    type: 'activity',
+    title: 'Team Formation',
+    content: [
+      'Form teams of 3\u20134',
+      'Same organisation: work on shared workflows',
+      'Mixed organisations: group by industry/function',
+      'Claim your wall section. Grab your materials.'
+    ],
+    notes: 'Time to form teams. If you\'re from the same organisation, work together on your shared workflows. If you\'re from different organisations, I\'ll group you by industry or function. Each team: claim a wall section. Grab sticky notes, markers, and A3 paper. You have 2 minutes.'
+  },
+  // Slide 6: Phase 1: Process Mapping
+  {
+    type: 'transition',
+    label: 'Phase 1',
+    title: 'Process Mapping',
+    notes: 'Phase 1. Process Mapping. You have 60 minutes to map 3 to 5 of your most important recurring workflows on the wall. Real workflows. What actually happens, not what the process document says. One sticky note per step. Show decisions, handoffs, and bottlenecks. Start now.'
+  },
+  // Slide 7: What to Map
+  {
+    type: 'content',
+    title: 'What to Map',
+    content: [
+      'For each workflow, show:',
+      '<strong>Start trigger</strong> \u2014 what initiates it',
+      '<strong>Each step</strong> \u2014 one sticky per step',
+      '<strong>Decision points</strong> \u2014 where the path branches',
+      '<strong>Handoffs</strong> \u2014 where work moves between people/systems',
+      '<strong>End point</strong> \u2014 the deliverable',
+      '<strong>Time per step</strong> \u2014 if known'
+    ],
+    notes: 'Quick reference: triggers, steps, decisions, handoffs, end points. One sticky per step. Write big. Go.'
+  },
+  // Slide 8: Mapping Format
+  {
+    type: 'content',
+    title: 'Mapping Format',
+    content: [
+      'Left to right flow',
+      'One <strong>yellow sticky</strong> per step',
+      '<strong>Diamond markers</strong> for decisions',
+      '<strong>Vertical lines</strong> for handoffs',
+      '<strong>Stars</strong> for bottlenecks/pain points',
+      'Write BIG \u2014 readable from 3 feet'
+    ],
+    notes: 'Reference slide \u2014 keep visible during Phase 1 if helpful.'
+  },
+  // Slide 9: Sticky Note Colour Code
+  {
+    type: 'content',
+    title: 'Sticky Note Colour Code',
+    content: [
+      '<strong>Yellow</strong> = process steps',
+      '<strong>Green</strong> = AI opportunities (Phase 2)',
+      '<strong>Pink</strong> = risks and concerns',
+      '<strong>Blue</strong> = KPIs and metrics',
+      '<strong>Orange</strong> = actions and commitments'
+    ],
+    notes: 'Reference slide for the full day. Keep accessible.'
+  },
+  // Slide 10: Map Your Workflows - GO
+  {
+    type: 'activity',
+    title: 'Map Your Workflows \u2014 GO',
+    content: [
+      '<strong>60 MINUTES</strong>',
+      'Map 3\u20135 workflows',
+      'Real processes, not ideal ones',
+      'GO'
+    ],
+    notes: 'Timer running. Facilitator circulates. No additional speaking unless coaching individuals.'
+  },
+  // Slide 11: 40 Minutes Remaining
+  {
+    type: 'content',
+    title: '40 Minutes Remaining',
+    content: [
+      '<strong>40 MINUTES LEFT</strong>',
+      'You should have Workflow 1 complete',
+      'Start Workflow 2'
+    ],
+    notes: '40 minutes left. Workflow 1 should be on the wall. Start Workflow 2.'
+  },
+  // Slide 12: 20 Minutes Remaining
+  {
+    type: 'content',
+    title: '20 Minutes Remaining',
+    content: [
+      '<strong>20 MINUTES LEFT</strong>',
+      'At least 2 workflows should be complete',
+      'Push for 3'
+    ],
+    notes: '20 minutes. How many workflows are on your wall? You need at least 3. Push.'
+  },
+  // Slide 13: 5 Minutes - Finish Up
+  {
+    type: 'content',
+    title: '5 Minutes \u2014 Finish Up',
+    content: [
+      '<strong>5 MINUTES</strong>',
+      'Add time estimates and bottleneck markers',
+      'Step back and review'
+    ],
+    notes: 'Five minutes. Add your time estimates and bottleneck markers. Then step back. Look at what you\'ve built.'
+  },
+  // Slide 14: Phase 1 Complete
+  {
+    type: 'checkpoint',
+    title: 'Phase 1 Complete',
+    content: [
+      'Phase 1: <strong>DONE</strong>',
+      'Quick check: at least 3 workflows on the wall?',
+      'Steps, decisions, handoffs visible?',
+      'That\'s your current state. After the break, we look through an AI lens.'
+    ],
+    notes: 'Time. Phase 1 complete. Quick check: does every team have at least 3 workflows on their wall? Good. That\'s your current state. After the break, we overlay the AI opportunities.'
+  },
+  // Slide 15: Break
+  {
+    type: 'transition',
+    label: 'Break',
+    title: '15 Minute Break',
+    notes: '15 minutes. Hydrate. We\'ve finished the mapping. The exciting part starts next.'
+  },
+  // Slide 16: Phase 2: AI Opportunity Identification
+  {
+    type: 'transition',
+    label: 'Phase 2',
+    title: 'AI Opportunity Identification',
+    notes: 'Phase 2. Look at your process maps. For every step, ask: could AI do this, speed this up, improve this, or eliminate this? Green stickies. Place them next to the relevant step. Quantity over quality right now. Don\'t filter. Go.'
+  },
+  // Slide 17: Four Questions for Every Step
+  {
+    type: 'content',
+    title: 'Four Questions for Every Step',
+    content: [
+      'For each workflow step, ask:',
+      '<strong>1.</strong> Could AI <strong>DO</strong> this step (with human review)?',
+      '<strong>2.</strong> Could AI make this step <strong>FASTER</strong>?',
+      '<strong>3.</strong> Could AI make this step <strong>BETTER</strong>?',
+      '<strong>4.</strong> Could AI <strong>ELIMINATE</strong> this step?'
+    ],
+    notes: 'Four questions. Every step. Go.'
+  },
+  // Slide 18: Four Types of AI Opportunity
+  {
+    type: 'content',
+    title: 'Four Types of AI Opportunity',
+    content: [
+      '<strong>Automate</strong> = AI handles the step (with oversight)',
+      '<strong>Augment</strong> = AI assists the human',
+      '<strong>Accelerate</strong> = AI makes it faster',
+      '<strong>Eliminate</strong> = AI removes the need for it',
+      'Write the type on each green sticky: <strong>A / Au / Ac / E</strong>'
+    ],
+    notes: 'Tag each opportunity with its type. A for automate, Au for augment, Ac for accelerate, E for eliminate.'
+  },
+  // Slide 19: Identify Opportunities - GO
+  {
+    type: 'activity',
+    title: 'Identify Opportunities \u2014 GO',
+    content: [
+      '<strong>45 MINUTES</strong>',
+      'Green stickies = AI opportunities',
+      'One per opportunity, placed next to the workflow step',
+      'Don\'t filter. Capture everything.',
+      'GO'
+    ],
+    notes: 'Timer running. Circulate. Push for volume.'
+  },
+  // Slide 20: Risk Flagging
+  {
+    type: 'content',
+    title: 'Risk Flagging',
+    content: [
+      'After identifying opportunities, add risk flags',
+      '<strong>Pink stickies</strong> for any opportunity where AI failure could cause real harm',
+      'What if AI gets this wrong?',
+      'Is sensitive data involved?',
+      'Does this output reach customers?'
+    ],
+    notes: 'Now add risk flags. Pink stickies. For any opportunity where AI failure could cause real harm, flag it. What if it\'s wrong? Is sensitive data involved? Does it reach the public?'
+  },
+  // Slide 21: 15 Minutes Remaining
+  {
+    type: 'content',
+    title: '15 Minutes Remaining',
+    content: [
+      '<strong>15 MINUTES LEFT</strong>',
+      'Finish identifying. Start risk flagging.'
+    ],
+    notes: '15 minutes. Finish your opportunity identification. Start adding risk flags.'
+  },
+  // Slide 22: 5 Minutes - Count and Cluster
+  {
+    type: 'content',
+    title: '5 Minutes \u2014 Count and Cluster',
+    content: [
+      '<strong>5 MINUTES</strong>',
+      'Count your total opportunities',
+      'Cluster similar ones',
+      'Note patterns'
+    ],
+    notes: '5 minutes. Count your green stickies. Cluster similar opportunities. What patterns do you see?'
+  },
+  // Slide 23: Phase 2 Complete
+  {
+    type: 'checkpoint',
+    title: 'Phase 2 Complete',
+    content: [
+      'Phase 2: <strong>DONE</strong>',
+      'How many opportunities did each team find?',
+      'Quick count from each team',
+      'These become the raw material for sizing and prioritisation'
+    ],
+    notes: 'Phase 2 complete. Quick count: how many AI opportunities did each team identify? Those are your raw material for the rest of the sprint.'
+  },
+  // Slide 24: Phase 3: Opportunity Sizing
+  {
+    type: 'transition',
+    label: 'Phase 3',
+    title: 'Opportunity Sizing',
+    notes: 'Phase 3. You\'ve identified the opportunities. Now size them. How much time does each one save? How much does quality improve? What\'s the risk? Be honest. Optimism is not a strategy.'
+  },
+  // Slide 25: Three Dimensions
+  {
+    type: 'content',
+    title: 'Three Dimensions',
+    content: [
+      '<strong>Time Saved:</strong> hours per week this step currently takes \u2014 how much could AI save?',
+      '<strong>Quality Improved:</strong> 1=Low, 2=Medium, 3=High \u2014 would AI output be better?',
+      '<strong>Risk Level:</strong> 1=Low, 2=Medium, 3=High \u2014 what if AI gets it wrong?'
+    ],
+    notes: 'Three dimensions. Time saved in hours per week \u2014 be realistic. Quality impact on a 1\u20133 scale. Risk level on a 1\u20133 scale. Every green sticky gets all three ratings.'
+  },
+  // Slide 26: The Scoring Formula
+  {
+    type: 'content',
+    title: 'The Scoring Formula',
+    content: [
+      '<strong>Opportunity Score = Time Saved \u00d7 Quality Impact \u00f7 Risk Level</strong>',
+      'Higher score = more attractive opportunity',
+      'Example: 5 hrs/wk \u00d7 3 (high quality) \u00f7 2 (medium risk) = 7.5'
+    ],
+    notes: 'The formula. Time saved multiplied by quality impact, divided by risk level. Higher score means more attractive opportunity. Quick example: an opportunity that saves 5 hours a week, with high quality impact and medium risk, scores 7.5. Use this to compare opportunities objectively.'
+  },
+  // Slide 27: Sizing Example
+  {
+    type: 'content',
+    title: 'Sizing Example',
+    content: [
+      '<strong>Opportunity:</strong> AI drafts weekly team update emails',
+      '<strong>Time saved:</strong> 3 hrs/wk (currently takes 3.5 hrs, AI reduces to 30 min)',
+      '<strong>Quality:</strong> 2 (Medium \u2014 more consistent, but tone needs editing)',
+      '<strong>Risk:</strong> 1 (Low \u2014 internal communication, human reviews)',
+      '<strong>Score:</strong> 3 \u00d7 2 \u00f7 1 = 6.0'
+    ],
+    notes: 'Here\'s a worked example. AI drafts weekly team update emails. Currently takes 3.5 hours across the team each week. With AI, that drops to 30 minutes of editing. Quality is medium \u2014 more consistent but still needs a human touch on tone. Risk is low \u2014 internal comms, human reviews everything. Score: 6.'
+  },
+  // Slide 28: Size Your Opportunities - GO
+  {
+    type: 'activity',
+    title: 'Size Your Opportunities \u2014 GO',
+    content: [
+      '<strong>45 MINUTES</strong>',
+      'Size every AI opportunity',
+      'Time Saved \u00d7 Quality \u00f7 Risk = Score',
+      'Rank your top 5\u20137 at the end',
+      'GO'
+    ],
+    notes: 'Timer. Circulate. Push for honest estimates.'
+  },
+  // Slide 29: 20 Minutes Remaining
+  {
+    type: 'content',
+    title: '20 Minutes Remaining',
+    content: [
+      '<strong>20 MINUTES</strong>',
+      'Should be halfway through your opportunities'
+    ],
+    notes: '20 minutes left. You should be roughly halfway through. Keep moving.'
+  },
+  // Slide 30: 5 Minutes - Rank Your Top 5-7
+  {
+    type: 'content',
+    title: '5 Minutes \u2014 Rank Your Top 5\u20137',
+    content: [
+      '<strong>5 MINUTES</strong>',
+      'Sort by score',
+      'Identify your top 5\u20137 opportunities'
+    ],
+    notes: '5 minutes. Sort your opportunities by score. Which are the top 5\u20137? Those go forward to prioritisation.'
+  },
+  // Slide 31: Phase 3 Complete
+  {
+    type: 'checkpoint',
+    title: 'Phase 3 Complete',
+    content: [
+      'Phase 3: <strong>DONE</strong>',
+      'You have scored and ranked your opportunities',
+      'Top 5\u20137 identified',
+      'Lunch, then prioritisation'
+    ],
+    notes: 'Phase 3 complete. You now know the size of every opportunity. You\'ve identified your top candidates. Good work. Lunch. 45 minutes. When we come back, we prioritise.'
+  },
+  // Slide 32: Lunch Break
+  {
+    type: 'transition',
+    label: 'Lunch',
+    title: '45 Minute Lunch Break',
+    notes: 'Lunch. 45 minutes. You\'re halfway. Three phases done, four to go. The afternoon is about turning your analysis into action. Eat well. Come back ready.'
+  },
+  // Slide 33: Welcome Back
+  {
+    type: 'content',
+    title: 'Welcome Back',
+    content: [
+      '<strong>Phases 4\u20137:</strong> Analysis becomes action',
+      'Prioritise \u2192 Baseline \u2192 Build backlog \u2192 Commit to roadmap',
+      'The morning was discovery. The afternoon is decision.'
+    ],
+    notes: 'Welcome back. The morning was discovery \u2014 mapping, identifying, sizing. The afternoon is decision \u2014 prioritising, baselining, building, and committing. Let\'s turn your analysis into a plan.'
+  },
+  // Slide 34: Phase 4: Prioritisation
+  {
+    type: 'transition',
+    label: 'Phase 4',
+    title: 'Prioritisation',
+    notes: 'Phase 4. Prioritisation. You\'ve got your top opportunities scored. Now place them on a 2\u00d72 matrix: impact versus effort. Then dot vote. 30 minutes.'
+  },
+  // Slide 35: The 2x2 Matrix
+  {
+    type: 'content',
+    title: 'The 2\u00d72 Matrix',
+    content: [
+      '<strong>Top-Left: Quick Wins</strong> \u2014 High impact, Low effort (Do first)',
+      '<strong>Top-Right: Strategic Bets</strong> \u2014 High impact, High effort (Plan carefully)',
+      '<strong>Bottom-Left: Fill-ins</strong> \u2014 Low impact, Low effort (Do if easy)',
+      '<strong>Bottom-Right: Time Sinks</strong> \u2014 Low impact, High effort (Deprioritise)'
+    ],
+    notes: 'The 2\u00d72 matrix. Top-left: Quick Wins \u2014 high impact, low effort. Do these first. Top-right: Strategic Bets \u2014 high impact, high effort. Worth it, but plan carefully. Bottom-left: Fill-ins \u2014 do if easy. Bottom-right: Time Sinks \u2014 deprioritise. Place your opportunities.'
+  },
+  // Slide 36: Quadrant Guide
+  {
+    type: 'content',
+    title: 'Quadrant Guide',
+    content: [
+      '<strong>Quick Wins:</strong> immediate value, start this week',
+      '<strong>Strategic Bets:</strong> significant investment, plan for next month',
+      '<strong>Fill-ins:</strong> if someone has spare time, sure',
+      '<strong>Time Sinks:</strong> park them. Life is short.'
+    ],
+    notes: 'Quick guide to each quadrant. Quick Wins start this week. Strategic Bets need planning. Fill-ins are optional. Time Sinks get parked. Be honest about which quadrant each opportunity really belongs in.'
+  },
+  // Slide 37: Place Your Opportunities - GO
+  {
+    type: 'activity',
+    title: 'Place Your Opportunities \u2014 GO',
+    content: [
+      'Place each opportunity on the 2\u00d72 grid',
+      'Debate as a team. Where does it really go?',
+      '10 minutes for placement',
+      'Then: dot voting'
+    ],
+    notes: 'Timer. Teams discuss and place stickies on the matrix.'
+  },
+  // Slide 38: Dot Voting
+  {
+    type: 'activity',
+    title: 'Dot Voting',
+    content: [
+      'Each person gets <strong>3 dots</strong>',
+      'Place on the opportunities you\'d implement <strong>FIRST</strong>',
+      'All 3 on one item, or spread across three',
+      '<strong>NO DISCUSSION</strong> during voting',
+      'Silent. Independent. Honest.'
+    ],
+    notes: 'Dot voting time. Three dots each. Place them on the opportunities you believe should be implemented first. No talking. No influencing. Silent, independent choices. Go.'
+  },
+  // Slide 39: 5 Minutes - Final Ranking
+  {
+    type: 'content',
+    title: '5 Minutes \u2014 Final Ranking',
+    content: [
+      '<strong>5 MINUTES</strong>',
+      'Count dots. Rank top 5\u20137.',
+      'Validate: does the ranking feel right?'
+    ],
+    notes: '5 minutes. Count the dots. Rank your top 5\u20137. Then gut check: does this ranking make sense for your context?'
+  },
+  // Slide 40: Your Top 5-7
+  {
+    type: 'checkpoint',
+    title: 'Your Top 5\u20137',
+    content: [
+      'Phase 4: <strong>DONE</strong>',
+      'Each team: what\'s your #1 priority and why?',
+      'One minute per team'
+    ],
+    notes: 'Phase 4 complete. Quick share: each team, what\'s your number 1 priority and why? One minute each.'
+  },
+  // Slide 41: Phase 5: KPI Baselining
+  {
+    type: 'transition',
+    label: 'Phase 5',
+    title: 'KPI Baselining',
+    notes: 'Phase 5. KPI Baselining. For each of your top 5 priorities, define the current metric. What\'s the number today? Because if you don\'t know the starting point, you can\'t prove AI made a difference.'
+  },
+  // Slide 42: Why Baseline?
+  {
+    type: 'content',
+    title: 'Why Baseline?',
+    content: [
+      '"It\'ll be better" is <strong>not</strong> a measurement',
+      '"It reduced processing time from 4 hours to 45 minutes" <strong>IS</strong> a measurement',
+      'Baselines create accountability',
+      'Baselines prove value',
+      'Baselines justify continued investment'
+    ],
+    notes: 'Why baseline? Because "it\'ll be better" convinces nobody. "It reduced processing time from 4 hours to 45 minutes" convinces everyone. Baselines prove value. They justify investment. They create accountability. Without them, you\'re guessing.'
+  },
+  // Slide 43: KPI Template
+  {
+    type: 'content',
+    title: 'KPI Template',
+    content: [
+      'For each top priority:',
+      '<strong>Metric:</strong> what you\'re measuring',
+      '<strong>Current baseline:</strong> today\'s number',
+      '<strong>Target after AI:</strong> realistic improvement',
+      '<strong>How measured:</strong> where the data comes from'
+    ],
+    notes: 'Four fields per priority. What you measure, today\'s number, your target, and how you\'ll track it.'
+  },
+  // Slide 44: Common KPI Types
+  {
+    type: 'content',
+    title: 'Common KPI Types',
+    content: [
+      'Time to complete (hours, minutes)',
+      'Error/rework rate (percentage)',
+      'Volume processed (units per period)',
+      'Cost per unit (monetary)',
+      'Satisfaction score (NPS, CSAT)',
+      'Cycle time (start to finish)'
+    ],
+    notes: 'If you\'re stuck on what to measure, here are common KPI types. Pick the one most relevant to your opportunity.'
+  },
+  // Slide 45: Define Your Baselines - GO
+  {
+    type: 'activity',
+    title: 'Define Your Baselines \u2014 GO',
+    content: [
+      '<strong>30 MINUTES</strong>',
+      'Define KPIs for your top 5 priorities',
+      'Exact data or best estimate',
+      'GO'
+    ],
+    notes: 'Timer. Allow laptop use for data access.'
+  },
+  // Slide 46: 10 Minutes Remaining
+  {
+    type: 'content',
+    title: '10 Minutes Remaining',
+    content: [
+      '<strong>10 MINUTES</strong>',
+      'All 5 priorities should have baselines',
+      'Validate as a team'
+    ],
+    notes: '10 minutes. All 5 priorities should have baselines. If you\'re estimating, that\'s fine \u2014 but write the estimate down. An imperfect baseline beats no baseline.'
+  },
+  // Slide 47: Phase 5 Complete
+  {
+    type: 'checkpoint',
+    title: 'Phase 5 Complete',
+    content: [
+      'Phase 5: <strong>DONE</strong>',
+      'You now have measurable starting points',
+      'You\'ll know if AI made a difference'
+    ],
+    notes: 'Phase 5 done. You have baselines. When you implement AI on these workflows, you\'ll know exactly whether it helped. That\'s the difference between faith and evidence. Break time.'
+  },
+  // Slide 48: Break
+  {
+    type: 'transition',
+    label: 'Break',
+    title: '15 Minute Break',
+    notes: '15 minutes. Two phases left. When we come back, we build the backlog and the roadmap. The home stretch.'
+  },
+  // Slide 49: Phase 6: Backlog Build
+  {
+    type: 'transition',
+    label: 'Phase 6',
+    title: 'Backlog Build',
+    notes: 'Phase 6. Build your backlog. Convert your ranked priorities into a structured list with descriptions, effort estimates, named owners, and dependencies. A plan without names is a wish list. 30 minutes.'
+  },
+  // Slide 50: Backlog Template
+  {
+    type: 'content',
+    title: 'Backlog Template',
+    content: [
+      'For each backlog item:',
+      '<strong>Priority ranking</strong> (#1, #2, etc.)',
+      '<strong>Description</strong> (specific, actionable)',
+      '<strong>Workflow</strong> it relates to',
+      '<strong>Type</strong> (Automate/Augment/Accelerate/Eliminate)',
+      '<strong>Effort</strong> (Small=days, Medium=weeks, Large=months)',
+      '<strong>Owner</strong> (a NAME, not a team)',
+      '<strong>Dependencies</strong> (what must happen first)'
+    ],
+    notes: 'Every backlog item needs all of these fields filled. Pay special attention to Owner and Dependencies. Who drives this? What do they need first?'
+  },
+  // Slide 51: Every Item Needs a Name
+  {
+    type: 'content',
+    title: 'Every Item Needs a Name',
+    content: [
+      '"The team will handle it" = <strong>nobody</strong> will handle it',
+      '"TBD" = <strong>never</strong>',
+      '<strong>Every. Item. Gets. A. Name.</strong>',
+      'That person commits publicly.'
+    ],
+    notes: 'I cannot stress this enough. Every backlog item gets a named person. Not "the team." Not "TBD." A name. A person who says, in front of this group, "I own this." That\'s the difference between a plan and a wish.'
+  },
+  // Slide 52: Build Your Backlog - GO
+  {
+    type: 'activity',
+    title: 'Build Your Backlog \u2014 GO',
+    content: [
+      '<strong>30 MINUTES</strong>',
+      '5\u20137 items. Ranked. Owned. With dependencies.',
+      'GO'
+    ],
+    notes: 'Timer. Circulate. Push for named ownership.'
+  },
+  // Slide 53: 10 Minutes Remaining
+  {
+    type: 'content',
+    title: '10 Minutes Remaining',
+    content: [
+      '<strong>10 MINUTES</strong>',
+      'All items should have owners',
+      'Review as a team'
+    ],
+    notes: '10 minutes. Every item should have a name next to it. Review your backlog as a team. Does the ranking still make sense? Are the owners right?'
+  },
+  // Slide 54: Phase 6 Complete
+  {
+    type: 'checkpoint',
+    title: 'Phase 6 Complete',
+    content: [
+      'Phase 6: <strong>DONE</strong>',
+      'Backlog: built, ranked, owned',
+      'Backlog ownership roll call',
+      'Each team reads: Item #1 \u2014 Owner. Item #2 \u2014 Owner...'
+    ],
+    notes: 'Phase 6 done. Backlog roll call. Each team: read your top 3 items and their owners. Names spoken aloud create commitment.'
+  },
+  // Slide 55: Phase 7: Roadmap & Commitments
+  {
+    type: 'transition',
+    label: 'Phase 7 (Final)',
+    title: 'Roadmap & Commitments',
+    notes: 'Final phase. Phase 7. You have a backlog. Now put it on a timeline. And then commit \u2014 publicly \u2014 to your 48-hour first action. 20 minutes. Let\'s close this sprint strong.'
+  },
+  // Slide 56: Roadmap Timeline
+  {
+    type: 'content',
+    title: 'Roadmap Timeline',
+    content: [
+      'Place backlog items on the timeline:',
+      '<strong>Week 1\u20132:</strong> Quick wins (start immediately)',
+      '<strong>Week 3\u20134:</strong> Medium effort items',
+      '<strong>Month 2:</strong> Larger items',
+      '<strong>Month 3:</strong> Strategic bets',
+      '<strong>Quarter 2+:</strong> Long-term items'
+    ],
+    notes: 'Place items on the timeline. Be realistic. Quick wins in the first two weeks. Don\'t front-load everything.'
+  },
+  // Slide 57: 48-Hour First Actions
+  {
+    type: 'content',
+    title: '48-Hour First Actions',
+    content: [
+      'For every Week 1\u20132 item:',
+      'What is the <strong>FIRST concrete step</strong>?',
+      'Who does it?',
+      'By when (within 48 hours)?',
+      'Not "start working on it" \u2014 a <strong>SPECIFIC</strong> action',
+      '"Request data access from IT by Tuesday 10am"'
+    ],
+    notes: 'The 48-hour first action must be specific enough to put in a calendar. Not "start working on it." Something like "Email IT to request access to the customer data dashboard by Tuesday 10am." Specific. Timed. Accountable.'
+  },
+  // Slide 58: Build Your Roadmap - GO
+  {
+    type: 'activity',
+    title: 'Build Your Roadmap \u2014 GO',
+    content: [
+      '<strong>20 MINUTES</strong>',
+      'Place items on timeline',
+      'Define 48-hour first actions',
+      'Prepare for public commitments',
+      'GO'
+    ],
+    notes: 'Timer. Final phase energy. Push for specificity.'
+  },
+  // Slide 59: 5 Minutes - Commit
+  {
+    type: 'content',
+    title: '5 Minutes \u2014 Commit',
+    content: [
+      '<strong>5 MINUTES</strong>',
+      'Write your 48-hour commitment in your workbook',
+      'Prepare to share with the group'
+    ],
+    notes: '5 minutes. Write your 48-hour commitment in your workbook. Prepare to say it out loud.'
+  },
+  // Slide 60: Public Commitments
+  {
+    type: 'activity',
+    title: 'Public Commitments',
+    content: [
+      'Each person states:',
+      '"My #1 backlog item is..."',
+      '"My 48-hour first action is..."',
+      '"I will complete it by..."'
+    ],
+    notes: 'Public commitment time. Each person: stand up and state your number 1 backlog item, your 48-hour first action, and when you\'ll complete it. This is a commitment to yourself and to this room.'
+  },
+  // Slide 61: Sprint Output Summary
+  {
+    type: 'content',
+    title: 'Sprint Output Summary',
+    content: [
+      'Check: do you have all five?',
+      '\u2610 Process map (3\u20135 workflows)',
+      '\u2610 Opportunity matrix (AI opportunities identified and typed)',
+      '\u2610 Prioritised backlog (5\u20137 items, ranked, owned)',
+      '\u2610 KPI baselines (metrics for top 5)',
+      '\u2610 Implementation roadmap (timeline + 48-hour actions)'
+    ],
+    notes: 'Final check. Five outputs. Process map \u2014 check? Opportunity matrix \u2014 check? Prioritised backlog \u2014 check? KPI baselines \u2014 check? Roadmap \u2014 check? If you have all five, you\'ve completed the sprint.'
+  },
+  // Slide 62: Gallery Walk
+  {
+    type: 'activity',
+    title: 'Gallery Walk',
+    content: [
+      'Walk the room (3 minutes)',
+      'See what other teams built',
+      'One thing you admire. One thing you\'d steal.'
+    ],
+    notes: 'Gallery walk. Three minutes. Walk the room. Look at what other teams produced. Find one thing you admire and one idea you\'d borrow. Go.'
+  },
+  // Slide 63: What You Built Today
+  {
+    type: 'content',
+    title: 'What You Built Today',
+    content: [
+      'Six hours ago: <strong>ideas about AI</strong>',
+      'Now: a <strong>prioritised, baselined, owned implementation plan</strong>',
+      'That\'s the difference between thinking and doing',
+      '"People first. Technology second. Execution over everything."'
+    ],
+    notes: 'Look at what you built today. Six hours ago, you had ideas about where AI might help. Now you have a mapped, sized, prioritised, baselined, owned, and time-lined plan. That\'s not knowledge. That\'s execution. And execution is what Earth 2.0 is about.'
+  },
+  // Slide 64: Course 9 Preview
+  {
+    type: 'content',
+    title: 'Course 9 Preview',
+    content: [
+      '<strong>Course 9: AI Risk Management</strong>',
+      'Build a risk register for these opportunities',
+      'Assess likelihood and impact',
+      'Design controls and go/no-go criteria',
+      'The governance layer before you deploy'
+    ],
+    notes: 'Course 9 is AI Risk Management. You\'ll take the backlog you built today and add the governance layer. Risk registers, controls, go/no-go criteria. It\'s the last course before the Licensing Bootcamp. Bring your backlog.'
+  },
+  // Slide 65: Your 48-Hour Commitment
+  {
+    type: 'title',
+    title: 'Your 48-Hour Commitment',
+    subtitle: 'Execution over everything.',
+    content: ['Your #1 backlog item starts within 48 hours.', 'You came in with ideas. You leave with a plan.', 'Thank you.', 'Earth 2.0 AI Capability Programme | AI Curious Ltd'],
+    notes: 'Last slide. Your 48-hour commitment is written in your workbook. Signed. You came in this morning with ideas. You\'re leaving with a plan \u2014 mapped, sized, prioritised, baselined, owned, and time-lined. Six hours well spent. Thank you for your energy, your honesty, and your commitment. Now go execute.'
+  }
+];
+</script>
+
+<script src="slide-engine.js"></script>
+</body>
+</html>

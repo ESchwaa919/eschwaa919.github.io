@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course 2: Your First 60 Minutes With AI | Earth 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slide-engine.css">
+</head>
+<body>
+
+<script>
+const SLIDES = [
+  {
+    type: 'title',
+    title: 'Your First 60 Minutes With AI',
+    subtitle: 'Earth 2.0 AI Capability Programme',
+    content: ['Course 2 of 10', 'AI Curious Ltd'],
+    notes: 'Welcome to Course 2. Today is different from Course 1. Today you do. You build. You leave with 5 working prompts and a reusable template. Let\'s get started.'
+  },
+  {
+    type: 'content',
+    title: 'Welcome Back (or Welcome)',
+    content: [
+      'Course 1 gave you understanding. Course 2 gives you <strong>capability</strong>.',
+      'Today you build <strong>5 prompts</strong> and <strong>1 reusable template</strong>',
+      'Everything you create is yours to keep and use tomorrow',
+      'Progression: AI Never \u2192 <strong>Competent</strong>'
+    ],
+    notes: 'If you completed Course 1, welcome back. You understand what AI is, where it helps, and the 5 Safety Defaults. Today, we turn that into practice. If you\'re joining fresh, don\'t worry \u2014 I\'ll give you a quick orientation in a moment. By the end of today, you\'ll have built 5 working prompts and a personal template. That\'s not a metaphor. You\'ll literally have them in your workbook, ready to use.'
+  },
+  {
+    type: 'activity',
+    title: 'Tech Check',
+    content: [
+      'Open your AI tool (ChatGPT or Claude)',
+      'Type "Hello" and press Enter',
+      'If you get a response, you\'re ready',
+      'Need help? Raise your hand.'
+    ],
+    notes: 'Before anything else: tech check. Open your AI tool \u2014 ChatGPT or Claude. Type "Hello." If it responds, you\'re good. If you need help logging in, raise your hand or message me in the chat. We\'ll take 2 minutes for this. For those who didn\'t do Course 1, deliver the 2-minute orientation now.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 1',
+    title: 'How to Talk to AI',
+    notes: 'Your tools are ready. Now let\'s learn the language. How you talk to AI determines what you get back. Vague questions get vague answers. Specific instructions get useful outputs. Let me show you the framework.'
+  },
+  {
+    type: 'content',
+    title: 'A Prompt Is an Instruction',
+    content: [
+      'A prompt is an <strong>instruction</strong>, not a wish',
+      'Think of it as briefing a capable colleague',
+      'You wouldn\'t say "do the thing"',
+      'You\'d say "write a summary of Monday\'s meeting notes, in bullet points, focusing on action items"',
+      'The golden rule: if a human couldn\'t follow your instruction, neither can AI'
+    ],
+    notes: 'The single most important thing I\'ll teach you today: a prompt is an instruction, not a wish. "Write something about marketing" is a wish. "You are a marketing expert. Write 5 social media post ideas for a bakery. Format each with a hook, body, and call to action. Keep each under 50 words." That\'s an instruction. The AI can follow instructions. It can\'t read your mind.'
+  },
+  {
+    type: 'content',
+    title: 'The RTFC Framework',
+    content: [
+      '<strong>R</strong> \u2014 Role: Tell the AI who to be',
+      '<strong>T</strong> \u2014 Task: Tell it what to do',
+      '<strong>F</strong> \u2014 Format: Tell it how to structure the output',
+      '<strong>C</strong> \u2014 Constraints: Tell it what to avoid or include',
+      'Use all four every time.'
+    ],
+    notes: 'RTFC. Role, Task, Format, Constraints. This is your framework for every prompt you write today and every prompt you\'ll write after today. Role: who should the AI act as? Task: what do you want it to do? Format: how should the output look? Constraints: what rules apply? Use all four. Every time.'
+  },
+  {
+    type: 'content',
+    title: 'Bad Prompt vs Good Prompt',
+    content: [
+      '<strong>Bad:</strong> "Tell me about project management"',
+      '<strong>Good:</strong> "You are an experienced project manager. Write a 3-paragraph summary of the top challenges facing new project managers. Use plain language. Include one practical tip for each challenge."',
+      'Same topic. Vastly different outputs.'
+    ],
+    notes: 'Same topic. Two very different prompts. The bad prompt will give you a generic Wikipedia-style overview. The good prompt will give you something you could actually use in a presentation or share with a new colleague. The difference isn\'t intelligence. It\'s specificity.'
+  },
+  {
+    type: 'activity',
+    title: 'Live Demo: RTFC in Action',
+    content: [
+      'Watch: I\'ll build a prompt using RTFC live',
+      'Then: I\'ll show you what happens without RTFC',
+      'Compare the outputs'
+    ],
+    notes: 'Let me show you this live. I\'m going to build a prompt using the RTFC framework, then run the same task without it. Watch the difference. Switch to browser. Demonstrate with both prompts. Narrate the RTFC elements as you type them.'
+  },
+  {
+    type: 'content',
+    title: 'Safety Reminder',
+    content: [
+      'Before we dive into the labs, remember the <strong>5 Safety Defaults</strong>:',
+      '<strong>1.</strong> Never share personal or sensitive data',
+      '<strong>2.</strong> Never trust AI output without checking',
+      '<strong>3.</strong> Always disclose when AI helped',
+      '<strong>4.</strong> Start small, learn fast',
+      '<strong>5.</strong> Ask "what if this is wrong?"',
+      'Use fictional examples. Anonymise real data.'
+    ],
+    notes: 'Quick safety reminder before we go hands-on. These are your 5 Safety Defaults from Course 1. The most important one for today\'s labs: do not put real personal data, client names, or confidential information into the AI tool. If you want to use a real scenario, change the names and details. Course 3 covers this in full detail.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 1: The Question Prompt',
+    content: [
+      'Your first prompt: ask AI to <strong>explain something</strong>',
+      'Use the RTFC framework',
+      'Write the prompt in your workbook FIRST',
+      'Then type it into the AI tool',
+      'Iterate at least once',
+      'Duration: 12 minutes'
+    ],
+    notes: 'Open your workbooks to Lab 1. You\'re going to build your first prompt: asking AI to explain something. Choose a topic you genuinely want to understand. Write the prompt in your workbook first \u2014 all four RTFC elements. Then type it in. You have 12 minutes.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 2: The Summary Prompt',
+    content: [
+      'Your second prompt: ask AI to <strong>summarise something</strong>',
+      'Feed it text, get a concise summary back',
+      'Remember: check it didn\'t ADD information that wasn\'t there',
+      'Use RTFC. Write first, then type.',
+      'Duration: 13 minutes'
+    ],
+    notes: 'Lab 2. Summarisation. Give the AI a piece of text and get a concise summary back. Use the sample text I\'ve provided, or bring your own \u2014 but remember, anonymise any sensitive data. One thing to watch for: did the AI add anything that wasn\'t in the original? If it did, that\'s a preview of what Course 4 covers.'
+  },
+  {
+    type: 'checkpoint',
+    title: 'Prompt Quality Check',
+    content: [
+      'Self-check in your workbook:',
+      'Did I use all 4 RTFC elements?',
+      'Did the output follow my format?',
+      'Did I iterate at least once?',
+      'What would I change?'
+    ],
+    notes: 'Quick self-check. Look at your Lab 1 and Lab 2 prompts. Did you use all four RTFC elements? Did the output follow your format instructions? Did you iterate? What would you change? Be honest with yourself \u2014 this self-awareness is how you improve.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 2',
+    title: 'Iteration & Refinement',
+    notes: 'You\'ve built two prompts. You\'ve seen what AI can do. But here\'s the truth: those first outputs were drafts. Good drafts, maybe. But drafts. Let me show you how to make them better.'
+  },
+  {
+    type: 'content',
+    title: 'First Outputs Are First Drafts',
+    content: [
+      'Nobody sends a first draft',
+      'The same applies to AI',
+      'The first response is a starting point, not a finished product',
+      'The real skill is in the <strong>follow-up</strong>'
+    ],
+    notes: 'You wouldn\'t write an email and send it without reading it. You wouldn\'t write a report and submit the first version. AI outputs are the same. The first response is a draft. Sometimes a good draft. Sometimes not. The skill that separates competent AI users from everyone else: iteration.'
+  },
+  {
+    type: 'content',
+    title: 'Three Iteration Moves',
+    content: [
+      '<strong>Narrow:</strong> "Make this more specific to\u2026"',
+      '<strong>Reshape:</strong> "Rewrite this as\u2026"',
+      '<strong>Challenge:</strong> "What\'s missing from this?"',
+      'One prompt = a question',
+      'Two prompts = a conversation',
+      'Three prompts = where the useful output lives'
+    ],
+    notes: 'Three moves. Narrow: make it more specific to your context. Reshape: change the format or tone. Challenge: ask what\'s wrong or missing. You\'ll use these in every AI interaction from now on. One prompt is a question. Two prompts is a conversation. Three prompts is where the magic happens.'
+  },
+  {
+    type: 'activity',
+    title: 'Live Demo: Iteration in Action',
+    content: [
+      'Watch: I\'ll take a Lab 1-style output and iterate 3 times',
+      '<strong>1.</strong> Narrow it',
+      '<strong>2.</strong> Reshape it',
+      '<strong>3.</strong> Challenge it',
+      'See how each step improves the output'
+    ],
+    notes: 'Let me show you iteration live. I\'ll take an output and apply all three moves. Watch how each follow-up prompt makes the output more useful. Switch to browser. Show three iterations on a single output.'
+  },
+  {
+    type: 'quote',
+    title: 'The first draft is just you telling yourself the story.',
+    attribution: 'Terry Pratchett \u2014 applied to AI',
+    notes: 'Terry Pratchett said the first draft is just you telling yourself the story. The same principle applies here. AI\'s first output shows you what\'s possible. Your iteration makes it useful. That\'s Hybrid Intelligence \u2014 AI and human, working together.'
+  },
+  {
+    type: 'transition',
+    label: 'Break',
+    title: '10 Minute Break',
+    notes: 'Good work. Take 10 minutes. Compare what you\'ve built with someone nearby. When we come back, you\'ll build two more prompts and then combine everything into your personal template.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 3: The Draft Prompt',
+    content: [
+      'Your third prompt: ask AI to <strong>write a first draft</strong>',
+      'Choose something you actually need to write this week',
+      'Use RTFC + at least one iteration',
+      'Remember: AI writes the first draft. You write the final version.',
+      'Duration: 12 minutes'
+    ],
+    notes: 'Lab 3. This is where AI becomes a genuine productivity tool. Think of something you need to write this week \u2014 an email, a report section, a meeting agenda. Build a prompt for it. And iterate at least once. The AI writes the draft. You write the final version. That\'s Hybrid Intelligence.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 4: The Ideas Prompt',
+    content: [
+      'Your fourth prompt: use AI as a <strong>brainstorming partner</strong>',
+      'Generate 10 ideas for a real challenge',
+      'Develop your top pick with a follow-up prompt',
+      'Duration: 8 minutes (then pair share)'
+    ],
+    notes: 'Lab 4. AI isn\'t just a writer \u2014 it\'s a thinking partner. Give it a real challenge and ask for ideas. Get 10 options. Pick the best one. Then develop it further. You have 8 minutes for the prompt work, then we\'ll pair share.'
+  },
+  {
+    type: 'activity',
+    title: 'Pair Share',
+    content: [
+      'Pair up with a neighbour',
+      '2 minutes each: share your challenge + AI\'s ideas + your top pick',
+      'Partner\'s job: honest feedback. Would this work? What\'s missing?',
+      '1 minute: note the feedback'
+    ],
+    notes: 'Pair up. Two minutes each. Share your challenge, the AI\'s ideas, and your top pick. Your partner\'s job is honest feedback. Not "that\'s nice." But "would this actually work? What\'s the AI not considering?" This is Hybrid Intelligence in action \u2014 AI generates, humans evaluate.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 3',
+    title: 'Building Your Template',
+    notes: 'Four prompts built. Four different capabilities. Question, summary, draft, ideas. Now let\'s pull it all together into something you\'ll use every week.'
+  },
+  {
+    type: 'content',
+    title: 'Why Templates Matter',
+    content: [
+      'You\'ve built 4 prompts today. Each took thought and effort.',
+      'A template means you do that work <strong>once</strong>, then reuse it',
+      'It\'s the difference between cooking from scratch and having a recipe',
+      'One good template can save you hours every month'
+    ],
+    notes: 'Every prompt you built today took thought. You defined the role, the task, the format, the constraints. A template captures that thinking so you only do it once. Next week, you drop in new content and the template does the rest. It\'s the difference between cooking from scratch every night and having a recipe you trust.'
+  },
+  {
+    type: 'content',
+    title: 'Template Anatomy',
+    content: [
+      '<strong>Fixed elements:</strong> Role, Format, Constraints (stay the same)',
+      '<strong>Variable elements:</strong> Task details (change each time)',
+      'Mark variables with <strong>[BRACKETS]</strong>',
+      'Test it once before you save it'
+    ],
+    notes: 'A template has two types of elements. Fixed: the Role, Format, and Constraints that stay the same every time. Variable: the specific Task details that change. Mark your variables with brackets so you know what to swap in next time. And always test your template at least once before you trust it.'
+  },
+  {
+    type: 'activity',
+    title: 'Live Demo: A Template in Action',
+    content: [
+      'Watch: A weekly email template used twice with different content',
+      'Same template, different inputs, consistently useful outputs'
+    ],
+    notes: 'Let me show you. Here\'s a template for a weekly team update email. I\'ll use it twice with completely different content. Watch how the structure stays consistent but the output is fresh each time. Switch to browser. Run the template twice with different bullet points.'
+  },
+  {
+    type: 'activity',
+    title: 'Lab 5: The Template Builder',
+    content: [
+      'Your fifth and final build: a <strong>reusable template</strong>',
+      'Choose a recurring task from your work',
+      'Separate fixed from variable elements',
+      'Write the template, test it once',
+      'Duration: 10 minutes'
+    ],
+    notes: 'Your capstone lab. Think of a task you do every week or every month that follows a similar pattern. Build a template for it. Define the fixed elements, mark the variables, test it once. This template is your first entry in your personal Prompt Library. It\'s the most tangible thing you\'ll take away today.'
+  },
+  {
+    type: 'content',
+    title: 'What You Built Today',
+    content: [
+      '<strong>5 working prompts:</strong>',
+      '<strong>1.</strong> The Question Prompt',
+      '<strong>2.</strong> The Summary Prompt',
+      '<strong>3.</strong> The Draft Prompt',
+      '<strong>4.</strong> The Ideas Prompt',
+      '<strong>5.</strong> The Template Builder',
+      'Plus: the RTFC framework, 3 iteration moves, and a reusable template',
+      'You are now <strong>Competent</strong>.'
+    ],
+    notes: 'Count what you built today. A question prompt. A summary prompt. A draft prompt. An ideas prompt. A reusable template. Plus you learned the RTFC framework and three iteration moves. These aren\'t certificates on a wall. These are tools in your hands. You came in curious. You\'re leaving competent. That word matters.'
+  },
+  {
+    type: 'title',
+    title: 'Your 48-Hour Commitment',
+    subtitle: 'The 48-Hour Rule',
+    content: [
+      'Use at least one prompt on a real task within 48 hours',
+      'Share the result in the Earth 2.0 Community Circle',
+      'Next: Course 3 \u2014 AI Hygiene for Real People (MANDATORY)',
+      'Then: Course 4 \u2014 Reality Check: AI Errors & Hallucinations',
+      'Earth 2.0 AI Capability Programme | AI Curious Ltd'
+    ],
+    notes: 'One last thing. The 48-Hour Rule. Choose one of your 5 prompts. Use it on a real task. Within 48 hours. Not a practice task. A real one. Then share the result in the Community Circle. Next up is Course 3: AI Hygiene. It\'s mandatory for everyone \u2014 it\'s the safety course. After that, Course 4 teaches you to spot when AI gets it wrong. Open your workbook. Write your commitment. Sign it. Well done today.'
+  }
+];
+</script>
+
+<script src="slide-engine.js"></script>
+</body>
+</html>

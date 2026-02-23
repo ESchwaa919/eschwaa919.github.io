@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course 1: AI Without Fear | Earth 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slide-engine.css">
+</head>
+<body>
+
+<script>
+const SLIDES = [
+  {
+    type: 'title',
+    title: 'AI Without Fear',
+    subtitle: 'Earth 2.0 AI Capability Programme',
+    content: ['Course 1 of 10', 'AI Curious Ltd'],
+    notes: 'Welcome everyone. This is AI Without Fear \u2014 Course 1 of the Earth 2.0 AI Capability Programme. Over the next two hours, we\'re going to replace uncertainty with understanding. No experience needed. No wrong answers. Just honest curiosity.'
+  },
+  {
+    type: 'content',
+    title: 'Welcome to Earth 2.0',
+    content: [
+      'This is <strong>Course 1 of 10</strong> in the Earth 2.0 AI Capability Programme',
+      'Your journey: <strong>AI Never \u2192 Curious \u2192 Competent \u2192 Practitioner \u2192 Licensed Citizen</strong>',
+      'Today you take the first step',
+      'No experience required. No technical knowledge assumed.'
+    ],
+    notes: 'Think of this programme like learning to drive. Today is your first lesson. We\'re not on the motorway. We\'re in a car park with an instructor. By Course 10, you\'ll have your Earth 2.0 AI Driving Licence. But right now, all you need is willingness to be here. And you\'re here. That\'s enough.'
+  },
+  {
+    type: 'activity',
+    title: 'Hopes & Fears',
+    content: [
+      'Share one <strong>HOPE</strong> and one <strong>FEAR</strong> about AI',
+      'Just a few words \u2014 no wrong answers',
+      'We\'ll capture them on the board as we go'
+    ],
+    notes: 'Let\'s start with honesty. I\'d like each of you to share one hope and one fear about AI. Just a few words. It can be personal, professional, or just a feeling. I\'ll capture them as we go. There are absolutely no wrong answers here.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 1',
+    title: 'The World Is Changing',
+    notes: 'You\'ve just done something important \u2014 you named the thing. Most people carry their AI hopes and fears around without ever saying them out loud. Now let\'s look at why these feelings exist.'
+  },
+  {
+    type: 'content',
+    title: 'AI Is Already Here',
+    content: [
+      'Generative AI became publicly accessible in late 2022',
+      'Adoption has been <strong>faster than the internet, smartphones, or social media</strong>',
+      'It\'s already changing healthcare, education, customer service, creative industries, legal, finance\u2026',
+      'This is not coming. <strong>It\'s here.</strong>'
+    ],
+    notes: 'Share 2-3 current examples relevant to the room. Adapt to the audience \u2014 if they\'re from healthcare, use healthcare examples. If mixed, use universal ones like customer service and email. The point isn\'t to scare anyone. It\'s to ground the conversation in reality.'
+  },
+  {
+    type: 'content',
+    title: 'This Isn\'t the First Disruption',
+    content: [
+      'The internet changed everything (1990s)',
+      'Smartphones changed everything (2007+)',
+      'Social media changed everything (2010s)',
+      '<strong>People adapted every time</strong>',
+      'The difference now: AI moves faster than any previous technology'
+    ],
+    notes: 'We\'ve been here before. When the internet arrived, people said it would destroy business. When smartphones arrived, people said they\'d rot our brains. Each time, the people who understood the technology shaped how it was used. The people who didn\'t had it used on them. AI is the same pattern, but compressed.'
+  },
+  {
+    type: 'content',
+    title: 'The Gap Is Widening',
+    content: [
+      'People who understand AI: making better decisions, working faster, creating more',
+      'People who don\'t: falling behind \u2014 <strong>not because they\'re incapable, because nobody taught them</strong>',
+      'That\'s what Earth 2.0 exists to fix'
+    ],
+    notes: 'This isn\'t about intelligence or technical ability. The gap is about access and education. Some people had someone show them. Others didn\'t. This programme exists because we believe everyone deserves to understand the tools that are reshaping their world.'
+  },
+  {
+    type: 'quote',
+    title: 'People first. Technology second. Execution over everything.',
+    attribution: 'Earth 2.0 Philosophy',
+    notes: 'This is the core of everything we do at Earth 2.0. AI should enhance what humans do, never replace who humans are. Technology serves people, not the other way around. And knowing something means nothing unless you act on it.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 2',
+    title: 'What AI Actually Is (and Isn\'t)',
+    notes: 'So the world is changing. The question is: what exactly is this thing that\'s changing it? Let\'s demystify that right now.'
+  },
+  {
+    type: 'content',
+    title: 'AI: The Simple Version',
+    content: [
+      '<strong>AI = pattern recognition</strong> at enormous scale',
+      '<strong>Generative AI</strong> = creates new content based on those patterns',
+      'Trained on vast amounts of text from the internet, books, and other sources',
+      'When you ask a question, it <strong>predicts the most useful response</strong> based on patterns'
+    ],
+    notes: 'Strip away the hype and the science fiction. At its core, AI is pattern recognition. Generative AI \u2014 tools like ChatGPT and Claude \u2014 was trained on enormous amounts of text. When you type something, it predicts the most useful response based on patterns in that training data. It doesn\'t think. It doesn\'t understand. It recognises patterns. Very, very well.'
+  },
+  {
+    type: 'content',
+    title: 'AI Is Not\u2026',
+    content: [
+      '<strong>Not conscious or sentient</strong> \u2014 it doesn\'t think or want things',
+      '<strong>Not always right</strong> \u2014 plausible text, not guaranteed truth',
+      '<strong>Not a replacement</strong> for human judgment',
+      '<strong>Not magic</strong> \u2014 it\'s software, built by humans, with limitations'
+    ],
+    notes: 'This is critical. AI is not alive. It\'s not thinking about your question the way you think about a problem. It doesn\'t have opinions, feelings, or intentions. It generates text that matches patterns. Sometimes that text is brilliant. Sometimes it\'s completely wrong. And it sounds equally confident either way.'
+  },
+  {
+    type: 'content',
+    title: 'The Autocomplete Analogy',
+    content: [
+      'When your phone suggests the next word in a text \u2014 that\'s a tiny version of what AI does',
+      '<strong>"Autocomplete on steroids"</strong>',
+      'Same principle, vastly more sophisticated',
+      'It predicts what should come next based on patterns'
+    ],
+    notes: 'Here\'s the simplest way to think about it. When you type a text message and your phone suggests the next word \u2014 that\'s prediction based on patterns. GPT does the same thing, but at a massive scale, across all the text it was trained on. It\'s not thinking. It\'s predicting. Extremely well.'
+  },
+  {
+    type: 'activity',
+    title: 'Live Demo',
+    content: [
+      'Let\'s see it in action \u2014 3 prompts:',
+      '<strong>1.</strong> A simple question',
+      '<strong>2.</strong> A creative task',
+      '<strong>3.</strong> Testing its limits'
+    ],
+    notes: 'I\'m going to switch to a live demo now. I\'ll show you three interactions with an AI tool. Watch what happens \u2014 this is exactly how you\'ll use it in Lab 1. Switch to browser and run three prompts.'
+  },
+  {
+    type: 'checkpoint',
+    title: 'Quick Check: Is This AI?',
+    content: [
+      'ChatGPT writing an email from your instructions',
+      'A spam filter sorting your inbox',
+      'A spreadsheet formula calculating expenses',
+      'Netflix recommending a film',
+      'Cruise control maintaining speed'
+    ],
+    notes: 'Quick check. I\'m going to read 5 items. For each one, tell me: is it AI or not? Thumbs up for AI, thumbs down for not AI. Answers: 1-AI, 2-AI, 3-Not AI, 4-AI, 5-Not AI.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 3',
+    title: 'Where AI Helps vs Harms',
+    notes: 'Now you know what AI is and what it isn\'t. The next question is critical: where does it actually help, and where can it actually cause harm?'
+  },
+  {
+    type: 'content',
+    title: 'The Evaluation Framework',
+    content: [
+      '<strong>1. What\'s the task?</strong> \u2014 What are you asking AI to do?',
+      '<strong>2. What\'s the risk?</strong> \u2014 What happens if the AI gets it wrong?',
+      '<strong>3. Who\'s checking?</strong> \u2014 Is a human reviewing the output?',
+      '<strong>4. What data is involved?</strong> \u2014 Is anything sensitive being shared?'
+    ],
+    notes: 'Here\'s your evaluation framework. Four questions. Simple enough to remember, powerful enough to apply to almost any situation. Let\'s walk through each one with examples.'
+  },
+  {
+    type: 'content',
+    title: 'When AI Helps',
+    content: [
+      'The task is <strong>repetitive or exploratory</strong>',
+      'The stakes <strong>allow for imperfection</strong>',
+      'A <strong>human reviews</strong> the output',
+      'No <strong>sensitive data</strong> is involved',
+      'Examples: drafting emails, summarising documents, brainstorming, explaining concepts'
+    ],
+    notes: 'AI shines when the task is repetitive, the output doesn\'t need to be perfect first time, someone human is going to review it, and no sensitive information is going in.'
+  },
+  {
+    type: 'content',
+    title: 'When AI Harms',
+    content: [
+      'Output taken as <strong>truth without checking</strong>',
+      '<strong>Sensitive data</strong> shared with the tool',
+      '<strong>No human review</strong> or oversight',
+      'High stakes: <strong>medical, legal, financial</strong> decisions',
+      'Reinforces <strong>biases</strong> in training data'
+    ],
+    notes: 'AI causes harm when we forget it\'s a prediction engine, not a truth machine. The most dangerous situation: someone trusts an AI output completely, for something important, without any human checking it.'
+  },
+  {
+    type: 'activity',
+    title: 'Scenario Discussion',
+    content: [
+      'In your groups (3-4 people):',
+      'Read each scenario in your workbook',
+      'Discuss: <strong>Help, Harm, or It Depends?</strong>',
+      'Choose the most debated scenario to share',
+      '7 minutes for discussion, 3 minutes to share'
+    ],
+    notes: 'Time for group work. You\'ll find 5 scenarios in your workbook under Module 3. In your groups, read each one and discuss: is this AI helping, harming, or does it depend? You have 7 minutes. Then each group\'s reporter will share the scenario that generated the most debate.'
+  },
+  {
+    type: 'checkpoint',
+    title: 'One-Sentence Reflection',
+    content: [
+      'In your workbook, write one sentence:',
+      '<strong>"Where could AI help in my work or life?"</strong>',
+      '2 minutes. Be specific.'
+    ],
+    notes: 'Before we break, one quick reflection. In your workbook, write one sentence answering: where could AI help in your work or life? Be as specific as you can. Not "lots of things" \u2014 one specific thing.'
+  },
+  {
+    type: 'transition',
+    label: '\u2615',
+    title: '10 Minute Break',
+    notes: 'You\'ve covered a lot of ground. Take 10 minutes. Stretch. Breathe. Get a drink. When we come back, we\'re going to make everything we\'ve discussed personal to you.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 4',
+    title: 'Your Personal AI Stance',
+    notes: 'Welcome back. Everything so far has been about understanding AI in general. Now it\'s about you. Your stance. Your rules. Your relationship with this technology.'
+  },
+  {
+    type: 'content',
+    title: 'Three Questions',
+    content: [
+      '<strong>1. What will I try?</strong> \u2014 One specific thing, in the next 48 hours',
+      '<strong>2. What won\'t I do?</strong> \u2014 My personal red lines',
+      '<strong>3. What do I need to learn first?</strong> \u2014 My knowledge gaps',
+      'There\'s no one right answer. <strong>Your stance is personal.</strong>'
+    ],
+    notes: 'There\'s no universal right answer here. A nurse\'s AI stance looks different from a marketer\'s. A teacher\'s looks different from a freelancer\'s. The point is to make a conscious, informed choice.'
+  },
+  {
+    type: 'activity',
+    title: 'My AI Stance Worksheet',
+    content: [
+      'Open your workbook to "My AI Stance"',
+      '<strong>Individual reflection:</strong> 8 minutes',
+      '<strong>Pair share:</strong> 7 minutes (2 min each + questions, then switch)',
+      'Be honest with yourself. There are no wrong stances.'
+    ],
+    notes: 'Open your workbook to the My AI Stance worksheet. You\'ve got 8 minutes to work through it individually. Be honest with yourself. Then you\'ll pair up and share your stance with a partner.'
+  },
+  {
+    type: 'transition',
+    label: 'Module 5',
+    title: 'Rules of Engagement',
+    notes: 'You now have a stance. You know what you\'ll try, what you won\'t do, and what you need to learn. The final piece is knowing the rules of the road.'
+  },
+  {
+    type: 'content',
+    title: 'The 5 Safety Defaults',
+    content: [
+      '<strong>1.</strong> Never share personal or sensitive data with AI tools',
+      '<strong>2.</strong> Never trust AI output without checking',
+      '<strong>3.</strong> Always disclose when AI helped',
+      '<strong>4.</strong> Start small, learn fast',
+      '<strong>5.</strong> Ask "what if this is wrong?" before acting'
+    ],
+    notes: 'Five rules you can apply from today. Think of them like the Highway Code for AI. These are your safety defaults until you develop more nuanced judgment through the rest of the programme.'
+  },
+  {
+    type: 'content',
+    title: 'Your AI Driving Licence Journey',
+    content: [
+      '<strong>P1 Adaptive Learning:</strong> This programme meets you where you are',
+      '<strong>P7 AI Driving Licence:</strong> AI competency earned through structured learning',
+      '<strong>V2 Hybrid Intelligence:</strong> AI enhances humans, never replaces them',
+      'Today: Course 1 complete. You are now <strong>"Curious"</strong>',
+      'Next: Course 2 \u2014 Your First 60 Minutes With AI'
+    ],
+    notes: 'Two principles and one value to take away. P1: this programme adapts to you. P7: AI competency is earned, just like a driving licence. And V2: AI enhances humans. It never replaces them. You\'ve completed Course 1. You\'ve moved from AI Never to Curious.'
+  },
+  {
+    type: 'title',
+    title: 'Your 48-Hour Commitment',
+    subtitle: 'Execution over everything.',
+    content: ['Open your workbook. Write your commitment. Sign it.', 'Thank you.'],
+    notes: 'One last thing. Open your workbook to the 48-Hour Action Plan. Write down the one thing you will do within 48 hours. Sign it. That\'s your commitment to yourself. Learning means nothing if you don\'t act on it. You showed up today. That takes more courage than people think. Thank you.'
+  }
+];
+</script>
+
+<script src="slide-engine.js"></script>
+</body>
+</html>

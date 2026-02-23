@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course 9: AI Risk Management | Earth 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slide-engine.css">
+</head>
+<body>
+
+<script>
+const SLIDES = [
+  // Slide 1: AI Risk Management
+  {
+    type: 'title',
+    title: 'AI Risk Management',
+    subtitle: 'Earth 2.0 AI Capability Programme',
+    content: ['Course 9 of 10', 'AI Curious Ltd'],
+    notes: 'Welcome to Course 9. AI Risk Management. This is the governance foundation of the Earth 2.0 programme. You\'ve learned to use AI, design oversight systems, and identify opportunities. Today you learn to ensure those opportunities are safe to deploy. Let\'s begin.'
+  },
+  // Slide 2: Nine Down, One to Go
+  {
+    type: 'content',
+    title: 'Nine Down, One to Go',
+    content: [
+      'Course 9 of 10',
+      'After today, one course remains: the <strong>Licensing Bootcamp</strong>',
+      'Today\'s progression: <strong>Practitioner \u2192 Governor</strong>',
+      'Governor = you can ensure AI is safe, not just use it effectively'
+    ],
+    notes: 'Nine courses in. One to go after today. Look at that progression: from someone who\'d never used AI to someone who can govern its deployment. Today you move from Practitioner to Governor. A Governor doesn\'t just use AI or design systems \u2014 they ensure those systems are safe, compliant, and accountable.'
+  },
+  // Slide 3: Why Risk Management?
+  {
+    type: 'content',
+    title: 'Why Risk Management?',
+    content: [
+      'Risk management isn\'t about <strong>stopping</strong> AI',
+      'It\'s about deploying AI with your eyes open',
+      'You know what could go wrong',
+      'You\'ve designed for it',
+      'You can prove it',
+      '<strong>That\'s governance.</strong>'
+    ],
+    notes: 'Let me reframe risk management before we start. It\'s not about saying no. It\'s not about bureaucracy. It\'s about saying yes with conditions. Yes, deploy this AI application \u2014 provided these risks have been assessed, these controls are in place, and these criteria are met. That\'s what you\'ll be able to do after today.'
+  },
+  // Slide 4: The AI Risk Landscape
+  {
+    type: 'transition',
+    label: 'Module 1',
+    title: 'The AI Risk Landscape',
+    notes: 'Let\'s map the landscape. What can go wrong with AI, and why is it different from other technology risks?'
+  },
+  // Slide 5: Six Categories of AI Risk
+  {
+    type: 'content',
+    title: 'Six Categories of AI Risk',
+    content: [
+      '<strong>1. Data</strong> \u2014 what goes in, what comes out, where it\'s stored',
+      '<strong>2. Bias</strong> \u2014 unfair patterns amplified at scale',
+      '<strong>3. Accuracy</strong> \u2014 wrong answers presented with confidence',
+      '<strong>4. Security</strong> \u2014 attacks, access, integrity',
+      '<strong>5. Compliance</strong> \u2014 regulations, policies, contracts',
+      '<strong>6. Reputation</strong> \u2014 trust, perception, public impact'
+    ],
+    notes: 'Six categories. Every AI risk falls into one or more of these. We\'re going to walk through each one with a concrete example. As we do, think about which ones are most relevant to your context.'
+  },
+  // Slide 6: Category: Data
+  {
+    type: 'content',
+    title: 'Category: Data',
+    content: [
+      'What data does the AI access and process?',
+      'Where is that data stored? Who else can see it?',
+      'Is sensitive data (personal, financial, medical) involved?',
+      '<strong>Example:</strong> Employee pastes customer records into ChatGPT for analysis. Data now lives on OpenAI\'s servers.'
+    ],
+    notes: 'Data risk. Every AI interaction involves data going in and data coming out. The question is: what data, where does it go, and who else can access it? The most common data risk: someone pastes sensitive information into an AI tool without thinking about where that data is stored. Your customer data is now on someone else\'s server. Course 3 covered this for individuals. Today we\'re managing it at system level.'
+  },
+  // Slide 7: Category: Bias
+  {
+    type: 'content',
+    title: 'Category: Bias',
+    content: [
+      'AI learns from historical data. Historical data contains biases.',
+      'AI can <strong>amplify bias at scale</strong>, systematically and invisibly',
+      'Most dangerous when used for decisions about people',
+      '<strong>Example:</strong> AI-assisted hiring tool systematically disadvantages women because historical hiring data was skewed'
+    ],
+    notes: 'Bias risk. AI learns from patterns in historical data. If that data reflects historical biases \u2014 and it often does \u2014 the AI reproduces and amplifies those biases. At scale. Systematically. And often invisibly, because the AI doesn\'t tell you it\'s being biased. It\'s most dangerous when AI is involved in decisions that affect people: hiring, lending, healthcare, education.'
+  },
+  // Slide 8: Category: Accuracy
+  {
+    type: 'content',
+    title: 'Category: Accuracy',
+    content: [
+      'AI outputs plausible text, not guaranteed truth',
+      '<strong>Hallucination:</strong> confidently wrong',
+      'The more technical the domain, the harder to spot errors',
+      '<strong>Example:</strong> AI-generated financial report with fabricated statistics sent to a client'
+    ],
+    notes: 'Accuracy risk. You\'ve known since Course 1 that AI hallucinates \u2014 it produces confident-sounding text that is factually wrong. In a casual email, that\'s annoying. In a financial report sent to a client, it\'s a liability. The harder the domain, the harder it is for a reviewer to catch errors. That\'s why review gate design from Course 7 matters so much.'
+  },
+  // Slide 9: Category: Security
+  {
+    type: 'content',
+    title: 'Category: Security',
+    content: [
+      '<strong>Prompt injection:</strong> manipulating AI through crafted inputs',
+      '<strong>Data extraction:</strong> tricking AI into revealing training data or system prompts',
+      '<strong>Unauthorised access:</strong> who can use the AI tool and what can they access?',
+      '<strong>Example:</strong> Attacker tricks a customer-facing chatbot into revealing internal system information'
+    ],
+    notes: 'Security risk. AI systems can be attacked in ways that traditional software cannot. Prompt injection is the most common: crafted inputs that manipulate the AI into doing something it shouldn\'t. Data extraction tricks the AI into revealing information it shouldn\'t share. And basic access control: who in your organisation can use which AI tools, and what data can those tools access?'
+  },
+  // Slide 10: Category: Compliance
+  {
+    type: 'content',
+    title: 'Category: Compliance',
+    content: [
+      'GDPR and data protection regulations',
+      'Industry-specific regulations (FCA, SRA, NHS, etc.)',
+      'Contractual obligations to clients',
+      'Emerging AI-specific regulation (EU AI Act)',
+      '<strong>Example:</strong> AI processes personal data in a way that violates data subject rights'
+    ],
+    notes: 'Compliance risk. Regulations are catching up to AI. GDPR already applies to how AI processes personal data. Industry regulators are issuing guidance. The EU AI Act is creating new obligations. And your contracts with clients may have clauses about how their data is handled and how work is produced. If AI violates any of these, the consequences are real: fines, sanctions, contract termination.'
+  },
+  // Slide 11: Category: Reputation
+  {
+    type: 'content',
+    title: 'Category: Reputation',
+    content: [
+      'Trust is hard to build and easy to destroy',
+      'One AI incident can define public perception',
+      'Internal trust matters too: will your team trust AI after a failure?',
+      '<strong>Example:</strong> AI-generated content containing offensive material published on company social media'
+    ],
+    notes: 'Reputation risk. You can build a reputation over years and damage it in minutes. One AI incident \u2014 offensive content, incorrect advice, biased decisions made public \u2014 can define how the public sees your organisation. And internal reputation matters too: if your team sees AI fail badly, they may never trust it again. Reputation risk is often rated high impact even when low likelihood.'
+  },
+  // Slide 12: Risks Are Interconnected
+  {
+    type: 'content',
+    title: 'Risks Are Interconnected',
+    content: [
+      'Risks cascade',
+      '<strong>Data risk \u2192 Compliance risk \u2192 Reputation risk</strong>',
+      '<strong>Accuracy risk \u2192 Client trust damage \u2192 Legal exposure</strong>',
+      'A single AI failure can trigger multiple risk categories',
+      'Manage the chain, not just the link'
+    ],
+    notes: 'These categories aren\'t isolated. They cascade. A data breach becomes a compliance violation, which becomes a reputational crisis. An accuracy failure damages a client relationship, which creates legal exposure. When you assess risks, think about the chain, not just the individual link.'
+  },
+  // Slide 13: AI-Specific Risk Amplifiers
+  {
+    type: 'content',
+    title: 'AI-Specific Risk Amplifiers',
+    content: [
+      '<strong>Scale:</strong> AI makes the same mistake thousands of times',
+      '<strong>Confidence:</strong> wrong answers sound as confident as right ones',
+      '<strong>Opacity:</strong> unclear why AI produced a particular output',
+      '<strong>Speed:</strong> outputs propagate faster than human review',
+      'These amplify every risk in every category'
+    ],
+    notes: 'Four things that make AI risks different from other technology risks. Scale: a human makes a mistake once; AI makes it a thousand times. Confidence: AI doesn\'t say "I\'m not sure" \u2014 it presents wrong answers with complete confidence. Opacity: you often can\'t explain why the AI produced what it did. Speed: AI outputs can reach stakeholders before any human has reviewed them. These amplifiers are why AI needs specific risk management, not just general IT controls.'
+  },
+  // Slide 14: Building a Risk Register
+  {
+    type: 'transition',
+    label: 'Module 2',
+    title: 'Building a Risk Register',
+    notes: 'You know the risk landscape. Now let\'s build the tool for managing it systematically: the risk register.'
+  },
+  // Slide 15: Risk Register Structure
+  {
+    type: 'content',
+    title: 'Risk Register Structure',
+    content: [
+      'A risk register contains:',
+      '<strong>Risk ID</strong> \u2014 unique identifier',
+      '<strong>Description</strong> \u2014 what could go wrong (specific)',
+      '<strong>Category</strong> \u2014 which of the six categories',
+      '<strong>Likelihood (1\u20135)</strong> \u2014 how often could this happen',
+      '<strong>Impact (1\u20135)</strong> \u2014 how bad would it be',
+      '<strong>Risk Score</strong> \u2014 Likelihood \u00d7 Impact',
+      '<strong>Control</strong> \u2014 what you\'re doing about it',
+      '<strong>Owner</strong> \u2014 who\'s responsible',
+      '<strong>Status</strong> \u2014 open, mitigated, accepted, closed'
+    ],
+    notes: 'This is the structure. A risk register is a living document \u2014 not something you fill in once and file away. Each risk gets an ID, a specific description, a category, a score, a control, an owner, and a status. The key word is specific. "Something could go wrong" is not a risk. "AI generates a report with hallucinated statistics that is sent to the client" is a risk.'
+  },
+  // Slide 16: Likelihood Scale
+  {
+    type: 'content',
+    title: 'Likelihood Scale',
+    content: [
+      '<strong>1 = Rare</strong> (could happen, very unlikely)',
+      '<strong>2 = Unlikely</strong> (exceptional circumstances)',
+      '<strong>3 = Possible</strong> (could happen occasionally)',
+      '<strong>4 = Likely</strong> (will probably happen regularly)',
+      '<strong>5 = Almost Certain</strong> (expected to happen frequently)'
+    ],
+    notes: 'Likelihood on a 1\u20135 scale. Be honest. If the AI hallucinates occasionally in testing, it will hallucinate occasionally in production. That\'s a 3 or 4, not a 1. The temptation is to rate everything as "Unlikely" to avoid uncomfortable scores. Don\'t. Honest assessment leads to proportionate controls.'
+  },
+  // Slide 17: Impact Scale
+  {
+    type: 'content',
+    title: 'Impact Scale',
+    content: [
+      '<strong>1 = Negligible</strong> (no significant consequence)',
+      '<strong>2 = Minor</strong> (small inconvenience, easily corrected)',
+      '<strong>3 = Moderate</strong> (noticeable harm, effort to correct)',
+      '<strong>4 = Major</strong> (significant harm, difficult to correct)',
+      '<strong>5 = Critical</strong> (severe harm, potentially irreversible)'
+    ],
+    notes: 'Impact on a 1\u20135 scale. Consider: what\'s the worst realistic consequence if this risk materialises? Not the absolute worst case. Not the best case. The worst realistic case. If wrong legal advice reaches a client, is that a 2 or a 5? It depends on context. But be honest about what "significant harm" means in your world.'
+  },
+  // Slide 18: Risk Scoring Matrix
+  {
+    type: 'content',
+    title: 'Risk Scoring Matrix',
+    content: [
+      '<strong>Likelihood \u00d7 Impact = Risk Score (1\u201325)</strong>',
+      '<strong>Green (1\u20135):</strong> Low',
+      '<strong>Yellow (6\u201312):</strong> Medium',
+      '<strong>Orange (13\u201319):</strong> High',
+      '<strong>Red (20\u201325):</strong> Critical'
+    ],
+    notes: 'The scoring matrix. Likelihood times Impact gives you a score from 1 to 25. Green is low \u2014 accept and monitor. Yellow is medium \u2014 mitigate with controls. Orange is high \u2014 significant controls required. Red is critical \u2014 do not proceed without robust controls and senior approval. This matrix gives you an objective way to prioritise where to focus your risk management effort.'
+  },
+  // Slide 19: Risk Levels and Actions
+  {
+    type: 'content',
+    title: 'Risk Levels and Actions',
+    content: [
+      '<strong>1\u20135 (Low):</strong> Accept and monitor',
+      '<strong>6\u201312 (Medium):</strong> Mitigate with defined controls',
+      '<strong>13\u201319 (High):</strong> Significant controls required, consider deferring',
+      '<strong>20\u201325 (Critical):</strong> Do not proceed without robust controls and senior approval'
+    ],
+    notes: 'What do you do with each level? Low risks: accept them. They exist, you know about them, you monitor. Medium risks: mitigate with specific controls. High risks: significant controls and you should consider whether to defer until those controls are proven. Critical risks: full stop. Do not proceed without robust, tested controls and explicit senior approval.'
+  },
+  // Slide 20: Worked Example
+  {
+    type: 'content',
+    title: 'Worked Example',
+    content: [
+      '<strong>Use case:</strong> AI drafts customer complaint responses',
+      '<strong>Risk:</strong> AI includes incorrect product information (Accuracy)',
+      '<strong>Likelihood:</strong> 3 (Possible \u2014 AI occasionally hallucinates product details)',
+      '<strong>Impact:</strong> 4 (Major \u2014 incorrect info sent to customer creates legal exposure)',
+      '<strong>Score:</strong> 12 (Medium)',
+      '<strong>Control:</strong> CS lead verifies all product claims against knowledge base before sending (Preventive)',
+      '<strong>Owner:</strong> Customer Service Team Lead'
+    ],
+    notes: 'Let\'s walk through a complete example. AI drafts customer complaint responses. The risk: the AI includes incorrect product information. We\'ve seen it hallucinate in testing, so likelihood is 3. If incorrect product info reaches a customer, that\'s a major issue \u2014 legal exposure and trust damage. Impact is 4. Score: 12, medium. Control: the CS team lead verifies every product claim against the knowledge base before sending. That\'s a preventive control. Owner: the CS team lead.'
+  },
+  // Slide 21: Lab 1: Risk Identification
+  {
+    type: 'activity',
+    title: 'Lab 1: Risk Identification',
+    content: [
+      'Three scenarios:',
+      '<strong>A:</strong> AI-powered recruitment screening',
+      '<strong>B:</strong> AI-generated client reports',
+      '<strong>C:</strong> AI customer support chatbot',
+      'For each: identify 4+ risks across multiple categories',
+      'Score each risk (Likelihood \u00d7 Impact)',
+      '20 minutes. Groups of 3\u20134.'
+    ],
+    notes: 'Lab 1. Form groups. You have three scenarios in your workbook. For each, identify at least 4 risks. Cover multiple categories \u2014 not just accuracy. Score each risk. 20 minutes. Go.'
+  },
+  // Slide 22: Lab 1 Debrief
+  {
+    type: 'discussion',
+    title: 'Scenario A: Recruitment Screening',
+    content: [
+      'What were your highest-scoring risks?',
+      'Did anyone identify a bias risk? Compliance risk?',
+      'Cascading effects: if bias materialises, what happens next?'
+    ],
+    notes: 'Let\'s debrief on Scenario A. What were your highest-scoring risks? Did anyone identify the bias risk? The compliance angle with GDPR? The reputation risk if bias becomes public? These cascade: bias becomes compliance violation becomes reputational crisis. That\'s why you check all six categories.'
+  },
+  // Slide 23: Break
+  {
+    type: 'transition',
+    label: 'Break',
+    title: '10 Minute Break',
+    notes: 'Good work identifying risks. Take 10 minutes. When we come back: controls. How do you actually prevent these risks from materialising?'
+  },
+  // Slide 24: Controls Design
+  {
+    type: 'transition',
+    label: 'Module 3',
+    title: 'Controls Design',
+    notes: 'You can identify and score risks. Now: what do you do about them? Controls are the answer.'
+  },
+  // Slide 25: Three Types of Controls
+  {
+    type: 'content',
+    title: 'Three Types of Controls',
+    content: [
+      '<strong>Preventive:</strong> stop it from happening',
+      '<strong>Detective:</strong> spot when it\'s happened',
+      '<strong>Corrective:</strong> fix it and prevent recurrence',
+      'Good risk management uses <strong>all three</strong>'
+    ],
+    notes: 'Three types. Preventive: stop the risk before it occurs. Detective: spot it when it has occurred. Corrective: fix the damage and make sure it doesn\'t happen again. Effective risk management layers all three. If your preventive control fails, the detective control catches it. If the detective control catches it too late, the corrective control limits the damage.'
+  },
+  // Slide 26: Preventive Controls
+  {
+    type: 'content',
+    title: 'Preventive Controls',
+    content: [
+      'Stop the risk from happening in the first place',
+      '<strong>Data classification rules</strong> (sensitive data never enters AI)',
+      '<strong>Prompt guardrails</strong> (AI instructions that prevent certain outputs)',
+      '<strong>Review gates</strong> (human checks before output proceeds)',
+      '<strong>Access controls</strong> (limit who can use AI tools and what data they access)'
+    ],
+    notes: 'Preventive controls are your first line of defence. Data classification rules: sensitive data never goes into the AI tool. Prompt guardrails: the AI is instructed to avoid certain types of output. Review gates from Course 7: a human checks before the output reaches anyone. Access controls: only authorised people use authorised tools with authorised data.'
+  },
+  // Slide 27: Detective Controls
+  {
+    type: 'content',
+    title: 'Detective Controls',
+    content: [
+      'Spot when a risk has already occurred',
+      '<strong>Output sampling:</strong> regularly audit a sample of AI outputs',
+      '<strong>Automated monitoring:</strong> flag outputs containing PII or anomalies',
+      '<strong>Audit trails:</strong> review logs to identify patterns of failure',
+      '<strong>User feedback:</strong> stakeholders report problems with AI output'
+    ],
+    notes: 'Detective controls are your second line. They assume preventive controls might fail \u2014 and they will. Output sampling: randomly audit AI outputs to check quality. Automated monitoring: systems that flag suspicious outputs. Audit trails from Course 7: review logs to spot patterns. And user feedback: the people receiving AI output are often the first to notice when something is wrong.'
+  },
+  // Slide 28: Corrective Controls
+  {
+    type: 'content',
+    title: 'Corrective Controls',
+    content: [
+      'Fix the damage and prevent recurrence',
+      '<strong>Incident response plan:</strong> recall incorrect output, notify affected parties',
+      '<strong>Root cause analysis:</strong> investigate why the control failed',
+      '<strong>Process revision:</strong> update the AI process to prevent recurrence',
+      '<strong>Escalation paths</strong> from Course 7: defined response when problems are found'
+    ],
+    notes: 'Corrective controls are your last line. Something went wrong. Now what? Incident response: recall the incorrect output, notify anyone affected. Root cause analysis: why did this happen? Was the preventive control missing or failed? Process revision: change the system so it doesn\'t happen again. Escalation paths from Course 7 are corrective controls: they define exactly what happens when problems are found.'
+  },
+  // Slide 29: Layered Controls
+  {
+    type: 'content',
+    title: 'Layered Controls',
+    content: [
+      'Layer all three types for robust protection:',
+      '<strong>Preventive:</strong> data classification rule prevents PII entering AI',
+      '<strong>Detective:</strong> weekly sample audit checks for PII in AI outputs',
+      '<strong>Corrective:</strong> incident response plan if PII is found in output',
+      'If one layer fails, the next catches it'
+    ],
+    notes: 'Here\'s how the layers work together. Example: protecting against personal data exposure. Preventive: data classification rules stop PII from entering the AI. Detective: weekly audits check whether any PII slipped through. Corrective: if PII is found, the incident response plan activates \u2014 recall, notify, investigate. Three layers. If one fails, the next catches it.'
+  },
+  // Slide 30: Controls from Course 7
+  {
+    type: 'content',
+    title: 'Controls from Course 7',
+    content: [
+      'Course 7 HITL components <strong>ARE</strong> risk controls:',
+      '<strong>Review gates</strong> = Preventive (catch before it proceeds)',
+      '<strong>Audit trails</strong> = Detective (enable pattern identification)',
+      '<strong>Escalation paths</strong> = Corrective (define the response)',
+      'If you completed Course 7, you\'ve already designed controls',
+      'Today: formalise them in a risk register'
+    ],
+    notes: 'Good news. If you completed Course 7, you\'ve already designed controls. Review gates are preventive controls. Audit trails are detective controls. Escalation paths are corrective controls. Today we formalise them. We put them into a risk register, link them to specific risks, score those risks, and assign owners. You\'re not starting from scratch. You\'re building on what you\'ve already done.'
+  },
+  // Slide 31: Control Design Principles
+  {
+    type: 'content',
+    title: 'Control Design Principles',
+    content: [
+      '<strong>Proportionate:</strong> control effort matches risk level',
+      '<strong>Practical:</strong> controls that are too burdensome get bypassed',
+      '<strong>Owned:</strong> every control has a named person responsible',
+      '<strong>Testable:</strong> you can verify the control is working',
+      '"How would you know if this control failed?"'
+    ],
+    notes: 'Four principles for control design. Proportionate: don\'t build a three-person review committee for a low-risk internal draft. Practical: if the control is so burdensome that people skip it, it\'s worse than useless. Owned: every control needs a name \u2014 someone who ensures it\'s actually happening. Testable: ask yourself, "how would I know if this control stopped working?" If you can\'t answer that, the control may already be broken.'
+  },
+  // Slide 32: Go/No-Go Criteria
+  {
+    type: 'transition',
+    label: 'Module 4',
+    title: 'Go/No-Go Criteria',
+    notes: 'You can identify risks and design controls. The final question: how do you decide when an AI deployment is actually ready to go live? Go/no-go criteria.'
+  },
+  // Slide 33: The Five Criteria
+  {
+    type: 'content',
+    title: 'The Five Criteria',
+    content: [
+      'Every AI deployment must pass five criteria:',
+      '<strong>1. Data:</strong> Is data handling compliant?',
+      '<strong>2. Accuracy:</strong> Has output been validated?',
+      '<strong>3. Oversight:</strong> Is HITL in place?',
+      '<strong>4. Escalation:</strong> Is there a failure protocol?',
+      '<strong>5. Documentation:</strong> Is the process documented?',
+      '<strong>ALL FIVE</strong> must be "Go" to proceed'
+    ],
+    notes: 'Five criteria. Data, accuracy, oversight, escalation, documentation. All five must be Go. Not four out of five. All five. A single No-Go means the deployment is deferred until that specific gap is addressed. These are non-negotiable minimum requirements for responsible AI deployment.'
+  },
+  // Slide 34: How Go/No-Go Works
+  {
+    type: 'content',
+    title: 'How Go/No-Go Works',
+    content: [
+      'For each criterion: assess evidence, determine Go or No-Go',
+      'All Go: <strong>proceed to deploy</strong>',
+      'Any No-Go: <strong>defer until resolved</strong>',
+      'For No-Go: specify exactly what needs to change and by when',
+      'Format: "We are No-Go on [criterion] because [gap]. To resolve: [action] by [date]."'
+    ],
+    notes: 'The process is straightforward. Assess each criterion against the evidence. If all five are Go, you deploy. If any one is No-Go, you defer. But here\'s the critical part: No-Go comes with a specific resolution plan. Not "fix it." Not "we\'ll get to it." A specific action, with a date, that moves it from No-Go to Go. That\'s the discipline.'
+  },
+  // Slide 35: No-Go Is Not Never
+  {
+    type: 'content',
+    title: 'No-Go Is Not Never',
+    content: [
+      '<strong>No-Go = "not yet"</strong>',
+      'It\'s a specific finding with a specific resolution',
+      '"We are No-Go on Accuracy because we\'ve only tested 30 cases. To resolve: run a 100-case validation targeting 95%+ accuracy by [date]."',
+      'No-Go is good governance, not failure'
+    ],
+    notes: 'This is important. No-Go does not mean cancel the project. It means "not yet." It identifies exactly what needs to change and when. It\'s good governance, not obstruction. The organisations that deploy AI safely are the ones that have the discipline to say "not yet" when the evidence isn\'t there, and the commitment to resolve the gap quickly.'
+  },
+  // Slide 36: Lab 2: Risk Register Build
+  {
+    type: 'activity',
+    title: 'Lab 2: Risk Register Build',
+    content: [
+      'Build a complete risk register for <strong>YOUR</strong> AI use case',
+      '<strong>25 minutes</strong>',
+      '5 phases: Describe, Identify risks, Score, Design controls, Go/no-go check',
+      'Use the template in your workbook',
+      'Instructor circulates to coach'
+    ],
+    notes: 'Lab 2. The centrepiece of today. Open your workbook to the Risk Register Build section. You\'re building a complete risk register for the AI use case you brought. Identify risks across all six categories. Score them. Design controls. Name owners. Apply go/no-go criteria. 25 minutes. Go.'
+  },
+  // Slide 37: Break
+  {
+    type: 'transition',
+    label: 'Break',
+    title: '10 Minute Break',
+    notes: 'Risk registers are taking shape. Take 10 minutes. When we come back, you\'ll apply go/no-go criteria to a case study: should a legal AI tool go live?'
+  },
+  // Slide 38: Lab 3: Go/No-Go Assessment
+  {
+    type: 'activity',
+    title: 'Lab 3: Go/No-Go Assessment',
+    content: [
+      '<strong>Case study:</strong> SmartDraft AI for legal correspondence',
+      'Apply all 5 go/no-go criteria',
+      'Make your decision: <strong>Go or No-Go</strong>',
+      'For No-Go criteria: specify resolution actions',
+      '8 minutes individually, 7 minutes group debrief'
+    ],
+    notes: 'Lab 3. You\'ll find the SmartDraft case study in your workbook. A law firm wants to deploy AI for client correspondence. Apply the five go/no-go criteria. Make your call: Go or No-Go. If No-Go, specify exactly what needs to change. 8 minutes individually, then we debrief as a group.'
+  },
+  // Slide 39: Lab 3 Debrief
+  {
+    type: 'discussion',
+    title: 'SmartDraft: Go or No-Go?',
+    content: [
+      '<strong>Data:</strong> No AI-specific data policy for client PII',
+      '<strong>Accuracy:</strong> 85% on 30 cases \u2014 acceptable for legal correspondence?',
+      '<strong>Oversight:</strong> HITL designed but not documented',
+      '<strong>Escalation:</strong> No documented failure protocol',
+      '<strong>Documentation:</strong> Multiple gaps'
+    ],
+    notes: 'Let\'s debrief. Who said Go? Who said No-Go? Let\'s walk through each criterion. Data: there\'s no AI-specific data policy, and the tool accesses client PII. That\'s a No-Go for most of you \u2014 and it should be. Accuracy: 85% on 30 test cases. That means 1 in 7 legal letters would contain an error. In a legal context, is that acceptable? Oversight: HITL exists but isn\'t documented \u2014 if the SRA audits, what do you show them? Escalation: no documented protocol. Documentation: multiple gaps. This should be a No-Go on at least 3\u20134 criteria. But importantly: each No-Go has a specific resolution. That\'s the skill. Not just saying No-Go, but specifying the path to Go.'
+  },
+  // Slide 40: The Complete Framework
+  {
+    type: 'content',
+    title: 'The Complete Framework',
+    content: [
+      'Your AI Risk Management toolkit:',
+      '<strong>Six risk categories</strong> (Data, Bias, Accuracy, Security, Compliance, Reputation)',
+      '<strong>Risk scoring</strong> (Likelihood \u00d7 Impact, 1\u201325)',
+      '<strong>Three control types</strong> (Preventive, Detective, Corrective)',
+      '<strong>Five go/no-go criteria</strong> (Data, Accuracy, Oversight, Escalation, Documentation)',
+      'Plus Course 7: HITL controls',
+      'Plus Course 8: Prioritised implementation backlog',
+      'Together: <strong>responsible AI deployment</strong>'
+    ],
+    notes: 'Here\'s your complete toolkit. Six risk categories. A 1\u201325 scoring matrix. Three types of controls. Five go/no-go criteria. Layer this on top of your Course 7 HITL design and your Course 8 implementation backlog, and you have everything you need to deploy AI responsibly. Not recklessly. Not fearfully. Responsibly.'
+  },
+  // Slide 41: One Course to Go
+  {
+    type: 'content',
+    title: 'One Course to Go',
+    content: [
+      '<strong>Course 10: Licensing Bootcamp</strong>',
+      'Integrate everything from Courses 1\u20139',
+      'Demonstrate competence across all domains',
+      'Earn your <strong>Earth 2.0 AI Driving Licence</strong>',
+      'You are one course away from being a Licensed Citizen'
+    ],
+    notes: 'One course left. Course 10 is the Licensing Bootcamp. It integrates everything. You\'ll demonstrate competence in prompting, playbook design, HITL systems, workflow discovery, and risk management. Pass, and you earn the Earth 2.0 AI Driving Licence. You are one course away from being a Licensed Citizen.'
+  },
+  // Slide 42: Your 48-Hour Commitment
+  {
+    type: 'title',
+    title: 'Your 48-Hour Commitment',
+    subtitle: 'You are now a Governor.',
+    content: ['Complete a risk register for one real AI use case.', 'Not hypothetical. Real. Within 48 hours.', 'Nine courses complete. One to go.', 'Thank you.', 'Earth 2.0 AI Capability Programme | AI Curious Ltd'],
+    notes: 'Last slide. Open your workbook. Write down the AI use case you\'ll build a risk register for. Not hypothetical. Real. Your context. Within 48 hours. You\'ve moved from Practitioner to Governor today. That means you can ensure AI is safe, not just use it effectively. Nine courses complete. One to go. Thank you for your commitment to responsible AI.'
+  }
+];
+</script>
+
+<script src="slide-engine.js"></script>
+</body>
+</html>

@@ -856,9 +856,51 @@ body {
 
 .course-nav-link-label { white-space: nowrap; }
 
+/* --- Keyboard Cheatsheet (in nav bar) --- */
+.course-nav-keys {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 12px;
+}
+
+.nav-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--gray-500);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--gray-800);
+  border-radius: 4px;
+  padding: 2px 6px;
+  cursor: default;
+  transition: color 200ms ease, border-color 200ms ease;
+  white-space: nowrap;
+}
+
+.nav-key:hover {
+  color: var(--teal-bright);
+  border-color: var(--teal-soft);
+}
+
+.nav-key small {
+  font-weight: 400;
+  font-size: 0.6rem;
+  color: var(--gray-600);
+  letter-spacing: 0.02em;
+}
+
+.nav-key:hover small {
+  color: var(--teal);
+}
+
 @media (max-width: 600px) {
   .course-nav-link-label { display: none; }
   .course-nav-current { font-size: 0.7rem; }
+  .course-nav-keys { display: none; }
 }
 
 /* --- Audio Play Button --- */
@@ -869,28 +911,34 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--teal);
-  border: none;
+  background: transparent;
+  border: 2px solid var(--gray-500);
   cursor: pointer;
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 200ms ease, transform 200ms ease, box-shadow 200ms ease;
-  box-shadow: 0 0 12px rgba(27, 168, 160, 0.3);
+  transition: background 200ms ease, transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  box-shadow: none;
 }
 
 .audio-btn:hover {
-  background: var(--teal-bright);
+  background: var(--teal);
+  border-color: var(--teal);
   transform: scale(1.1);
   box-shadow: 0 0 20px rgba(27, 168, 160, 0.5);
+}
+
+.audio-btn:hover .audio-icon {
+  fill: var(--bg-deep);
 }
 
 .audio-btn .audio-icon {
   width: 18px;
   height: 18px;
-  fill: var(--bg-deep);
+  fill: var(--gray-500);
   stroke: none;
+  transition: fill 200ms ease;
 }
 
 .audio-btn .audio-icon-pause { display: none; }
@@ -898,7 +946,13 @@ body {
 .audio-btn.playing .audio-icon-pause { display: block; }
 
 .audio-btn.playing {
+  background: var(--teal);
+  border-color: var(--teal);
   animation: audioPulse 2s ease-in-out infinite;
+}
+
+.audio-btn.playing .audio-icon {
+  fill: var(--bg-deep);
 }
 
 @keyframes audioPulse {

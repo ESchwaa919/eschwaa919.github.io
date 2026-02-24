@@ -405,6 +405,13 @@
           <span class="course-nav-all">All Courses</span>
         </a>
         <div class="course-nav-right">
+          <div class="course-nav-keys">
+            <span class="nav-key" title="Play / Pause audio">P <small>play</small></span>
+            <span class="nav-key" title="Speaker notes">N <small>notes</small></span>
+            <span class="nav-key" title="Narration script">S <small>script</small></span>
+            <span class="nav-key" title="Fullscreen">F <small>full</small></span>
+            <span class="nav-key" title="Help & all shortcuts">? <small>help</small></span>
+          </div>
           ${next ? `<a href="${next.file}" class="course-nav-link course-nav-next" title="Course ${next.num}: ${next.title}">
             <span class="course-nav-link-label">Course ${next.num}</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>

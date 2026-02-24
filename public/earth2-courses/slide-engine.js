@@ -11,7 +11,17 @@
   let totalSlides = 0;
   let notesVisible = false;
   let helpVisible = false;
+  let scriptVisible = false;
   let touchStartX = 0;
+
+  // Audio state
+  let audioEnabled = false;
+  let audioPlaying = false;
+  let audioManifest = null;
+  let audioElement = null;
+  let audioPreloadElement = null;
+  let autoAdvanceTimer = null;
+  let instructorMode = false;
 
   // Course catalogue for inter-course navigation
   const COURSE_CATALOGUE = [
@@ -75,13 +85,20 @@
 
     buildControls();
     buildNotesPanel();
+    buildScriptPanel();
     buildHelpOverlay();
     buildBrandFooter();
     buildCourseNav();
 
+    // Detect instructor mode
+    instructorMode = new URLSearchParams(location.search).get('mode') === 'instructor';
+
     const hash = parseInt(location.hash.replace('#', ''), 10);
     currentSlide = (hash >= 1 && hash <= totalSlides) ? hash - 1 : 0;
     goToSlide(currentSlide);
+
+    // Init audio (async, non-blocking)
+    initAudio();
   }
 
   // Detect course number for image paths
@@ -289,12 +306,12 @@
     const prevArrow = document.createElement('div');
     prevArrow.className = 'nav-arrow nav-prev';
     prevArrow.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>';
-    prevArrow.addEventListener('click', prevSlide);
+    prevArrow.addEventListener('click', () => prevSlide(true));
 
     const nextArrow = document.createElement('div');
     nextArrow.className = 'nav-arrow nav-next';
     nextArrow.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>';
-    nextArrow.addEventListener('click', nextSlide);
+    nextArrow.addEventListener('click', () => nextSlide(true));
 
     document.body.appendChild(prevArrow);
     document.body.appendChild(nextArrow);
@@ -326,6 +343,8 @@
         <div class="shortcut-row"><span class="shortcut-label">First slide</span><span><kbd>Home</kbd></span></div>
         <div class="shortcut-row"><span class="shortcut-label">Last slide</span><span><kbd>End</kbd></span></div>
         <div class="shortcut-row"><span class="shortcut-label">Speaker notes</span><span><kbd>N</kbd></span></div>
+        <div class="shortcut-row"><span class="shortcut-label">Play / pause audio</span><span><kbd>P</kbd></span></div>
+        <div class="shortcut-row"><span class="shortcut-label">Narration script</span><span><kbd>S</kbd></span></div>
         <div class="shortcut-row"><span class="shortcut-label">Fullscreen</span><span><kbd>F</kbd></span></div>
         <div class="shortcut-row"><span class="shortcut-label">This help</span><span><kbd>?</kbd></span></div>
         <div class="shortcut-row"><span class="shortcut-label">Course index</span><span><kbd>I</kbd></span></div>
@@ -396,6 +415,172 @@
     document.body.appendChild(nav);
   }
 
+  // --- Script Panel (Instructor Mode) ---
+
+  function buildScriptPanel() {
+    const panel = document.createElement('div');
+    panel.className = 'script-panel';
+    panel.id = 'scriptPanel';
+    panel.innerHTML = `
+      <div class="script-panel-header">
+        <span class="script-panel-title">Narration Script</span>
+        <button class="script-panel-close" onclick="document.getElementById('scriptPanel').classList.remove('visible')">Press S to close</button>
+      </div>
+      <div class="script-panel-content" id="scriptContent"></div>
+    `;
+    document.body.appendChild(panel);
+  }
+
+  function updateScript() {
+    const content = document.getElementById('scriptContent');
+    if (!content || !audioManifest) return;
+    const entry = audioManifest.slides[currentSlide];
+    content.textContent = entry ? entry.narration : 'No narration script for this slide.';
+  }
+
+  function toggleScript() {
+    if (!audioManifest) return;
+    scriptVisible = !scriptVisible;
+    const panel = document.getElementById('scriptPanel');
+    if (panel) panel.classList.toggle('visible', scriptVisible);
+  }
+
+  // --- Audio Module ---
+
+  async function initAudio() {
+    const cNum = getCourseNum();
+    if (!cNum) return;
+
+    const manifestUrl = `audio/course-${cNum}/manifest.json`;
+    try {
+      const resp = await fetch(manifestUrl);
+      if (!resp.ok) return; // No audio for this course — silently disable
+      audioManifest = await resp.json();
+    } catch {
+      return; // Network error or missing file — graceful degradation
+    }
+
+    audioEnabled = true;
+    audioElement = new Audio();
+    audioPreloadElement = new Audio();
+
+    audioElement.addEventListener('ended', onAudioEnded);
+
+    buildAudioControls();
+    updateScript();
+
+    // In instructor mode, auto-show script panel
+    if (instructorMode) {
+      scriptVisible = true;
+      const panel = document.getElementById('scriptPanel');
+      if (panel) panel.classList.add('visible');
+    }
+  }
+
+  function buildAudioControls() {
+    const btn = document.createElement('button');
+    btn.className = 'audio-btn';
+    btn.id = 'audioBtn';
+    btn.title = 'Play narration (P)';
+    btn.innerHTML = `
+      <svg class="audio-icon audio-icon-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21"/></svg>
+      <svg class="audio-icon audio-icon-pause" viewBox="0 0 24 24"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
+    `;
+    btn.addEventListener('click', toggleAudio);
+    document.body.appendChild(btn);
+  }
+
+  function toggleAudio() {
+    if (!audioEnabled) return;
+    if (audioPlaying) {
+      pauseAudio();
+    } else {
+      playCurrentSlide();
+    }
+  }
+
+  function playCurrentSlide() {
+    if (!audioEnabled || !audioManifest) return;
+
+    const entry = audioManifest.slides[currentSlide];
+    if (!entry || !entry.file) return;
+
+    const cNum = getCourseNum();
+    const src = `audio/course-${cNum}/${entry.file}`;
+
+    audioElement.src = src;
+    audioElement.play().catch(() => {});
+    audioPlaying = true;
+    updateAudioButton();
+    preloadNext();
+  }
+
+  function preloadNext() {
+    if (!audioManifest) return;
+    const nextIdx = currentSlide + 1;
+    if (nextIdx >= audioManifest.slides.length) return;
+    const entry = audioManifest.slides[nextIdx];
+    if (!entry || !entry.file) return;
+    const cNum = getCourseNum();
+    audioPreloadElement.src = `audio/course-${cNum}/${entry.file}`;
+    audioPreloadElement.load();
+  }
+
+  function onAudioEnded() {
+    const entry = audioManifest.slides[currentSlide];
+
+    // Last slide — stop
+    if (currentSlide >= totalSlides - 1) {
+      pauseAudio();
+      return;
+    }
+
+    // Pause-after slides (activity, checkpoint, discussion, break) — stop auto-advance
+    if (entry && entry.pauseAfter) {
+      pauseAudio();
+      return;
+    }
+
+    // Auto-advance after brief pause
+    autoAdvanceTimer = setTimeout(() => {
+      goToSlide(currentSlide + 1);
+      playCurrentSlide();
+    }, 800);
+  }
+
+  function pauseAudio() {
+    if (autoAdvanceTimer) {
+      clearTimeout(autoAdvanceTimer);
+      autoAdvanceTimer = null;
+    }
+    if (audioElement) {
+      audioElement.pause();
+      audioElement.currentTime = 0;
+    }
+    audioPlaying = false;
+    updateAudioButton();
+  }
+
+  function updateAudioButton() {
+    const btn = document.getElementById('audioBtn');
+    if (btn) btn.classList.toggle('playing', audioPlaying);
+  }
+
+  // Called when user manually navigates while audio is playing
+  function onManualNav() {
+    if (!audioPlaying) return;
+    if (autoAdvanceTimer) {
+      clearTimeout(autoAdvanceTimer);
+      autoAdvanceTimer = null;
+    }
+    if (audioElement) {
+      audioElement.pause();
+      audioElement.currentTime = 0;
+    }
+    // Play new slide's audio
+    playCurrentSlide();
+  }
+
   // --- Navigation ---
 
   function goToSlide(n) {
@@ -411,14 +596,21 @@
     location.hash = n + 1;
     updateProgress();
     updateNotes();
+    updateScript();
   }
 
-  function nextSlide() {
-    if (currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
+  function nextSlide(manual) {
+    if (currentSlide < totalSlides - 1) {
+      goToSlide(currentSlide + 1);
+      if (manual && audioPlaying) onManualNav();
+    }
   }
 
-  function prevSlide() {
-    if (currentSlide > 0) goToSlide(currentSlide - 1);
+  function prevSlide(manual) {
+    if (currentSlide > 0) {
+      goToSlide(currentSlide - 1);
+      if (manual && audioPlaying) onManualNav();
+    }
   }
 
   function updateProgress() {
@@ -472,19 +664,19 @@
         case 'ArrowRight':
         case ' ':
           e.preventDefault();
-          nextSlide();
+          nextSlide(true);
           break;
         case 'ArrowLeft':
           e.preventDefault();
-          prevSlide();
+          prevSlide(true);
           break;
         case 'ArrowUp':
           e.preventDefault();
-          prevSlide();
+          prevSlide(true);
           break;
         case 'ArrowDown':
           e.preventDefault();
-          nextSlide();
+          nextSlide(true);
           break;
         case 'Home':
           e.preventDefault();
@@ -497,6 +689,14 @@
         case 'n':
         case 'N':
           toggleNotes();
+          break;
+        case 'p':
+        case 'P':
+          toggleAudio();
+          break;
+        case 's':
+        case 'S':
+          toggleScript();
           break;
         case 'f':
         case 'F':
@@ -512,6 +712,7 @@
         case 'Escape':
           if (helpVisible) toggleHelp();
           else if (notesVisible) toggleNotes();
+          else if (scriptVisible) toggleScript();
           break;
       }
     });
@@ -524,8 +725,8 @@
     document.addEventListener('touchend', (e) => {
       const diff = touchStartX - e.changedTouches[0].screenX;
       if (Math.abs(diff) > 50) {
-        if (diff > 0) nextSlide();
-        else prevSlide();
+        if (diff > 0) nextSlide(true);
+        else prevSlide(true);
       }
     }, { passive: true });
 

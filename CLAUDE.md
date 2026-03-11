@@ -10,9 +10,7 @@ This is the **marketing website for aiexpert.ai**, an AI consulting company offe
 
 **Repository**: https://github.com/ESchwaa919/eschwaa919.github.io
 **Live Site**: https://theaiexpert.ai (custom domain via GitHub Pages)
-**Project Location**: `/Users/eschwaa/Projects/new_website/new-site/`
-
-> **IMPORTANT**: All development work happens in `/Users/eschwaa/Projects/new_website/new-site/` only. The parent directory contains `old-site-backup/` with archived files from the previous static site - these should never be edited or used. When working on this project, always ensure you're editing files within `new-site/`, not the parent folder.
+**Project Location**: `/Users/eschwaa/Projects/eschwaa919-gh-pages/`
 
 ## Development Commands
 
@@ -384,7 +382,6 @@ Recommendations for optimization:
 
 ## Additional Notes
 
-- **Old static site backup**: Renamed to avoid confusion with new React site
-- **Primary development location**: `/Users/eschwaa/Projects/new_website/new-site/`
+- **Primary development location**: `/Users/eschwaa/Projects/eschwaa919-gh-pages/`
 - **Git repository**: Connected to https://github.com/ESchwaa919/eschwaa919.github.io
 - **Deployment**: Fully automated via GitHub Actions on push to main

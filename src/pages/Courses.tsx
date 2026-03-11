@@ -56,7 +56,7 @@ const Courses = () => {
                 <Calendar className="w-5 h-5 text-primary" />
                 <div className="text-left">
                   <p className="text-xs text-muted-foreground">Date</p>
-                  <p className="font-semibold">Thu, Mar 5, 2025</p>
+                  <p className="font-semibold">Thu, Apr 17, 2026</p>
                 </div>
               </CardContent>
             </Card>
@@ -101,10 +101,10 @@ const Courses = () => {
 
               {/* Luma Checkout Button */}
               <a
-                href="https://lu.ma/event/evt-pFGligrWSC0Ygtq"
+                href="https://lu.ma/event/evt-zbJYSpnyFKU8pCv"
                 className="luma-checkout--button inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 py-4 rounded-lg shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)]"
                 data-luma-action="checkout"
-                data-luma-event-id="evt-pFGligrWSC0Ygtq"
+                data-luma-event-id="evt-zbJYSpnyFKU8pCv"
               >
                 Register for Event
                 <ArrowRight className="w-5 h-5" />
@@ -112,7 +112,7 @@ const Courses = () => {
 
               <p className="text-sm text-muted-foreground mt-4">
                 <a
-                  href="https://lu.ma/c6kt0dpu"
+                  href="https://luma.com/dbfz9lvs"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline"
@@ -147,10 +147,10 @@ const Courses = () => {
             asChild
           >
             <a
-              href="https://lu.ma/event/evt-pFGligrWSC0Ygtq"
+              href="https://lu.ma/event/evt-zbJYSpnyFKU8pCv"
               className="luma-checkout--button"
               data-luma-action="checkout"
-              data-luma-event-id="evt-pFGligrWSC0Ygtq"
+              data-luma-event-id="evt-zbJYSpnyFKU8pCv"
             >
               Register Now
               <ArrowRight className="w-5 h-5 ml-2" />

@@ -25,6 +25,13 @@ import Terms from "./pages/Terms";
 import AutoMLR from "./pages/AutoMLR";
 import AILMS from "./pages/AILMS";
 import NotFound from "./pages/NotFound";
+// New pillar pages for SEO/GEO
+import FractionalCAIO from "./pages/FractionalCAIO";
+import AILiteracy from "./pages/AILiteracy";
+import AIStrategy from "./pages/AIStrategy";
+import AIGovernance from "./pages/AIGovernance";
+import AIImplementation from "./pages/AIImplementation";
+import UseCases from "./pages/UseCases";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +65,14 @@ const App = () => (
           <Route path="/automlr" element={<AutoMLR />} />
           <Route path="/ailms" element={<AILMS />} />
           <Route path="/courses" element={<Courses />} />
+
+          {/* Pillar pages for SEO/GEO */}
+          <Route path="/fractional-caio" element={<FractionalCAIO />} />
+          <Route path="/ai-literacy" element={<AILiteracy />} />
+          <Route path="/ai-strategy" element={<AIStrategy />} />
+          <Route path="/ai-governance" element={<AIGovernance />} />
+          <Route path="/ai-implementation" element={<AIImplementation />} />
+          <Route path="/use-cases" element={<UseCases />} />
 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

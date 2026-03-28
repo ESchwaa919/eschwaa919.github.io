@@ -814,6 +814,13 @@ const UseCases = () => {
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center">
                     <Link
+                      to="/fractional-caio"
+                      className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1"
+                    >
+                      Fractional CAIO
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                    <Link
                       to="/ai-literacy"
                       className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1"
                     >
@@ -832,6 +839,13 @@ const UseCases = () => {
                       className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1"
                     >
                       AI Implementation
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                    <Link
+                      to="/ai-governance"
+                      className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1"
+                    >
+                      AI Governance
                       <ArrowRight className="w-3 h-3" />
                     </Link>
                   </div>

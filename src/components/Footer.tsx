@@ -16,6 +16,17 @@ const Footer = () => {
       ],
     },
     {
+      title: "AI Solutions",
+      links: [
+        { name: "Fractional CAIO", path: "/fractional-caio" },
+        { name: "AI Literacy", path: "/ai-literacy" },
+        { name: "AI Strategy", path: "/ai-strategy" },
+        { name: "AI Governance", path: "/ai-governance" },
+        { name: "AI Implementation", path: "/ai-implementation" },
+        { name: "Use Cases", path: "/use-cases" },
+      ],
+    },
+    {
       title: "Resources",
       links: [
         { name: "Insights", path: "/resources" },
@@ -47,7 +58,7 @@ const Footer = () => {
   return (
     <footer className="bg-card/50 border-t border-border mt-24">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 group mb-6">

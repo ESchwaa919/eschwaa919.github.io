@@ -705,6 +705,30 @@ const AIImplementation = () => {
         </div>
       </section>
 
+      {/* Related Pages */}
+      <section className="container mx-auto px-4 pb-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-sm font-heading text-muted-foreground mb-4 tracking-wider">EXPLORE RELATED TOPICS</p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link to="/ai-strategy" className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+              AI Strategy <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link to="/ai-governance" className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+              AI Governance <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link to="/fractional-caio" className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+              Fractional CAIO <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link to="/use-cases" className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+              Use Cases <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link to="/ai-literacy" className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+              AI Literacy <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA Section */}
       <section className="py-20">
         <div

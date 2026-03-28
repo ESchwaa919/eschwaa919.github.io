@@ -1,11 +1,40 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X, Zap, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+interface NavLink {
+  name: string;
+  path: string;
+  children?: { name: string; path: string }[];
+}
+
+const navLinks: NavLink[] = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "The Process", path: "/process" },
+  {
+    name: "Services",
+    path: "/services",
+    children: [
+      { name: "All Services", path: "/services" },
+      { name: "Fractional CAIO", path: "/fractional-caio" },
+      { name: "AI Literacy", path: "/ai-literacy" },
+      { name: "AI Strategy", path: "/ai-strategy" },
+      { name: "AI Governance", path: "/ai-governance" },
+      { name: "AI Implementation", path: "/ai-implementation" },
+      { name: "Use Cases", path: "/use-cases" },
+    ],
+  },
+  { name: "Pricing", path: "/pricing" },
+  { name: "Resources", path: "/resources" },
+  { name: "Contact", path: "/contact" },
+];
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -17,17 +46,14 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "The Process", path: "/process" },
-    { name: "Services", path: "/services" },
-    { name: "Pricing", path: "/pricing" },
-    { name: "Resources", path: "/resources" },
-    { name: "Contact", path: "/contact" },
-  ];
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+  }, [location.pathname]);
 
   const isActive = (path: string) => location.pathname === path;
+  const isChildActive = (link: NavLink) =>
+    link.children?.some((child) => location.pathname === child.path) || false;
 
   return (
     <nav
@@ -56,19 +82,63 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-sm font-heading transition-all hover:text-primary ${
-                  isActive(link.path)
-                    ? "text-primary glow-green"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.children ? (
+                <div
+                  key={link.path}
+                  className="relative"
+                  onMouseEnter={() => setOpenDropdown(link.name)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <button
+                    className={`text-sm font-heading transition-all hover:text-primary flex items-center gap-1 ${
+                      isActive(link.path) || isChildActive(link)
+                        ? "text-primary glow-green"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    {link.name}
+                    <ChevronDown
+                      className={`w-3 h-3 transition-transform ${
+                        openDropdown === link.name ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {openDropdown === link.name && (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-56 animate-fade-in">
+                      <div className="bg-background/98 backdrop-blur-md border border-border rounded-lg shadow-cyber py-2">
+                        {link.children.map((child) => (
+                          <Link
+                            key={child.path}
+                            to={child.path}
+                            className={`block px-4 py-2.5 text-sm transition-all hover:bg-primary/10 hover:text-primary ${
+                              isActive(child.path)
+                                ? "text-primary bg-primary/5"
+                                : "text-muted-foreground"
+                            }`}
+                          >
+                            {child.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-sm font-heading transition-all hover:text-primary ${
+                    isActive(link.path)
+                      ? "text-primary glow-green"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              )
+            )}
 
             <Button
               size="sm"
@@ -97,20 +167,62 @@ const Navigation = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute top-20 left-0 right-0 bg-background/98 backdrop-blur-md border-b border-border shadow-cyber py-6 px-4 z-50 animate-fade-in">
             <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-base font-heading transition-all hover:text-primary py-2 ${
-                    isActive(link.path)
-                      ? "text-primary glow-green"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) =>
+                link.children ? (
+                  <div key={link.path}>
+                    <button
+                      onClick={() =>
+                        setOpenDropdown(
+                          openDropdown === link.name ? null : link.name
+                        )
+                      }
+                      className={`text-base font-heading transition-all hover:text-primary py-2 w-full text-left flex items-center justify-between ${
+                        isActive(link.path) || isChildActive(link)
+                          ? "text-primary glow-green"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      {link.name}
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${
+                          openDropdown === link.name ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {openDropdown === link.name && (
+                      <div className="ml-4 mt-2 space-y-2 border-l-2 border-primary/20 pl-4">
+                        {link.children.map((child) => (
+                          <Link
+                            key={child.path}
+                            to={child.path}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className={`block text-sm transition-all hover:text-primary py-1 ${
+                              isActive(child.path)
+                                ? "text-primary"
+                                : "text-muted-foreground"
+                            }`}
+                          >
+                            {child.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`text-base font-heading transition-all hover:text-primary py-2 ${
+                      isActive(link.path)
+                        ? "text-primary glow-green"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                )
+              )}
 
               <Button
                 size="sm"

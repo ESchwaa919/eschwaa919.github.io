@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { StructuredData, createServiceSchema } from "@/components/StructuredData";
+import { PILLAR_PAGES } from "@/constants/pillarPages";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Services = () => {
@@ -328,6 +329,23 @@ const Services = () => {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Transform your business vision into actionable AI strategy with fractional C-level expertise. Get the strategic guidance you need without the full-time executive overhead.
               </p>
+
+              {/* In Practice */}
+              <div className="mb-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
+                <h3 className="text-sm font-heading text-primary uppercase tracking-wider mb-3">Proven Across Industries</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  We've led AI strategy for a hospitality analytics platform — prioritising cancellation prediction as the highest-ROI use case, leading to a 25% reduction in hotel no-shows. For a professional networking platform, we mapped the AI opportunity landscape and designed a phased roadmap from magic-link authentication to AI-powered member matching. We've also developed board-level governance frameworks for construction and higher education organisations.
+                </p>
+                <div className="flex flex-wrap gap-4 mt-4">
+                  <Link to="/fractional-caio" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1">
+                    Learn about Fractional CAIO <ArrowRight className="w-3 h-3" />
+                  </Link>
+                  <Link to="/ai-strategy" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1">
+                    AI Strategy deep dive <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 <div>
                   <h3 className="text-xl font-heading text-foreground mb-3">What's Included:</h3>
@@ -368,6 +386,23 @@ const Services = () => {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Turn AI strategy into reality with hands-on implementation support. From POC to production, we guide every step of your AI transformation journey.
               </p>
+
+              {/* In Practice */}
+              <div className="mb-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
+                <h3 className="text-sm font-heading text-primary uppercase tracking-wider mb-3">Delivered in Production</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  From pharmaceutical compliance automation processing thousands of medical-legal reviews monthly, to workplace investigation AI analysing document evidence across complex employment cases, to a coaching platform that went from concept to production in 12 weeks — including kiosk mode for frontline workers without email access. We take AI from concept to production in regulated, high-stakes environments.
+                </p>
+                <div className="flex flex-wrap gap-4 mt-4">
+                  <Link to="/ai-implementation" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1">
+                    Implementation methodology <ArrowRight className="w-3 h-3" />
+                  </Link>
+                  <Link to="/use-cases" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1">
+                    See use cases <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 <div>
                   <h3 className="text-xl font-heading text-foreground mb-3">What's Included:</h3>
@@ -408,6 +443,20 @@ const Services = () => {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Build internal AI capabilities through comprehensive training and access to our curated network of AI specialists. Empower your team to own your AI transformation.
               </p>
+
+              {/* In Practice */}
+              <div className="mb-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
+                <h3 className="text-sm font-heading text-primary uppercase tracking-wider mb-3">Building AI-Literate Organisations</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  We've delivered board-level AI literacy workshops for construction firms and universities, turning sceptical leadership teams into confident AI evaluators. Our interactive presentation tools make complex AI concepts tangible for non-technical audiences. Through partnerships with the AI Collective and Gen AI Academy, we scale AI education across industries.
+                </p>
+                <div className="flex flex-wrap gap-4 mt-4">
+                  <Link to="/ai-literacy" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1">
+                    AI Literacy programmes <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 <div>
                   <h3 className="text-xl font-heading text-foreground mb-3">What's Included:</h3>
@@ -448,6 +497,23 @@ const Services = () => {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Industry-specific AI solutions and niche expertise for unique challenges. From pharmaceutical compliance to education technology, we bring deep domain knowledge.
               </p>
+
+              {/* In Practice */}
+              <div className="mb-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
+                <h3 className="text-sm font-heading text-primary uppercase tracking-wider mb-3">Domain Expertise That Matters</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Our AutoMLR platform automates pharmaceutical medical-legal review with multi-agent AI and Veeva Vault integration. Our AILMS enriches learning management systems with adaptive AI pathways. Each solution is built with deep domain knowledge, regulatory awareness, and cryptographically-sealed audit trails where compliance demands it.
+                </p>
+                <div className="flex flex-wrap gap-4 mt-4">
+                  <Link to="/ai-governance" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1">
+                    AI Governance frameworks <ArrowRight className="w-3 h-3" />
+                  </Link>
+                  <Link to="/use-cases" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1">
+                    Industry use cases <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 <div>
                   <h3 className="text-xl font-heading text-foreground mb-3">What's Included:</h3>
@@ -619,6 +685,35 @@ const Services = () => {
               </Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* AI Knowledge Hub */}
+      <section className="container mx-auto px-4 py-20 section-glow">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-heading mb-4">
+            <span className="text-gradient-animate glow-green">GO DEEPER</span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Explore our comprehensive guides on every aspect of enterprise AI
+          </p>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {PILLAR_PAGES.map((page) => (
+            <Link
+              key={page.path}
+              to={page.path}
+              className="group p-6 rounded-lg border border-border hover:border-primary/50 bg-card/50 hover:bg-primary/5 transition-all"
+            >
+              <h3 className="text-lg font-heading text-foreground mb-2 group-hover:text-primary transition-colors">
+                {page.name}
+              </h3>
+              <p className="text-sm text-muted-foreground mb-3">{page.desc}</p>
+              <span className="text-sm text-primary flex items-center gap-1">
+                Read more <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
 

@@ -20,6 +20,7 @@ const ProcessOverview = () => {
         "AI competency assessment",
       ],
       gradient: "from-primary/20 to-cyan-500/10",
+      link: "/ai-literacy",
     },
     {
       number: "02",
@@ -33,6 +34,7 @@ const ProcessOverview = () => {
         "ROI modelling",
       ],
       gradient: "from-cyan-500/15 to-primary/15",
+      link: "/ai-strategy",
     },
     {
       number: "03",
@@ -46,6 +48,7 @@ const ProcessOverview = () => {
         "Ongoing optimization",
       ],
       gradient: "from-primary/15 to-secondary/15",
+      link: "/ai-implementation",
     },
   ];
 
@@ -134,6 +137,14 @@ const ProcessOverview = () => {
                         </li>
                       ))}
                     </ul>
+
+                    {/* Deep dive link */}
+                    <Link
+                      to={stage.link}
+                      className="inline-flex items-center gap-1 text-xs text-primary/60 hover:text-primary transition-colors mt-4 font-heading tracking-wider uppercase"
+                    >
+                      Deep dive <ArrowRight className="w-3 h-3" />
+                    </Link>
                   </div>
 
                   {/* Cyber corners */}

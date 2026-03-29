@@ -2,6 +2,8 @@ import HeroSection from "@/components/HeroSection";
 import TrustBar from "@/components/TrustBar";
 import ProcessOverview from "@/components/ProcessOverview";
 import WhyWorkWithErik from "@/components/WhyWorkWithErik";
+import ClientStories from "@/components/ClientStories";
+import ContentChannels from "@/components/ContentChannels";
 import LeadMagnet from "@/components/LeadMagnet";
 import TrustSignals from "@/components/TrustSignals";
 import CourseTestimonials from "@/components/CourseTestimonials";
@@ -24,6 +26,8 @@ const Index = () => {
       <TrustBar />
       <ProcessOverview />
       <WhyWorkWithErik />
+      <ClientStories />
+      <ContentChannels />
       <LeadMagnet />
       <TrustSignals />
       <CourseTestimonials

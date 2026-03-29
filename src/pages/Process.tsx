@@ -79,6 +79,12 @@ const Process = () => {
         "Clear picture of where AI fits in your business",
         "Shared language for discussing AI initiatives",
       ],
+      inPractice: {
+        text: "We delivered board-level AI literacy sessions for a major UK construction firm, helping leadership evaluate AI proposals for site safety and supply chain optimisation. For a university, we ran hands-on workshops transforming faculty sceptics into AI champions who now integrate AI tools into their teaching. Our interactive presentation platform makes complex AI concepts tangible for non-technical audiences.",
+        links: [
+          { name: "Explore AI Literacy in depth", path: "/ai-literacy" },
+        ],
+      },
       color: "primary",
     },
     {
@@ -129,6 +135,13 @@ const Process = () => {
         "Governance and compliance requirements defined",
         "Team knows what to build and in what order",
       ],
+      inPractice: {
+        text: "For a hospitality analytics company, we developed an AI strategy that prioritised cancellation prediction as the highest-ROI use case — leading to a 25% reduction in hotel no-shows. For a professional networking platform, we mapped the AI opportunity landscape and designed a phased roadmap from magic-link authentication to AI-powered member matching. Each strategy was board-approved with quantified ROI.",
+        links: [
+          { name: "AI Strategy deep dive", path: "/ai-strategy" },
+          { name: "AI Governance frameworks", path: "/ai-governance" },
+        ],
+      },
       color: "secondary",
     },
     {
@@ -179,6 +192,13 @@ const Process = () => {
         "Your team can maintain and improve the system",
         "Clear path to scaling or expanding capabilities",
       ],
+      inPractice: {
+        text: "We built a workplace investigation AI that analyses thousands of documents, identifies evidence patterns, and generates structured reports — now used across complex employment cases. For a pharma client, we deployed multi-agent medical-legal review automation processing content against FDA, EMA, and MHRA regulations. A coaching platform went from concept to production in 12 weeks, including kiosk mode for frontline workers without email access.",
+        links: [
+          { name: "Implementation methodology", path: "/ai-implementation" },
+          { name: "Explore use cases", path: "/use-cases" },
+        ],
+      },
       color: "primary",
     },
   ];
@@ -442,6 +462,23 @@ const Process = () => {
                     <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                       {stage.description}
                     </p>
+
+                    {/* In Practice */}
+                    {stage.inPractice && (
+                      <div className={`mb-8 p-6 ${stage.color === 'primary' ? 'bg-primary/5 border-primary/20' : 'bg-secondary/5 border-secondary/20'} rounded-lg border`}>
+                        <h3 className={`text-sm font-heading ${stage.color === 'primary' ? 'text-primary' : 'text-secondary'} uppercase tracking-wider mb-3`}>In Practice</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {stage.inPractice.text}
+                        </p>
+                        <div className="flex flex-wrap gap-4 mt-3">
+                          {stage.inPractice.links.map((link, idx) => (
+                            <Link key={idx} to={link.path} className={`text-sm ${stage.color === 'primary' ? 'text-primary hover:text-primary/80' : 'text-secondary hover:text-secondary/80'} flex items-center gap-1`}>
+                              {link.name} <ArrowRight className="w-3 h-3" />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
 
                     {/* Key Activities Grid */}
                     <div className="mb-8">
@@ -780,6 +817,33 @@ const Process = () => {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Pillar Pages */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-sm font-heading text-muted-foreground mb-4 tracking-wider">EXPLORE EACH STAGE IN DEPTH</p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link to="/ai-literacy" className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+              AI Literacy <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link to="/ai-strategy" className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+              AI Strategy <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link to="/ai-implementation" className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+              AI Implementation <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link to="/ai-governance" className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+              AI Governance <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link to="/fractional-caio" className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+              Fractional CAIO <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link to="/use-cases" className="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+              Use Cases <ArrowRight className="w-3 h-3" />
+            </Link>
           </div>
         </div>
       </section>

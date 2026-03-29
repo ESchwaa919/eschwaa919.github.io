@@ -20,28 +20,28 @@ const WhyWorkWithErik = () => {
       icon: Building2,
       title: "Enterprise-Proven Experience",
       description:
-        "Twenty years leading search, discovery, and AI at Microsoft, Comcast, Elsevier. Built systems at global scale.",
+        "Twenty years leading search, discovery, and AI at Microsoft, Comcast, and Elsevier — then bringing that enterprise-grade thinking to businesses that don't have Fortune 500 budgets but deserve Fortune 500 results.",
       gradient: "from-primary/20 via-transparent to-transparent",
     },
     {
       icon: Rocket,
       title: "Proven Results",
       description:
-        "Track record building enterprise-scale AI platforms that deliver measurable business outcomes and ROI.",
+        "25% reduction in hotel no-shows through AI prediction. 70% faster workplace investigation reviews. Pharma compliance reviews in seconds instead of days. Real outcomes, not slide decks.",
       gradient: "from-cyan-500/15 via-transparent to-transparent",
     },
     {
       icon: Users,
       title: "Trusted Advisor",
       description:
-        "Trusted advisor to SMBs and mid-market leaders navigating AI adoption with confidence and clarity.",
+        "From board-level AI literacy for construction firms and universities to hands-on coaching for startup founders. Clients stay because the advice works — and the relationship lasts beyond the project.",
       gradient: "from-secondary/15 via-transparent to-transparent",
     },
     {
       icon: Wrench,
       title: "Hands-On Builder",
       description:
-        "Not just strategy. Hands-on builder who ships working solutions fast—from prototype to production.",
+        "Not just strategy — I write production code. A coaching platform shipped in 12 weeks with kiosk mode for frontline workers. A document analysis AI now handles thousands of cases. I build what I recommend.",
       gradient: "from-primary/15 via-transparent to-transparent",
     },
   ];

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calendar, CheckCircle2, Sparkles } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { PILLAR_PAGES } from "@/constants/pillarPages";
 
 const FinalCTA = () => {
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.2 });
@@ -66,6 +67,14 @@ const FinalCTA = () => {
             you are in your AI journey and create a practical roadmap forward.
           </p>
 
+          <div className="flex flex-wrap gap-3 justify-center">
+            {PILLAR_PAGES.filter(p => p.path !== "/use-cases").map((page) => (
+              <Link key={page.path} to={page.path} className="text-sm px-4 py-2 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-all">
+                {page.name}
+              </Link>
+            ))}
+          </div>
+
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button
@@ -73,10 +82,10 @@ const FinalCTA = () => {
               className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 text-xl font-semibold px-10 lg:px-12 py-7 lg:py-8 shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_hsla(155,100%,45%,0.5)] btn-shimmer"
               asChild
             >
-              <Link to="/contact">
+              <a href="https://calendly.com/eschwaa/30min">
                 <Calendar className="w-6 h-6 mr-3 group-hover:animate-pulse" />
                 Book a Strategy Call
-              </Link>
+              </a>
             </Button>
 
             <Button
@@ -85,8 +94,8 @@ const FinalCTA = () => {
               className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary text-xl font-semibold px-10 lg:px-12 py-7 lg:py-8 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_hsla(155,100%,45%,0.25)]"
               asChild
             >
-              <Link to="/resources#assessment">
-                Take Free Assessment
+              <Link to="/services">
+                Explore Services
                 <ArrowRight className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>

@@ -84,8 +84,10 @@ const HeroSection = () => {
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              We guide small and medium businesses who know AI is essential —
-              but don't know where to begin.
+              We guide small and medium businesses through a proven 3-stage path:{" "}
+              <Link to="/ai-literacy" className="text-primary hover:text-primary/80 font-medium">Literacy</Link> →{" "}
+              <Link to="/ai-strategy" className="text-primary hover:text-primary/80 font-medium">Strategy</Link> →{" "}
+              <Link to="/ai-implementation" className="text-primary hover:text-primary/80 font-medium">Implementation</Link>.
             </p>
 
             {/* CTA Buttons */}
@@ -111,10 +113,10 @@ const HeroSection = () => {
                 className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary text-lg font-semibold px-8 py-6 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)]"
                 asChild
               >
-                <Link to="/contact">
-                  Book a Call
+                <a href="https://calendly.com/eschwaa/30min">
+                  Book a Strategy Call
                   <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
-                </Link>
+                </a>
               </Button>
             </div>
           </div>

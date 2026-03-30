@@ -44,6 +44,11 @@ const testimonials: Testimonial[] = [
     linkedIn: "https://www.linkedin.com/in/speak2andrew/",
     quote: "Such a productive and inspirational day. It's so refreshing to leave a workshop with something to show for all your efforts, instead of attempting to apply theory days/weeks later when you've lost momentum. Highly recommended, even for non-techies like me.",
   },
+  {
+    name: "James Knight",
+    company: "Founder, iMA Technologies",
+    quote: "Erik's ability to translate complex AI concepts into practical business solutions is exceptional. He consistently exceeds expectations, delivering results that have transformed how we approach technology across our platform.",
+  },
 ];
 
 interface CourseTestimonialsProps {

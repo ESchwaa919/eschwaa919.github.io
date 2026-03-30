@@ -56,7 +56,7 @@ const HeroSection = () => {
             {/* Main Headline */}
             <h1
               className={`text-[1.6rem] xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading leading-[1.1] transition-all duration-700 delay-150 ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
               <span className="block text-gradient-animate glow-green-intense">
@@ -70,7 +70,7 @@ const HeroSection = () => {
             {/* Subheadline */}
             <p
               className={`text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-foreground/90 font-light leading-relaxed transition-all duration-700 delay-300 ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
               Helping forward-looking business owners go from{" "}
@@ -81,7 +81,7 @@ const HeroSection = () => {
             {/* Description */}
             <p
               className={`text-sm sm:text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed transition-all duration-700 delay-[450ms] ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
               We guide small and medium businesses through a proven 3-stage path:{" "}
@@ -93,7 +93,7 @@ const HeroSection = () => {
             {/* CTA Buttons */}
             <div
               className={`flex flex-col sm:flex-row gap-4 pt-4 transition-all duration-700 delay-[600ms] ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
               <Button
@@ -123,7 +123,7 @@ const HeroSection = () => {
 
           {/* Expert Image with Enhanced Frame */}
           <div
-            className={`relative transition-all duration-1000 delay-300 ${
+            className={`relative transition-all duration-300 delay-300 ${
               isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
             }`}
           >

@@ -41,8 +41,8 @@ const FinalCTA = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div
           ref={ctaRef}
-          className={`max-w-4xl mx-auto text-center space-y-10 transition-all duration-1000 ${
-            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`max-w-4xl mx-auto text-center space-y-10 transition-all duration-300 ${
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           {/* Badge */}

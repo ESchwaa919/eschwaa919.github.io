@@ -277,8 +277,8 @@ const AIImplementation = () => {
 
         <div
           ref={heroRef}
-          className={`max-w-4xl mx-auto text-center space-y-6 relative z-10 transition-all duration-1000 ${
-            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`max-w-4xl mx-auto text-center space-y-6 relative z-10 transition-all duration-300 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           {/* Badge */}
@@ -348,8 +348,8 @@ const AIImplementation = () => {
       <section className="py-20 section-glow" id="first-90-days">
         <div
           ref={first90Ref}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            first90Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            first90Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-16">
@@ -459,8 +459,8 @@ const AIImplementation = () => {
       <section className="py-20" id="pilot-to-production">
         <div
           ref={pilotRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            pilotVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            pilotVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="max-w-5xl mx-auto">
@@ -521,8 +521,8 @@ const AIImplementation = () => {
       <section className="py-20 section-glow" id="how-we-work">
         <div
           ref={howWeWorkRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            howWeWorkVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            howWeWorkVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-16">
@@ -569,8 +569,8 @@ const AIImplementation = () => {
       <section className="py-20" id="technology-stack">
         <div
           ref={techStackRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            techStackVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            techStackVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-16">
@@ -625,8 +625,8 @@ const AIImplementation = () => {
       <section className="py-20 section-glow" id="what-you-own">
         <div
           ref={ownershipRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            ownershipVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            ownershipVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-16">
@@ -679,8 +679,8 @@ const AIImplementation = () => {
       <section className="py-20" id="faq">
         <div
           ref={faqRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            faqVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            faqVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -733,8 +733,8 @@ const AIImplementation = () => {
       <section className="py-20">
         <div
           ref={ctaRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="relative max-w-4xl mx-auto">

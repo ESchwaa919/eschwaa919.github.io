@@ -7,7 +7,7 @@ interface UseScrollRevealOptions {
 }
 
 export const useScrollReveal = (options: UseScrollRevealOptions = {}) => {
-  const { threshold = 0.1, rootMargin = '0px', triggerOnce = true } = options;
+  const { threshold = 0.05, rootMargin = '50px', triggerOnce = true } = options;
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -39,7 +39,7 @@ export const useScrollReveal = (options: UseScrollRevealOptions = {}) => {
 
 // Hook for multiple elements with staggered reveal
 export const useStaggeredReveal = (itemCount: number, options: UseScrollRevealOptions = {}) => {
-  const { threshold = 0.1, rootMargin = '0px', triggerOnce = true } = options;
+  const { threshold = 0.05, rootMargin = '50px', triggerOnce = true } = options;
   const containerRef = useRef<HTMLDivElement>(null);
   const [visibleItems, setVisibleItems] = useState<boolean[]>(new Array(itemCount).fill(false));
 
@@ -58,7 +58,7 @@ export const useStaggeredReveal = (itemCount: number, options: UseScrollRevealOp
                 newState[i] = true;
                 return newState;
               });
-            }, i * 100); // 100ms delay between each item
+            }, i * 60);
           }
           if (triggerOnce) {
             observer.unobserve(container);

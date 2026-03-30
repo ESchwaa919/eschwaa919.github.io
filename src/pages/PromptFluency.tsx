@@ -153,8 +153,8 @@ const PromptFluency = () => {
 
         <div
           ref={heroRef}
-          className={`container mx-auto px-4 relative z-10 py-32 transition-all duration-1000 ${
-            heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 relative z-10 py-32 transition-all duration-300 ${
+            heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="max-w-4xl mx-auto text-center">
@@ -205,8 +205,8 @@ const PromptFluency = () => {
         <div className="section-glow" />
         <div
           ref={whyRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            whyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            whyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-16">
@@ -244,8 +244,8 @@ const PromptFluency = () => {
       <section className="py-24 bg-card/50 relative">
         <div
           ref={crispRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            crispVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            crispVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-16">

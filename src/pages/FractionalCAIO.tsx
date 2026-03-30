@@ -242,8 +242,8 @@ const FractionalCAIO = () => {
 
         <div
           ref={heroRef}
-          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
-            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 relative z-10 transition-all duration-300 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           {/* Badge */}
@@ -314,8 +314,8 @@ const FractionalCAIO = () => {
       <section className="py-20 section-glow relative" id="why-fractional">
         <div
           ref={whyRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            whyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            whyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -397,8 +397,8 @@ const FractionalCAIO = () => {
 
         <div
           ref={whatRef}
-          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
-            whatVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 relative z-10 transition-all duration-300 ${
+            whatVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -527,8 +527,8 @@ const FractionalCAIO = () => {
       <section className="py-20 section-glow relative" id="how-it-works">
         <div
           ref={howRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            howVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            howVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -598,8 +598,8 @@ const FractionalCAIO = () => {
 
         <div
           ref={resultsRef}
-          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
-            resultsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 relative z-10 transition-all duration-300 ${
+            resultsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -670,8 +670,8 @@ const FractionalCAIO = () => {
       <section className="py-20 section-glow relative" id="faq">
         <div
           ref={faqRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            faqVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            faqVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -722,8 +722,8 @@ const FractionalCAIO = () => {
       <section className="py-20">
         <div
           ref={ctaRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="relative max-w-4xl mx-auto">

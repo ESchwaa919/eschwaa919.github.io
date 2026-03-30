@@ -41,8 +41,8 @@ const TrustBar = () => {
       <div className="container mx-auto px-4 relative">
         {/* Header */}
         <div
-          className={`text-center mb-10 transition-all duration-700 ${
-            sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          className={`text-center mb-10 transition-all duration-300 ${
+            sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <p className="text-sm font-heading text-primary uppercase tracking-widest mb-2">
@@ -55,8 +55,8 @@ const TrustBar = () => {
 
         {/* Company Logos */}
         <div
-          className={`grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-4xl mx-auto mb-12 transition-all duration-700 delay-150 ${
-            sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          className={`grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-4xl mx-auto mb-12 transition-all duration-300 delay-150 ${
+            sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           {companies.map((company, index) => (
@@ -84,8 +84,8 @@ const TrustBar = () => {
 
         {/* Stats Bar */}
         <div
-          className={`max-w-3xl mx-auto transition-all duration-700 delay-300 ${
-            sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          className={`max-w-3xl mx-auto transition-all duration-300 delay-300 ${
+            sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="relative glass-card rounded-xl overflow-hidden">

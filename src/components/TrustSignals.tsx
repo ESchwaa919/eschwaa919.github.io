@@ -90,7 +90,7 @@ const TrustSignals = () => {
                 className={`group relative transition-all duration-700 ${
                   testimonialsVisible[index]
                     ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-12'
+                    : 'opacity-0 translate-y-4'
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >

@@ -242,8 +242,8 @@ const AIStrategy = () => {
 
         <div
           ref={heroRef}
-          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
-            heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 relative z-10 transition-all duration-300 ${
+            heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           {/* Badge */}
@@ -304,8 +304,8 @@ const AIStrategy = () => {
       <section className="py-20 section-glow" id="what-makes-strategy">
         <div
           ref={whatRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            whatVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            whatVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-12">
@@ -397,8 +397,8 @@ const AIStrategy = () => {
       <section className="py-20" id="pillars">
         <div
           ref={pillarsRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            pillarsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            pillarsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-12">
@@ -476,8 +476,8 @@ const AIStrategy = () => {
       <section className="py-20 section-glow" id="process">
         <div
           ref={processRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            processVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            processVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-12">
@@ -570,8 +570,8 @@ const AIStrategy = () => {
       <section className="py-20" id="mistakes">
         <div
           ref={mistakesRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            mistakesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            mistakesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-12">
@@ -613,8 +613,8 @@ const AIStrategy = () => {
       <section className="py-20 section-glow" id="vs-implementation">
         <div
           ref={vsImplementRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            vsImplementVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            vsImplementVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-12">
@@ -715,8 +715,8 @@ const AIStrategy = () => {
       <section className="py-20 section-glow" id="faq">
         <div
           ref={faqRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            faqVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            faqVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-12">
@@ -767,8 +767,8 @@ const AIStrategy = () => {
       <section className="py-20" id="cta">
         <div
           ref={ctaRef}
-          className={`container mx-auto px-4 text-center transition-all duration-1000 ${
-            ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 text-center transition-all duration-300 ${
+            ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <h2 className="text-3xl md:text-4xl font-heading mb-4">

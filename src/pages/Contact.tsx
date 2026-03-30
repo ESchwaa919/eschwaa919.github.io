@@ -183,8 +183,8 @@ const Contact = () => {
           {/* Contact Info Sidebar */}
           <div
             ref={heroRef}
-            className={`lg:col-span-2 space-y-8 transition-all duration-1000 ${
-              heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            className={`lg:col-span-2 space-y-8 transition-all duration-300 ${
+              heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             <div>
@@ -334,8 +334,8 @@ const Contact = () => {
           {/* Contact Form */}
           <div
             ref={formRef}
-            className={`lg:col-span-3 transition-all duration-1000 delay-200 ${
-              formVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            className={`lg:col-span-3 transition-all duration-300 delay-200 ${
+              formVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             {/* Cyber corners */}
@@ -470,8 +470,8 @@ const Contact = () => {
             {/* Calendly Embed Alternative */}
             <div
               ref={calendlyRef}
-              className={`mt-8 text-center transition-all duration-1000 delay-300 ${
-                calendlyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+              className={`mt-8 text-center transition-all duration-300 delay-300 ${
+                calendlyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
             >
               <p className="text-muted-foreground mb-4">

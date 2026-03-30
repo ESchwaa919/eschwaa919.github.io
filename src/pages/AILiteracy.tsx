@@ -284,8 +284,8 @@ const AILiteracy = () => {
 
         <div
           ref={heroRef}
-          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
-            heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 relative z-10 transition-all duration-300 ${
+            heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           {/* Badge */}
@@ -346,8 +346,8 @@ const AILiteracy = () => {
       <section className="py-20 section-glow" id="why-literacy">
         <div
           ref={whyRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            whyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            whyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-12">
@@ -437,8 +437,8 @@ const AILiteracy = () => {
       <section className="py-20" id="concepts">
         <div
           ref={conceptsRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            conceptsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            conceptsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-12">
@@ -502,8 +502,8 @@ const AILiteracy = () => {
       <section className="py-20 section-glow" id="framework">
         <div
           ref={frameworkRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            frameworkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            frameworkVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-12">
@@ -626,8 +626,8 @@ const AILiteracy = () => {
       <section className="py-20" id="workshops">
         <div
           ref={workshopsRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            workshopsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            workshopsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-12">
@@ -693,8 +693,8 @@ const AILiteracy = () => {
       <section className="py-20 section-glow" id="assessment">
         <div
           ref={assessmentRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            assessmentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            assessmentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="relative max-w-4xl mx-auto">
@@ -755,8 +755,8 @@ const AILiteracy = () => {
       <section className="py-20" id="faq">
         <div
           ref={faqRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            faqVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            faqVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center mb-12">
@@ -808,8 +808,8 @@ const AILiteracy = () => {
       <section className="py-20">
         <div
           ref={ctaRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <div className="text-center max-w-3xl mx-auto">

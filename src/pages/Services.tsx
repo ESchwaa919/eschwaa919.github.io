@@ -188,8 +188,8 @@ const Services = () => {
 
         <div
           ref={heroRef}
-          className={`max-w-4xl mx-auto text-center space-y-6 relative z-10 transition-all duration-1000 ${
-            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`max-w-4xl mx-auto text-center space-y-6 relative z-10 transition-all duration-300 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           {/* Badge */}
@@ -243,8 +243,8 @@ const Services = () => {
       <section className="container mx-auto px-4 mb-24 section-glow">
         <div
           ref={coreRef}
-          className={`transition-all duration-1000 ${
-            coreVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`transition-all duration-300 ${
+            coreVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -545,8 +545,8 @@ const Services = () => {
       <section className="py-20 section-glow relative">
         <div
           ref={productsRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            productsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            productsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-16">
@@ -629,8 +629,8 @@ const Services = () => {
       <section className="container mx-auto px-4 py-20">
         <div
           ref={modelsRef}
-          className={`transition-all duration-1000 ${
-            modelsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`transition-all duration-300 ${
+            modelsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -721,8 +721,8 @@ const Services = () => {
       <section className="container mx-auto px-4 py-20">
         <div
           ref={ctaRef}
-          className={`transition-all duration-1000 ${
-            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`transition-all duration-300 ${
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="relative max-w-4xl mx-auto">

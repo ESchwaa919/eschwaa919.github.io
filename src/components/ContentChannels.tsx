@@ -72,8 +72,8 @@ const ContentChannels = () => {
         {/* Header */}
         <div
           ref={headerRef}
-          className={`text-center mb-16 lg:mb-20 transition-all duration-700 ${
-            headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`text-center mb-16 lg:mb-20 transition-all duration-300 ${
+            headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading mb-6">
@@ -96,10 +96,10 @@ const ContentChannels = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group block transition-all duration-700 ${
+                className={`group block transition-all duration-300 ${
                   cardsVisible[index]
                     ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-12"
+                    : "opacity-0 translate-y-4"
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >

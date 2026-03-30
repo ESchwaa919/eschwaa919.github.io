@@ -115,8 +115,8 @@ const About = () => {
 
         <div
           ref={heroRef}
-          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
-            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 relative z-10 transition-all duration-300 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="grid lg:grid-cols-5 gap-12 items-center max-w-7xl mx-auto">
@@ -227,8 +227,8 @@ const About = () => {
       <section className="py-24 section-glow relative">
         <div
           ref={journeyRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            journeyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            journeyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="max-w-4xl mx-auto space-y-8">
@@ -324,8 +324,8 @@ const About = () => {
 
         <div
           ref={visionRef}
-          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
-            visionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 relative z-10 transition-all duration-300 ${
+            visionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="max-w-4xl mx-auto space-y-8">
@@ -398,8 +398,8 @@ const About = () => {
       <section className="py-24 section-glow relative">
         <div
           ref={philosophyRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            philosophyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            philosophyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="max-w-6xl mx-auto">
@@ -449,8 +449,8 @@ const About = () => {
 
         <div
           ref={differentiatorRef}
-          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
-            differentiatorVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 relative z-10 transition-all duration-300 ${
+            differentiatorVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="max-w-4xl mx-auto">
@@ -516,8 +516,8 @@ const About = () => {
       <section className="py-24 section-glow relative">
         <div
           ref={thoughtLeadershipRef}
-          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
-            thoughtLeadershipVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 relative z-10 transition-all duration-300 ${
+            thoughtLeadershipVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="max-w-4xl mx-auto">

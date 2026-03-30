@@ -65,8 +65,8 @@ const WhyWorkWithErik = () => {
         {/* Section Header */}
         <div
           ref={headerRef}
-          className={`text-center mb-16 lg:mb-20 transition-all duration-700 ${
-            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          className={`text-center mb-16 lg:mb-20 transition-all duration-300 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading mb-6">
@@ -84,10 +84,10 @@ const WhyWorkWithErik = () => {
           {reasons.map((reason, index) => (
             <div
               key={index}
-              className={`group relative transition-all duration-700 ${
+              className={`group relative transition-all duration-300 ${
                 reasonsVisible[index]
                   ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-12'
+                  : 'opacity-0 translate-y-4'
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
@@ -127,8 +127,8 @@ const WhyWorkWithErik = () => {
         {/* What Makes This Different */}
         <div
           ref={diffRef}
-          className={`max-w-4xl mx-auto transition-all duration-700 ${
-            diffVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          className={`max-w-4xl mx-auto transition-all duration-300 ${
+            diffVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="relative glass-card rounded-2xl overflow-hidden">

@@ -554,8 +554,8 @@ const ROICalculator = () => {
         {/* Hero Section */}
         <div
           ref={heroRef}
-          className={`text-center mb-16 transition-all duration-1000 ${
-            heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`text-center mb-16 transition-all duration-300 ${
+            heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           {/* Badge */}
@@ -576,8 +576,8 @@ const ROICalculator = () => {
         {/* Stats Bar */}
         <div
           ref={statsRef}
-          className={`grid md:grid-cols-3 gap-6 mb-16 transition-all duration-1000 delay-100 ${
-            statsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`grid md:grid-cols-3 gap-6 mb-16 transition-all duration-300 delay-100 ${
+            statsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           {[
@@ -604,8 +604,8 @@ const ROICalculator = () => {
         {/* Calculator Form */}
         <div
           ref={formRef}
-          className={`relative mb-12 transition-all duration-1000 delay-200 ${
-            formVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`relative mb-12 transition-all duration-300 delay-200 ${
+            formVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           {/* Cyber corners */}
@@ -788,8 +788,8 @@ const ROICalculator = () => {
         {showResults && results && (
           <div
             ref={resultsRef}
-            className={`space-y-8 transition-all duration-1000 ${
-              resultsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            className={`space-y-8 transition-all duration-300 ${
+              resultsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             {/* ROI Summary */}

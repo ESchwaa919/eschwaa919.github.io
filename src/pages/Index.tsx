@@ -5,7 +5,6 @@ import WhyWorkWithErik from "@/components/WhyWorkWithErik";
 import ClientStories from "@/components/ClientStories";
 import ContentChannels from "@/components/ContentChannels";
 import LeadMagnet from "@/components/LeadMagnet";
-import TrustSignals from "@/components/TrustSignals";
 import CourseTestimonials from "@/components/CourseTestimonials";
 import FinalCTA from "@/components/FinalCTA";
 import SEOHead from "@/components/SEOHead";
@@ -29,7 +28,6 @@ const Index = () => {
       <ClientStories />
       <ContentChannels />
       <LeadMagnet />
-      <TrustSignals />
       <CourseTestimonials
         title="Workshop Success Stories"
         subtitle="What participants say about Ship an App in a Day"

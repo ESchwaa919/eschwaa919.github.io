@@ -311,8 +311,8 @@ const UseCases = () => {
 
         <div
           ref={heroRef}
-          className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
-            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 relative z-10 transition-all duration-300 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           {/* Badge */}
@@ -364,8 +364,8 @@ const UseCases = () => {
       <section className="py-20 section-glow" id="by-function">
         <div
           ref={functionsRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            functionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            functionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -445,8 +445,8 @@ const UseCases = () => {
       <section className="py-20" id="prioritise">
         <div
           ref={prioritiseRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            prioritiseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            prioritiseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -524,8 +524,8 @@ const UseCases = () => {
       <section className="py-20 section-glow" id="portfolio">
         <div
           ref={portfolioRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            portfolioVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            portfolioVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -634,8 +634,8 @@ const UseCases = () => {
       <section className="py-20" id="first-projects">
         <div
           ref={firstProjectsRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            firstProjectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            firstProjectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -731,8 +731,8 @@ const UseCases = () => {
       <section className="py-20" id="faq">
         <div
           ref={faqRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            faqVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            faqVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -759,8 +759,8 @@ const UseCases = () => {
       <section className="py-20">
         <div
           ref={ctaRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="relative max-w-4xl mx-auto">

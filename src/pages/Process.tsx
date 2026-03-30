@@ -253,8 +253,8 @@ const Process = () => {
 
         <div
           ref={heroRef}
-          className={`max-w-4xl mx-auto text-center space-y-6 relative z-10 transition-all duration-1000 ${
-            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`max-w-4xl mx-auto text-center space-y-6 relative z-10 transition-all duration-300 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           {/* Badge */}
@@ -283,8 +283,8 @@ const Process = () => {
       <section className="container mx-auto px-4 mb-24">
         <div
           ref={whyRef}
-          className={`transition-all duration-1000 ${
-            whyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`transition-all duration-300 ${
+            whyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="relative max-w-5xl mx-auto">
@@ -324,8 +324,8 @@ const Process = () => {
       <section className="container mx-auto px-4 mb-24 section-glow">
         <div
           ref={mapRef}
-          className={`max-w-6xl mx-auto transition-all duration-1000 ${
-            mapVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`max-w-6xl mx-auto transition-all duration-300 ${
+            mapVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="grid md:grid-cols-3 gap-6">
@@ -605,8 +605,8 @@ const Process = () => {
       <section className="py-20 section-glow relative">
         <div
           ref={pathsRef}
-          className={`container mx-auto px-4 transition-all duration-1000 ${
-            pathsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`container mx-auto px-4 transition-all duration-300 ${
+            pathsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -672,8 +672,8 @@ const Process = () => {
       <section className="container mx-auto px-4 py-20">
         <div
           ref={differentRef}
-          className={`max-w-5xl mx-auto transition-all duration-1000 ${
-            differentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`max-w-5xl mx-auto transition-all duration-300 ${
+            differentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="text-center mb-12">
@@ -768,8 +768,8 @@ const Process = () => {
       <section className="container mx-auto px-4 py-20">
         <div
           ref={ctaRef}
-          className={`transition-all duration-1000 ${
-            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          className={`transition-all duration-300 ${
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <div className="relative max-w-4xl mx-auto">

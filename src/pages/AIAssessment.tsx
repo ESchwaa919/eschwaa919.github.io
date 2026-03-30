@@ -450,8 +450,8 @@ const AIAssessment = () => {
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
           <div
             ref={heroRef}
-            className={`container mx-auto px-4 relative z-10 transition-all duration-1000 ${
-              heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            className={`container mx-auto px-4 relative z-10 transition-all duration-300 ${
+              heroVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             <div className="max-w-4xl mx-auto text-center">
@@ -510,8 +510,8 @@ const AIAssessment = () => {
           <div className="section-glow" />
           <div
             ref={featuresRef}
-            className={`container mx-auto px-4 transition-all duration-1000 delay-200 ${
-              featuresVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            className={`container mx-auto px-4 transition-all duration-300 delay-200 ${
+              featuresVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             <h2 className="text-3xl md:text-4xl font-heading text-center mb-12 text-gradient-animate">
@@ -558,8 +558,8 @@ const AIAssessment = () => {
       <div className="min-h-screen bg-background py-20">
         <div
           ref={resultsRef}
-          className={`container mx-auto px-4 max-w-5xl transition-all duration-1000 ${
-            resultsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`container mx-auto px-4 max-w-5xl transition-all duration-300 ${
+            resultsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           {/* Header */}

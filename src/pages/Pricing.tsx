@@ -24,6 +24,63 @@ const Pricing = () => {
   const { ref: addonsRef, isVisible: addonsVisible } = useScrollReveal({ threshold: 0.1 });
   const { ref: statsRef, isVisible: statsVisible } = useScrollReveal({ threshold: 0.1 });
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
+  const consultingRates = [
+    {
+      label: "Daily", price: "£1,500", subtitle: "per day", highlighted: false,
+      features: ["Focused consulting sessions", "Technical reviews & audits", "Ad-hoc problem solving"],
+    },
+    {
+      label: "Weekly", price: "£5,000", subtitle: "per week", highlighted: true,
+      features: ["Strategy sprints & deep dives", "Rapid prototyping", "Intensive implementation"],
+    },
+    {
+      label: "Monthly", price: "£15,000", subtitle: "per month", highlighted: false,
+      features: ["Fractional CAIO leadership", "Ongoing strategy & oversight", "Board presentations & governance"],
+    },
+  ];
+
+  const trainingRates = [
+    {
+      label: "1-Day Workshop", price: "£5,000", subtitle: "full day", highlighted: false,
+      features: ["AI literacy & fluency training", "Hands-on prompt engineering labs", "Up to 20 participants"],
+    },
+    {
+      label: "2-Day Workshop", price: "£7,500", subtitle: "two days", highlighted: true,
+      features: ["Everything in 1-day, plus:", "Build a working AI prototype", "Use case identification & prioritisation"],
+    },
+  ];
+
+  const faqs = [
+    {
+      q: "How does your pricing work?",
+      a: "We publish transparent standard rates — consulting at £1,500/day, £5,000/week, or £15,000/month and corporate training from £5,000. Engagement models (Strategy Sprints, Fractional CAIO, etc.) are scoped from these base rates. You always know the day rate behind any proposal.",
+    },
+    {
+      q: "What's the smallest engagement you offer?",
+      a: "A single consulting day at £1,500. Perfect for focused challenges, technical reviews, or initial assessments before larger commitments.",
+    },
+    {
+      q: "Do you offer payment plans?",
+      a: "Yes. For larger engagements, we offer milestone-based payment terms. For Fractional CAIO and Advisory Retainers, we invoice monthly.",
+    },
+    {
+      q: "What if the project scope changes?",
+      a: "We build flexibility into every engagement. If scope changes, we'll discuss options: adjust deliverables, phase work, or amend the agreement. You'll never be surprised by costs.",
+    },
+    {
+      q: "Do you work with startups or only established companies?",
+      a: "We work with both. For early-stage startups, we offer lighter-touch advisory and focused sprints. For established businesses, we provide comprehensive strategy and implementation support.",
+    },
+  ];
+
+  const investStats = [
+    { value: "40%", label: "Average ROI increase within 6 months of AI deployment" },
+    { value: "60%", label: "Improvement in operational efficiency with AI automation" },
+    { value: "85%", label: "Of executives say AI is critical to competitive advantage" },
+  ];
+
+  const heroBadges = ["SMB-friendly pricing", "No hidden costs", "Flexible payment terms", "ROI-focused"];
+
   // Engagement models
   const engagementModels = [
     {
@@ -168,26 +225,91 @@ const Pricing = () => {
             <span className="text-foreground">MODELS FOR YOUR JOURNEY</span>
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            No one-size-fits-all packages. We design engagements around your
-            specific needs, timeline, and budget.
+            Transparent rates, flexible engagement models. Pick the structure
+            that fits your needs — from a single consulting day to ongoing
+            fractional leadership.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-6">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary" />
-              <span>SMB-friendly pricing</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary" />
-              <span>No hidden costs</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary" />
-              <span>Flexible payment terms</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary" />
-              <span>ROI-focused</span>
-            </div>
+            {heroBadges.map((badge) => (
+              <div key={badge} className="flex items-center gap-2 text-sm text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary" />
+                <span>{badge}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Standard Rates */}
+      <section className="container mx-auto px-4 mb-24">
+        <div
+          ref={statsRef}
+          className={`max-w-6xl mx-auto transition-all duration-300 ${
+            statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
+          {/* Consulting Rates */}
+          <div className="text-center mb-10">
+            <h2 className="text-4xl md:text-5xl font-heading mb-4">
+              <span className="text-foreground">CONSULTING </span>
+              <span className="text-gradient-animate glow-green">RATES</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Strategy, implementation, advisory, and fractional CAIO leadership
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-16">
+            {consultingRates.map((rate) => (
+              <Card key={rate.label} className={`card-enhanced group text-center hover:border-primary/50 ${rate.highlighted ? 'relative overflow-hidden' : ''}`}>
+                {rate.highlighted && <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary to-primary/50" />}
+                <CardContent className="p-8">
+                  <div className="text-xs font-heading text-primary uppercase tracking-widest mb-4">{rate.label}</div>
+                  <div className="text-5xl font-heading text-foreground mb-1">{rate.price}</div>
+                  <div className="text-sm text-muted-foreground mb-6">{rate.subtitle}</div>
+                  <ul className="space-y-2 text-sm text-muted-foreground text-left">
+                    {rate.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Corporate Training Rates */}
+          <div className="text-center mb-10">
+            <h2 className="text-4xl md:text-5xl font-heading mb-4">
+              <span className="text-foreground">CORPORATE </span>
+              <span className="text-gradient-animate glow-green">TRAINING</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              AI literacy workshops, hands-on labs, and leadership briefings
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {trainingRates.map((rate) => (
+              <Card key={rate.label} className={`card-enhanced group text-center hover:border-secondary/50 ${rate.highlighted ? 'relative overflow-hidden' : ''}`}>
+                {rate.highlighted && <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-secondary via-secondary to-secondary/50" />}
+                <CardContent className="p-8">
+                  <div className="text-xs font-heading text-secondary uppercase tracking-widest mb-4">{rate.label}</div>
+                  <div className="text-5xl font-heading text-foreground mb-1">{rate.price}</div>
+                  <div className="text-sm text-muted-foreground mb-6">{rate.subtitle}</div>
+                  <ul className="space-y-2 text-sm text-muted-foreground text-left">
+                    {rate.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -374,38 +496,14 @@ const Pricing = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-card border-2 border-border text-center">
-              <CardContent className="p-6">
-                <div className="text-4xl font-heading text-primary mb-3">
-                  40%
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Average ROI increase within 6 months of AI deployment
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-2 border-border text-center">
-              <CardContent className="p-6">
-                <div className="text-4xl font-heading text-primary mb-3">
-                  60%
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Improvement in operational efficiency with AI automation
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-2 border-border text-center">
-              <CardContent className="p-6">
-                <div className="text-4xl font-heading text-primary mb-3">
-                  85%
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Of executives say AI is critical to competitive advantage
-                </p>
-              </CardContent>
-            </Card>
+            {investStats.map((stat) => (
+              <Card key={stat.value} className="bg-card border-2 border-border text-center">
+                <CardContent className="p-6">
+                  <div className="text-4xl font-heading text-primary mb-3">{stat.value}</div>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -420,72 +518,14 @@ const Pricing = () => {
           </div>
 
           <div className="max-w-3xl mx-auto space-y-6">
-            <Card className="bg-card border-2 border-border">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-heading text-foreground mb-3">
-                  Why don't you have fixed package pricing?
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Every organization's AI needs are unique. Fixed packages lead
-                  to either overpaying for services you don't need or
-                  underpaying for insufficient scope. We design each engagement
-                  around your specific challenges, goals, and budget.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-2 border-border">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-heading text-foreground mb-3">
-                  What's the smallest engagement you offer?
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  We offer focused 1-day workshops and consultations. Perfect
-                  for specific challenges or initial assessments before larger
-                  commitments.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-2 border-border">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-heading text-foreground mb-3">
-                  Do you offer payment plans?
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Yes. For larger engagements, we offer milestone-based
-                  payment terms. For Fractional CAIO and Advisory Retainers,
-                  we invoice monthly.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-2 border-border">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-heading text-foreground mb-3">
-                  What if the project scope changes?
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  We build flexibility into every engagement. If scope changes,
-                  we'll discuss options: adjust deliverables, phase work, or
-                  amend the agreement. You'll never be surprised by costs.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-2 border-border">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-heading text-foreground mb-3">
-                  Do you work with startups or only established companies?
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  We work with both. For early-stage startups, we offer
-                  lighter-touch advisory and focused sprints. For established
-                  businesses, we provide comprehensive strategy and
-                  implementation support.
-                </p>
-              </CardContent>
-            </Card>
+            {faqs.map((faq) => (
+              <Card key={faq.q} className="bg-card border-2 border-border">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-heading text-foreground mb-3">{faq.q}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{faq.a}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

@@ -9,7 +9,10 @@ interface UseScrollRevealOptions {
 
 const reducedMotion =
   typeof window !== 'undefined' &&
+  typeof window.matchMedia === 'function' &&
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const hasIO = typeof IntersectionObserver !== 'undefined';
 
 export const useScrollReveal = (options: UseScrollRevealOptions = {}) => {
   const {
@@ -18,10 +21,10 @@ export const useScrollReveal = (options: UseScrollRevealOptions = {}) => {
     triggerOnce = REVEAL_DEFAULTS.triggerOnce,
   } = options;
   const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(reducedMotion);
+  const [isVisible, setIsVisible] = useState(reducedMotion || !hasIO);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedMotion || !hasIO) return;
 
     const element = ref.current;
     if (!element) return;
@@ -56,12 +59,12 @@ export const useStaggeredReveal = (itemCount: number, options: UseScrollRevealOp
   } = options;
   const containerRef = useRef<HTMLDivElement>(null);
   const [visibleItems, setVisibleItems] = useState<boolean[]>(
-    () => new Array(itemCount).fill(reducedMotion)
+    () => new Array(itemCount).fill(reducedMotion || !hasIO)
   );
   const timersRef = useRef<number[]>([]);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedMotion || !hasIO) return;
 
     const container = containerRef.current;
     if (!container) return;

@@ -11,9 +11,9 @@ import { Link } from "react-router-dom";
 import { useScrollReveal, useStaggeredReveal } from "@/hooks/useScrollReveal";
 
 const WhyWorkWithErik = () => {
-  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal({ threshold: 0.2 });
-  const { containerRef: reasonsRef, visibleItems: reasonsVisible } = useStaggeredReveal(4, { threshold: 0.1 });
-  const { ref: diffRef, isVisible: diffVisible } = useScrollReveal({ threshold: 0.2 });
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { containerRef: reasonsRef, visibleItems: reasonsVisible } = useStaggeredReveal(4);
+  const { ref: diffRef, isVisible: diffVisible } = useScrollReveal();
 
   const reasons = [
     {

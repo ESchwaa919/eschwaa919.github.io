@@ -213,14 +213,14 @@ const strategyMistakes = [
 
 const AIStrategy = () => {
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: whatRef, isVisible: whatVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: pillarsRef, isVisible: pillarsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: processRef, isVisible: processVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: mistakesRef, isVisible: mistakesVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: vsImplementRef, isVisible: vsImplementVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: whatRef, isVisible: whatVisible } = useScrollReveal();
+  const { ref: pillarsRef, isVisible: pillarsVisible } = useScrollReveal();
+  const { ref: processRef, isVisible: processVisible } = useScrollReveal();
+  const { ref: mistakesRef, isVisible: mistakesVisible } = useScrollReveal();
+  const { ref: vsImplementRef, isVisible: vsImplementVisible } = useScrollReveal();
+  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
 
   return (
     <div className="min-h-screen pt-32 pb-20">

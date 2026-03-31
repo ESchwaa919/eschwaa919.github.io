@@ -23,11 +23,11 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Services = () => {
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: coreRef, isVisible: coreVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: productsRef, isVisible: productsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: modelsRef, isVisible: modelsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: coreRef, isVisible: coreVisible } = useScrollReveal();
+  const { ref: productsRef, isVisible: productsVisible } = useScrollReveal();
+  const { ref: modelsRef, isVisible: modelsVisible } = useScrollReveal();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
   // Core service offerings
   const coreServices = [
     {

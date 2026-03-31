@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import SEOHead from "@/components/SEOHead"
 import { StructuredData, createProductSchema, createFAQSchema } from "@/components/StructuredData"
@@ -24,6 +24,7 @@ import cyberGrid from "@/assets/cyber-grid.jpg"
 import { useLeadCapture } from "@/hooks/useLeadCapture"
 import { LeadCaptureModal } from "@/components/LeadCaptureModal"
 import { useScrollReveal } from "@/hooks/useScrollReveal"
+import { useCounterReveal } from "@/hooks/useCounterReveal"
 
 const AILMS = () => {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null)
@@ -40,42 +41,9 @@ const AILMS = () => {
     closeModal,
   } = useLeadCapture()
 
-  // Animated counter hook
-  const useCounter = (target: number, duration = 2000) => {
-    const [count, setCount] = useState(0)
-    const [hasAnimated, setHasAnimated] = useState(false)
-    const ref = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting && !hasAnimated) {
-            setHasAnimated(true)
-            let start = 0
-            const increment = target / (duration / 16)
-            const timer = setInterval(() => {
-              start += increment
-              if (start >= target) {
-                setCount(target)
-                clearInterval(timer)
-              } else {
-                setCount(Math.floor(start))
-              }
-            }, 16)
-          }
-        },
-        { threshold: 0.5 }
-      )
-      if (ref.current) observer.observe(ref.current)
-      return () => observer.disconnect()
-    }, [target, duration, hasAnimated])
-
-    return { count, ref }
-  }
-
-  const metric1 = useCounter(70)
-  const metric2 = useCounter(30)
-  const metric3 = useCounter(85)
+  const metric1 = useCounterReveal(70)
+  const metric2 = useCounterReveal(30)
+  const metric3 = useCounterReveal(85)
 
   const handleDownloadWhitepaper = () => {
     checkAndDownload(

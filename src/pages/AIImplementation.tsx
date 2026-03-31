@@ -30,14 +30,14 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const AIImplementation = () => {
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: first90Ref, isVisible: first90Visible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: pilotRef, isVisible: pilotVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: howWeWorkRef, isVisible: howWeWorkVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: techStackRef, isVisible: techStackVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: ownershipRef, isVisible: ownershipVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: first90Ref, isVisible: first90Visible } = useScrollReveal();
+  const { ref: pilotRef, isVisible: pilotVisible } = useScrollReveal();
+  const { ref: howWeWorkRef, isVisible: howWeWorkVisible } = useScrollReveal();
+  const { ref: techStackRef, isVisible: techStackVisible } = useScrollReveal();
+  const { ref: ownershipRef, isVisible: ownershipVisible } = useScrollReveal();
+  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
 
   // The First 90 Days - EMBED methodology
   const implementationPhases = [

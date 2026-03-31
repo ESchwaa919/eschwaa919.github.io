@@ -25,12 +25,12 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Process = () => {
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: whyRef, isVisible: whyVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: mapRef, isVisible: mapVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: pathsRef, isVisible: pathsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: differentRef, isVisible: differentVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: whyRef, isVisible: whyVisible } = useScrollReveal();
+  const { ref: mapRef, isVisible: mapVisible } = useScrollReveal();
+  const { ref: pathsRef, isVisible: pathsVisible } = useScrollReveal();
+  const { ref: differentRef, isVisible: differentVisible } = useScrollReveal();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
   // The 3 stages with comprehensive details
   const stages = [
     {

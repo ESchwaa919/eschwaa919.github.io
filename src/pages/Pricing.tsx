@@ -19,11 +19,11 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Pricing = () => {
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: modelsRef, isVisible: modelsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: addonsRef, isVisible: addonsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: modelsRef, isVisible: modelsVisible } = useScrollReveal();
+  const { ref: addonsRef, isVisible: addonsVisible } = useScrollReveal();
+  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
   const consultingRates = [
     {
       label: "Daily", price: "£1,500", subtitle: "per day", highlighted: false,

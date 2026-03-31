@@ -5,7 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { PILLAR_PAGES } from "@/constants/pillarPages";
 
 const FinalCTA = () => {
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.2 });
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
 
   const trustPoints = [
     "Flexible engagement models",

@@ -71,10 +71,10 @@ const ROICalculator = () => {
   const [showResults, setShowResults] = useState(false);
 
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal({ threshold: 0.1, delay: 100 });
-  const { ref: formRef, isVisible: formVisible } = useScrollReveal({ threshold: 0.1, delay: 200 });
-  const { ref: resultsRef, isVisible: resultsVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal();
+  const { ref: formRef, isVisible: formVisible } = useScrollReveal();
+  const { ref: resultsRef, isVisible: resultsVisible } = useScrollReveal();
 
   // Lead capture modal state
   const [showLeadModal, setShowLeadModal] = useState(false);

@@ -4,8 +4,8 @@ import { GraduationCap, Map, Rocket, ArrowRight, ChevronRight } from "lucide-rea
 import { useScrollReveal, useStaggeredReveal } from "@/hooks/useScrollReveal";
 
 const ProcessOverview = () => {
-  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal({ threshold: 0.2 });
-  const { containerRef, visibleItems } = useStaggeredReveal(3, { threshold: 0.1 });
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { containerRef, visibleItems } = useStaggeredReveal(3);
 
   const stages = [
     {

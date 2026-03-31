@@ -7,10 +7,9 @@ interface UseScrollRevealOptions {
   triggerOnce?: boolean;
 }
 
-function prefersReducedMotion(): boolean {
-  return typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
+const reducedMotion =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export const useScrollReveal = (options: UseScrollRevealOptions = {}) => {
   const {
@@ -19,13 +18,10 @@ export const useScrollReveal = (options: UseScrollRevealOptions = {}) => {
     triggerOnce = REVEAL_DEFAULTS.triggerOnce,
   } = options;
   const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(() => prefersReducedMotion());
+  const [isVisible, setIsVisible] = useState(reducedMotion);
 
   useEffect(() => {
-    if (prefersReducedMotion()) {
-      setIsVisible(true);
-      return;
-    }
+    if (reducedMotion) return;
 
     const element = ref.current;
     if (!element) return;
@@ -60,15 +56,12 @@ export const useStaggeredReveal = (itemCount: number, options: UseScrollRevealOp
   } = options;
   const containerRef = useRef<HTMLDivElement>(null);
   const [visibleItems, setVisibleItems] = useState<boolean[]>(
-    () => new Array(itemCount).fill(prefersReducedMotion())
+    () => new Array(itemCount).fill(reducedMotion)
   );
   const timersRef = useRef<number[]>([]);
 
   useEffect(() => {
-    if (prefersReducedMotion()) {
-      setVisibleItems(new Array(itemCount).fill(true));
-      return;
-    }
+    if (reducedMotion) return;
 
     const container = containerRef.current;
     if (!container) return;

@@ -68,8 +68,8 @@ const stories = [
 ];
 
 const ClientStories = () => {
-  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal({ threshold: 0.2 });
-  const { containerRef: storiesRef, visibleItems: storiesVisible } = useStaggeredReveal(4, { threshold: 0.1 });
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { containerRef: storiesRef, visibleItems: storiesVisible } = useStaggeredReveal(4);
 
   return (
     <section className="py-24 lg:py-32 relative">

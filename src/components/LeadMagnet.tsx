@@ -8,7 +8,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 const LeadMagnet = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const { ref: sectionRef, isVisible: sectionVisible } = useScrollReveal({ threshold: 0.2 });
+  const { ref: sectionRef, isVisible: sectionVisible } = useScrollReveal();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

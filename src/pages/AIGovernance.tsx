@@ -31,13 +31,13 @@ import {
 
 const AIGovernance = () => {
   // Scroll reveal hooks for each section
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: whyRef, isVisible: whyVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: frameworkRef, isVisible: frameworkVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: standardsRef, isVisible: standardsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: integrationRef, isVisible: integrationVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: whyRef, isVisible: whyVisible } = useScrollReveal();
+  const { ref: frameworkRef, isVisible: frameworkVisible } = useScrollReveal();
+  const { ref: standardsRef, isVisible: standardsVisible } = useScrollReveal();
+  const { ref: integrationRef, isVisible: integrationVisible } = useScrollReveal();
+  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
 
   // 10-Day Governance Framework
   const governanceFramework = [

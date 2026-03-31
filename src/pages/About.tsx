@@ -23,12 +23,12 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const About = () => {
   // Scroll reveal hooks for each section
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: journeyRef, isVisible: journeyVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: visionRef, isVisible: visionVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: philosophyRef, isVisible: philosophyVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: differentiatorRef, isVisible: differentiatorVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: thoughtLeadershipRef, isVisible: thoughtLeadershipVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: journeyRef, isVisible: journeyVisible } = useScrollReveal();
+  const { ref: visionRef, isVisible: visionVisible } = useScrollReveal();
+  const { ref: philosophyRef, isVisible: philosophyVisible } = useScrollReveal();
+  const { ref: differentiatorRef, isVisible: differentiatorVisible } = useScrollReveal();
+  const { ref: thoughtLeadershipRef, isVisible: thoughtLeadershipVisible } = useScrollReveal();
 
   const experience = [
     {

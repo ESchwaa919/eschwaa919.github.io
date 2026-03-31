@@ -54,12 +54,12 @@ const SectionNav = ({ currentSection }: { currentSection: string }) => {
 
 const Resources = () => {
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: toolsRef, isVisible: toolsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: insightsRef, isVisible: insightsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: downloadsRef, isVisible: downloadsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: mediaRef, isVisible: mediaVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: toolsRef, isVisible: toolsVisible } = useScrollReveal();
+  const { ref: insightsRef, isVisible: insightsVisible } = useScrollReveal();
+  const { ref: downloadsRef, isVisible: downloadsVisible } = useScrollReveal();
+  const { ref: mediaRef, isVisible: mediaVisible } = useScrollReveal();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
   const {
     showModal,
     isSubmitting,

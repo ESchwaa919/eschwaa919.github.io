@@ -1,7 +1,7 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const TrustBar = () => {
-  const { ref: sectionRef, isVisible: sectionVisible } = useScrollReveal({ threshold: 0.2 });
+  const { ref: sectionRef, isVisible: sectionVisible } = useScrollReveal();
 
   const companies = [
     {

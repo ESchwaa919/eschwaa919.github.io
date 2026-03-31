@@ -58,8 +58,8 @@ const channels = [
 ];
 
 const ContentChannels = () => {
-  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal({ threshold: 0.2 });
-  const { containerRef: cardsRef, visibleItems: cardsVisible } = useStaggeredReveal(3, { threshold: 0.1 });
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { containerRef: cardsRef, visibleItems: cardsVisible } = useStaggeredReveal(3);
 
   return (
     <section className="py-24 lg:py-32 relative section-glow">

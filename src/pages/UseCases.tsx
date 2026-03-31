@@ -283,13 +283,13 @@ const firstProjects = [
 
 const UseCases = () => {
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: functionsRef, isVisible: functionsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: prioritiseRef, isVisible: prioritiseVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: portfolioRef, isVisible: portfolioVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: firstProjectsRef, isVisible: firstProjectsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: functionsRef, isVisible: functionsVisible } = useScrollReveal();
+  const { ref: prioritiseRef, isVisible: prioritiseVisible } = useScrollReveal();
+  const { ref: portfolioRef, isVisible: portfolioVisible } = useScrollReveal();
+  const { ref: firstProjectsRef, isVisible: firstProjectsVisible } = useScrollReveal();
+  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
 
   return (
     <div className="min-h-screen pb-20">

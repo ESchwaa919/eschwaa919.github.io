@@ -255,14 +255,14 @@ const literacyCosts = [
 
 const AILiteracy = () => {
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: whyRef, isVisible: whyVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: conceptsRef, isVisible: conceptsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: frameworkRef, isVisible: frameworkVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: workshopsRef, isVisible: workshopsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: assessmentRef, isVisible: assessmentVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: whyRef, isVisible: whyVisible } = useScrollReveal();
+  const { ref: conceptsRef, isVisible: conceptsVisible } = useScrollReveal();
+  const { ref: frameworkRef, isVisible: frameworkVisible } = useScrollReveal();
+  const { ref: workshopsRef, isVisible: workshopsVisible } = useScrollReveal();
+  const { ref: assessmentRef, isVisible: assessmentVisible } = useScrollReveal();
+  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
 
   return (
     <div className="min-h-screen pt-32 pb-20">

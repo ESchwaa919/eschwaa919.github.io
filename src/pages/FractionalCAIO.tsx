@@ -71,13 +71,13 @@ const fractionalCAIOService = createServiceSchema([
 
 const FractionalCAIO = () => {
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: whyRef, isVisible: whyVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: whatRef, isVisible: whatVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: howRef, isVisible: howVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: resultsRef, isVisible: resultsVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: whyRef, isVisible: whyVisible } = useScrollReveal();
+  const { ref: whatRef, isVisible: whatVisible } = useScrollReveal();
+  const { ref: howRef, isVisible: howVisible } = useScrollReveal();
+  const { ref: resultsRef, isVisible: resultsVisible } = useScrollReveal();
+  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
 
   // Why SMEs choose fractional
   const whyFractional = [

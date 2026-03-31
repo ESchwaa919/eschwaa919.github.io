@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { useScrollReveal, useStaggeredReveal } from "@/hooks/useScrollReveal";
 
 const TrustSignals = () => {
-  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal({ threshold: 0.2 });
-  const { containerRef: testimonialsRef, visibleItems: testimonialsVisible } = useStaggeredReveal(4, { threshold: 0.1 });
-  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal({ threshold: 0.3 });
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { containerRef: testimonialsRef, visibleItems: testimonialsVisible } = useStaggeredReveal(4);
+  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal();
 
   const testimonials = [
     {

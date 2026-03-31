@@ -41,9 +41,9 @@ const PromptFluency = () => {
   } = useLeadCapture()
 
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 })
-  const { ref: whyRef, isVisible: whyVisible } = useScrollReveal({ threshold: 0.1 })
-  const { ref: crispRef, isVisible: crispVisible } = useScrollReveal({ threshold: 0.1 })
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal()
+  const { ref: whyRef, isVisible: whyVisible } = useScrollReveal()
+  const { ref: crispRef, isVisible: crispVisible } = useScrollReveal()
 
   const handleDownloadClick = () => {
     checkAndDownload(

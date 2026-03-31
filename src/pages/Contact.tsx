@@ -60,9 +60,9 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: formRef, isVisible: formVisible } = useScrollReveal({ threshold: 0.1, delay: 200 });
-  const { ref: calendlyRef, isVisible: calendlyVisible } = useScrollReveal({ threshold: 0.1, delay: 300 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: formRef, isVisible: formVisible } = useScrollReveal();
+  const { ref: calendlyRef, isVisible: calendlyVisible } = useScrollReveal();
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),

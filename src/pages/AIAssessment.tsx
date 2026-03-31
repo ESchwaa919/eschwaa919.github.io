@@ -30,9 +30,9 @@ const AIAssessment = () => {
   const [showEmailCapture, setShowEmailCapture] = useState(false);
 
   // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.1 });
-  const { ref: featuresRef, isVisible: featuresVisible } = useScrollReveal({ threshold: 0.1, delay: 200 });
-  const { ref: resultsRef, isVisible: resultsVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: featuresRef, isVisible: featuresVisible } = useScrollReveal();
+  const { ref: resultsRef, isVisible: resultsVisible } = useScrollReveal();
 
   const [formData, setFormData] = useState({
     firstName: "",

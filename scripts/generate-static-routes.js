@@ -32,6 +32,13 @@ const routes = [
   '/privacy',
   '/terms',
   '/courses',
+  // Pillar pages (SEO/GEO)
+  '/fractional-caio',
+  '/ai-literacy',
+  '/ai-strategy',
+  '/ai-governance',
+  '/ai-implementation',
+  '/use-cases',
 ];
 
 let created = 0;

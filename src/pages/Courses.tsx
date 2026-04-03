@@ -3,7 +3,29 @@ import { Calendar, MapPin, Clock, Users, Rocket, ArrowRight } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import SEOHead from "@/components/SEOHead";
+import { StructuredData, createEventSchema, createCourseSchema } from "@/components/StructuredData";
 import CourseTestimonials from "@/components/CourseTestimonials";
+
+const courseEventSchema = createEventSchema({
+  name: "Ship an App in a Day – AI Workshop",
+  description: "Build a real, working application using AI in just one day. Hands-on workshop in London teaching you to collaborate effectively with AI tools. No coding experience required.",
+  startDate: "2026-04-17T09:00:00+01:00",
+  endDate: "2026-04-17T17:00:00+01:00",
+  url: "https://theaiexpert.ai/courses",
+  locationName: "The Mandeville Hotel",
+  locationAddress: "Mandeville Place",
+  offers: {
+    price: "0",
+    currency: "GBP",
+    url: "https://lu.ma/event/evt-zbJYSpnyFKU8pCv",
+  },
+});
+
+const courseSchema = createCourseSchema({
+  name: "Ship an App in a Day",
+  description: "A one-day hands-on workshop teaching participants to build real applications using AI. Covers AI-assisted development, prompt engineering for code generation, and deploying functional apps. Suitable for non-techies and developers alike.",
+  url: "https://theaiexpert.ai/courses",
+});
 
 const Courses = () => {
   // Load Luma checkout script
@@ -26,6 +48,8 @@ const Courses = () => {
         keywords="AI workshop, ship an app, AI course London, learn AI, build with AI, Claude, ChatGPT, AI training"
         canonicalUrl="/courses"
       />
+      <StructuredData schema={courseEventSchema} />
+      <StructuredData schema={courseSchema} />
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 mb-16">

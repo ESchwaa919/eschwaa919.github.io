@@ -118,4 +118,90 @@ export function createFAQSchema(faqs: Array<{ question: string; answer: string }
   }
 }
 
+export function createEventSchema(event: {
+  name: string
+  description: string
+  startDate: string
+  endDate: string
+  url: string
+  locationName: string
+  locationAddress: string
+  organizerName?: string
+  organizerUrl?: string
+  image?: string
+  offers?: { price: string; currency: string; url: string; availability?: string }
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": event.name,
+    "description": event.description,
+    "startDate": event.startDate,
+    "endDate": event.endDate,
+    "url": event.url,
+    "image": event.image || "https://theaiexpert.ai/theaiexpert-transparent-logo.png",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": event.locationName,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": event.locationAddress,
+        "addressLocality": "London",
+        "addressCountry": "GB"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": event.organizerName || "The AI Expert",
+      "url": event.organizerUrl || "https://theaiexpert.ai"
+    },
+    ...(event.offers && {
+      "offers": {
+        "@type": "Offer",
+        "price": event.offers.price,
+        "priceCurrency": event.offers.currency,
+        "url": event.offers.url,
+        "availability": event.offers.availability || "https://schema.org/InStock"
+      }
+    })
+  }
+}
+
+export function createCourseSchema(course: {
+  name: string
+  description: string
+  url: string
+  providerName?: string
+  providerUrl?: string
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": course.name,
+    "description": course.description,
+    "url": course.url,
+    "provider": {
+      "@type": "Organization",
+      "name": course.providerName || "The AI Expert",
+      "url": course.providerUrl || "https://theaiexpert.ai"
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "https://schema.org/OnSite",
+      "location": {
+        "@type": "Place",
+        "name": "The Mandeville Hotel",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Mandeville Place",
+          "addressLocality": "London",
+          "addressCountry": "GB"
+        }
+      }
+    }
+  }
+}
+
 export default StructuredData

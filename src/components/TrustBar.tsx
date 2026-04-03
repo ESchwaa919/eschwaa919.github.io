@@ -27,6 +27,16 @@ const TrustBar = () => {
     { value: "Global", label: "Enterprise Scale", color: "secondary" },
   ];
 
+  const trainingClients = [
+    "Spotify",
+    "The Economist",
+    "London Business School",
+    "Henley Business School",
+    "Kier Group",
+    "Accredible",
+    "IF.se",
+  ];
+
   return (
     <section
       ref={sectionRef}
@@ -80,6 +90,27 @@ const TrustBar = () => {
               </span>
             </div>
           ))}
+        </div>
+
+        {/* Training Clients */}
+        <div
+          className={`text-center mb-10 transition-all duration-300 delay-200 ${
+            sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
+          <p className="text-sm font-heading text-secondary uppercase tracking-widest mb-4">
+            AI Training Delivered To
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 max-w-3xl mx-auto">
+            {trainingClients.map((client, index) => (
+              <span
+                key={index}
+                className="text-sm text-muted-foreground/80 hover:text-foreground transition-colors"
+              >
+                {client}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Stats Bar */}

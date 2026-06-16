@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { Calendar, MapPin, Clock, Users, Rocket, ArrowRight } from "lucide-react";
+import { Calendar, MapPin, Clock, Rocket, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import SEOHead from "@/components/SEOHead";
@@ -9,15 +8,15 @@ import CourseTestimonials from "@/components/CourseTestimonials";
 const courseEventSchema = createEventSchema({
   name: "Ship an App in a Day – AI Workshop",
   description: "Build a real, working application using AI in just one day. Hands-on workshop in London teaching you to collaborate effectively with AI tools. No coding experience required.",
-  startDate: "2026-04-17T09:00:00+01:00",
-  endDate: "2026-04-17T17:00:00+01:00",
+  startDate: "2026-07-07T09:00:00+01:00",
+  endDate: "2026-07-07T17:00:00+01:00",
   url: "https://theaiexpert.ai/courses",
   locationName: "The Mandeville Hotel",
   locationAddress: "Mandeville Place",
   offers: {
     price: "0",
     currency: "GBP",
-    url: "https://lu.ma/event/evt-zbJYSpnyFKU8pCv",
+    url: "https://luma.com/wivak21g",
   },
 });
 
@@ -28,18 +27,6 @@ const courseSchema = createCourseSchema({
 });
 
 const Courses = () => {
-  // Load Luma checkout script
-  useEffect(() => {
-    const existingScript = document.getElementById("luma-checkout");
-    if (!existingScript) {
-      const script = document.createElement("script");
-      script.id = "luma-checkout";
-      script.src = "https://embed.lu.ma/checkout-button.js";
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }, []);
-
   return (
     <div className="min-h-screen pt-32 pb-20">
       <SEOHead
@@ -80,7 +67,8 @@ const Courses = () => {
                 <Calendar className="w-5 h-5 text-primary" />
                 <div className="text-left">
                   <p className="text-xs text-muted-foreground">Date</p>
-                  <p className="font-semibold">Thu, Apr 17, 2026</p>
+                  <p className="font-semibold">Multiple dates</p>
+                  <p className="text-xs text-muted-foreground">See calendar below</p>
                 </div>
               </CardContent>
             </Card>
@@ -112,40 +100,56 @@ const Courses = () => {
         </div>
       </section>
 
-      {/* Registration CTA */}
+      {/* Upcoming Dates / Calendar */}
       <section className="container mx-auto px-4 mb-16">
-        <div className="max-w-xl mx-auto">
-          <Card className="card-enhanced border-primary/30">
-            <CardContent className="p-8 text-center">
-              <Users className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h2 className="text-2xl font-heading mb-2">Reserve Your Spot</h2>
-              <p className="text-muted-foreground mb-6">
-                Limited seats available. Register now to secure your place.
-              </p>
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30">
+            <Calendar className="w-4 h-4 text-primary animate-pulse" />
+            <span className="text-sm font-heading text-primary tracking-wider">
+              UPCOMING DATES
+            </span>
+          </div>
 
-              {/* Luma Checkout Button */}
-              <a
-                href="https://lu.ma/event/evt-zbJYSpnyFKU8pCv"
-                className="luma-checkout--button inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 py-4 rounded-lg shadow-cyber transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.4)]"
-                data-luma-action="checkout"
-                data-luma-event-id="evt-zbJYSpnyFKU8pCv"
-              >
-                Register for Event
-                <ArrowRight className="w-5 h-5" />
-              </a>
+          <h2 className="text-3xl md:text-4xl font-heading leading-tight">
+            <span className="text-foreground">Register for an </span>
+            <span className="text-gradient-animate glow-green">Upcoming Workshop</span>
+          </h2>
 
-              <p className="text-sm text-muted-foreground mt-4">
-                <a
-                  href="https://luma.com/dbfz9lvs"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline"
-                >
-                  View full event details on Luma →
-                </a>
-              </p>
-            </CardContent>
-          </Card>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Limited seats available at each session. Pick a date that works for you and
+            secure your place below.
+          </p>
+
+          {/* Primary CTA — next workshop */}
+          <Button
+            size="lg"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-cyber"
+            asChild
+          >
+            <a
+              href="https://luma.com/wivak21g"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Register for the Next Workshop
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </a>
+          </Button>
+
+          {/* Luma Calendar Embed */}
+          <div className="glass border-primary/20 rounded-lg overflow-hidden p-2 max-w-3xl mx-auto">
+            <iframe
+              src="https://luma.com/embed/calendar/cal-T2xNxOfEHZzazET/events"
+              width="100%"
+              height="600"
+              frameBorder="0"
+              style={{ border: "1px solid #bfcbda88", borderRadius: "8px", minHeight: "600px" }}
+              allowFullScreen
+              aria-hidden="false"
+              tabIndex={0}
+              title="The AI Expert — Upcoming Events"
+            />
+          </div>
         </div>
       </section>
 
@@ -171,10 +175,9 @@ const Courses = () => {
             asChild
           >
             <a
-              href="https://lu.ma/event/evt-zbJYSpnyFKU8pCv"
-              className="luma-checkout--button"
-              data-luma-action="checkout"
-              data-luma-event-id="evt-zbJYSpnyFKU8pCv"
+              href="https://luma.com/wivak21g"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Register Now
               <ArrowRight className="w-5 h-5 ml-2" />

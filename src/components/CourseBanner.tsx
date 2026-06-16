@@ -31,8 +31,8 @@ const CourseBanner = () => {
           <Rocket className="w-4 h-4 text-primary animate-pulse hidden sm:block" />
           <span className="text-foreground font-medium">
             <span className="text-primary font-heading">Ship an App in a Day</span>
-            <span className="hidden sm:inline"> • Thu, Apr 17 • London</span>
-            <span className="sm:hidden"> • Apr 17</span>
+            <span className="hidden sm:inline"> • Tue, Jul 7 • London</span>
+            <span className="sm:hidden"> • Jul 7</span>
           </span>
           <Link
             to="/courses"

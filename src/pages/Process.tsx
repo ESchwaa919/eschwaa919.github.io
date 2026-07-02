@@ -791,7 +791,8 @@ const Process = () => {
                     spec-driven, agentic delivery lifecycle: every change starts
                     as a written specification and ends as verified behaviour in
                     the real environment, with independent adversarial review
-                    before anything lands. Explore the full 11-stage method.
+                    before anything lands. Meet Rune, our lead AI orchestrator,
+                    and the full 11-stage delivery method it runs.
                   </p>
                   <Button
                     size="lg"

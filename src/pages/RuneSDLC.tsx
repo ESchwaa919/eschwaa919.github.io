@@ -214,6 +214,7 @@ const principles = [
 
 const RuneSDLC = () => {
   const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  const { ref: whoRef, isVisible: whoVisible } = useScrollReveal();
   const { ref: lifecycleRef, isVisible: lifecycleVisible } = useScrollReveal();
   const { ref: teamRef, isVisible: teamVisible } = useScrollReveal();
   const { ref: protocolRef, isVisible: protocolVisible } = useScrollReveal();
@@ -283,6 +284,50 @@ const RuneSDLC = () => {
               </span>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Who is Rune? */}
+      <section className="container mx-auto px-4 mb-24" id="who">
+        <div
+          ref={whoRef}
+          className={`max-w-4xl mx-auto transition-all duration-300 ${
+            whoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          <Card className="glass-card border-l-4 border-l-primary border-y border-r border-y-primary/20 border-r-primary/20">
+            <CardContent className="p-8 md:p-10">
+              <div className="flex flex-col md:flex-row items-start gap-6">
+                <div className="flex flex-col items-center gap-3 flex-shrink-0">
+                  <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/30 animate-pulse-glow-slow">
+                    <Compass className="w-10 h-10 text-primary" />
+                  </div>
+                  <span className="text-[0.6rem] font-heading tracking-widest uppercase text-primary border border-primary/40 rounded px-2 py-0.5">
+                    Lead Orchestrator
+                  </span>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-heading text-primary tracking-wider mb-2">
+                    WHO IS RUNE?
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+                    Rune is the name we gave the lead orchestrator at the centre of
+                    this process: a persistent AI agent that acts as a second brain
+                    to the human tech lead. Rune does not write production code. It
+                    directs the per-project orchestrators and worker agents, tracks
+                    what was promised against what actually landed, enforces the
+                    protocol on every change, and brings the human only the
+                    decisions that genuinely need human judgment.
+                  </p>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    Naming the role matters. It makes the orchestrator an
+                    accountable member of the team, with a defined remit and
+                    standing rules, rather than an anonymous automation.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 

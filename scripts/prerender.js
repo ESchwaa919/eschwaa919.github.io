@@ -22,6 +22,7 @@ const ROUTES = [
   '/',
   '/about',
   '/process',
+  '/process/rune-sdlc',
   '/services',
   '/resources',
   '/pricing',

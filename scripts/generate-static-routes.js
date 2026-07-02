@@ -21,6 +21,7 @@ const indexHtml = join(distDir, 'index.html');
 const routes = [
   '/about',
   '/process',
+  '/process/rune-sdlc',
   '/services',
   '/resources',
   '/pricing',

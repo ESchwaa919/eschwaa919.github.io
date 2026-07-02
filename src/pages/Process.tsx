@@ -804,6 +804,18 @@ const Process = () => {
                       <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
+                  <p className="text-sm text-muted-foreground mt-4">
+                    It is also available as an open-source, MIT-licensed Claude Code plugin.{" "}
+                    <a
+                      href="https://github.com/The-Ai-Expert/discipline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-secondary hover:text-secondary/80 transition-colors"
+                    >
+                      View it on GitHub
+                    </a>
+                    .
+                  </p>
                 </div>
               </div>
             </CardContent>

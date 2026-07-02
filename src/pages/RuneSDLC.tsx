@@ -22,6 +22,7 @@ import {
   ArrowRight,
   Sparkles,
   Calendar,
+  Github,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { StructuredData, organizationSchema } from "@/components/StructuredData";
@@ -530,6 +531,62 @@ const RuneSDLC = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Run this discipline yourself (open source) */}
+      <section className="container mx-auto px-4 py-12" id="open-source">
+        <div className="relative max-w-4xl mx-auto">
+          {/* Cyber corners */}
+          <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-secondary/60" />
+          <div className="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-secondary/60" />
+          <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-secondary/60" />
+          <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-secondary/60" />
+
+          <Card className="glass-card border border-secondary/30 shadow-glow-card">
+            <CardContent className="p-10">
+              <div className="flex flex-col md:flex-row items-start gap-6">
+                <div className="w-16 h-16 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0 border border-secondary/30">
+                  <Github className="w-8 h-8 text-secondary" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-3 flex-wrap">
+                    <div className="text-sm text-secondary font-semibold uppercase tracking-wide">
+                      Open Source
+                    </div>
+                    <span className="text-[0.6rem] font-heading tracking-widest uppercase text-secondary border border-secondary/40 rounded px-2 py-0.5">
+                      MIT Licensed
+                    </span>
+                  </div>
+                  <h2 className="text-3xl font-heading text-foreground mb-4">
+                    Run this discipline yourself
+                  </h2>
+                  <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                    The principles and guardrails on this page are packaged as an
+                    open-source Claude Code plugin: hooks, skills, and dispatch and
+                    verification commands, MIT licensed. Explore the repository and
+                    adopt the method in your own team.
+                  </p>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="group border-2 border-secondary/50 text-secondary hover:bg-secondary/10 hover:border-secondary font-semibold px-8 py-6 transition-all duration-300 hover:scale-105"
+                    asChild
+                  >
+                    <a
+                      href="https://github.com/The-Ai-Expert/discipline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="w-5 h-5 mr-2" />
+                      The Ai Expert Discipline on GitHub
+                      <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 

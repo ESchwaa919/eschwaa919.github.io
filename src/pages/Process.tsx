@@ -764,6 +764,53 @@ const Process = () => {
         </div>
       </section>
 
+      {/* How We Build: The Rune SDLC */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="relative max-w-4xl mx-auto">
+          {/* Cyber corners */}
+          <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-secondary/60" />
+          <div className="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-secondary/60" />
+          <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-secondary/60" />
+          <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-secondary/60" />
+
+          <Card className="glass-card border border-secondary/30 shadow-glow-card">
+            <CardContent className="p-10">
+              <div className="flex flex-col md:flex-row items-start gap-6">
+                <div className="w-16 h-16 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0 border border-secondary/30">
+                  <Code className="w-8 h-8 text-secondary" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-sm text-secondary font-semibold uppercase tracking-wide mb-2">
+                    How We Build
+                  </div>
+                  <h2 className="text-3xl font-heading text-foreground mb-4">
+                    The Rune SDLC
+                  </h2>
+                  <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                    When we build the systems behind your strategy, we run a
+                    spec-driven, agentic delivery lifecycle: every change starts
+                    as a written specification and ends as verified behaviour in
+                    the real environment, with independent adversarial review
+                    before anything lands. Explore the full 11-stage method.
+                  </p>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="group border-2 border-secondary/50 text-secondary hover:bg-secondary/10 hover:border-secondary font-semibold px-8 py-6 transition-all duration-300 hover:scale-105"
+                    asChild
+                  >
+                    <Link to="/process/rune-sdlc">
+                      Explore The Rune SDLC
+                      <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Interactive Tools CTA */}
       <section className="container mx-auto px-4 py-20">
         <div

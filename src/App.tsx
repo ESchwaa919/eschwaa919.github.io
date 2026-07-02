@@ -12,6 +12,7 @@ import Index from "./pages/Index";
 import Courses from "./pages/Courses";
 import About from "./pages/About";
 import Process from "./pages/Process";
+import RuneSDLC from "./pages/RuneSDLC";
 import Services from "./pages/Services";
 import Resources from "./pages/Resources";
 import Pricing from "./pages/Pricing";
@@ -50,6 +51,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/process" element={<Process />} />
+          <Route path="/process/rune-sdlc" element={<RuneSDLC />} />
           <Route path="/the-process" element={<Navigate to="/process" replace />} />
           <Route path="/services" element={<Services />} />
           <Route path="/resources" element={<Resources />} />

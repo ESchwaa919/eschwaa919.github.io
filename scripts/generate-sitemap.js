@@ -26,6 +26,7 @@ const routes = [
   { path: '/about',           priority: '0.9', changefreq: 'monthly' },
   { path: '/services',        priority: '0.9', changefreq: 'monthly' },
   { path: '/process',         priority: '0.9', changefreq: 'monthly' },
+  { path: '/process/rune-sdlc', priority: '0.7', changefreq: 'monthly' },
   { path: '/pricing',         priority: '0.8', changefreq: 'monthly' },
   { path: '/resources',       priority: '0.8', changefreq: 'weekly' },
   { path: '/contact',         priority: '0.7', changefreq: 'monthly' },

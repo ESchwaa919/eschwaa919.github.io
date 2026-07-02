@@ -15,7 +15,7 @@ organisations in the UK, Europe, and worldwide (remote).
 - Services: https://theaiexpert.ai/services
 - Pricing: https://theaiexpert.ai/pricing
 - Process: https://theaiexpert.ai/process
-- The Rune SDLC (spec-driven agentic delivery method): https://theaiexpert.ai/process/rune-sdlc
+- The Ai Expert SDLC (spec-driven agentic delivery method): https://theaiexpert.ai/process/sdlc
 - Resources: https://theaiexpert.ai/resources
 - Contact: https://theaiexpert.ai/contact
 - Courses (Ship an App in a Day): https://theaiexpert.ai/courses

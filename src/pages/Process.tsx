@@ -6,7 +6,6 @@ import {
   Target,
   Rocket,
   ArrowRight,
-  CheckCircle2,
   Calendar,
   Brain,
   Map,
@@ -21,18 +20,17 @@ import {
   Sparkles,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import StageSwitcher, { type ProcessStage } from "@/components/StageSwitcher";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Process = () => {
-  // Scroll reveal hooks
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
+  // Scroll reveal hooks (progressive enhancement on below-fold sections)
   const { ref: whyRef, isVisible: whyVisible } = useScrollReveal();
-  const { ref: mapRef, isVisible: mapVisible } = useScrollReveal();
   const { ref: pathsRef, isVisible: pathsVisible } = useScrollReveal();
   const { ref: differentRef, isVisible: differentVisible } = useScrollReveal();
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
   // The 3 stages with comprehensive details
-  const stages = [
+  const stages: ProcessStage[] = [
     {
       number: "01",
       name: "Literacy & Fluency",
@@ -236,7 +234,7 @@ const Process = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
+    <div className="process-page min-h-screen pt-32 pb-20">
       <SEOHead
         title="Our 3-Stage AI Process | Discover, Design, Deploy"
         description="Transform from AI-curious to AI-confident with our proven 3-stage methodology. Discover opportunities, design solutions, and deploy AI that delivers real business value."
@@ -251,12 +249,7 @@ const Process = () => {
           <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-secondary/5 rounded-full blur-3xl" />
         </div>
 
-        <div
-          ref={heroRef}
-          className={`max-w-4xl mx-auto text-center space-y-6 relative z-10 transition-all duration-300 ${
-            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}
-        >
+        <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30">
             <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
@@ -276,6 +269,16 @@ const Process = () => {
             Our proven 3-stage methodology takes you from confusion to
             confidence to capabilitywithout the typical pilot purgatory.
           </p>
+        </div>
+      </section>
+
+      {/* Interactive stage switcher (01/02/03 sequence is the navigation) */}
+      <section
+        id="stages"
+        className="container mx-auto px-4 mb-24 section-glow"
+      >
+        <div className="max-w-6xl mx-auto">
+          <StageSwitcher stages={stages} />
         </div>
       </section>
 
@@ -317,287 +320,6 @@ const Process = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
-      </section>
-
-      {/* Simple Journey Map Visual */}
-      <section className="container mx-auto px-4 mb-24 section-glow">
-        <div
-          ref={mapRef}
-          className={`max-w-6xl mx-auto transition-all duration-300 ${
-            mapVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}
-        >
-          <div className="grid md:grid-cols-3 gap-6">
-            {stages.map((stage, index) => (
-              <div key={index} className="relative h-full group">
-                <Card
-                  className={`card-enhanced h-full flex flex-col text-center transition-all duration-500 ${
-                    stage.color === "primary"
-                      ? "hover:border-primary/50 hover:shadow-[0_0_40px_hsla(155,100%,45%,0.1)]"
-                      : "hover:border-secondary/50 hover:shadow-[0_0_40px_hsla(320,85%,55%,0.1)]"
-                  }`}
-                >
-                  <CardContent className="p-6">
-                    <div className="text-5xl font-heading text-muted-foreground/20 mb-2">
-                      {stage.number}
-                    </div>
-                    <div
-                      className={`w-16 h-16 rounded-xl ${
-                        stage.color === "primary"
-                          ? "bg-primary/10 border border-primary/30"
-                          : "bg-secondary/10 border border-secondary/30"
-                      } flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110`}
-                    >
-                      <stage.icon
-                        className={`w-8 h-8 ${
-                          stage.color === "primary"
-                            ? "text-primary"
-                            : "text-secondary"
-                        }`}
-                      />
-                    </div>
-                    <h3 className={`text-xl font-heading text-foreground mb-2 transition-all ${
-                      stage.color === "primary" ? "group-hover:text-primary group-hover:glow-green" : "group-hover:text-secondary group-hover:glow-pink"
-                    }`}>
-                      {stage.name}
-                    </h3>
-                    <p
-                      className={`text-sm ${
-                        stage.color === "primary"
-                          ? "text-primary"
-                          : "text-secondary"
-                      } font-semibold uppercase tracking-wide mb-3`}
-                    >
-                      {stage.tagline}
-                    </p>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      {stage.duration}
-                    </p>
-                  </CardContent>
-                </Card>
-                {/* Arrow between stages */}
-                {index < stages.length - 1 && (
-                  <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
-                    <ArrowRight className="w-6 h-6 text-primary animate-pulse-glow" />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Detailed Stage Breakdowns */}
-      <section className="container mx-auto px-4 mb-24">
-        <div className="max-w-7xl mx-auto space-y-16">
-          {stages.map((stage, index) => {
-            const StageIcon = stage.icon;
-            return (
-              <div key={index} id={`stage-${stage.number}`}>
-                <Card
-                  className={`bg-gradient-to-br from-card to-background border-2 ${
-                    stage.color === "primary"
-                      ? "border-primary"
-                      : "border-secondary"
-                  } shadow-cyber-lg overflow-hidden`}
-                >
-                  {/* Stage Header Bar */}
-                  <div
-                    className={`h-2 ${
-                      stage.color === "primary"
-                        ? "bg-gradient-to-r from-primary to-emerald-600"
-                        : "bg-gradient-to-r from-secondary to-pink-600"
-                    }`}
-                  ></div>
-
-                  <CardContent className="p-10">
-                    {/* Header */}
-                    <div className="flex items-start gap-6 mb-8">
-                      <div
-                        className={`w-20 h-20 rounded-xl ${
-                          stage.color === "primary"
-                            ? "bg-primary/10"
-                            : "bg-secondary/10"
-                        } flex items-center justify-center flex-shrink-0`}
-                      >
-                        <StageIcon
-                          className={`w-10 h-10 ${
-                            stage.color === "primary"
-                              ? "text-primary"
-                              : "text-secondary"
-                          }`}
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <div className="text-sm text-muted-foreground uppercase tracking-wide mb-2">
-                          Stage {stage.number}
-                        </div>
-                        <h2 className="text-4xl font-heading text-foreground mb-2">
-                          {stage.name}
-                        </h2>
-                        <p
-                          className={`text-lg ${
-                            stage.color === "primary"
-                              ? "text-primary"
-                              : "text-secondary"
-                          } font-semibold italic mb-4`}
-                        >
-                          "{stage.tagline}"
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* The Challenge */}
-                    <div className="mb-8 p-6 bg-background/50 rounded-lg border-l-4 border-secondary">
-                      <div className="text-sm text-secondary font-semibold uppercase tracking-wide mb-2">
-                        The Challenge
-                      </div>
-                      <p className="text-xl text-foreground font-semibold">
-                        {stage.challenge}
-                      </p>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                      {stage.description}
-                    </p>
-
-                    {/* In Practice */}
-                    {stage.inPractice && (
-                      <div className={`mb-8 p-6 ${stage.color === 'primary' ? 'bg-primary/5 border-primary/20' : 'bg-secondary/5 border-secondary/20'} rounded-lg border`}>
-                        <h3 className={`text-sm font-heading ${stage.color === 'primary' ? 'text-primary' : 'text-secondary'} uppercase tracking-wider mb-3`}>In Practice</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {stage.inPractice.text}
-                        </p>
-                        <div className="flex flex-wrap gap-4 mt-3">
-                          {stage.inPractice.links.map((link, idx) => (
-                            <Link key={idx} to={link.path} className={`text-sm ${stage.color === 'primary' ? 'text-primary hover:text-primary/80' : 'text-secondary hover:text-secondary/80'} flex items-center gap-1`}>
-                              {link.name} <ArrowRight className="w-3 h-3" />
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Key Activities Grid */}
-                    <div className="mb-8">
-                      <h3 className="text-xl font-heading text-foreground mb-6">
-                        What Happens
-                      </h3>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        {stage.keyActivities.map((activity, idx) => {
-                          const ActivityIcon = activity.icon;
-                          return (
-                            <div
-                              key={idx}
-                              className="flex items-start gap-3 p-4 bg-background/30 rounded-lg border border-border"
-                            >
-                              <div
-                                className={`w-10 h-10 rounded-lg ${
-                                  stage.color === "primary"
-                                    ? "bg-primary/10"
-                                    : "bg-secondary/10"
-                                } flex items-center justify-center flex-shrink-0`}
-                              >
-                                <ActivityIcon
-                                  className={`w-5 h-5 ${
-                                    stage.color === "primary"
-                                      ? "text-primary"
-                                      : "text-secondary"
-                                  }`}
-                                />
-                              </div>
-                              <div>
-                                <h4 className="text-sm font-semibold text-foreground mb-1">
-                                  {activity.title}
-                                </h4>
-                                <p className="text-xs text-muted-foreground">
-                                  {activity.description}
-                                </p>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* Deliverables */}
-                    <div className="mb-8">
-                      <h3 className="text-xl font-heading text-foreground mb-4">
-                        You'll Receive
-                      </h3>
-                      <div className="grid md:grid-cols-2 gap-3">
-                        {stage.deliverables.map((deliverable, idx) => (
-                          <div
-                            key={idx}
-                            className="flex items-start gap-2 text-sm"
-                          >
-                            <CheckCircle2
-                              className={`w-4 h-4 ${
-                                stage.color === "primary"
-                                  ? "text-primary"
-                                  : "text-secondary"
-                              } flex-shrink-0 mt-0.5`}
-                            />
-                            <span className="text-muted-foreground">
-                              {deliverable}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Bottom Info Grid */}
-                    <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-border">
-                      <div>
-                        <div className="text-xs text-muted-foreground uppercase tracking-wide mb-2">
-                          Duration
-                        </div>
-                        <div className="text-lg font-heading text-foreground">
-                          {stage.duration}
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-muted-foreground uppercase tracking-wide mb-2">
-                          Outcome
-                        </div>
-                        <div className="text-sm text-foreground">
-                          {stage.outcome}
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-muted-foreground uppercase tracking-wide mb-2">
-                          Best For
-                        </div>
-                        <div className="text-sm text-foreground">
-                          {stage.whoItsFor}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Success Indicators */}
-                    <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
-                      <div className="text-sm text-primary font-semibold uppercase tracking-wide mb-3">
-                        Success Indicators
-                      </div>
-                      <div className="grid md:grid-cols-2 gap-2">
-                        {stage.successIndicators.map((indicator, idx) => (
-                          <div
-                            key={idx}
-                            className="flex items-start gap-2 text-sm"
-                          >
-                            <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                            <span className="text-foreground">{indicator}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            );
-          })}
         </div>
       </section>
 

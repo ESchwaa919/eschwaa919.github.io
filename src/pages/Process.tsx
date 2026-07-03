@@ -272,6 +272,16 @@ const Process = () => {
         </div>
       </section>
 
+      {/* Interactive stage switcher (01/02/03 sequence is the navigation) */}
+      <section
+        id="stages"
+        className="container mx-auto px-4 mb-24 section-glow"
+      >
+        <div className="max-w-6xl mx-auto">
+          <StageSwitcher stages={stages} />
+        </div>
+      </section>
+
       {/* Why This Process Works */}
       <section className="container mx-auto px-4 mb-24">
         <div
@@ -310,16 +320,6 @@ const Process = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
-      </section>
-
-      {/* Interactive stage switcher (01/02/03 sequence is the navigation) */}
-      <section
-        id="stages"
-        className="container mx-auto px-4 mb-24 section-glow"
-      >
-        <div className="max-w-6xl mx-auto">
-          <StageSwitcher stages={stages} />
         </div>
       </section>
 

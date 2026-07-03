@@ -316,7 +316,7 @@ const Process = () => {
       {/* Interactive stage switcher (01/02/03 sequence is the navigation) */}
       <section
         id="stages"
-        className="container mx-auto px-4 mb-24 scroll-mt-40 section-glow"
+        className="container mx-auto px-4 mb-24 section-glow"
       >
         <div className="max-w-6xl mx-auto">
           <StageSwitcher stages={stages} />

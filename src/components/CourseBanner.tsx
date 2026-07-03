@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import { ArrowRight, X, Rocket } from "lucide-react";
 import { useState, useEffect } from "react";
 
+// Fade/slide the banner away once the user scrolls a little past the top.
+const SCROLL_HIDE_THRESHOLD = 120;
+
 const CourseBanner = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const [scrolledPast, setScrolledPast] = useState(false);
 
   useEffect(() => {
     const dismissed = localStorage.getItem("courseBannerDismissed");
@@ -17,6 +21,17 @@ const CourseBanner = () => {
     }
   }, []);
 
+  // Present at the top of the page; fades/slides out of the way on scroll and
+  // back in near the top. Class-based, so the global prefers-reduced-motion
+  // rule snaps it to the hidden state instead of animating.
+  useEffect(() => {
+    const onScroll = () =>
+      setScrolledPast(window.scrollY > SCROLL_HIDE_THRESHOLD);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const handleDismiss = () => {
     setIsVisible(false);
     localStorage.setItem("courseBannerDismissed", new Date().toISOString());
@@ -25,7 +40,14 @@ const CourseBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed top-20 left-0 right-0 z-40 bg-gradient-to-r from-background via-primary/10 to-background border-b border-primary/30">
+    <div
+      aria-hidden={scrolledPast}
+      className={`fixed top-20 left-0 right-0 z-40 bg-gradient-to-r from-background via-primary/10 to-background border-b border-primary/30 transition-[opacity,transform] duration-300 ease-out ${
+        scrolledPast
+          ? "opacity-0 -translate-y-full pointer-events-none"
+          : "opacity-100 translate-y-0"
+      }`}
+    >
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-center gap-3 text-sm md:text-base">
           <Rocket className="w-4 h-4 text-primary animate-pulse hidden sm:block" />

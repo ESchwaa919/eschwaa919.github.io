@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Code2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
@@ -228,6 +228,30 @@ const StageSwitcher = ({ stages }: { stages: ProcessStage[] }) => {
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   {stage.description}
                 </p>
+
+                {/* Contextual link to the delivery engine, shown where the
+                    "how do you actually build it?" question is live. */}
+                {slugs[index] === "implementation" && (
+                  <Link
+                    to="/process/sdlc"
+                    className="group block mb-8 p-6 rounded-lg border border-secondary/30 bg-secondary/5 hover:border-secondary/60 transition-colors"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-11 h-11 rounded-lg bg-secondary/10 border border-secondary/30 flex items-center justify-center flex-shrink-0">
+                        <Code2 className="w-5 h-5 text-secondary" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground mb-1">
+                          Every build runs on our spec-driven agentic method.
+                        </p>
+                        <span className="inline-flex items-center gap-1 font-heading tracking-wide text-secondary group-hover:text-secondary/80 transition-colors">
+                          How we build: The Ai Expert SDLC
+                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                )}
 
                 {/* In Practice */}
                 {stage.inPractice && (

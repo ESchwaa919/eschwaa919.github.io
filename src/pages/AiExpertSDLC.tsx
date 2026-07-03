@@ -27,6 +27,7 @@ import {
   Github,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import SdlcSectionNav from "@/components/SdlcSectionNav";
 import { StructuredData, organizationSchema } from "@/components/StructuredData";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -120,6 +121,14 @@ const stages = [
     description:
       "Linear is updated to Done, and the backlog and trackers are refreshed so the next piece of work starts from an accurate picture.",
   },
+];
+
+// Visual grouping of the 11 stages into three phases (all stages stay
+// visible; this only clusters them so the lifecycle reads with rhythm).
+const phaseGroups = [
+  { label: "Plan", caption: "Specify and sequence the work", numbers: ["01", "02", "03"] },
+  { label: "Build", caption: "Make the change, safely", numbers: ["04", "05", "06", "07", "08"] },
+  { label: "Ship", caption: "Land it and prove it", numbers: ["09", "10", "11"] },
 ];
 
 // The layered agentic team. "human" and "sme" render in secondary (magenta),
@@ -359,8 +368,14 @@ const AiExpertSDLC = () => {
         </div>
       </section>
 
+      {/* Sticky "on this page" section nav with scrollspy */}
+      <SdlcSectionNav />
+
       {/* Section A: The delivery lifecycle */}
-      <section className="container mx-auto px-4 mb-24 section-glow" id="lifecycle">
+      <section
+        className="container mx-auto px-4 mb-24 scroll-mt-48 section-glow"
+        id="lifecycle"
+      >
         <div
           ref={lifecycleRef}
           className={`max-w-5xl mx-auto transition-all duration-300 ${
@@ -385,49 +400,68 @@ const AiExpertSDLC = () => {
             </p>
           </div>
 
-          <div className="space-y-4">
-            {stages.map((stage) => {
-              const StageIcon = stage.icon;
-              return (
-                <Card key={stage.number} className="card-enhanced group">
-                  <CardContent className="p-0">
-                    <div className="flex items-stretch">
-                      {/* Number rail */}
-                      <div className="flex items-center justify-center w-16 md:w-20 flex-shrink-0 bg-primary/10 border-r border-primary/30">
-                        <span className="text-2xl md:text-3xl font-heading text-primary">
-                          {stage.number}
-                        </span>
-                      </div>
-                      {/* Body */}
-                      <div className="flex items-start gap-4 p-5 md:p-6">
-                        <div className="w-11 h-11 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110">
-                          <StageIcon className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-3 mb-1 flex-wrap">
-                            <h3 className="text-xl font-heading text-foreground group-hover:text-primary transition-colors">
-                              {stage.title}
-                            </h3>
-                            <span className="text-[0.6rem] font-heading tracking-widest uppercase text-muted-foreground border border-border rounded px-2 py-0.5">
-                              {stage.phase}
-                            </span>
-                          </div>
-                          <p className="text-sm text-muted-foreground leading-relaxed">
-                            {stage.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+          <div className="space-y-12">
+            {phaseGroups.map((phase) => (
+              <div key={phase.label}>
+                {/* Phase header */}
+                <div className="flex items-center gap-4 mb-5">
+                  <span className="text-sm font-heading text-primary tracking-widest uppercase whitespace-nowrap">
+                    {phase.label}
+                  </span>
+                  <span className="h-px flex-1 bg-primary/20" />
+                  <span className="text-xs text-muted-foreground whitespace-nowrap">
+                    {phase.caption}
+                  </span>
+                </div>
+
+                <div className="space-y-4">
+                  {stages
+                    .filter((stage) => phase.numbers.includes(stage.number))
+                    .map((stage) => {
+                      const StageIcon = stage.icon;
+                      return (
+                        <Card key={stage.number} className="card-enhanced group">
+                          <CardContent className="p-0">
+                            <div className="flex items-stretch">
+                              {/* Number rail */}
+                              <div className="flex items-center justify-center w-16 md:w-20 flex-shrink-0 bg-primary/10 border-r border-primary/30">
+                                <span className="text-2xl md:text-3xl font-heading text-primary">
+                                  {stage.number}
+                                </span>
+                              </div>
+                              {/* Body */}
+                              <div className="flex items-start gap-4 p-5 md:p-6">
+                                <div className="w-11 h-11 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110">
+                                  <StageIcon className="w-5 h-5 text-primary" />
+                                </div>
+                                <div>
+                                  <div className="flex items-center gap-3 mb-1 flex-wrap">
+                                    <h3 className="text-xl font-heading text-foreground group-hover:text-primary transition-colors">
+                                      {stage.title}
+                                    </h3>
+                                    <span className="text-[0.6rem] font-heading tracking-widest uppercase text-muted-foreground border border-border rounded px-2 py-0.5">
+                                      {stage.phase}
+                                    </span>
+                                  </div>
+                                  <p className="text-sm text-muted-foreground leading-relaxed">
+                                    {stage.description}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Section B: The agentic team */}
-      <section className="container mx-auto px-4 mb-24" id="team">
+      <section className="container mx-auto px-4 mb-24 scroll-mt-48" id="team">
         <div
           ref={teamRef}
           className={`max-w-4xl mx-auto transition-all duration-300 ${
@@ -548,7 +582,7 @@ const AiExpertSDLC = () => {
 
       {/* Section C: The organizational brain */}
       <section
-        className="container mx-auto px-4 mb-24 section-glow"
+        className="container mx-auto px-4 mb-24 scroll-mt-48 section-glow"
         id="organizational-brain"
       >
         <div
@@ -638,7 +672,7 @@ const AiExpertSDLC = () => {
       </section>
 
       {/* Section D: The standing protocol */}
-      <section className="container mx-auto px-4 mb-24 section-glow" id="protocol">
+      <section className="container mx-auto px-4 mb-24 scroll-mt-48 section-glow" id="protocol">
         <div
           ref={protocolRef}
           className={`max-w-6xl mx-auto transition-all duration-300 ${
@@ -707,7 +741,7 @@ const AiExpertSDLC = () => {
       </section>
 
       {/* Meet Rune (supporting cast: the lead orchestrator) */}
-      <section className="container mx-auto px-4 mb-12" id="who">
+      <section className="container mx-auto px-4 mb-12 scroll-mt-48" id="who">
         <div
           ref={whoRef}
           className={`max-w-4xl mx-auto transition-all duration-300 ${

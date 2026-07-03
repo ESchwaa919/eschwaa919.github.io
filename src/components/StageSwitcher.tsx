@@ -103,7 +103,7 @@ const StageSwitcher = ({ stages }: { stages: ProcessStage[] }) => {
               tabIndex={isActive ? 0 : -1}
               onClick={() => selectTab(index, false)}
               onKeyDown={(e) => onKeyDown(e, index)}
-              className={`text-left rounded-lg border p-5 transition-all duration-300 ${
+              className={`text-left rounded-lg border p-5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                 isActive
                   ? isPrimary
                     ? "border-primary bg-primary/10 shadow-[0_0_30px_hsla(155,100%,45%,0.12)]"

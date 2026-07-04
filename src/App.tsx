@@ -46,7 +46,7 @@ const App = () => (
         <AmbientBackground particleCount={40} showGrid={true} intensity="medium" />
         <CourseBanner />
         <Navigation />
-        <main className="pt-[124px]">
+        <main className="pt-[var(--chrome-h)] transition-[padding] duration-300 ease-out">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />

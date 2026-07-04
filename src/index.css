@@ -46,6 +46,11 @@
 
     --radius: 0.5rem;
 
+    /* Fixed-chrome height: 80px nav + 44px course banner. CourseBanner drops
+       this to 80px (nav only) when the banner fades on scroll or is dismissed,
+       so the content offset and SDLC section nav collapse the reserved band. */
+    --chrome-h: 124px;
+
     /* ===== Cyber-Luxe Custom Variables ===== */
     --neon-green: 155 100% 45%;
     --neon-pink: 320 85% 55%;

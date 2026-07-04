@@ -86,7 +86,7 @@ const SdlcSectionNav = () => {
     <nav
       aria-label="On this page"
       aria-hidden={!shown}
-      className={`fixed top-[124px] inset-x-0 z-30 border-y border-border bg-background/90 backdrop-blur transition-opacity duration-300 ${
+      className={`fixed top-[var(--chrome-h)] inset-x-0 z-30 border-y border-border bg-background/90 backdrop-blur transition-[opacity,top] duration-300 ${
         shown ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >

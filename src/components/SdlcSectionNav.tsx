@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // "On this page" jump-links for the SDLC narrative. Ids match the section
 // anchors on the page; keep in sync with AiExpertSDLC.tsx.
@@ -10,9 +10,6 @@ const sections = [
   { id: "who", label: "Rune" },
 ];
 
-// Fixed header (nav + course banner) plus this bar, so a jumped-to section
-// heading lands just below the bar rather than under it.
-const HEADER_OFFSET = 180;
 // Reveal the bar once the hero is scrolled past.
 const SHOW_AFTER = 320;
 
@@ -30,6 +27,7 @@ const SHOW_AFTER = 320;
 const SdlcSectionNav = () => {
   const [activeId, setActiveId] = useState(sections[0].id);
   const [shown, setShown] = useState(false);
+  const navBarRef = useRef<HTMLElement>(null);
 
   // Scrollspy: highlight the section currently in the upper viewport.
   useEffect(() => {
@@ -66,9 +64,21 @@ const SdlcSectionNav = () => {
     const el = document.getElementById(id);
     if (!el) return; // fall back to default anchor behaviour
     e.preventDefault();
+    // The bar is pinned at top:var(--chrome-h) and --chrome-h collapses on
+    // scroll, so read the live value (plus the bar's own height) rather than a
+    // stale constant — the target lands flush directly under the bar.
+    const chromeH =
+      parseInt(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--chrome-h"
+        ),
+        10
+      ) || 124;
+    const barH = navBarRef.current?.getBoundingClientRect().height ?? 56;
+    const offset = chromeH + barH;
     const top = Math.max(
       0,
-      el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET
+      el.getBoundingClientRect().top + window.scrollY - offset
     );
     // This page sets scroll-behavior: smooth globally, and its nested overflow
     // setup means smooth programmatic scrolls never settle. Force an instant
@@ -84,9 +94,10 @@ const SdlcSectionNav = () => {
 
   return (
     <nav
+      ref={navBarRef}
       aria-label="On this page"
       aria-hidden={!shown}
-      className={`fixed top-[124px] inset-x-0 z-30 border-y border-border bg-background/90 backdrop-blur transition-opacity duration-300 ${
+      className={`fixed top-[var(--chrome-h)] inset-x-0 z-30 border-y border-border bg-background/90 backdrop-blur transition-[opacity,top] duration-300 ${
         shown ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >

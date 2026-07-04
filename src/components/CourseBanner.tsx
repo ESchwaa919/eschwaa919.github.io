@@ -32,6 +32,18 @@ const CourseBanner = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Drive the shared --chrome-h variable (default 124px in index.css) so the
+  // content offset (main padding) and the /process/sdlc section nav collapse in
+  // step with the banner instead of reserving a dead band once it fades or is
+  // dismissed. 80px = nav only; 124px = nav + banner.
+  useEffect(() => {
+    const hidden = !isVisible || scrolledPast;
+    document.documentElement.style.setProperty(
+      "--chrome-h",
+      hidden ? "80px" : "124px"
+    );
+  }, [isVisible, scrolledPast]);
+
   const handleDismiss = () => {
     setIsVisible(false);
     localStorage.setItem("courseBannerDismissed", new Date().toISOString());

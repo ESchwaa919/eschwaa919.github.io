@@ -94,7 +94,9 @@
     scroll-behavior: smooth;
   }
 
-  /* `clip` not `hidden` — hidden breaks position:sticky descendants */
+  /* `clip` not `hidden` — hidden breaks position:sticky descendants.
+     Keyboard/deck scrollIntoView verified working under this exact config;
+     do not move the clip to #root (regressed programmatic scroll when tried). */
   html, body {
     overflow-x: clip;
     max-width: 100vw;

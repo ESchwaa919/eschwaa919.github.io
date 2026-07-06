@@ -1,9 +1,12 @@
+import { lazy, Suspense } from "react";
+
 /**
- * Quiet ambient canvas for the Evolved Cyber-Luxe system: a still, barely-there
- * emerald wash. The old particle canvas, grid and scan-line are retired —
- * "nothing moves unless the story does" (docs/design/art-direction.html §05).
- * Props are kept for call-site compatibility but no longer drive anything.
+ * Global ambient canvas for the Evolved Cyber-Luxe system: a barely-there
+ * emerald wash plus the ethereal three.js swarm (lazy-loaded so three stays
+ * out of the main bundle). Props kept for call-site compatibility.
  */
+const EtherealSwarm = lazy(() => import("@/components/story/EtherealSwarm"));
+
 interface AmbientBackgroundProps {
   particleCount?: number;
   showGrid?: boolean;
@@ -23,6 +26,9 @@ const AmbientBackground = (_props: AmbientBackgroundProps) => {
           `,
         }}
       />
+      <Suspense fallback={null}>
+        <EtherealSwarm />
+      </Suspense>
     </div>
   );
 };

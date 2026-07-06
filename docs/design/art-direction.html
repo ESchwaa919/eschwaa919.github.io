@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Art Direction — The AI Expert · Evolved Cyber-Luxe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   THE AI EXPERT — EVOLVED CYBER-LUXE
+   Design-system reference. Workers: token sheet at bottom (§07)
+   is the canonical CSS to port into src/index.css.
+   ============================================================ */
+
+:root {
+  /* ---- Palette ---- */
+  --void:        hsl(200 25% 4%);    /* page background — cold near-black */
+  --surface:     hsl(200 18% 7%);    /* raised scene / card base */
+  --surface-2:   hsl(200 15% 10%);   /* hover / elevated */
+  --signal:      hsl(155 100% 45%);  /* THE accent. Emerald. Used sparingly. */
+  --signal-dim:  hsl(155 80% 38%);   /* accent on large areas / borders */
+  --moss:        hsl(160 55% 9%);    /* deep emerald wash for accents-as-surface */
+  --bone:        hsl(150 8% 93%);    /* primary text — warm-cold off-white */
+  --ash:         hsl(190 10% 58%);   /* secondary text */
+  --line:        hsl(200 12% 16%);   /* hairline borders */
+
+  /* ---- Type ---- */
+  --font-display: 'Archivo', 'Helvetica Neue', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'IBM Plex Mono', 'SF Mono', monospace;
+
+  /* ---- Motion ---- */
+  --reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-time: 0.7s;
+
+  /* ---- Glow (the ONLY glow that survives) ---- */
+  --glow-signal: 0 0 24px hsl(155 100% 45% / 0.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip; /* NOT `hidden` — hidden breaks position:sticky descendants */
+}
+
+/* Grain — replaces the cyber-grid image. Barely there. */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 999;
+}
+
+::selection { background: hsl(155 100% 45% / 0.3); color: var(--bone); }
+
+a { color: var(--signal); text-decoration: none; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============ SCENE MARKER — the signature device ============
+   A screenplay slate: mono label + hairline rule that draws in.
+   Encodes the real act structure of the narrative. */
+.scene-marker {
+  display: flex; align-items: center; gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+.scene-marker .slate {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--signal);
+  white-space: nowrap;
+}
+.scene-marker .rule {
+  height: 1px; flex: 1;
+  background: linear-gradient(90deg, var(--signal-dim), var(--line) 60%, transparent);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1.2s var(--reveal-ease) 0.2s;
+}
+.is-visible .scene-marker .rule,
+.scene-marker.is-visible .rule { transform: scaleX(1); }
+
+/* ============ Reveal system (mirrors useScrollReveal) ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--reveal-time) var(--reveal-ease),
+              transform var(--reveal-time) var(--reveal-ease);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: 0.08s; }
+.reveal.d2 { transition-delay: 0.16s; }
+.reveal.d3 { transition-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .scene-marker .rule { transform: scaleX(1); transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ============ Layout primitives ============ */
+.act {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 7rem 2rem;
+}
+.act + .act { border-top: 1px solid var(--line); }
+
+/* ============ Type roles ============ */
+.title-xl {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 118, 'wght' 640;
+  font-size: clamp(2.6rem, 7.5vw, 6.5rem);
+  line-height: 1.02;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+}
+.title-lg {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 115, 'wght' 600;
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.title-md {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 110, 'wght' 600;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.lede {
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  font-weight: 300;
+  color: var(--ash);
+  max-width: 42ch;
+}
+.body-copy { color: var(--ash); max-width: 62ch; font-size: 1rem; }
+.accent { color: var(--signal); }
+
+/* ============ Buttons ============ */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 1rem 1.75rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.25s var(--reveal-ease);
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: var(--signal);
+  color: var(--void);
+}
+.btn-primary:hover { box-shadow: var(--glow-signal); transform: translateY(-2px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--bone);
+  border-color: var(--line);
+}
+.btn-ghost:hover { border-color: var(--signal-dim); color: var(--signal); }
+.btn .arrow { transition: transform 0.25s var(--reveal-ease); }
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* ============ Cards ============ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2rem;
+  transition: border-color 0.3s ease, transform 0.3s var(--reveal-ease);
+}
+.card:hover { border-color: hsl(155 60% 30% / 0.6); transform: translateY(-3px); }
+.card .kicker { color: var(--signal); margin-bottom: 0.9rem; display: block; }
+
+/* ============ Stat beat ============ */
+.stat-beat {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2.5rem; align-items: baseline;
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.stat-beat:last-child { border-bottom: none; }
+.stat-beat .figure {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 120, 'wght' 680;
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  line-height: 1;
+  color: var(--signal);
+  min-width: 4ch;
+}
+.stat-beat .caption { max-width: 36ch; }
+.stat-beat .caption strong {
+  color: var(--bone); font-weight: 500; display: block; margin-bottom: 0.3rem;
+  font-size: 1.1rem;
+}
+.stat-beat .caption span { color: var(--ash); font-size: 0.95rem; }
+.stat-beat .src {
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--ash); opacity: 0.6;
+  display: block; margin-top: 0.6rem;
+}
+
+/* ============ Journey stage ============ */
+.journey { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.journey .stage {
+  background: var(--void); padding: 2.5rem 2rem;
+  position: relative;
+  transition: background 0.3s ease;
+}
+.journey .stage:hover { background: var(--moss); }
+.journey .stage .num {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em;
+  color: var(--signal); display: block; margin-bottom: 1.2rem;
+}
+.journey .stage h4 {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 112, 'wght' 620;
+  text-transform: uppercase; letter-spacing: 0.03em;
+  font-size: 1.15rem; margin-bottom: 0.7rem;
+}
+.journey .stage p { color: var(--ash); font-size: 0.9rem; }
+.journey .stage .meta {
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--ash); opacity: 0.7;
+  display: block; margin-top: 1.4rem;
+}
+
+/* ============ Pull quote ============ */
+.pull-quote {
+  border-left: 1px solid var(--signal);
+  padding-left: 2.5rem;
+  margin: 3rem 0;
+}
+.pull-quote p {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 108, 'wght' 480;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  line-height: 1.25;
+  color: var(--bone);
+}
+.pull-quote cite {
+  font-family: var(--font-mono); font-style: normal; font-size: 0.7rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--ash);
+  display: block; margin-top: 1.2rem;
+}
+
+/* ============ Hero demo ============ */
+.hero-demo {
+  min-height: 92vh;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+  max-width: none; padding: 6rem 2rem;
+  overflow: hidden;
+}
+/* The horizon — sole ambient light source. Replaces cyber-grid + orbs. */
+.hero-demo::before {
+  content: '';
+  position: absolute; left: 50%; bottom: -38vh;
+  width: 130vw; height: 70vh;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center,
+    hsl(155 100% 45% / 0.13) 0%,
+    hsl(155 100% 40% / 0.05) 35%,
+    transparent 65%);
+  pointer-events: none;
+}
+.hero-demo::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(155 100% 45% / 0.4), transparent);
+}
+.hero-inner { max-width: 1180px; margin: 0 auto; width: 100%; }
+.scroll-cue {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--ash);
+  animation: cue 3s ease-in-out infinite;
+}
+@keyframes cue { 0%,100% { opacity: 0.4 } 50% { opacity: 1 } }
+@media (prefers-reduced-motion: reduce) { .scroll-cue { animation: none; } }
+
+/* ============ Spec-sheet chrome (this document only) ============ */
+.spec-bar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.9rem 2rem;
+  background: hsl(200 25% 4% / 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ash);
+}
+.spec-bar .dot { color: var(--signal); }
+
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+.swatch {
+  border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+}
+.swatch .chip { height: 96px; }
+.swatch .info { padding: 0.9rem 1rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; }
+.swatch .info b { display: block; color: var(--bone); font-weight: 500; margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.15em; }
+.swatch .info span { color: var(--ash); display: block; line-height: 1.6; }
+
+.type-row { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; padding: 2.2rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.type-row:last-child { border-bottom: none; }
+.type-row .label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); line-height: 1.8; }
+
+.dd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.dd-col { background: var(--void); padding: 2.5rem; }
+.dd-col h4 { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; }
+.dd-col.keep h4 { color: var(--signal); }
+.dd-col.kill h4 { color: hsl(0 60% 55%); }
+.dd-col ul { list-style: none; }
+.dd-col li { padding: 0.55rem 0; color: var(--ash); font-size: 0.92rem; border-bottom: 1px solid var(--line); }
+.dd-col li:last-child { border-bottom: none; }
+.dd-col li b { color: var(--bone); font-weight: 500; }
+
+pre.tokens {
+  background: var(--surface);
+  border: 1px solid var(--line); border-radius: 4px;
+  padding: 2rem; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.75;
+  color: var(--ash);
+}
+pre.tokens .c { color: hsl(200 10% 38%); }
+pre.tokens .k { color: var(--signal); }
+pre.tokens .v { color: var(--bone); }
+
+.guide-demo { display: grid; grid-template-columns: 180px 1fr; gap: 2.5rem; align-items: start; }
+.guide-demo .portrait {
+  aspect-ratio: 4/5; border-radius: 4px;
+  background: linear-gradient(160deg, var(--surface-2), var(--moss));
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ash); text-align: center; padding: 1rem;
+}
+
+@media (max-width: 760px) {
+  .act { padding: 4.5rem 1.25rem; }
+  .journey { grid-template-columns: 1fr; }
+  .dd-grid { grid-template-columns: 1fr; }
+  .type-row { grid-template-columns: 1fr; gap: 0.6rem; }
+  .stat-beat { grid-template-columns: 1fr; gap: 1rem; }
+  .guide-demo { grid-template-columns: 1fr; }
+  .guide-demo .portrait { max-width: 200px; }
+  .spec-bar { padding: 0.9rem 1.25rem; }
+  .spec-bar .r { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="spec-bar">
+  <span>THE AI EXPERT <span class="dot">●</span> ART DIRECTION</span>
+  <span class="r">EVOLVED CYBER-LUXE — V1 — REFERENCE FOR ALL WORKERS</span>
+</div>
+
+<!-- ================= 00 · COLD OPEN (hero specimen) ================= -->
+<section class="hero-demo">
+  <div class="hero-inner">
+    <div class="scene-marker reveal">
+      <span class="slate">Scene 00 — Cold Open</span>
+      <span class="rule"></span>
+    </div>
+    <h1 class="title-xl reveal d1">
+      AI isn't coming.<br>
+      <span class="accent">It's already here.</span>
+    </h1>
+    <p class="lede reveal d2" style="margin-top:2rem;">
+      The only question is whether it's working for you.
+      From AI-curious to AI-powered.
+    </p>
+    <div class="reveal d3" style="margin-top:3rem; display:flex; gap:1rem; flex-wrap:wrap;">
+      <a class="btn btn-primary" href="#palette">Start the journey <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="#palette">Book a strategy call</a>
+    </div>
+  </div>
+  <span class="scroll-cue">Scroll</span>
+</section>
+
+<!-- ================= 01 · PALETTE ================= -->
+<section class="act" id="palette">
+  <div class="scene-marker reveal">
+    <span class="slate">§01 — Palette</span>
+    <span class="rule"></span>
+  </div>
+  <h2 class="title-lg reveal">One light source.<br>Everything else is night.</h2>
+  <p class="body-copy reveal d1" style="margin:1.5rem 0 3rem;">
+    The palette is a cinema at night: a cold near-black room, warm off-white
+    text, and a single emerald signal. Emerald is <em>earned</em> — it marks
+    the narrative thread, live data, and the primary action. If a section uses
+    it more than twice, it's using it wrong. Magenta, cyan and purple are retired.
+  </p>
+  <div class="swatch-grid reveal d2">
+    <div class="swatch"><div class="chip" style="background:hsl(200 25% 4%)"></div>
+      <div class="info"><b>Void</b><span>hsl(200 25% 4%)<br>--background · page canvas</span></div></div>
+    <div class="swatch"><div class="chip" style="background:hsl(200 18% 7%)"></div>
+      <div class="info"><b>Surface</b><span>hsl(200 18% 7%)<br>--card · scenes, cards</span></div></div>
+    <div class="swatch"><div class="chip" style="background:hsl(160 55% 9%)"></div>
+      <div class="info"><b>Moss</b><span>hsl(160 55% 9%)<br>emerald-as-surface, hovers</span></div></div>
+    <div class="swatch"><div class="chip" style="background:hsl(155 100% 45%)"></div>
+      <div class="info"><b>Signal</b><span>hsl(155 100% 45%)<br>--primary · THE accent</span></div></div>
+    <div class="swatch"><div class="chip" style="background:hsl(150 8% 93%)"></div>
+      <div class="info"><b>Bone</b><span>hsl(150 8% 93%)<br>--foreground · headings, body</span></div></div>
+    <div class="swatch"><div class="chip" style="background:hsl(190 10% 58%)"></div>
+      <div class="info"><b>Ash</b><span>hsl(190 10% 58%)<br>--muted-foreground · support text</span></div></div>
+  </div>
+</section>
+
+<!-- ================= 02 · TYPOGRAPHY ================= -->
+<section class="act">
+  <div class="scene-marker reveal">
+    <span class="slate">§02 — Typography</span>
+    <span class="rule"></span>
+  </div>
+  <h2 class="title-lg reveal">Three voices, one film.</h2>
+  <p class="body-copy reveal d1" style="margin:1.5rem 0 1rem;">
+    Rajdhani is retired — it carried the "gamer dashboard" feel. The new display
+    voice is <b style="color:var(--bone)">Archivo</b> (variable), set wide
+    (wdth ~115–120) in uppercase for titles: the film-title voice.
+    <b style="color:var(--bone)">Inter</b> stays for body copy.
+    <b style="color:var(--bone)">IBM Plex Mono</b> is the new utility voice —
+    scene markers, stats labels, buttons, metadata. It's the screenplay under the film.
+  </p>
+  <div class="reveal d2">
+    <div class="type-row">
+      <span class="label">Title / XL<br>Archivo · wdth 118 · wght 640<br>clamp 2.6–6.5rem</span>
+      <span class="title-xl">The Shift</span>
+    </div>
+    <div class="type-row">
+      <span class="label">Title / LG<br>Archivo · wdth 115 · wght 600</span>
+      <span class="title-lg">Pilot purgatory ends here</span>
+    </div>
+    <div class="type-row">
+      <span class="label">Title / MD<br>Archivo · wdth 110 · wght 600</span>
+      <span class="title-md">Strategy before scale</span>
+    </div>
+    <div class="type-row">
+      <span class="label">Kicker / Eyebrow<br>IBM Plex Mono · 0.72rem · ls 0.24em</span>
+      <span class="kicker">Stage 02 — Strategy &amp; Planning</span>
+    </div>
+    <div class="type-row">
+      <span class="label">Lede<br>Inter 300 · 1.05–1.35rem</span>
+      <span class="lede">Most AI initiatives fail because they skip straight to implementation. We build capabilities in the right order.</span>
+    </div>
+    <div class="type-row">
+      <span class="label">Body<br>Inter 300/400 · 1rem · lh 1.7</span>
+      <span class="body-copy">You can't strategize what you don't understand. Stage one builds confidence before committing capital — real fluency for the people who'll make the decisions, not vendor demos.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 · STRUCTURE ================= -->
+<section class="act">
+  <div class="scene-marker reveal">
+    <span class="slate">§03 — Structural devices</span>
+    <span class="rule"></span>
+  </div>
+  <h2 class="title-lg reveal">The scene marker is the signature.</h2>
+  <p class="body-copy reveal d1" style="margin:1.5rem 0 3rem;">
+    Every act opens with a screenplay slate: a mono label naming the scene, and
+    a hairline rule that draws in from the left as it enters the viewport. It
+    encodes the true sequence of the story — the homepage genuinely is acts, the
+    process genuinely is stages. Never use it on content that isn't sequential.
+    Corner brackets, glitch effects and scan-lines are retired.
+  </p>
+  <div class="reveal d2">
+    <div class="scene-marker is-visible" style="margin-bottom:1.5rem;">
+      <span class="slate">Act III — The Path</span>
+      <span class="rule" style="transform:scaleX(1)"></span>
+    </div>
+    <div class="scene-marker is-visible" style="margin-bottom:1.5rem;">
+      <span class="slate">Stage 01 — Literacy &amp; Fluency</span>
+      <span class="rule" style="transform:scaleX(1)"></span>
+    </div>
+  </div>
+  <div class="pull-quote reveal d3">
+    <p>You cannot clone yourself. You can now codify yourself.</p>
+    <cite>Pull-quote treatment — single emerald rule, wide display face, mono attribution</cite>
+  </div>
+</section>
+
+<!-- ================= 04 · COMPONENTS ================= -->
+<section class="act">
+  <div class="scene-marker reveal">
+    <span class="slate">§04 — Components</span>
+    <span class="rule"></span>
+  </div>
+
+  <h3 class="title-md reveal" style="margin-bottom:2rem;">Stat beat — Act I "The Stakes"</h3>
+  <div class="reveal d1" style="margin-bottom:5rem;">
+    <div class="stat-beat">
+      <span class="figure">85%</span>
+      <div class="caption">
+        <strong>of AI pilots never reach production.</strong>
+        <span>Experiments everywhere. Shipping almost nowhere. This is the gap we close.</span>
+        <span class="src">Source — industry research, cited on /ai-literacy</span>
+      </div>
+    </div>
+    <div class="stat-beat">
+      <span class="figure">2–3×</span>
+      <div class="caption">
+        <strong>productivity gap between AI adopters and laggards.</strong>
+        <span>The distance compounds every quarter you wait.</span>
+        <span class="src">Source — industry research, cited on /ai-literacy</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="title-md reveal" style="margin-bottom:2rem;">Journey map — Act III "The Path"</h3>
+  <div class="journey reveal d1" style="margin-bottom:5rem;">
+    <div class="stage">
+      <span class="num">STAGE 01</span>
+      <h4>Literacy &amp; Fluency</h4>
+      <p>Build confidence before committing capital. You can't strategize what you don't understand.</p>
+      <span class="meta">2–4 weeks · → /ai-literacy</span>
+    </div>
+    <div class="stage">
+      <span class="num">STAGE 02</span>
+      <h4>Strategy &amp; Planning</h4>
+      <p>Strategy before scale. Use cases prioritised, roadmap costed, governance in place.</p>
+      <span class="meta">4–8 weeks · → /ai-strategy</span>
+    </div>
+    <div class="stage">
+      <span class="num">STAGE 03</span>
+      <h4>Implementation &amp; Scale</h4>
+      <p>Build fast, learn fast. Working software in production — no pilot purgatory.</p>
+      <span class="meta">8–16 weeks · → /ai-implementation</span>
+    </div>
+  </div>
+
+  <h3 class="title-md reveal" style="margin-bottom:2rem;">Cards &amp; buttons</h3>
+  <div class="reveal d1" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.25rem; margin-bottom:3rem;">
+    <div class="card">
+      <span class="kicker">Fractional CAIO</span>
+      <h4 class="title-md" style="margin-bottom:0.8rem;">Enterprise brain, SMB price</h4>
+      <p style="color:var(--ash); font-size:0.92rem;">Senior AI leadership from £2k/month — against £200k+ for a full-time hire.</p>
+    </div>
+    <div class="card">
+      <span class="kicker">The AI Expert SDLC</span>
+      <h4 class="title-md" style="margin-bottom:0.8rem;">We run on AI</h4>
+      <p style="color:var(--ash); font-size:0.92rem;">An agentic delivery team with adversarial review — open-sourced, MIT licensed.</p>
+    </div>
+  </div>
+  <div class="reveal d2" style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:5rem;">
+    <button class="btn btn-primary">Start AI assessment <span class="arrow">→</span></button>
+    <button class="btn btn-ghost">Book a strategy call</button>
+  </div>
+
+  <h3 class="title-md reveal" style="margin-bottom:2rem;">Guide reveal — Act IV (Erik appears here, not in the hero)</h3>
+  <div class="guide-demo reveal d1">
+    <div class="portrait">Erik headshot<br>small · confident<br>not a hero image</div>
+    <div>
+      <span class="kicker" style="color:var(--signal); display:block; margin-bottom:1rem;">The human behind the practice</span>
+      <p class="lede" style="max-width:56ch;">Twenty years building AI at Microsoft, Comcast and Elsevier.
+      $100M+ delivered. Now those systems are built for businesses like yours —
+      by a practice that runs on the same AI it recommends.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 · MOTION ================= -->
+<section class="act">
+  <div class="scene-marker reveal">
+    <span class="slate">§05 — Motion</span>
+    <span class="rule"></span>
+  </div>
+  <h2 class="title-lg reveal">Nothing moves unless the story does.</h2>
+  <div class="reveal d1" style="margin-top:2rem;">
+    <div class="dd-grid" style="border:1px solid var(--line);">
+      <div class="dd-col keep">
+        <h4>The motion vocabulary (all of it)</h4>
+        <ul>
+          <li><b>Reveal</b> — opacity 0→1, translateY 18px→0, 0.7s, cubic-bezier(0.16,1,0.3,1), stagger 80ms. Via useScrollReveal.</li>
+          <li><b>Rule draw</b> — scene-marker hairline scaleX 0→1, 1.2s, on enter.</li>
+          <li><b>Hover</b> — cards lift 3px + border warms; buttons lift 2px + single soft glow.</li>
+          <li><b>Scroll cue</b> — slow 3s opacity pulse. The only looping animation on the site.</li>
+          <li><b>Reduced motion</b> — everything above collapses to static. Non-negotiable.</li>
+        </ul>
+      </div>
+      <div class="dd-col kill">
+        <h4>Retired permanently</h4>
+        <ul>
+          <li>text-shimmer / gradient-animate headlines</li>
+          <li>glitch, scan-line, data-stream grid pan</li>
+          <li>floating orbs, animate-float badges</li>
+          <li>pulse-glow icons, border-glow loops</li>
+          <li>btn-shimmer sweep</li>
+          <li>hover scale-105 (scale reads as toy; lift reads as cinema)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 · KEEP / KILL ================= -->
+<section class="act">
+  <div class="scene-marker reveal">
+    <span class="slate">§06 — Continuity: keep / retire</span>
+    <span class="rule"></span>
+  </div>
+  <div class="dd-grid reveal d1">
+    <div class="dd-col keep">
+      <h4>Kept from cyber-luxe</h4>
+      <ul>
+        <li><b>Near-black canvas</b> — now colder: hsl(200 25% 4%)</li>
+        <li><b>Emerald identity</b> — same hue, hsl(155 100% 45%), now solo</li>
+        <li><b>Grain overlay</b> — at 0.035 opacity</li>
+        <li><b>Dark glass nav</b> — blur(12px) on the header only</li>
+        <li><b>Inter</b> for body copy</li>
+        <li><b>useScrollReveal</b> animation infrastructure</li>
+      </ul>
+    </div>
+    <div class="dd-col kill">
+      <h4>Retired</h4>
+      <ul>
+        <li>Magenta/pink, cyan, purple accents + all their glows</li>
+        <li>Rajdhani display face</li>
+        <li>Cyber-grid hero image, floating orbs, corner brackets</li>
+        <li>Glassmorphism on cards (flat surface + hairline instead)</li>
+        <li>Neon text-shadows on headings (glow lives in ONE place: the hero horizon)</li>
+        <li>Erik headshot as the homepage hero</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 · TOKEN SHEET ================= -->
+<section class="act">
+  <div class="scene-marker reveal">
+    <span class="slate">§07 — Token sheet (canonical · port to src/index.css)</span>
+    <span class="rule"></span>
+  </div>
+  <p class="body-copy reveal" style="margin-bottom:2rem;">
+    Workers: these replace the existing <code style="font-family:var(--font-mono); font-size:0.85em; color:var(--bone);">:root</code>
+    values. shadcn/Tailwind variable names are unchanged, so components restyle automatically.
+    Fonts: swap Rajdhani for Archivo in tailwind.config.ts (<code style="font-family:var(--font-mono); font-size:0.85em; color:var(--bone);">heading</code>),
+    add <code style="font-family:var(--font-mono); font-size:0.85em; color:var(--bone);">mono: ['IBM Plex Mono', 'monospace']</code>.
+  </p>
+  <pre class="tokens reveal d1">
+<span class="c">/* ===== EVOLVED CYBER-LUXE — core tokens ===== */</span>
+<span class="k">--background:</span> <span class="v">200 25% 4%;</span>        <span class="c">/* Void */</span>
+<span class="k">--foreground:</span> <span class="v">150 8% 93%;</span>        <span class="c">/* Bone */</span>
+<span class="k">--card:</span> <span class="v">200 18% 7%;</span>              <span class="c">/* Surface */</span>
+<span class="k">--card-foreground:</span> <span class="v">150 8% 93%;</span>
+<span class="k">--primary:</span> <span class="v">155 100% 45%;</span>         <span class="c">/* Signal — unchanged hue */</span>
+<span class="k">--primary-foreground:</span> <span class="v">200 25% 4%;</span>
+<span class="k">--secondary:</span> <span class="v">160 55% 9%;</span>          <span class="c">/* Moss — replaces magenta */</span>
+<span class="k">--secondary-foreground:</span> <span class="v">150 8% 93%;</span>
+<span class="k">--muted:</span> <span class="v">200 15% 10%;</span>
+<span class="k">--muted-foreground:</span> <span class="v">190 10% 58%;</span>   <span class="c">/* Ash */</span>
+<span class="k">--accent:</span> <span class="v">155 100% 45%;</span>
+<span class="k">--border:</span> <span class="v">200 12% 16%;</span>           <span class="c">/* Line — hairlines everywhere */</span>
+<span class="k">--input:</span> <span class="v">200 15% 9%;</span>
+<span class="k">--ring:</span> <span class="v">155 100% 45%;</span>
+<span class="k">--radius:</span> <span class="v">0.25rem;</span>               <span class="c">/* tighter than current 0.5rem */</span>
+
+<span class="c">/* ===== The single surviving glow ===== */</span>
+<span class="k">--glow-signal:</span> <span class="v">0 0 24px hsl(155 100% 45% / 0.25);</span>
+
+<span class="c">/* ===== Motion ===== */</span>
+<span class="k">--reveal-ease:</span> <span class="v">cubic-bezier(0.16, 1, 0.3, 1);</span>
+<span class="k">--reveal-time:</span> <span class="v">0.7s;</span>
+
+<span class="c">/* ===== Type (tailwind.config.ts) =====
+fontFamily: {
+  heading: ['Archivo', 'sans-serif'],   // variable: wdth 110-120, wght 600-680
+  body:    ['Inter', 'sans-serif'],
+  mono:    ['IBM Plex Mono', 'monospace'],
+}
+Display setting: font-variation-settings: 'wdth' 118, 'wght' 640;
+Kicker: mono 0.72rem, tracking 0.24em, uppercase.
+===== */</span>
+  </pre>
+</section>
+
+<footer style="padding:3rem 2rem 5rem; text-align:center;">
+  <span class="kicker">The AI Expert — Art Direction V1 — docs/design/art-direction.html</span>
+</footer>
+
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = document.querySelectorAll('.reveal, .scene-marker');
+  if (reduced || !('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+  /* threshold 0, not 0.15 — elements taller than the viewport never reach
+     15% visibility, so they'd stay hidden forever. Any pixel past the
+     bottom margin counts as entered. */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>

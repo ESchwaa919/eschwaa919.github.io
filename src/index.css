@@ -166,12 +166,13 @@
    ============================================ */
 
 @layer components {
-  /* Film-title display voice */
+  /* Film-title display voice — sized so a hero frame (slate + title + lede +
+     CTAs) fits inside one viewport under the fixed chrome */
   .title-display {
     @apply font-heading uppercase;
     font-variation-settings: 'wdth' 118, 'wght' 640;
-    font-size: clamp(2.4rem, 7vw, 6rem);
-    line-height: 1.02;
+    font-size: clamp(2.1rem, 4.8vw, 4.25rem);
+    line-height: 1.04;
     letter-spacing: 0.015em;
   }
 
@@ -224,7 +225,7 @@
   .stat-figure {
     @apply font-heading text-primary;
     font-variation-settings: 'wdth' 120, 'wght' 680;
-    font-size: clamp(3.25rem, 8vw, 6.5rem);
+    font-size: clamp(2.75rem, 6vw, 5rem);
     line-height: 1;
   }
 

@@ -43,7 +43,7 @@ const FinaleAct = () => {
 
         <div className="max-w-4xl mx-auto text-center space-y-8 mb-24">
           <Reveal>
-            <h2 className="title-display">
+            <h2 className="title-scene">
               <span className="block text-foreground">Let's map your path</span>
               <span className="block text-primary">to AI-powered business.</span>
             </h2>

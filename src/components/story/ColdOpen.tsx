@@ -1,0 +1,110 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+/**
+ * Scene 00 — the cold open. Opens on AI, not on a person. Full-viewport,
+ * one light source (the horizon), one primary action.
+ */
+const ColdOpen = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const entrance = (delay: string) =>
+    `transition-all duration-700 ${delay} ${
+      isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+    }`;
+
+  return (
+    <section className="relative min-h-[calc(100vh-var(--chrome-h))] flex flex-col justify-center overflow-hidden">
+      <div className="horizon-glow" aria-hidden="true" />
+
+      <div className="container relative z-10 mx-auto px-4 py-20">
+        <div className="max-w-5xl">
+          {/* Slate */}
+          <div className={`flex items-center gap-5 mb-10 ${entrance("delay-0")}`}>
+            <span className="kicker text-primary whitespace-nowrap">
+              Your first stop for getting AI done right
+            </span>
+            <span className={`scene-rule ${isLoaded ? "is-drawn" : ""}`} aria-hidden="true" />
+          </div>
+
+          {/* Headline */}
+          <h1 className={`title-display ${entrance("delay-150")}`}>
+            <span className="block text-foreground">AI isn't coming.</span>
+            <span className="block text-primary">It's already here.</span>
+          </h1>
+
+          {/* Lede */}
+          <p className={`lede mt-8 max-w-2xl ${entrance("delay-300")}`}>
+            The only question is whether it's working for you. We take
+            forward-looking businesses from{" "}
+            <span className="text-foreground">AI-curious</span> to{" "}
+            <span className="text-foreground">AI-powered</span> — through a proven
+            path of{" "}
+            <Link to="/ai-literacy" className="text-primary hover:text-primary/80">
+              Literacy
+            </Link>
+            ,{" "}
+            <Link to="/ai-strategy" className="text-primary hover:text-primary/80">
+              Strategy
+            </Link>{" "}
+            and{" "}
+            <Link to="/ai-implementation" className="text-primary hover:text-primary/80">
+              Implementation
+            </Link>
+            .
+          </p>
+
+          {/* CTAs */}
+          <div className={`flex flex-col sm:flex-row gap-4 mt-12 ${entrance("delay-[450ms]")}`}>
+            <Button
+              size="lg"
+              className="group bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-sm uppercase tracking-[0.14em] px-8 py-6 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:box-glow-signal"
+              asChild
+            >
+              <Link to="/ai-assessment">
+                Start the AI assessment
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border border-border bg-transparent text-foreground hover:border-primary/60 hover:text-primary hover:bg-transparent font-mono text-sm uppercase tracking-[0.14em] px-8 py-6 rounded-sm transition-all duration-300 hover:-translate-y-0.5"
+              asChild
+            >
+              <a href="https://calendly.com/eschwaa/30min">Book a strategy call</a>
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll cue — the only looping animation on the site */}
+      <div
+        className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-700 delay-1000 ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <span className="kicker text-muted-foreground animate-cue">Scroll</span>
+      </div>
+
+      {/* Horizon hairline */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-px"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, hsl(155 100% 45% / 0.4), transparent)",
+        }}
+        aria-hidden="true"
+      />
+    </section>
+  );
+};
+
+export default ColdOpen;

@@ -28,7 +28,7 @@ const ColdOpen = () => {
         <div className="max-w-5xl">
           {/* Slate */}
           <div className={`flex items-center gap-5 mb-10 ${entrance("delay-0")}`}>
-            <span className="kicker text-primary whitespace-nowrap">
+            <span className="kicker text-primary whitespace-normal sm:whitespace-nowrap">
               Your first stop for getting AI done right
             </span>
             <span className={`scene-rule ${isLoaded ? "is-drawn" : ""}`} aria-hidden="true" />

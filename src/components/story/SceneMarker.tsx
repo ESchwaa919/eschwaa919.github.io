@@ -15,7 +15,7 @@ const SceneMarker = ({ label, className = "" }: SceneMarkerProps) => {
 
   return (
     <div ref={ref} className={`flex items-center gap-5 ${className}`}>
-      <span className="kicker text-primary whitespace-nowrap">{label}</span>
+      <span className="kicker text-primary whitespace-normal sm:whitespace-nowrap">{label}</span>
       <span className={`scene-rule ${isVisible ? "is-drawn" : ""}`} aria-hidden="true" />
     </div>
   );

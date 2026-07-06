@@ -62,14 +62,17 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 group mb-6">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border-2 border-primary group-hover:bg-primary/20 transition-all">
-                <Zap className="w-6 h-6 text-primary group-hover:glow-green" />
+              <div className="w-9 h-9 rounded-sm flex items-center justify-center border border-primary/60 group-hover:border-primary transition-colors">
+                <Zap className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <div className="text-xl font-heading text-primary glow-green">
-                  AIEXPERT.AI
+                <div
+                  className="text-lg font-heading uppercase text-foreground leading-tight"
+                  style={{ fontVariationSettings: "'wdth' 118, 'wght' 640", letterSpacing: "0.04em" }}
+                >
+                  The AI Expert
                 </div>
-                <div className="text-xs text-muted-foreground -mt-1">
+                <div className="kicker text-[10px] text-muted-foreground -mt-0.5">
                   Getting AI Done Right
                 </div>
               </div>
@@ -145,7 +148,7 @@ const Footer = () => {
           {/* Navigation Links */}
           {navigation.map((section, index) => (
             <div key={index}>
-              <h3 className="text-sm font-heading text-foreground mb-4">
+              <h3 className="kicker text-foreground mb-4">
                 {section.title}
               </h3>
               <ul className="space-y-3">
@@ -168,7 +171,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © {currentYear} aiexpert.ai. All rights reserved.
+              © {currentYear} The AI Expert · theaiexpert.ai. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link

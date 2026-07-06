@@ -17,7 +17,6 @@ import {
   Shield,
   Code,
   BarChart,
-  Sparkles,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import StageSwitcher, { type ProcessStage } from "@/components/StageSwitcher";
@@ -149,7 +148,7 @@ const Process = () => {
       icon: Rocket,
       challenge: "You can't succeed without execution",
       description:
-        "Now we build. We start with rapid prototyping to validate approaches, then move to production deployment. No pilot purgatoryjust working solutions that deliver measurable value.",
+        "Now we build. We start with rapid prototyping to validate approaches, then move to production deployment. No pilot purgatory — just working solutions that deliver measurable value.",
       duration: "8-16 weeks per initiative",
       outcome: "Production-ready AI systems delivering measurable ROI with full team ownership",
       whoItsFor: "Organizations ready to execute on specific AI initiatives with committed teams",
@@ -250,24 +249,18 @@ const Process = () => {
         </div>
 
         <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30">
-            <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
-            <span className="text-sm font-heading text-primary tracking-wider">
-              3-STAGE METHODOLOGY
-            </span>
-          </div>
+          {/* Slate */}
+          <span className="kicker text-primary inline-block">
+            The Process — 3-stage methodology
+          </span>
 
-          <h1 className="text-5xl md:text-6xl font-heading leading-tight">
-            <span className="text-foreground">FROM</span>{" "}
-            <span className="text-muted-foreground">AI-CURIOUS</span>
-            <br />
-            <span className="text-foreground">TO</span>{" "}
-            <span className="text-gradient-animate glow-green-intense">AI-POWERED</span>
+          <h1 className="title-display">
+            <span className="block text-muted-foreground">From AI-curious</span>
+            <span className="block text-primary">to AI-powered.</span>
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          <p className="lede max-w-2xl mx-auto">
             Our proven 3-stage methodology takes you from confusion to
-            confidence to capabilitywithout the typical pilot purgatory.
+            confidence to capability — without the typical pilot purgatory.
           </p>
         </div>
       </section>

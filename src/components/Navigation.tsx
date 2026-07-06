@@ -67,14 +67,17 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border-2 border-primary group-hover:bg-primary/20 transition-all">
-              <Zap className="w-6 h-6 text-primary group-hover:glow-green" />
+            <div className="w-9 h-9 rounded-sm flex items-center justify-center border border-primary/60 group-hover:border-primary transition-colors">
+              <Zap className="w-5 h-5 text-primary" />
             </div>
             <div className="hidden sm:block">
-              <div className="text-xl font-heading text-primary glow-green">
-                AIEXPERT.AI
+              <div
+                className="text-lg font-heading uppercase text-foreground leading-tight"
+                style={{ fontVariationSettings: "'wdth' 118, 'wght' 640", letterSpacing: "0.04em" }}
+              >
+                The AI Expert
               </div>
-              <div className="text-xs text-muted-foreground -mt-1">
+              <div className="kicker text-[10px] text-muted-foreground -mt-0.5">
                 Getting AI Done Right
               </div>
             </div>
@@ -91,9 +94,9 @@ const Navigation = () => {
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
                   <button
-                    className={`text-sm font-heading transition-all hover:text-primary flex items-center gap-1 ${
+                    className={`font-mono text-xs uppercase tracking-[0.16em] transition-all hover:text-primary flex items-center gap-1 ${
                       isActive(link.path) || isChildActive(link)
-                        ? "text-primary glow-green"
+                        ? "text-primary"
                         : "text-muted-foreground"
                     }`}
                   >
@@ -129,9 +132,9 @@ const Navigation = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-sm font-heading transition-all hover:text-primary ${
+                  className={`font-mono text-xs uppercase tracking-[0.16em] transition-all hover:text-primary ${
                     isActive(link.path)
-                      ? "text-primary glow-green"
+                      ? "text-primary"
                       : "text-muted-foreground"
                   }`}
                 >
@@ -142,7 +145,7 @@ const Navigation = () => {
 
             <Button
               size="sm"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold shadow-cyber"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-xs uppercase tracking-[0.14em] rounded-sm"
               asChild
             >
               <Link to="/contact">Book a Call</Link>
@@ -176,9 +179,9 @@ const Navigation = () => {
                           openDropdown === link.name ? null : link.name
                         )
                       }
-                      className={`text-base font-heading transition-all hover:text-primary py-2 w-full text-left flex items-center justify-between ${
+                      className={`font-mono text-sm uppercase tracking-[0.14em] transition-all hover:text-primary py-2 w-full text-left flex items-center justify-between ${
                         isActive(link.path) || isChildActive(link)
-                          ? "text-primary glow-green"
+                          ? "text-primary"
                           : "text-muted-foreground"
                       }`}
                     >
@@ -213,9 +216,9 @@ const Navigation = () => {
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`text-base font-heading transition-all hover:text-primary py-2 ${
+                    className={`font-mono text-sm uppercase tracking-[0.14em] transition-all hover:text-primary py-2 ${
                       isActive(link.path)
-                        ? "text-primary glow-green"
+                        ? "text-primary"
                         : "text-muted-foreground"
                     }`}
                   >
@@ -226,7 +229,7 @@ const Navigation = () => {
 
               <Button
                 size="sm"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold shadow-cyber w-full mt-2"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-xs uppercase tracking-[0.14em] rounded-sm w-full mt-2"
                 asChild
                 onClick={() => setIsMobileMenuOpen(false)}
               >

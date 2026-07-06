@@ -389,22 +389,18 @@ const Resources = () => {
             heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30">
-            <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
-            <span className="text-sm font-heading text-primary tracking-wider">
-              FREE TOOLS & INSIGHTS
-            </span>
-          </div>
+          {/* Slate */}
+          <span className="kicker text-primary inline-block">
+            Resources — Free tools &amp; insights
+          </span>
 
-          <h1 className="text-5xl md:text-6xl font-heading leading-tight">
-            <span className="text-gradient-animate glow-green-intense">AI RESOURCES</span>
-            <br />
-            <span className="text-foreground">
-              TO ACCELERATE YOUR JOURNEY
+          <h1 className="title-scene">
+            <span className="text-primary">AI resources</span>
+            <span className="block text-foreground">
+              to accelerate your journey.
             </span>
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          <p className="lede max-w-2xl mx-auto">
             Practical frameworks, tools, and insights to help you build AI
             capabilities and drive real business value.
           </p>

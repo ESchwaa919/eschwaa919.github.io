@@ -188,16 +188,14 @@ const Contact = () => {
             }`}
           >
             <div>
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-6">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-primary">Start the Conversation</span>
-              </div>
+              {/* Slate */}
+              <span className="kicker text-primary inline-block mb-6">
+                Contact — Start the conversation
+              </span>
 
-              <h1 className="text-4xl md:text-5xl font-heading mb-4">
-                <span className="text-gradient-animate">LET'S MAP</span>
-                <br />
-                <span className="text-foreground">YOUR AI PATH</span>
+              <h1 className="title-scene mb-4">
+                <span className="text-primary">Let's map</span>
+                <span className="block text-foreground">your AI path.</span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 Whether you're just starting or ready to scale, let's discuss
@@ -209,7 +207,7 @@ const Contact = () => {
               </p>
               <Button
                 size="lg"
-                className="group mt-4 bg-secondary text-secondary-foreground hover:bg-secondary/90 glow-pink font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsla(320,85%,55%,0.4)]"
+                className="group mt-4 bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-sm uppercase tracking-[0.14em] rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:box-glow-signal"
                 asChild
               >
                 <a

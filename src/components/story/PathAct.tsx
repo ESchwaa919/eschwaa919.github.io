@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SceneMarker from "./SceneMarker";
-import Reveal from "./Reveal";
-import { useStaggeredReveal } from "@/hooks/useScrollReveal";
+import Reveal, { revealClasses } from "./Reveal";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const stages = [
   {
@@ -35,7 +35,7 @@ const stages = [
 
 /** Act III — the journey map: Literacy → Strategy → Implementation. */
 const PathAct = () => {
-  const { containerRef, visibleItems } = useStaggeredReveal(3);
+  const { ref: gridRef, isVisible: gridVisible } = useScrollReveal();
 
   return (
     <section className="py-24 lg:py-32 border-t border-border">
@@ -58,18 +58,15 @@ const PathAct = () => {
         </div>
 
         <div
-          ref={containerRef}
+          ref={gridRef}
           className="grid md:grid-cols-3 gap-px bg-border border border-border"
         >
           {stages.map((stage, index) => (
             <Link
               key={stage.number}
               to={stage.link}
-              className={`group block bg-background hover:bg-moss p-8 lg:p-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                visibleItems[index]
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
-              }`}
+              style={{ transitionDelay: `${index * 80}ms` }}
+              className={`group block bg-background hover:bg-moss p-8 lg:p-10 ${revealClasses(gridVisible)}`}
             >
               <span className="kicker text-primary block mb-6">
                 Stage {stage.number}
@@ -98,12 +95,7 @@ const PathAct = () => {
         </div>
 
         <Reveal className="mt-12 text-center">
-          <Button
-            size="lg"
-            variant="outline"
-            className="border border-border bg-transparent text-foreground hover:border-primary/60 hover:text-primary hover:bg-transparent font-mono text-sm uppercase tracking-[0.14em] px-8 py-6 rounded-sm transition-all duration-300 hover:-translate-y-0.5"
-            asChild
-          >
+          <Button size="lg" variant="cineOutline" className="text-sm px-8 py-6" asChild>
             <Link to="/process">
               Explore the process
               <ArrowRight className="ml-2 w-4 h-4" />

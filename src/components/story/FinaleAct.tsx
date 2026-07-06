@@ -8,6 +8,8 @@ import SceneMarker from "./SceneMarker";
 import Reveal from "./Reveal";
 import { PILLAR_PAGES } from "@/constants/pillarPages";
 
+const pillarChips = PILLAR_PAGES.filter((p) => p.path !== "/use-cases");
+
 const trustPoints = [
   "Flexible engagement models",
   "SMB-focused pricing",
@@ -58,7 +60,7 @@ const FinaleAct = () => {
 
           <Reveal delay={160}>
             <div className="flex flex-wrap gap-2.5 justify-center">
-              {PILLAR_PAGES.filter((p) => p.path !== "/use-cases").map((page) => (
+              {pillarChips.map((page) => (
                 <Link
                   key={page.path}
                   to={page.path}
@@ -72,22 +74,13 @@ const FinaleAct = () => {
 
           <Reveal delay={240}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-              <Button
-                size="lg"
-                className="group bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-sm uppercase tracking-[0.14em] px-10 py-7 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:box-glow-signal"
-                asChild
-              >
+              <Button size="lg" variant="cine" className="text-sm px-10 py-7" asChild>
                 <a href="https://calendly.com/eschwaa/30min">
                   <Calendar className="w-4 h-4 mr-2.5" />
                   Book a strategy call
                 </a>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border border-border bg-transparent text-foreground hover:border-primary/60 hover:text-primary hover:bg-transparent font-mono text-sm uppercase tracking-[0.14em] px-10 py-7 rounded-sm transition-all duration-300 hover:-translate-y-0.5"
-                asChild
-              >
+              <Button size="lg" variant="cineOutline" className="group text-sm px-10 py-7" asChild>
                 <Link to="/services">
                   Explore services
                   <ArrowRight className="w-4 h-4 ml-2.5 transition-transform group-hover:translate-x-1" />
@@ -163,11 +156,7 @@ const FinaleAct = () => {
                       />
                     </div>
 
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-sm uppercase tracking-[0.14em] py-6 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:box-glow-signal"
-                    >
+                    <Button type="submit" size="lg" variant="cine" className="w-full text-sm py-6">
                       <Download className="w-4 h-4 mr-2" />
                       Get your free scorecard
                     </Button>

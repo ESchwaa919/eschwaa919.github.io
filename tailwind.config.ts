@@ -67,6 +67,12 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      transitionTimingFunction: {
+        reveal: "var(--reveal-ease)",
+      },
+      transitionDelay: {
+        "450": "450ms",
+      },
       keyframes: {
         "accordion-down": {
           from: {

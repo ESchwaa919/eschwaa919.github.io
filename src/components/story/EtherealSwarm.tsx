@@ -6,8 +6,9 @@ import * as THREE from "three";
  * and bone motes drifting in depth behind the whole site. GPU-driven (all
  * motion lives in the vertex shader), additive-blended, capped DPR.
  *
- * Loaded lazily from AmbientBackground so three.js stays out of the main
- * bundle. Honours prefers-reduced-motion by rendering a single still frame.
+ * Loaded lazily (and only after idle) from AmbientBackground so three.js
+ * stays out of the main bundle; reduced-motion users never load it at all.
+ * Renders at 30fps — indistinguishable for a slow drift, half the GPU work.
  */
 
 const VERT = /* glsl */ `
@@ -62,7 +63,7 @@ const EtherealSwarm = () => {
     const mount = mountRef.current;
     if (!mount || typeof window === "undefined") return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Reduced motion never reaches here — AmbientBackground gates the import.
     const isSmall = window.innerWidth < 768;
     const COUNT = isSmall ? 700 : 1600;
 
@@ -122,35 +123,37 @@ const EtherealSwarm = () => {
     };
 
     const onResize = () => {
+      const ratio = Math.min(window.devicePixelRatio, 1.5);
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
+      renderer.setPixelRatio(ratio);
+      material.uniforms.uPixelRatio.value = ratio;
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
 
     const clock = new THREE.Clock();
     let rafId = 0;
+    let lastFrame = 0;
+    const FRAME_MS = 1000 / 30; // 30fps is indistinguishable for this drift
 
     const renderFrame = () => {
       material.uniforms.uTime.value = clock.getElapsedTime();
-      points.rotation.y += 0.00035;
-      camera.position.x += (target.x - camera.position.x) * 0.02;
-      camera.position.y += (target.y - camera.position.y) * 0.02;
+      points.rotation.y += 0.0007;
+      camera.position.x += (target.x - camera.position.x) * 0.04;
+      camera.position.y += (target.y - camera.position.y) * 0.04;
       camera.lookAt(0, 0, 0);
       renderer.render(scene, camera);
     };
 
-    if (reducedMotion) {
-      // One still frame: the swarm as a constellation, not an animation
-      material.uniforms.uTime.value = 40;
-      renderFrame();
-    } else {
-      const loop = () => {
+    const loop = (now: number) => {
+      if (now - lastFrame >= FRAME_MS) {
+        lastFrame = now;
         renderFrame();
-        rafId = requestAnimationFrame(loop);
-      };
-      loop();
-      window.addEventListener("pointermove", onPointerMove);
-    }
+      }
+      rafId = requestAnimationFrame(loop);
+    };
+    rafId = requestAnimationFrame(loop);
+    window.addEventListener("pointermove", onPointerMove);
     window.addEventListener("resize", onResize);
 
     return () => {

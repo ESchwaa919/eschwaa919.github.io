@@ -23,6 +23,8 @@
     /* Emerald Signal — THE accent, used sparingly */
     --primary: 155 100% 45%;
     --primary-foreground: 200 25% 4%;
+    --primary-strong: 155 80% 38%;  /* accent on borders / rules */
+    --primary-dim: 155 60% 30%;     /* card hover borders */
 
     /* Muted sage — quiet secondary accent (replaces magenta).
        Must stay readable as text: text-secondary appears across
@@ -66,16 +68,10 @@
     --shadow-cyber:
       0 4px 20px hsl(200 25% 0% / 0.6),
       0 8px 40px hsl(200 25% 0% / 0.4);
-    --shadow-elevated:
-      0 8px 30px hsl(200 25% 0% / 0.5),
-      0 16px 60px hsl(200 25% 0% / 0.3);
 
-    /* ===== Motion ===== */
+    /* ===== Motion (consumed via tailwind ease-reveal + --transition-cyber) ===== */
     --reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
-    --reveal-time: 0.7s;
-    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-cyber: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-smooth: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     /* Sidebar (keeping for compatibility) */
     --sidebar-background: 0 0% 98%;
@@ -159,6 +155,16 @@
     background: hsl(var(--primary) / 0.3);
     color: hsl(var(--foreground));
   }
+
+  /* Keyboard focus affordance for non-Button interactives (Buttons carry
+     their own focus-visible ring via shadcn) */
+  a:focus-visible,
+  [role="tab"]:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 }
 
 /* ============================================
@@ -192,6 +198,13 @@
     letter-spacing: 0.03em;
   }
 
+  /* Brand lockup voice — Navigation + Footer wordmark */
+  .wordmark {
+    @apply font-heading uppercase text-lg;
+    font-variation-settings: 'wdth' 118, 'wght' 640;
+    letter-spacing: 0.04em;
+  }
+
   /* Screenplay slate voice — eyebrows, labels, metadata */
   .kicker {
     @apply font-mono uppercase;
@@ -211,7 +224,7 @@
   .scene-rule {
     height: 1px;
     flex: 1;
-    background: linear-gradient(90deg, hsl(155 80% 38%), hsl(var(--border)) 60%, transparent);
+    background: linear-gradient(90deg, hsl(var(--primary-strong)), hsl(var(--border)) 60%, transparent);
     transform-origin: left;
     transform: scaleX(0);
     transition: transform 1.2s var(--reveal-ease) 0.2s;
@@ -229,16 +242,22 @@
     line-height: 1;
   }
 
-  /* Flat surface card — replaces glassmorphism */
-  .card-surface {
+  /* Flat surface card — replaces glassmorphism. Legacy card names alias to
+     the same recipe so unrebuilt pages share one design decision. */
+  .card-surface,
+  .glass-card-hover,
+  .card-enhanced {
+    @apply relative overflow-hidden;
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
     border-radius: var(--radius);
     transition: border-color 0.3s ease, transform 0.3s var(--reveal-ease);
   }
 
-  .card-surface:hover {
-    border-color: hsl(155 60% 30% / 0.6);
+  .card-surface:hover,
+  .glass-card-hover:hover,
+  .card-enhanced:hover {
+    border-color: hsl(var(--primary-dim) / 0.6);
     transform: translateY(-3px);
   }
 
@@ -251,8 +270,8 @@
     height: 70vh;
     transform: translateX(-50%);
     background: radial-gradient(ellipse at center,
-      hsl(155 100% 45% / 0.13) 0%,
-      hsl(155 100% 40% / 0.05) 35%,
+      hsl(var(--primary) / 0.13) 0%,
+      hsl(var(--primary) / 0.05) 35%,
       transparent 65%);
     pointer-events: none;
   }
@@ -271,20 +290,8 @@
     box-shadow: var(--shadow-cyber);
   }
 
-  .shadow-elevated {
-    box-shadow: var(--shadow-elevated);
-  }
-
   .animate-cue {
     animation: cue 3s ease-in-out infinite;
-  }
-
-  .hover-lift {
-    transition: var(--transition-cyber);
-  }
-
-  .hover-lift:hover {
-    transform: translateY(-3px);
   }
 
   /* ===== Reduced Motion ===== */
@@ -308,6 +315,8 @@
    without breaking. Neon/glitch/shimmer retired.
    ============================================ */
 
+/* Only classes with live consumers in src/ survive here (grep-verified);
+   .card-enhanced/.glass-card-hover alias to .card-surface above. */
 @layer utilities {
   /* Neon text glows → retired. Fully inert: elements pair these with their
      own text-* color classes, and buttons use them on solid-primary
@@ -315,98 +324,33 @@
   .glow-green,
   .glow-green-intense,
   .glow-pink,
-  .glow-pink-intense,
-  .glow-cyan {
-    text-shadow: none;
-  }
-
-  .box-glow-green,
-  .box-glow-pink,
   .shadow-glow-card {
+    text-shadow: none;
     box-shadow: none;
   }
 
   /* Gradient text → solid signal */
-  .text-gradient,
   .text-gradient-animate {
     color: hsl(var(--primary));
   }
 
   /* Glassmorphism → flat surface + hairline */
   .glass,
-  .glass-card,
-  .glass-card-hover {
+  .glass-card {
     background: hsl(var(--card) / 0.9);
     border: 1px solid hsl(var(--border));
   }
 
-  .glass-card-hover {
-    transition: border-color 0.3s ease, transform 0.3s var(--reveal-ease);
-  }
-
-  .glass-card-hover:hover {
-    border-color: hsl(155 60% 30% / 0.6);
-    transform: translateY(-3px);
-  }
-
-  .bg-gradient-cyber,
-  .bg-gradient-aurora,
-  .bg-gradient-mesh,
-  .bg-gradient-glass {
+  .bg-gradient-cyber {
     background: hsl(var(--card) / 0.6);
-  }
-
-  .bg-gradient-neon {
-    background: hsl(var(--primary));
-  }
-
-  .border-gradient {
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-    border-radius: var(--radius);
   }
 
   /* Looping animations → retired (inert) */
   .animate-pulse-glow,
-  .animate-pulse-glow-slow,
   .animate-data-stream,
-  .animate-glitch,
-  .animate-float,
-  .animate-float-delayed,
   .animate-glow-pulse,
-  .animate-border-glow,
-  .animate-mesh,
-  .animate-shimmer,
-  .text-shimmer,
-  .btn-shimmer,
-  .btn-magnetic,
-  .btn-glow-primary {
+  .btn-shimmer {
     animation: none;
-  }
-
-  .hover-glow:hover {
-    box-shadow: var(--glow-signal);
-  }
-
-  .hover-border-glow {
-    transition: var(--transition-cyber);
-  }
-
-  .hover-border-glow:hover {
-    border-color: hsl(var(--primary) / 0.5);
-  }
-
-  .cyber-line {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.4), transparent);
-  }
-
-  .cyber-corner,
-  .cyber-corner-tl,
-  .cyber-corner-tr,
-  .cyber-corner-bl,
-  .cyber-corner-br {
-    display: none;
   }
 
   .section-glow {
@@ -423,53 +367,6 @@
     max-width: 600px;
     height: 1px;
     background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent);
-  }
-}
-
-@layer components {
-  .card-enhanced,
-  .card-cyber {
-    @apply relative overflow-hidden;
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-    border-radius: var(--radius);
-    transition: border-color 0.3s ease, transform 0.3s var(--reveal-ease);
-  }
-
-  .card-enhanced:hover,
-  .card-cyber:hover {
-    border-color: hsl(155 60% 30% / 0.6);
-    transform: translateY(-3px);
-  }
-
-  .btn-cyber {
-    @apply relative inline-flex items-center justify-center px-6 py-3 font-mono text-sm uppercase tracking-widest rounded-sm;
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-    transition: var(--transition-cyber);
-  }
-
-  .btn-cyber:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--glow-signal);
-  }
-
-  .btn-cyber-outline {
-    @apply relative inline-flex items-center justify-center px-6 py-3 font-mono text-sm uppercase tracking-widest rounded-sm;
-    background: transparent;
-    color: hsl(var(--foreground));
-    border: 1px solid hsl(var(--border));
-    transition: var(--transition-cyber);
-  }
-
-  .btn-cyber-outline:hover {
-    border-color: hsl(155 80% 38%);
-    color: hsl(var(--primary));
-    transform: translateY(-2px);
-  }
-
-  .section-ambient {
-    @apply relative py-24;
   }
 }
 

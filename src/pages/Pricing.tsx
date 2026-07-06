@@ -12,7 +12,6 @@ import {
   Target,
   TrendingUp,
   Clock,
-  Sparkles,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { useScrollReveal } from "@/hooks/useScrollReveal";

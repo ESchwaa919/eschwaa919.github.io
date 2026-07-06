@@ -25,7 +25,6 @@ import {
   CheckCircle2,
   Calendar,
   Linkedin,
-  Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -207,7 +206,8 @@ const Contact = () => {
               </p>
               <Button
                 size="lg"
-                className="group mt-4 bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-sm uppercase tracking-[0.14em] rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:box-glow-signal"
+                variant="cine"
+                className="group mt-4 text-sm"
                 asChild
               >
                 <a

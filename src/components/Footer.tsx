@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Mail, MapPin, Phone, Zap, Facebook, Instagram } from "lucide-react";
+import { Linkedin, Mail, MapPin, Phone, Facebook, Instagram } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
+import Brandmark from "@/components/Brandmark";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -61,22 +62,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-3 group mb-6">
-              <div className="w-9 h-9 rounded-sm flex items-center justify-center border border-primary/60 group-hover:border-primary transition-colors">
-                <Zap className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <div
-                  className="text-lg font-heading uppercase text-foreground leading-tight"
-                  style={{ fontVariationSettings: "'wdth' 118, 'wght' 640", letterSpacing: "0.04em" }}
-                >
-                  The AI Expert
-                </div>
-                <div className="kicker text-[10px] text-muted-foreground -mt-0.5">
-                  Getting AI Done Right
-                </div>
-              </div>
-            </Link>
+            <div className="mb-6">
+              <Brandmark />
+            </div>
             <p className="text-muted-foreground mb-6 max-w-md">
               Your first stop for getting AI done right. Fractional CAIO
               services, AI strategy development, and implementation for

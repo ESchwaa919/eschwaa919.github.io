@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Zap, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Brandmark from "@/components/Brandmark";
 
 interface NavLink {
   name: string;
@@ -66,22 +67,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-sm flex items-center justify-center border border-primary/60 group-hover:border-primary transition-colors">
-              <Zap className="w-5 h-5 text-primary" />
-            </div>
-            <div className="hidden sm:block">
-              <div
-                className="text-lg font-heading uppercase text-foreground leading-tight"
-                style={{ fontVariationSettings: "'wdth' 118, 'wght' 640", letterSpacing: "0.04em" }}
-              >
-                The AI Expert
-              </div>
-              <div className="kicker text-[10px] text-muted-foreground -mt-0.5">
-                Getting AI Done Right
-              </div>
-            </div>
-          </Link>
+          <Brandmark hideTextOnMobile />
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
@@ -143,11 +129,7 @@ const Navigation = () => {
               )
             )}
 
-            <Button
-              size="sm"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-xs uppercase tracking-[0.14em] rounded-sm"
-              asChild
-            >
+            <Button size="sm" variant="cine" className="text-xs" asChild>
               <Link to="/contact">Book a Call</Link>
             </Button>
           </div>
@@ -229,7 +211,8 @@ const Navigation = () => {
 
               <Button
                 size="sm"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-xs uppercase tracking-[0.14em] rounded-sm w-full mt-2"
+                variant="cine"
+                className="text-xs w-full mt-2"
                 asChild
                 onClick={() => setIsMobileMenuOpen(false)}
               >

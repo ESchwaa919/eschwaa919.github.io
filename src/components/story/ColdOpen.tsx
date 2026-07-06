@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SceneMarker from "./SceneMarker";
 
 /**
  * Scene 00 — the cold open. Opens on AI, not on a person. Full-viewport,
@@ -15,7 +16,7 @@ const ColdOpen = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const entrance = (delay: string) =>
+  const entrance = (delay = "") =>
     `transition-all duration-700 ${delay} ${
       isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
     }`;
@@ -26,12 +27,12 @@ const ColdOpen = () => {
 
       <div className="container relative z-10 mx-auto px-4 py-20">
         <div className="max-w-5xl">
-          {/* Slate */}
-          <div className={`flex items-center gap-5 mb-10 ${entrance("delay-0")}`}>
-            <span className="kicker text-primary whitespace-normal sm:whitespace-nowrap">
-              Your first stop for getting AI done right
-            </span>
-            <span className={`scene-rule ${isLoaded ? "is-drawn" : ""}`} aria-hidden="true" />
+          {/* Slate — load-time entrance rather than scroll reveal */}
+          <div className={`mb-10 ${entrance()}`}>
+            <SceneMarker
+              label="Your first stop for getting AI done right"
+              revealed={isLoaded}
+            />
           </div>
 
           {/* Headline */}
@@ -62,23 +63,14 @@ const ColdOpen = () => {
           </p>
 
           {/* CTAs */}
-          <div className={`flex flex-col sm:flex-row gap-4 mt-12 ${entrance("delay-[450ms]")}`}>
-            <Button
-              size="lg"
-              className="group bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-sm uppercase tracking-[0.14em] px-8 py-6 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:box-glow-signal"
-              asChild
-            >
+          <div className={`flex flex-col sm:flex-row gap-4 mt-12 ${entrance("delay-450")}`}>
+            <Button size="lg" variant="cine" className="group text-sm px-8 py-6" asChild>
               <Link to="/ai-assessment">
                 Start the AI assessment
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border border-border bg-transparent text-foreground hover:border-primary/60 hover:text-primary hover:bg-transparent font-mono text-sm uppercase tracking-[0.14em] px-8 py-6 rounded-sm transition-all duration-300 hover:-translate-y-0.5"
-              asChild
-            >
+            <Button size="lg" variant="cineOutline" className="text-sm px-8 py-6" asChild>
               <a href="https://calendly.com/eschwaa/30min">Book a strategy call</a>
             </Button>
           </div>
@@ -99,7 +91,7 @@ const ColdOpen = () => {
         className="absolute bottom-0 left-0 right-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, transparent, hsl(155 100% 45% / 0.4), transparent)",
+            "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.4), transparent)",
         }}
         aria-hidden="true"
       />

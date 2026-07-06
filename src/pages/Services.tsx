@@ -14,7 +14,6 @@ import {
   Rocket,
   Calendar,
   Zap,
-  Sparkles,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { StructuredData, createServiceSchema } from "@/components/StructuredData";

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Building2, Rocket, Users, Wrench, CheckCircle2 } from "lucide-react";
 import SceneMarker from "./SceneMarker";
-import Reveal from "./Reveal";
-import { useStaggeredReveal } from "@/hooks/useScrollReveal";
+import Reveal, { revealClasses } from "./Reveal";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import erikPortrait from "@/assets/Erik-Headshot.jpg";
 
 const sdlcChips = [
@@ -70,7 +70,7 @@ const differentiators = [
 
 /** Act IV — the guide: the practice that runs on AI, then the human behind it. */
 const GuideAct = () => {
-  const { containerRef, visibleItems } = useStaggeredReveal(4);
+  const { ref: reasonsRef, isVisible: reasonsVisible } = useScrollReveal();
 
   return (
     <section className="py-24 lg:py-32 border-t border-border">
@@ -156,17 +156,14 @@ const GuideAct = () => {
         </div>
 
         {/* Reasons grid */}
-        <div ref={containerRef} className="grid md:grid-cols-2 gap-5 lg:gap-6 mb-16">
+        <div ref={reasonsRef} className="grid md:grid-cols-2 gap-5 lg:gap-6 mb-16">
           {reasons.map((reason, index) => {
             const Icon = reason.icon;
             return (
               <div
                 key={reason.title}
-                className={`card-surface p-7 lg:p-8 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  visibleItems[index]
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-4"
-                }`}
+                style={{ transitionDelay: `${index * 80}ms` }}
+                className={`card-surface p-7 lg:p-8 ${revealClasses(reasonsVisible)}`}
               >
                 <Icon className="w-6 h-6 text-primary mb-5" aria-hidden="true" />
                 <h4 className="title-card mb-3">{reason.title}</h4>
@@ -202,7 +199,7 @@ const GuideAct = () => {
             <div className="grid grid-cols-3 gap-px bg-border border-t border-border">
               {stats.map((stat) => (
                 <div key={stat.label} className="bg-background p-6 text-center">
-                  <div className="font-heading text-2xl lg:text-3xl text-primary" style={{ fontVariationSettings: "'wdth' 118, 'wght' 640" }}>
+                  <div className="stat-figure text-2xl lg:text-3xl">
                     {stat.value}
                   </div>
                   <div className="kicker text-muted-foreground mt-1.5">{stat.label}</div>

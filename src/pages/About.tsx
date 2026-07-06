@@ -18,8 +18,8 @@ import erikPhoto from "@/assets/Erik-Headshot.jpg";
 import SEOHead from "@/components/SEOHead";
 import { StructuredData, personSchema } from "@/components/StructuredData";
 import SceneMarker from "@/components/story/SceneMarker";
-import Reveal from "@/components/story/Reveal";
-import { useStaggeredReveal } from "@/hooks/useScrollReveal";
+import Reveal, { revealClasses } from "@/components/story/Reveal";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const experience = [
   {
@@ -88,8 +88,7 @@ const differentiators = [
 ];
 
 const About = () => {
-  const { containerRef: principlesRef, visibleItems: principlesVisible } =
-    useStaggeredReveal(6);
+  const { ref: principlesRef, isVisible: principlesVisible } = useScrollReveal();
 
   return (
     <div className="min-h-screen">
@@ -164,12 +163,7 @@ const About = () => {
                   loading="lazy"
                 />
                 <div className="flex items-baseline gap-3 mt-4">
-                  <span
-                    className="font-heading text-2xl text-primary"
-                    style={{ fontVariationSettings: "'wdth' 118, 'wght' 640" }}
-                  >
-                    20+
-                  </span>
+                  <span className="stat-figure text-2xl">20+</span>
                   <span className="kicker text-muted-foreground">Years experience</span>
                 </div>
               </div>
@@ -200,7 +194,8 @@ const About = () => {
                 <div className="flex flex-col sm:flex-row gap-4 pt-2">
                   <Button
                     size="lg"
-                    className="group bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-sm uppercase tracking-[0.14em] px-6 py-5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:box-glow-signal"
+                    variant="cine"
+                    className="group text-sm px-6 py-5"
                     asChild
                   >
                     <a
@@ -215,8 +210,8 @@ const About = () => {
                   </Button>
                   <Button
                     size="lg"
-                    variant="outline"
-                    className="border border-border bg-transparent text-foreground hover:border-primary/60 hover:text-primary hover:bg-transparent font-mono text-sm uppercase tracking-[0.14em] px-6 py-5 rounded-sm transition-all duration-300 hover:-translate-y-0.5"
+                    variant="cineOutline"
+                    className="text-sm px-6 py-5"
                     asChild
                   >
                     <a
@@ -335,11 +330,8 @@ const About = () => {
               return (
                 <div
                   key={principle.title}
-                  className={`card-surface p-7 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                    principlesVisible[index]
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-4"
-                  }`}
+                  style={{ transitionDelay: `${index * 80}ms` }}
+                  className={`card-surface p-7 ${revealClasses(principlesVisible)}`}
                 >
                   <Icon className="w-6 h-6 text-primary mb-5" aria-hidden="true" />
                   <h3 className="title-card mb-3 normal-case">{principle.title}</h3>
@@ -373,8 +365,8 @@ const About = () => {
             <Reveal delay={80}>
               <div className="border-l border-primary pl-8 my-12">
                 <p
-                  className="font-heading text-2xl lg:text-3xl text-foreground normal-case"
-                  style={{ fontVariationSettings: "'wdth' 108, 'wght' 480", textTransform: "none" }}
+                  className="font-heading text-2xl lg:text-3xl text-foreground"
+                  style={{ fontVariationSettings: "'wdth' 108, 'wght' 480" }}
                 >
                   The AI Expert: Where AI expertise meets real-world application.
                 </p>
@@ -385,7 +377,8 @@ const About = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6 border-t border-border">
                 <Button
                   size="lg"
-                  className="group bg-primary text-primary-foreground hover:bg-primary/90 font-mono text-sm uppercase tracking-[0.14em] px-6 py-5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:box-glow-signal"
+                  variant="cine"
+                    className="group text-sm px-6 py-5"
                   asChild
                 >
                   <Link to="/contact">
@@ -395,8 +388,8 @@ const About = () => {
                 </Button>
                 <Button
                   size="lg"
-                  variant="outline"
-                  className="border border-border bg-transparent text-foreground hover:border-primary/60 hover:text-primary hover:bg-transparent font-mono text-sm uppercase tracking-[0.14em] px-6 py-5 rounded-sm transition-all duration-300 hover:-translate-y-0.5"
+                  variant="cineOutline"
+                  className="text-sm px-6 py-5"
                   asChild
                 >
                   <Link to="/process">Explore the process</Link>

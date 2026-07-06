@@ -14,7 +14,6 @@ import {
   Lightbulb,
   Target,
   CheckCircle2,
-  Sparkles,
 } from "lucide-react";
 import { useLeadCapture } from "@/hooks/useLeadCapture";
 import { LeadCaptureModal } from "@/components/LeadCaptureModal";

@@ -43,7 +43,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <AmbientBackground particleCount={40} showGrid={true} intensity="medium" />
+        <AmbientBackground />
         <CourseBanner />
         <Navigation />
         <main className="pt-[var(--chrome-h)]">

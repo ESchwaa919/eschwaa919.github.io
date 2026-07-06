@@ -14,8 +14,8 @@ import {
   FileText,
 } from "lucide-react";
 import SceneMarker from "./SceneMarker";
-import Reveal from "./Reveal";
-import { useStaggeredReveal } from "@/hooks/useScrollReveal";
+import Reveal, { revealClasses } from "./Reveal";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const stories = [
   {
@@ -123,8 +123,8 @@ const channels = [
 
 /** Act V — the proof: client stories, partners, and thought leadership. */
 const ProofAct = () => {
-  const { containerRef, visibleItems } = useStaggeredReveal(4);
-  const { containerRef: mediaRef, visibleItems: mediaVisible } = useStaggeredReveal(3);
+  const { ref: storiesRef, isVisible: storiesVisible } = useScrollReveal();
+  const { ref: mediaRef, isVisible: mediaVisible } = useScrollReveal();
 
   return (
     <section className="py-24 lg:py-32 border-t border-border">
@@ -147,18 +147,15 @@ const ProofAct = () => {
         </div>
 
         {/* Case stories */}
-        <div ref={containerRef} className="grid md:grid-cols-2 gap-5 lg:gap-6 mb-12">
+        <div ref={storiesRef} className="grid md:grid-cols-2 gap-5 lg:gap-6 mb-12">
           {stories.map((story, index) => {
             const StoryIcon = story.icon;
             const OutcomeIcon = story.outcomeIcon;
             return (
               <div
                 key={story.industry}
-                className={`card-surface p-7 lg:p-8 flex flex-col transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  visibleItems[index]
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-4"
-                }`}
+                style={{ transitionDelay: `${index * 80}ms` }}
+                className={`card-surface p-7 lg:p-8 flex flex-col ${revealClasses(storiesVisible)}`}
               >
                 <div className="flex items-center gap-3 mb-6">
                   <StoryIcon className="w-5 h-5 text-primary" aria-hidden="true" />
@@ -234,11 +231,8 @@ const ProofAct = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`card-surface group p-6 lg:p-7 flex flex-col transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  mediaVisible[index]
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-4"
-                }`}
+                style={{ transitionDelay: `${index * 80}ms` }}
+                className={`card-surface group p-6 lg:p-7 flex flex-col ${revealClasses(mediaVisible)}`}
               >
                 <div className="flex items-center justify-between mb-5">
                   <span className="kicker text-primary flex items-center gap-2">

@@ -1,20 +1,28 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 
 /**
  * Global ambient canvas for the Evolved Cyber-Luxe system: a barely-there
- * emerald wash plus the ethereal three.js swarm (lazy-loaded so three stays
- * out of the main bundle). Props kept for call-site compatibility.
+ * emerald wash plus the ethereal three.js swarm. The swarm chunk (~124 KB gz)
+ * is only fetched after the browser goes idle, and never under
+ * prefers-reduced-motion — the static wash carries the scene there.
  */
 const EtherealSwarm = lazy(() => import("@/components/story/EtherealSwarm"));
 
-interface AmbientBackgroundProps {
-  particleCount?: number;
-  showGrid?: boolean;
-  showScanLine?: boolean;
-  intensity?: 'subtle' | 'medium' | 'intense';
-}
+const AmbientBackground = () => {
+  const [showSwarm, setShowSwarm] = useState(false);
 
-const AmbientBackground = (_props: AmbientBackgroundProps) => {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const start = () => setShowSwarm(true);
+    if (typeof window.requestIdleCallback === "function") {
+      const id = window.requestIdleCallback(start, { timeout: 2500 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const id = window.setTimeout(start, 1200);
+    return () => window.clearTimeout(id);
+  }, []);
+
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
       <div
@@ -26,9 +34,11 @@ const AmbientBackground = (_props: AmbientBackgroundProps) => {
           `,
         }}
       />
-      <Suspense fallback={null}>
-        <EtherealSwarm />
-      </Suspense>
+      {showSwarm && (
+        <Suspense fallback={null}>
+          <EtherealSwarm />
+        </Suspense>
+      )}
     </div>
   );
 };

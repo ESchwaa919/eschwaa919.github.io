@@ -15,6 +15,11 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        /* Evolved Cyber-Luxe CTA voice — mono slate, hover lift + signal glow */
+        cine:
+          "bg-primary text-primary-foreground hover:bg-primary/90 font-mono uppercase tracking-[0.14em] rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:box-glow-signal",
+        cineOutline:
+          "border border-border bg-transparent text-foreground hover:border-primary/60 hover:text-primary hover:bg-transparent font-mono uppercase tracking-[0.14em] rounded-sm transition-all duration-300 hover:-translate-y-0.5",
       },
       size: {
         default: "h-10 px-4 py-2",

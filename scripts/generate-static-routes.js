@@ -25,7 +25,6 @@ const routes = [
   '/process/rune-sdlc',
   '/services',
   '/resources',
-  '/pricing',
   '/contact',
   '/ai-assessment',
   '/roi-calculator',

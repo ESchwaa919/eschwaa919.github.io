@@ -27,7 +27,6 @@ const navLinks: NavLink[] = [
       { name: "Use Cases", path: "/use-cases" },
     ],
   },
-  { name: "Pricing", path: "/pricing" },
   { name: "Resources", path: "/resources" },
   { name: "Contact", path: "/contact" },
 ];

@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import SceneMarker from "./SceneMarker";
 
 /**
- * Scene 00 — the cold open. Opens on AI, not on a person. Full-viewport,
- * one light source (the horizon), one primary action.
+ * Scene 00 — the cold open. Opens on AI, not on a person. One light source
+ * (the horizon), one primary action. Rendered inside a Slide.
  */
 const ColdOpen = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,10 +22,10 @@ const ColdOpen = () => {
     }`;
 
   return (
-    <section className="relative min-h-[calc(100vh-var(--chrome-h))] flex flex-col justify-center overflow-hidden">
+    <>
       <div className="horizon-glow" aria-hidden="true" />
 
-      <div className="container relative z-10 mx-auto px-4 py-20">
+      <div className="container relative z-10 mx-auto px-4">
         <div className="max-w-5xl">
           {/* Slate — load-time entrance rather than scroll reveal */}
           <div className={`mb-10 ${entrance()}`}>
@@ -77,15 +77,6 @@ const ColdOpen = () => {
         </div>
       </div>
 
-      {/* Scroll cue — the only looping animation on the site */}
-      <div
-        className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-700 delay-1000 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <span className="kicker text-muted-foreground animate-cue">Scroll</span>
-      </div>
-
       {/* Horizon hairline */}
       <div
         className="absolute bottom-0 left-0 right-0 h-px"
@@ -95,7 +86,7 @@ const ColdOpen = () => {
         }}
         aria-hidden="true"
       />
-    </section>
+    </>
   );
 };
 

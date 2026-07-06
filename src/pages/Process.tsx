@@ -635,8 +635,8 @@ const Process = () => {
             className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary font-semibold px-10 py-6 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_hsla(155,100%,45%,0.2)]"
             asChild
           >
-            <Link to="/pricing">
-              View Pricing & Engagement Models
+            <Link to="/contact">
+              Let's Discuss Your Engagement
               <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>

@@ -57,7 +57,7 @@ function getStoredLead(): LeadData | null {
   }
 }
 
-function storeLead(name: string, email: string): void {
+export function storeLead(name: string, email: string): void {
   const data: LeadData = {
     name,
     email,
@@ -66,7 +66,7 @@ function storeLead(name: string, email: string): void {
   localStorage.setItem(LEAD_STORAGE_KEY, JSON.stringify(data))
 }
 
-async function sendLeadNotification(
+export async function sendLeadNotification(
   name: string,
   email: string,
   resourceName: string,

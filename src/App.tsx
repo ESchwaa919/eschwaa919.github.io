@@ -15,7 +15,6 @@ import Process from "./pages/Process";
 import AiExpertSDLC from "./pages/AiExpertSDLC";
 import Services from "./pages/Services";
 import Resources from "./pages/Resources";
-import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 import AIAssessment from "./pages/AIAssessment";
 import ROICalculator from "./pages/ROICalculator";
@@ -56,7 +55,8 @@ const App = () => (
           <Route path="/the-process" element={<Navigate to="/process" replace />} />
           <Route path="/services" element={<Services />} />
           <Route path="/resources" element={<Resources />} />
-          <Route path="/pricing" element={<Pricing />} />
+          {/* Pricing is intentionally unpublished — old links land on Contact */}
+          <Route path="/pricing" element={<Navigate to="/contact" replace />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/ai-assessment" element={<AIAssessment />} />
           <Route path="/roi-calculator" element={<ROICalculator />} />

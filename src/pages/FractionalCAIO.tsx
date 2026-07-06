@@ -581,8 +581,8 @@ const FractionalCAIO = () => {
               className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary font-semibold"
               asChild
             >
-              <Link to="/pricing">
-                View All Pricing Options
+              <Link to="/contact">
+                Discuss an Engagement
                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import SceneMarker from "./SceneMarker";
 import Reveal, { revealClasses } from "./Reveal";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -38,72 +37,70 @@ const PathAct = () => {
   const { ref: gridRef, isVisible: gridVisible } = useScrollReveal();
 
   return (
-    <section className="py-24 lg:py-32 border-t border-border">
-      <div className="container mx-auto px-4">
-        <SceneMarker label="Act III — The path" className="mb-12" />
+    <div className="container mx-auto px-4">
+      <SceneMarker label="Act III — The path" className="mb-8" />
 
-        <div className="grid lg:grid-cols-2 gap-8 items-end mb-14">
-          <Reveal>
-            <h2 className="title-scene">
-              From AI-curious
-              <span className="block text-primary">to AI-powered.</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={80}>
-            <p className="lede lg:max-w-md lg:ml-auto">
-              AI adoption doesn't happen all at once. It happens in three clear
-              steps. We guide you through each one.
-            </p>
-          </Reveal>
-        </div>
-
-        <div
-          ref={gridRef}
-          className="grid md:grid-cols-3 gap-px bg-border border border-border"
-        >
-          {stages.map((stage, index) => (
-            <Link
-              key={stage.number}
-              to={stage.link}
-              style={{ transitionDelay: `${index * 80}ms` }}
-              className={`group block bg-background hover:bg-moss p-8 lg:p-10 ${revealClasses(gridVisible)}`}
-            >
-              <span className="kicker text-primary block mb-6">
-                Stage {stage.number}
-              </span>
-              <h3 className="title-card mb-3">{stage.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                {stage.description}
-              </p>
-              <ul className="space-y-2 mb-8">
-                {stage.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-center gap-2.5 text-sm text-muted-foreground"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-primary shrink-0" aria-hidden="true" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <span className="kicker text-muted-foreground flex items-center gap-2 group-hover:text-primary transition-colors">
-                {stage.meta} · Deep dive
-                <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Link>
-          ))}
-        </div>
-
-        <Reveal className="mt-12 text-center">
-          <Button size="lg" variant="cineOutline" className="text-sm px-8 py-6" asChild>
-            <Link to="/process">
-              Explore the process
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Link>
-          </Button>
+      <div className="grid lg:grid-cols-2 gap-6 items-end mb-10">
+        <Reveal>
+          <h2 className="title-scene">
+            From AI-curious
+            <span className="block text-primary">to AI-powered.</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={80}>
+          <p className="lede lg:max-w-md lg:ml-auto">
+            AI adoption doesn't happen all at once. It happens in three clear
+            steps. We guide you through each one.
+          </p>
         </Reveal>
       </div>
-    </section>
+
+      <div
+        ref={gridRef}
+        className="grid md:grid-cols-3 gap-px bg-border border border-border"
+      >
+        {stages.map((stage, index) => (
+          <Link
+            key={stage.number}
+            to={stage.link}
+            style={{ transitionDelay: `${index * 80}ms` }}
+            className={`group block bg-background hover:bg-moss p-7 lg:p-8 ${revealClasses(gridVisible)}`}
+          >
+            <span className="kicker text-primary block mb-5">
+              Stage {stage.number}
+            </span>
+            <h3 className="title-card mb-3">{stage.title}</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-5">
+              {stage.description}
+            </p>
+            <ul className="space-y-2 mb-6">
+              {stage.features.map((feature) => (
+                <li
+                  key={feature}
+                  className="flex items-center gap-2.5 text-sm text-muted-foreground"
+                >
+                  <span className="w-1 h-1 rounded-full bg-primary shrink-0" aria-hidden="true" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <span className="kicker text-muted-foreground flex items-center gap-2 group-hover:text-primary transition-colors">
+              {stage.meta} · Deep dive
+              <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+            </span>
+          </Link>
+        ))}
+      </div>
+
+      <Reveal className="mt-8 text-center">
+        <Link
+          to="/process"
+          className="inline-flex items-center gap-2 kicker text-primary hover:text-primary/80 transition-colors"
+        >
+          Explore the full process <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
+      </Reveal>
+    </div>
   );
 };
 

@@ -261,6 +261,39 @@
     transform: translateY(-3px);
   }
 
+  /* ===== Homepage deck ===== */
+  /* Each act is a slide. Desktop gets full-viewport slides + snap landing;
+     mobile relaxes to natural document flow. */
+  .slide {
+    position: relative;
+    overflow: hidden;
+    scroll-snap-align: start;
+    scroll-margin-top: var(--chrome-h);
+    padding: 3.5rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    .slide {
+      min-height: calc(100vh - var(--chrome-h));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 0 0;
+    }
+  }
+
+  /* proximity (not mandatory): gestures land on acts like slides, but the
+     user is never trapped and the footer stays reachable */
+  html.deck-snap {
+    scroll-snap-type: y proximity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   /* Hero horizon — the sole ambient light source */
   .horizon-glow {
     position: absolute;

@@ -10,7 +10,7 @@ const CourseBanner = () => {
   const [scrolledPast, setScrolledPast] = useState(false);
 
   useEffect(() => {
-    const dismissed = localStorage.getItem("courseBannerDismissed");
+    const dismissed = localStorage.getItem("courseBannerDismissed-aug14");
     if (dismissed) {
       const dismissedDate = new Date(dismissed);
       const now = new Date();
@@ -46,7 +46,7 @@ const CourseBanner = () => {
 
   const handleDismiss = () => {
     setIsVisible(false);
-    localStorage.setItem("courseBannerDismissed", new Date().toISOString());
+    localStorage.setItem("courseBannerDismissed-aug14", new Date().toISOString());
   };
 
   if (!isVisible) return null;
@@ -65,8 +65,8 @@ const CourseBanner = () => {
           <Rocket className="w-4 h-4 text-primary animate-pulse hidden sm:block" />
           <span className="text-foreground font-medium">
             <span className="text-primary font-heading">Ship an App in a Day</span>
-            <span className="hidden sm:inline"> • Tue, Jul 7 • London</span>
-            <span className="sm:hidden"> • Jul 7</span>
+            <span className="hidden sm:inline"> • Fri, Aug 14 • London</span>
+            <span className="sm:hidden"> • Aug 14</span>
           </span>
           <Link
             to="/courses"

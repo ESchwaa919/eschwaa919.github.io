@@ -8,15 +8,15 @@ import CourseTestimonials from "@/components/CourseTestimonials";
 const courseEventSchema = createEventSchema({
   name: "Ship an App in a Day – AI Workshop",
   description: "Build a real, working application using AI in just one day. Hands-on workshop in London teaching you to collaborate effectively with AI tools. No coding experience required.",
-  startDate: "2026-07-07T09:00:00+01:00",
-  endDate: "2026-07-07T17:00:00+01:00",
+  startDate: "2026-08-14T09:00:00+01:00",
+  endDate: "2026-08-14T17:00:00+01:00",
   url: "https://theaiexpert.ai/courses",
   locationName: "The Mandeville Hotel",
   locationAddress: "Mandeville Place",
   offers: {
-    price: "0",
+    price: "600",
     currency: "GBP",
-    url: "https://luma.com/wivak21g",
+    url: "https://luma.com/5xyia8en",
   },
 });
 
@@ -123,7 +123,7 @@ const Courses = () => {
             asChild
           >
             <a
-              href="https://luma.com/wivak21g"
+              href="https://luma.com/5xyia8en"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -171,7 +171,7 @@ const Courses = () => {
             asChild
           >
             <a
-              href="https://luma.com/wivak21g"
+              href="https://luma.com/5xyia8en"
               target="_blank"
               rel="noopener noreferrer"
             >

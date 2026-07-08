@@ -41,21 +41,17 @@ const Courses = () => {
       {/* Hero Section */}
       <section className="container mx-auto px-4 mb-16">
         <div className="max-w-4xl mx-auto text-center space-y-6">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30">
-            <Rocket className="w-4 h-4 text-primary animate-pulse" />
-            <span className="text-sm font-heading text-primary tracking-wider">
-              HANDS-ON WORKSHOP
-            </span>
-          </div>
+          {/* Slate */}
+          <span className="kicker text-primary inline-block">
+            Courses — Hands-on workshop
+          </span>
 
-          <h1 className="text-5xl md:text-6xl font-heading leading-tight">
-            <span className="text-gradient-animate glow-green-intense">SHIP AN APP</span>
-            <br />
-            <span className="text-foreground">IN A DAY</span>
+          <h1 className="title-display">
+            <span className="text-primary">Ship an app</span>
+            <span className="block text-foreground">in a day.</span>
           </h1>
 
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          <p className="lede max-w-2xl mx-auto">
             Build a real, working application using AI in just one day.
             No coding experience required – just bring your idea.
           </p>

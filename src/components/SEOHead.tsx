@@ -11,7 +11,7 @@ interface SEOHeadProps {
 }
 
 const BASE_URL = "https://theaiexpert.ai"
-const DEFAULT_IMAGE = `${BASE_URL}/theaiexpert-transparent-logo.png`
+const DEFAULT_IMAGE = `${BASE_URL}/og-card.jpg`
 const SITE_NAME = "The AI Expert"
 const TWITTER_HANDLE = "@ESchwaa"
 

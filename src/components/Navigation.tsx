@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Zap, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Brandmark from "@/components/Brandmark";
 
 interface NavLink {
   name: string;
@@ -26,7 +27,6 @@ const navLinks: NavLink[] = [
       { name: "Use Cases", path: "/use-cases" },
     ],
   },
-  { name: "Pricing", path: "/pricing" },
   { name: "Resources", path: "/resources" },
   { name: "Contact", path: "/contact" },
 ];
@@ -66,19 +66,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border-2 border-primary group-hover:bg-primary/20 transition-all">
-              <Zap className="w-6 h-6 text-primary group-hover:glow-green" />
-            </div>
-            <div className="hidden sm:block">
-              <div className="text-xl font-heading text-primary glow-green">
-                AIEXPERT.AI
-              </div>
-              <div className="text-xs text-muted-foreground -mt-1">
-                Getting AI Done Right
-              </div>
-            </div>
-          </Link>
+          <Brandmark hideTextOnMobile />
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
@@ -91,9 +79,9 @@ const Navigation = () => {
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
                   <button
-                    className={`text-sm font-heading transition-all hover:text-primary flex items-center gap-1 ${
+                    className={`font-mono text-xs uppercase tracking-[0.16em] transition-all hover:text-primary flex items-center gap-1 ${
                       isActive(link.path) || isChildActive(link)
-                        ? "text-primary glow-green"
+                        ? "text-primary"
                         : "text-muted-foreground"
                     }`}
                   >
@@ -129,9 +117,9 @@ const Navigation = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-sm font-heading transition-all hover:text-primary ${
+                  className={`font-mono text-xs uppercase tracking-[0.16em] transition-all hover:text-primary ${
                     isActive(link.path)
-                      ? "text-primary glow-green"
+                      ? "text-primary"
                       : "text-muted-foreground"
                   }`}
                 >
@@ -140,11 +128,7 @@ const Navigation = () => {
               )
             )}
 
-            <Button
-              size="sm"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold shadow-cyber"
-              asChild
-            >
+            <Button size="sm" variant="cine" className="text-xs" asChild>
               <Link to="/contact">Book a Call</Link>
             </Button>
           </div>
@@ -176,9 +160,9 @@ const Navigation = () => {
                           openDropdown === link.name ? null : link.name
                         )
                       }
-                      className={`text-base font-heading transition-all hover:text-primary py-2 w-full text-left flex items-center justify-between ${
+                      className={`font-mono text-sm uppercase tracking-[0.14em] transition-all hover:text-primary py-2 w-full text-left flex items-center justify-between ${
                         isActive(link.path) || isChildActive(link)
-                          ? "text-primary glow-green"
+                          ? "text-primary"
                           : "text-muted-foreground"
                       }`}
                     >
@@ -213,9 +197,9 @@ const Navigation = () => {
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`text-base font-heading transition-all hover:text-primary py-2 ${
+                    className={`font-mono text-sm uppercase tracking-[0.14em] transition-all hover:text-primary py-2 ${
                       isActive(link.path)
-                        ? "text-primary glow-green"
+                        ? "text-primary"
                         : "text-muted-foreground"
                     }`}
                   >
@@ -226,7 +210,8 @@ const Navigation = () => {
 
               <Button
                 size="sm"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 glow-green font-semibold shadow-cyber w-full mt-2"
+                variant="cine"
+                className="text-xs w-full mt-2"
                 asChild
                 onClick={() => setIsMobileMenuOpen(false)}
               >

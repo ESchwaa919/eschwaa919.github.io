@@ -25,7 +25,6 @@ const ROUTES = [
   '/process/sdlc',
   '/services',
   '/resources',
-  '/pricing',
   '/contact',
   '/courses',
   '/fractional-caio',

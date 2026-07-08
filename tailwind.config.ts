@@ -55,15 +55,23 @@ export default {
         "neon-pink": "hsl(var(--neon-pink))",
         "cyber-dark": "hsl(var(--cyber-dark))",
         "cyber-gray": "hsl(var(--cyber-gray))",
+        moss: "hsl(var(--moss))",
       },
       fontFamily: {
-        heading: ['Rajdhani', 'sans-serif'],
+        heading: ['Archivo', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
+        mono: ['IBM Plex Mono', 'monospace'],
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      transitionTimingFunction: {
+        reveal: "var(--reveal-ease)",
+      },
+      transitionDelay: {
+        "450": "450ms",
       },
       keyframes: {
         "accordion-down": {

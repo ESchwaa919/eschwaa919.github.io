@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Mail, MapPin, Phone, Zap, Facebook, Instagram } from "lucide-react";
+import { Linkedin, Mail, MapPin, Phone, Facebook, Instagram } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
+import Brandmark from "@/components/Brandmark";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,7 +13,6 @@ const Footer = () => {
         { name: "About", path: "/about" },
         { name: "The Process", path: "/process" },
         { name: "Services", path: "/services" },
-        { name: "Pricing", path: "/pricing" },
       ],
     },
     {
@@ -61,19 +61,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-3 group mb-6">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border-2 border-primary group-hover:bg-primary/20 transition-all">
-                <Zap className="w-6 h-6 text-primary group-hover:glow-green" />
-              </div>
-              <div>
-                <div className="text-xl font-heading text-primary glow-green">
-                  AIEXPERT.AI
-                </div>
-                <div className="text-xs text-muted-foreground -mt-1">
-                  Getting AI Done Right
-                </div>
-              </div>
-            </Link>
+            <div className="mb-6">
+              <Brandmark />
+            </div>
             <p className="text-muted-foreground mb-6 max-w-md">
               Your first stop for getting AI done right. Fractional CAIO
               services, AI strategy development, and implementation for
@@ -145,7 +135,7 @@ const Footer = () => {
           {/* Navigation Links */}
           {navigation.map((section, index) => (
             <div key={index}>
-              <h3 className="text-sm font-heading text-foreground mb-4">
+              <h3 className="kicker text-foreground mb-4">
                 {section.title}
               </h3>
               <ul className="space-y-3">
@@ -168,7 +158,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © {currentYear} aiexpert.ai. All rights reserved.
+              © {currentYear} The AI Expert · theaiexpert.ai. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link

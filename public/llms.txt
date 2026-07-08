@@ -13,7 +13,6 @@ organisations in the UK, Europe, and worldwide (remote).
 - Home: https://theaiexpert.ai/
 - About: https://theaiexpert.ai/about
 - Services: https://theaiexpert.ai/services
-- Pricing: https://theaiexpert.ai/pricing
 - Process: https://theaiexpert.ai/process
 - The Ai Expert SDLC (spec-driven agentic delivery method): https://theaiexpert.ai/process/sdlc
 - Resources: https://theaiexpert.ai/resources

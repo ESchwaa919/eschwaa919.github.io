@@ -49,6 +49,18 @@ const testimonials: Testimonial[] = [
     company: "Founder, iMA Technologies",
     quote: "Erik's ability to translate complex AI concepts into practical business solutions is exceptional. He consistently exceeds expectations, delivering results that have transformed how we approach technology across our platform.",
   },
+  {
+    name: "Jess Keltie",
+    quote: "The course was fantastic!!! a print out of a flowchart, or numbered steps for the process would be fantastic so participants could follow along on there as well as looking at the projector - this could be fairly top level e.g. open Google AI studio and import your PDR",
+  },
+  {
+    name: "Jade Vincent",
+    quote: "Felt a little sceptical that I would understand the concept and be able to get going. But it was exciting to see what we could all achieve in one day! Imagine what we may achieve next!",
+  },
+  {
+    name: "Sarah Monaco",
+    quote: "Let me know when Part 2 happens!",
+  },
 ];
 
 interface CourseTestimonialsProps {

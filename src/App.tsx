@@ -7,7 +7,6 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import AmbientBackground from "@/components/AmbientBackground";
-import CourseBanner from "@/components/CourseBanner";
 import Index from "./pages/Index";
 import Courses from "./pages/Courses";
 import About from "./pages/About";
@@ -43,7 +42,6 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <AmbientBackground />
-        <CourseBanner />
         <Navigation />
         <main className="pt-[var(--chrome-h)]">
         <Routes>

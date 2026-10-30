@@ -17,6 +17,14 @@ if (routes.length < 15 || !routes.includes("/") || !routes.includes("/courses"))
   process.exit(2);
 }
 
+// A kept-content guard derived from source (no hardcoded quote): the first course testimonial.
+const testimonialSrc = readFileSync(new URL("../src/components/CourseTestimonials.tsx", import.meta.url), "utf8");
+const firstQuote = testimonialSrc.match(/quote:\s*"([^"]{40,})"/)?.[1]?.slice(0, 40);
+if (!firstQuote) {
+  console.error("could not derive a testimonial quote from CourseTestimonials.tsx");
+  process.exit(2);
+}
+
 const VIEWPORTS = [
   { name: "desktop-1440", width: 1440, height: 900 },
   { name: "mobile-390", width: 390, height: 844 },
@@ -42,7 +50,9 @@ try {
       const page = await browser.newPage();
       await page.setViewport({ width: vp.width, height: vp.height });
       try {
-        await page.goto(base + route, { waitUntil: "load", timeout: 30000 });
+        // Trailing-slash form so the server returns the prerendered <route>/index.html. Without it,
+        // `vite preview` resolves /ai-assessment to the meta-refresh stub dist/ai-assessment.html.
+        await page.goto(base + (route === "/" ? "/" : `${route}/`), { waitUntil: "load", timeout: 30000 });
         await page.waitForSelector("main > *", { timeout: 15000 });
         await new Promise((r) => setTimeout(r, 1200));
 
@@ -77,13 +87,19 @@ try {
               firstChildTop: main.firstElementChild?.getBoundingClientRect().top ?? null,
               stray,
               html: root.outerHTML,
-              hasIframe: !!document.querySelector("iframe"),
+              lumaIframe: !!document.querySelector('iframe[src*="luma."]'),
               lumaLinks: [...document.querySelectorAll('a[href*="luma."]')].map((a) => a.href),
               eventLd: [...document.querySelectorAll('script[type="application/ld+json"]')].filter(
                 (s) => /"@type":"Event"/.test(s.textContent || "")
               ).length,
+              courseLd: [...document.querySelectorAll('script[type="application/ld+json"]')].filter(
+                (s) => /"@type":"Course"/.test(s.textContent || "")
+              ).length,
+              h1: document.querySelector("h1")?.textContent || "",
+              bodyText: document.body.innerText,
               askLink: [...document.querySelectorAll("a")]
                 .filter((a) => /ask about the next date/i.test(a.textContent || ""))
+                .filter((a) => a.getBoundingClientRect().width > 0) // rendered, not display:none
                 .map((a) => a.getAttribute("href")),
             };
           });
@@ -103,10 +119,13 @@ try {
         if (top.firstChildTop === null || Math.abs(top.firstChildTop - top.navBottom) > 1)
           fail(label, `first content top ${top.firstChildTop} != nav bottom ${top.navBottom}`);
         if (top.lumaLinks.length) fail(label, `luma links: ${top.lumaLinks.join(",")}`);
-        if (top.hasIframe) fail(label, "page still embeds an iframe (Luma calendar)");
+        if (top.lumaIframe) fail(label, "page still embeds the Luma calendar iframe");
         if (top.eventLd) fail(label, "Event JSON-LD still present");
         if (route === "/courses") {
           if (top.askLink.length === 0) fail(label, 'no "Ask about the next date" CTA');
+          if (top.courseLd < 1) fail(label, "Course JSON-LD missing (must be kept)");
+          if (!/ship an app/i.test(top.h1)) fail(label, `h1 is "${top.h1}"`);
+          if (!top.bodyText.includes(firstQuote)) fail(label, "course testimonial no longer rendered");
           for (const href of top.askLink)
             if (href !== "/contact") fail(label, `ask-CTA href=${href}, want /contact`);
         }

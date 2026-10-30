@@ -20,7 +20,9 @@ Issue: none given
 
 **Dependencies:** option (1), the `node_modules` symlink to the main checkout was already in place (gitignored, not committed). No install of any kind was run.
 
-**LOCAL ORACLE labelling (rule 5b):** no workflow runs on this PR. `.github/workflows/deploy.yml` triggers only on push to `main` and `workflow_dispatch`, so there is no hosted run to cite. Rows 2-6 are local evidence (my laptop's headless Chromium and build), not CI-gated.
+**LOCAL ORACLE labelling (rule 5b):** no GitHub Actions workflow runs on this PR. `.github/workflows/deploy.yml` triggers only on push to `main` and `workflow_dispatch`, so there is no Actions run to cite. Rows 2-6 are local evidence (my laptop's headless Chromium and build), not CI-gated.
+**Netlify checks on the PR are NOT evidence (found after `gh pr ready`):** a legacy Netlify integration (`amazing-kringle-04b967`, no `netlify.toml` in the repo) attaches `deploy-preview` = pass plus three neutral/skipped checks ("No redirect rules processed", "No header rules processed", "All files already uploaded"). I fetched `https://deploy-preview-18--amazing-kringle-04b967.netlify.app`: `/` returns the repo's raw source `index.html` (~4KB, no bundle) and `/courses/`, `/about/`, `/process/sdlc/` return 404. It publishes the repo root, not this build, so its "pass" says nothing about the change. The real deploy is GitHub Pages on push to `main`.
+**Post-ready push (rule 8g):** this paragraph was corrected after the PR was marked ready. The commit changes only `.reports/chore-retire-aug14-event-STATUS.md`; `src/` and `public/` are identical to the gated head `3dbc970`, so no new gate round is needed.
 
 **Guards re-run at the final head (rule 8d):** the repo has no local-only guards beyond the above. After the STATUS commit I re-ran `npm run build`, the three-string `dist/` grep, `grep -rn 5xyia8en src public` and the oracle against the rebuilt `dist/`: results in the PR's final comment (SHA-stamped), because a SHA cannot be written into the commit that contains it.
 
@@ -45,6 +47,7 @@ See `.reports/chore-retire-aug14-event-PUSHBACK.md`. In short: the brief's done-
 - **Real Chrome.** No Chrome claim was in the brief (rule 8i), so I did not touch the shared Chrome MCP; the layout evidence is headless Chromium. No `CHROME-DONE` line is owed.
 - **What the Luma calendar currently lists.** Its public API returned HTTP 429 on the one read-only call I made, so I could not check whether a future event exists that the removed embed would have shown.
 - **Content judgement, not a bug:** `/courses` still states "The Mandeville Hotel", "9:00 AM - 5:00 PM" and "Central London" as present-tense fact. Left because the brief says keep the course description, but they are the Aug 14 details.
+- Any hosted build of this branch: the only hosted preview (Netlify) serves un-built source, so none exists.
 - Production GitHub Pages behaviour after deploy (clean-URL resolution of `/courses`, caching of the old banner bundle for returning visitors; the localStorage key `courseBannerDismissed-aug14` is now inert).
 - Residual risk: LOW
 - If the gap hides a bug, the symptom would be: a stray gap or overlap under the nav on some route in real Chrome, or a stale cached banner for returning visitors for a short time after deploy.

@@ -64,16 +64,16 @@ const SdlcSectionNav = () => {
     const el = document.getElementById(id);
     if (!el) return; // fall back to default anchor behaviour
     e.preventDefault();
-    // The bar is pinned at top:var(--chrome-h) and --chrome-h collapses on
-    // scroll, so read the live value (plus the bar's own height) rather than a
-    // stale constant — the target lands flush directly under the bar.
+    // The bar is pinned at top:var(--chrome-h), so read that value (plus the
+    // bar's own height) rather than a stale constant — the target lands flush
+    // directly under the bar.
     const chromeH =
       parseInt(
         getComputedStyle(document.documentElement).getPropertyValue(
           "--chrome-h"
         ),
         10
-      ) || 124;
+      ) || 80;
     const barH = navBarRef.current?.getBoundingClientRect().height ?? 56;
     const offset = chromeH + barH;
     const top = Math.max(

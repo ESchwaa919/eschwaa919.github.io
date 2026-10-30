@@ -46,9 +46,8 @@ const Index = () => {
       const chrome =
         parseFloat(
           getComputedStyle(document.documentElement).getPropertyValue("--chrome-h")
-        ) || 124;
-      // generous tolerance: --chrome-h animates 124→80 as the banner
-      // collapses, so a slide can sit slightly above its snap position
+        ) || 80;
+      // generous tolerance: a slide can sit slightly above its snap position
       let current = 0;
       SLIDES.forEach((slide, index) => {
         const el = document.getElementById(slide.id);

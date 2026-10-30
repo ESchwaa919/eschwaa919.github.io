@@ -50,10 +50,9 @@
 
     --radius: 0.25rem;
 
-    /* Fixed-chrome height: 80px nav + 44px course banner. CourseBanner drops
-       this to 80px (nav only) when the banner fades on scroll or is dismissed,
-       so the content offset and SDLC section nav collapse the reserved band. */
-    --chrome-h: 124px;
+    /* Fixed-chrome height: the 80px nav (h-20) only. Drives the main content
+       offset, the homepage slide offsets and the /process/sdlc section nav. */
+    --chrome-h: 80px;
 
     /* ===== Legacy variable aliases (tailwind.config colors) ===== */
     --neon-green: 155 100% 45%;

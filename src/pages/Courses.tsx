@@ -1,24 +1,10 @@
+import { Link } from "react-router-dom";
 import { Calendar, MapPin, Clock, Rocket, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import SEOHead from "@/components/SEOHead";
-import { StructuredData, createEventSchema, createCourseSchema } from "@/components/StructuredData";
+import { StructuredData, createCourseSchema } from "@/components/StructuredData";
 import CourseTestimonials from "@/components/CourseTestimonials";
-
-const courseEventSchema = createEventSchema({
-  name: "Ship an App in a Day – AI Workshop",
-  description: "Build a real, working application using AI in just one day. Hands-on workshop in London teaching you to collaborate effectively with AI tools. No coding experience required.",
-  startDate: "2026-08-14T09:00:00+01:00",
-  endDate: "2026-08-14T17:00:00+01:00",
-  url: "https://theaiexpert.ai/courses",
-  locationName: "The Mandeville Hotel",
-  locationAddress: "Mandeville Place",
-  offers: {
-    price: "600",
-    currency: "GBP",
-    url: "https://luma.com/5xyia8en",
-  },
-});
 
 const courseSchema = createCourseSchema({
   name: "Ship an App in a Day",
@@ -35,7 +21,6 @@ const Courses = () => {
         keywords="AI workshop, ship an app, AI course London, learn AI, build with AI, Claude, ChatGPT, AI training"
         canonicalUrl="/courses"
       />
-      <StructuredData schema={courseEventSchema} />
       <StructuredData schema={courseSchema} />
 
       {/* Hero Section */}
@@ -63,8 +48,8 @@ const Courses = () => {
                 <Calendar className="w-5 h-5 text-primary" />
                 <div className="text-left">
                   <p className="text-xs text-muted-foreground">Date</p>
-                  <p className="font-semibold">Multiple dates</p>
-                  <p className="text-xs text-muted-foreground">See calendar below</p>
+                  <p className="font-semibold">On request</p>
+                  <p className="text-xs text-muted-foreground">Ask about the next date</p>
                 </div>
               </CardContent>
             </Card>
@@ -96,56 +81,36 @@ const Courses = () => {
         </div>
       </section>
 
-      {/* Upcoming Dates / Calendar */}
+      {/* Next date — the Aug 14 event is over; route date enquiries to Contact */}
       <section className="container mx-auto px-4 mb-16">
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30">
             <Calendar className="w-4 h-4 text-primary animate-pulse" />
             <span className="text-sm font-heading text-primary tracking-wider">
-              UPCOMING DATES
+              NEXT DATE
             </span>
           </div>
 
           <h2 className="text-3xl md:text-4xl font-heading leading-tight">
-            <span className="text-foreground">Register for an </span>
-            <span className="text-gradient-animate glow-green">Upcoming Workshop</span>
+            <span className="text-foreground">Ask about the </span>
+            <span className="text-gradient-animate glow-green">Next Workshop</span>
           </h2>
 
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Limited seats available at each session. Pick a date that works for you and
-            secure your place below.
+            Limited seats at each session. Get in touch to ask when the next
+            workshop runs.
           </p>
 
-          {/* Primary CTA — next workshop */}
           <Button
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-cyber"
             asChild
           >
-            <a
-              href="https://luma.com/5xyia8en"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Register for the Next Workshop
+            <Link to="/contact">
+              Ask about the next date
               <ArrowRight className="w-5 h-5 ml-2" />
-            </a>
+            </Link>
           </Button>
-
-          {/* Luma Calendar Embed */}
-          <div className="glass border-primary/20 rounded-lg overflow-hidden p-2 max-w-3xl mx-auto">
-            <iframe
-              src="https://luma.com/embed/calendar/cal-T2xNxOfEHZzazET/events"
-              width="100%"
-              height="600"
-              frameBorder="0"
-              style={{ border: "1px solid #bfcbda88", borderRadius: "8px", minHeight: "600px" }}
-              allowFullScreen
-              aria-hidden="false"
-              tabIndex={0}
-              title="The AI Expert — Upcoming Events"
-            />
-          </div>
         </div>
       </section>
 
@@ -170,14 +135,10 @@ const Courses = () => {
             className="mt-8 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-cyber"
             asChild
           >
-            <a
-              href="https://luma.com/5xyia8en"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Register Now
+            <Link to="/contact">
+              Ask about the next date
               <ArrowRight className="w-5 h-5 ml-2" />
-            </a>
+            </Link>
           </Button>
         </div>
       </section>

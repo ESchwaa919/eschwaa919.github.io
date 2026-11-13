@@ -13,6 +13,7 @@ import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join, dirname, extname } from 'path';
 import { fileURLToPath } from 'url';
 import puppeteer from 'puppeteer';
+import { fieldNoteRoutes } from './fieldNotesData.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, '..', 'dist');
@@ -41,6 +42,8 @@ const ROUTES = [
   '/ailms',
   '/privacy',
   '/terms',
+  // Field notes: the index plus one route per LIVE note (src/constants/fieldNotes.ts)
+  ...fieldNoteRoutes(),
 ];
 
 const MIME_TYPES = {

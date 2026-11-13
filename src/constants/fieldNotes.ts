@@ -1,3 +1,35 @@
+// Field notes: the "how we build" series. This file is the ONE source of truth
+// for field-note data, used by the React pages AND by the Node build scripts
+// (scripts/fieldNotesData.js), which JSON-parse the array between the
+// FIELD_NOTES_DATA markers below.
+//
+// Rules for editing:
+// - Keep the block between the markers strict JSON (double-quoted keys and
+//   strings, no trailing commas, no comments), or the build scripts will fail.
+// - `text` is the exact approved post text. Paragraphs are separated by a blank
+//   line ("\n\n"); single "\n" line breaks inside a paragraph are kept.
+// - Flip `live` to true only once the note's post has gone out. A note that is
+//   not live has no route, no static page, no sitemap entry and no links.
+
+export type FieldNoteStage = "spec" | "code" | "review" | "verification" | "deploy";
+
+export interface FieldNote {
+  slug: string;
+  stage: FieldNoteStage;
+  title: string;
+  postedAt: string;
+  text: string;
+  alt: string;
+  card: string;
+  live: boolean;
+}
+
+export const FIELD_NOTES_SITE_URL = "https://theaiexpert.ai";
+export const FIELD_NOTE_CARD_WIDTH = 1080;
+export const FIELD_NOTE_CARD_HEIGHT = 1350;
+
+export const fieldNotes: FieldNote[] =
+// FIELD_NOTES_DATA_START
 [
   {
     "slug": "rune-week-1-spec",
@@ -50,3 +82,44 @@
     "live": false
   }
 ]
+// FIELD_NOTES_DATA_END
+;
+
+/** Live notes only, oldest first. Nothing that isn't live may be rendered or linked. */
+export const liveFieldNotes: FieldNote[] = fieldNotes
+  .filter((note) => note.live === true)
+  .sort((a, b) => a.postedAt.localeCompare(b.postedAt));
+
+export const getLiveFieldNote = (slug: string | undefined): FieldNote | undefined =>
+  slug ? liveFieldNotes.find((note) => note.slug === slug) : undefined;
+
+/** The live note for an SDLC stage key, if any. */
+export const getLiveFieldNoteForStage = (stage: FieldNoteStage): FieldNote | undefined =>
+  liveFieldNotes.find((note) => note.stage === stage);
+
+/** Paragraphs split on blank lines; each paragraph keeps its own line breaks. */
+export const fieldNoteParagraphs = (text: string): string[][] =>
+  text.split(/\n\s*\n/).map((paragraph) => paragraph.split("\n"));
+
+/** "16 Nov 2026" (UK format), in UTC so the date never shifts with the reader's timezone. */
+export const formatFieldNoteDate = (iso: string): string =>
+  new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  })
+    .format(new Date(iso))
+    .replace("Sept", "Sep");
+
+/** First paragraph of the text, at most 160 characters, cut at a word boundary. */
+export const fieldNoteDescription = (text: string, max = 160): string => {
+  const first = text.split(/\n\s*\n/)[0].replace(/\s+/g, " ").trim();
+  if (first.length <= max) return first;
+  const cut = first.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).replace(/[\s.,;:]+$/, "")}…`;
+};
+
+export const fieldNoteCardUrl = (note: FieldNote): string =>
+  `${FIELD_NOTES_SITE_URL}${note.card}`;

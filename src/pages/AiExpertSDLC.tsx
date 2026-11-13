@@ -30,9 +30,18 @@ import SEOHead from "@/components/SEOHead";
 import SdlcSectionNav from "@/components/SdlcSectionNav";
 import { StructuredData, organizationSchema } from "@/components/StructuredData";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { getLiveFieldNoteForStage, type FieldNoteStage } from "@/constants/fieldNotes";
 
 // The 11-stage delivery lifecycle. Copy authored verbatim (UK English, no em dashes).
-const stages = [
+// `fieldNoteStage` links a stage to its field note; the link shows only once that note is live.
+const stages: {
+  number: string;
+  title: string;
+  phase: string;
+  icon: typeof FileText;
+  description: string;
+  fieldNoteStage?: FieldNoteStage;
+}[] = [
   {
     number: "01",
     title: "Spec",
@@ -40,6 +49,7 @@ const stages = [
     icon: FileText,
     description:
       "Every piece of work begins as a written specification with explicit acceptance criteria. Tech-lead approval comes before anything else.",
+    fieldNoteStage: "spec",
   },
   {
     number: "02",
@@ -72,6 +82,7 @@ const stages = [
     icon: Code2,
     description:
       "A failing test comes first, then the change. Edits stay surgical, and every line traces back to the specification.",
+    fieldNoteStage: "code",
   },
   {
     number: "06",
@@ -96,6 +107,7 @@ const stages = [
     icon: ShieldAlert,
     description:
       "An independent AI reviewer on a separate model tries to break the change. Findings are authoritative and fixed before merge. No agent self-merges schema, CI or infrastructure changes.",
+    fieldNoteStage: "review",
   },
   {
     number: "09",
@@ -104,6 +116,7 @@ const stages = [
     icon: Rocket,
     description:
       "After a clean review the change merges and the pipeline deploys automatically. Deploy status is verified and staging environments are auto-cleaned.",
+    fieldNoteStage: "deploy",
   },
   {
     number: "10",
@@ -112,6 +125,7 @@ const stages = [
     icon: Eye,
     description:
       "The change is confirmed in the real environment, browser or live API, not just green tests. Anything only proxy-verified is logged as explicit verify-debt.",
+    fieldNoteStage: "verification",
   },
   {
     number: "11",
@@ -419,6 +433,9 @@ const AiExpertSDLC = () => {
                     .filter((stage) => phase.numbers.includes(stage.number))
                     .map((stage) => {
                       const StageIcon = stage.icon;
+                      const fieldNote = stage.fieldNoteStage
+                        ? getLiveFieldNoteForStage(stage.fieldNoteStage)
+                        : undefined;
                       return (
                         <Card key={stage.number} className="card-enhanced group">
                           <CardContent className="p-0">
@@ -446,6 +463,14 @@ const AiExpertSDLC = () => {
                                   <p className="text-sm text-muted-foreground leading-relaxed">
                                     {stage.description}
                                   </p>
+                                  {fieldNote && (
+                                    <Link
+                                      to={`/field-notes/${fieldNote.slug}`}
+                                      className="inline-block mt-2 text-xs font-heading tracking-wide text-primary hover:underline"
+                                    >
+                                      From the field →
+                                    </Link>
+                                  )}
                                 </div>
                               </div>
                             </div>

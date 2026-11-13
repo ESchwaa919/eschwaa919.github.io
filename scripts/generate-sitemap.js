@@ -8,6 +8,7 @@
 import { writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { readLiveFieldNotes } from './fieldNotesData.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, '..', 'dist');
@@ -30,6 +31,14 @@ const routes = [
   { path: '/resources',       priority: '0.8', changefreq: 'weekly' },
   { path: '/contact',         priority: '0.7', changefreq: 'monthly' },
   { path: '/courses',         priority: '0.9', changefreq: 'weekly' },
+
+  // Field notes: the index plus one entry per LIVE note (src/constants/fieldNotes.ts)
+  { path: '/field-notes',     priority: '0.7', changefreq: 'weekly' },
+  ...readLiveFieldNotes().map((note) => ({
+    path: `/field-notes/${note.slug}`,
+    priority: '0.6',
+    changefreq: 'yearly',
+  })),
 
   // Pillar pages (SEO/GEO)
   { path: '/fractional-caio',   priority: '0.9', changefreq: 'monthly' },

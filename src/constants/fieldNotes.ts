@@ -112,9 +112,18 @@ export const formatFieldNoteDate = (iso: string): string =>
     .format(new Date(iso))
     .replace("Sept", "Sep");
 
-/** First paragraph of the text, at most 160 characters, cut at a word boundary. */
-export const fieldNoteDescription = (text: string, max = 160): string => {
-  const first = text.split(/\n\s*\n/)[0].replace(/\s+/g, " ").trim();
+/**
+ * Share-preview description: the first paragraph of at least `minLength`
+ * characters (every note opens with a one-line "Day 1 of 5. The spec." that is
+ * too short to describe it), at most `max` characters, cut at a word boundary.
+ * If no paragraph is long enough, the first paragraph is used.
+ */
+export const fieldNoteDescription = (text: string, max = 160, minLength = 60): string => {
+  const paragraphs = text
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.replace(/\s+/g, " ").trim())
+    .filter((paragraph) => paragraph.length > 0);
+  const first = paragraphs.find((paragraph) => paragraph.length >= minLength) ?? paragraphs[0] ?? "";
   if (first.length <= max) return first;
   const cut = first.slice(0, max - 1);
   const lastSpace = cut.lastIndexOf(" ");

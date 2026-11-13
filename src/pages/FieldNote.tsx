@@ -35,6 +35,8 @@ const FieldNote = () => {
         description={fieldNoteDescription(note.text)}
         canonicalUrl={`/field-notes/${note.slug}`}
         ogImage={fieldNoteCardUrl(note)}
+        ogImageWidth={FIELD_NOTE_CARD_WIDTH}
+        ogImageHeight={FIELD_NOTE_CARD_HEIGHT}
         ogType="article"
       />
 

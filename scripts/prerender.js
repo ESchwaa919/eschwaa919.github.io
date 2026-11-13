@@ -4,6 +4,8 @@
  * Gives search crawlers fully rendered body content without JavaScript execution.
  * Head meta tags (title, description, OG) are managed by react-helmet-async
  * and update client-side when JS loads — this is standard for SPA pre-rendering.
+ * Helmet appends its tags next to the static defaults in index.html, so each page's
+ * HTML is post-processed (dedupeHead) to leave exactly one of each.
  *
  * The client-side app hydrates on top of the pre-rendered HTML (see main.tsx).
  */
@@ -14,6 +16,7 @@ import { join, dirname, extname } from 'path';
 import { fileURLToPath } from 'url';
 import puppeteer from 'puppeteer';
 import { fieldNoteRoutes } from './fieldNotesData.js';
+import { dedupeHead, auditHead } from './dedupeHead.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, '..', 'dist');
@@ -122,16 +125,26 @@ async function prerender() {
       );
       await page.evaluate(() => new Promise((r) => setTimeout(r, 1000)));
 
-      const html = await page.evaluate(() => {
+      const renderedHtml = await page.evaluate(() => {
         return '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
       });
+
+      // react-helmet-async appends the page's tags next to the static defaults in
+      // index.html. Drop each static default that the page overrides, so crawlers
+      // see one og:image, one description, and so on (see scripts/dedupeHead.js).
+      // A page that ends up with zero or two of them fails the build.
+      const { html, removed } = dedupeHead(renderedHtml);
+      const { problems } = auditHead(html);
+      if (problems.length > 0) {
+        throw new Error(`head tags must each appear exactly once: ${problems.join(', ')}`);
+      }
 
       const outputPath = route === '/'
         ? join(distDir, 'index.html')
         : join(distDir, route, 'index.html');
 
       writeFileSync(outputPath, html, 'utf-8');
-      console.log(`  ✓ ${route}`);
+      console.log(`  ✓ ${route}${removed.length ? ` (replaced ${removed.length} static head tag(s))` : ''}`);
       rendered++;
     } catch (err) {
       console.error(`  ✗ ${route}: ${err.message}`);

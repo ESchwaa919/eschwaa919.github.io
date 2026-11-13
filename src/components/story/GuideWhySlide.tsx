@@ -14,7 +14,7 @@ const reasons = [
     icon: Rocket,
     title: "Proven Results",
     description:
-      "25% reduction in hotel no-shows through AI prediction. Real outcomes, not slide decks.",
+      "An AI strategy for a hospitality analytics company that prioritised cancellation prediction. Real outcomes, not slide decks.",
   },
   {
     icon: Users,

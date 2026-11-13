@@ -36,7 +36,7 @@ const faqs = [
   {
     question: "Will AI replace my team?",
     answer:
-      "AI augments rather than replaces most roles. The real risk is that companies who adopt AI effectively will outpace those who don't. Studies show AI increases productivity by 20-40% in knowledge work. The question isn't whether AI will replace your team, but whether teams using AI will replace those who aren't.",
+      "AI augments rather than replaces most roles. The real risk is that companies who adopt AI effectively will outpace those who don't. Used well, AI can take a meaningful share of routine work off a team's plate. The question isn't whether AI will replace your team, but whether teams using AI will replace those who aren't.",
   },
   {
     question: "Where should I start with AI?",
@@ -232,24 +232,18 @@ const literacyCosts = [
     problem: "Bad Vendor Decisions",
     description:
       "Without AI literacy, you can't evaluate vendor proposals. You'll overpay for simple solutions or buy complex tools you don't need.",
-    stat: "60%",
-    statLabel: "of AI projects fail due to poor vendor selection",
   },
   {
     icon: TrendingUp,
     problem: "Missed Opportunities",
     description:
       "Your competitors are using AI to move faster, serve customers better, and reduce costs. Every month of delay widens the gap.",
-    stat: "2-3x",
-    statLabel: "productivity gap between AI adopters and laggards",
   },
   {
     icon: Zap,
     problem: "Wasted Pilots",
     description:
       "Leadership who can't evaluate AI proposals approve pilots that never scale. You spend money learning the wrong lessons.",
-    stat: "85%",
-    statLabel: "of AI pilots never reach production",
   },
 ];
 
@@ -397,21 +391,7 @@ const AILiteracy = () => {
                         />
                       </div>
                       <h3 className="text-xl font-heading text-foreground mb-2">{item.problem}</h3>
-                      <p className="text-muted-foreground mb-4">{item.description}</p>
-                      <div
-                        className={`pt-4 border-t ${
-                          index === 1 ? "border-secondary/20" : "border-primary/20"
-                        }`}
-                      >
-                        <div
-                          className={`text-3xl font-heading ${
-                            index === 1 ? "text-secondary glow-pink" : "text-primary glow-green"
-                          }`}
-                        >
-                          {item.stat}
-                        </div>
-                        <div className="text-sm text-muted-foreground">{item.statLabel}</div>
-                      </div>
+                      <p className="text-muted-foreground">{item.description}</p>
                     </CardContent>
                   </Card>
                 </div>

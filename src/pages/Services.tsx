@@ -316,7 +316,7 @@ const Services = () => {
               <div className="mb-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                 <h3 className="text-sm font-heading text-primary uppercase tracking-wider mb-3">Proven Across Industries</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  We've led AI strategy for a hospitality analytics platform — prioritising cancellation prediction as the highest-ROI use case, leading to a 25% reduction in hotel no-shows. For a professional networking platform, we mapped the AI opportunity landscape and designed a phased roadmap from magic-link authentication to AI-powered member matching. We've also developed board-level governance frameworks for construction and higher education organisations.
+                  We've led AI strategy for a hospitality analytics platform — prioritising cancellation prediction as the highest-ROI use case. For a professional networking platform, we mapped the AI opportunity landscape and designed a phased roadmap from magic-link authentication to AI-powered member matching. We've also developed board-level governance frameworks for construction and higher education organisations.
                 </p>
                 <div className="flex flex-wrap gap-4 mt-4">
                   <Link to="/fractional-caio" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1">

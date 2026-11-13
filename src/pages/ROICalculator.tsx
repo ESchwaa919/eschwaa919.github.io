@@ -51,9 +51,7 @@ interface ROIResults {
     year2: number;
     year3: number;
   };
-  insights: {
-    [key: string]: { label: string; value: string };
-  };
+  insights: { label: string; value: string }[];
   timeToROI: string;
 }
 
@@ -192,60 +190,49 @@ const ROICalculator = () => {
     const increasedCosts = implementationCost * 0.15; // 15% higher costs later
     const costOfDelay = delayedStart + competitorAdvantage + increasedCosts;
 
-    // Priority-specific insights
+    // Priority-specific insights. Only values derived from the calculator's
+    // inputs appear here; fixed figures that did not respond to the inputs
+    // were removed because they read as achieved results with no source.
     const priorityInsights: {
-      [key: string]: {
-        metric1: { label: string; value: string };
-        metric2: { label: string; value: string };
-        metric3: { label: string; value: string };
-      };
+      [key: string]: { label: string; value: string }[];
     } = {
-      efficiency: {
-        metric1: {
+      efficiency: [
+        {
           label: "Time Savings per Week",
           value: Math.round(sizeMultiplier * 8) + " hours",
         },
-        metric2: {
+        {
           label: "Process Automation",
           value: Math.round(industry.efficiency * 35) + "%",
         },
-        metric3: { label: "Error Reduction", value: "78%" },
-      },
-      growth: {
-        metric1: {
+      ],
+      growth: [
+        {
           label: "Revenue Uplift Potential",
           value: Math.round(industry.growth * 28) + "%",
         },
-        metric2: {
+        {
           label: "Customer Acquisition",
           value: "+" + Math.round(sizeMultiplier * 12) + "%",
         },
-        metric3: { label: "Market Expansion", value: "2.3x faster" },
-      },
-      customer: {
-        metric1: { label: "Response Time Improvement", value: "78%" },
-        metric2: {
+      ],
+      customer: [
+        {
           label: "Satisfaction Increase",
           value: "+" + Math.round(industry.efficiency * 25) + "%",
         },
-        metric3: { label: "Retention Improvement", value: "+15%" },
-      },
-      costs: {
-        metric1: {
+      ],
+      costs: [
+        {
           label: "Operating Cost Reduction",
           value: Math.round(industry.efficiency * 22) + "%",
         },
-        metric2: {
+        {
           label: "Labor Cost Savings",
           value: "£" + Math.round(baselineValue / 1000) + "K",
         },
-        metric3: { label: "Resource Optimization", value: "45%" },
-      },
-      competitive: {
-        metric1: { label: "Time to Market", value: "56% faster" },
-        metric2: { label: "Competitive Advantage", value: "24 months" },
-        metric3: { label: "Innovation Speed", value: "3x faster" },
-      },
+      ],
+      competitive: [],
     };
 
     return {
@@ -419,7 +406,7 @@ const ROICalculator = () => {
       '',
       'SUCCESS METRICS:',
       `• ROI positive by month ${results.timeToROI.includes('4-6') ? '5' : '7'}`,
-      '• 25%+ efficiency improvement by month 6',
+      '• Measurable efficiency improvement by month 6',
       '• Full implementation ROI within 18 months'
     ];
 
@@ -582,7 +569,7 @@ const ROICalculator = () => {
         >
           {[
             { value: "88%", label: "see early returns on AI investments", source: "PwC 2025", color: "primary" },
-            { value: "40%", label: "productivity boost with proper AI use", source: "Stanford/MIT", color: "secondary" },
+            { value: "40%", label: "productivity boost with proper AI use", source: "MIT/Harvard", color: "secondary" },
             { value: "70%", label: "of CEOs expect AI to transform value creation", source: "PwC Global CEO Survey", color: "primary" },
           ].map((stat, index) => (
             <Card key={index} className={`card-enhanced group border ${stat.color === "primary" ? "border-primary/30 hover:border-primary/50 hover:shadow-[0_0_30px_hsla(155,100%,45%,0.15)]" : "border-secondary/30 hover:border-secondary/50 hover:shadow-[0_0_30px_hsla(320,85%,55%,0.15)]"}`}>
@@ -843,11 +830,16 @@ const ROICalculator = () => {
               </CardContent>
             </Card>
 
-            {/* Key Metrics Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {Object.entries(results.insights).map(([key, metric]) => (
+            {/* Priority-specific metrics (count varies by focus; hidden when empty) */}
+            {results.insights.length > 0 && (
+            <div
+              className={`grid gap-6 ${
+                results.insights.length > 1 ? "md:grid-cols-2" : "max-w-md mx-auto w-full"
+              }`}
+            >
+              {results.insights.map((metric) => (
                 <Card
-                  key={key}
+                  key={metric.label}
                   className="card-enhanced group"
                 >
                   <CardContent className="p-6 text-center">
@@ -860,7 +852,11 @@ const ROICalculator = () => {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+            )}
 
+            {/* Key Metrics Grid */}
+            <div className="grid md:grid-cols-3 gap-6">
               {/* Total 3-Year Value */}
               <Card className="card-enhanced group">
                 <CardContent className="p-6 text-center">

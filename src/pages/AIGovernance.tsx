@@ -282,7 +282,7 @@ const AIGovernance = () => {
               className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary text-lg font-semibold px-10 py-6 transition-all duration-300 hover:scale-105"
               asChild
             >
-              <a href="/downloads/AI Governance - 10 Days - The Ai Expert.pdf" download>
+              <a href="/downloads/AI%20Governance%20-%2010%20Days%20-%20The%20Ai%20Expert.pdf" download>
                 <Download className="w-5 h-5 mr-2" />
                 Download Framework PDF
               </a>
@@ -548,7 +548,7 @@ const AIGovernance = () => {
               className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary text-lg font-semibold px-10 py-6 transition-all duration-300 hover:scale-105"
               asChild
             >
-              <a href="/downloads/AI Governance - 10 Days - The Ai Expert.pdf" download>
+              <a href="/downloads/AI%20Governance%20-%2010%20Days%20-%20The%20Ai%20Expert.pdf" download>
                 <Download className="w-5 h-5 mr-2" />
                 Download Complete Framework as PDF
                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
@@ -768,7 +768,7 @@ const AIGovernance = () => {
                     className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary text-lg font-semibold px-10 py-6 transition-all duration-300 hover:scale-105"
                     asChild
                   >
-                    <a href="/downloads/AI Governance - 10 Days - The Ai Expert.pdf" download>
+                    <a href="/downloads/AI%20Governance%20-%2010%20Days%20-%20The%20Ai%20Expert.pdf" download>
                       <Download className="w-5 h-5 mr-2" />
                       Download Framework PDF
                     </a>

@@ -173,7 +173,7 @@ const AIImplementation = () => {
     {
       name: "Large Language Models",
       icon: Code,
-      tools: ["OpenAI GPT-4", "Anthropic Claude", "Open-source models (Llama, Mistral)", "Azure OpenAI Service"],
+      tools: ["OpenAI GPT models", "Anthropic Claude", "Open-source models (Llama, Mistral)", "Azure OpenAI Service"],
     },
     {
       name: "Data & Infrastructure",
@@ -445,7 +445,7 @@ const AIImplementation = () => {
               className="group border-2 border-primary/50 text-primary hover:bg-primary/10 hover:border-primary font-semibold px-8 py-6 transition-all"
               asChild
             >
-              <a href="/downloads/ai-expert-methodology-guide.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/downloads/The%20AI%20Expert%20Methodology%20Guide.pdf" target="_blank" rel="noopener noreferrer">
                 <Download className="w-5 h-5 mr-2" />
                 Download The AI Expert Methodology Guide (PDF)
                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />

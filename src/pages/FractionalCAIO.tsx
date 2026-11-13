@@ -654,7 +654,7 @@ const FractionalCAIO = () => {
                     className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-cyber"
                     asChild
                   >
-                    <a href="/downloads/Fractional Chief AI Officer (CAIO)  - The Ai Expert.pdf" download>
+                    <a href="/downloads/Fractional%20Chief%20AI%20Officer%20(CAIO)%20%20-%20The%20Ai%20Expert.pdf" download>
                       <Download className="w-4 h-4 mr-2" />
                       Download PDF (Free)
                     </a>

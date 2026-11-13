@@ -75,7 +75,7 @@ const AutoMLR = () => {
     { icon: FileText, title: "Content Ingestion", description: "Designed to work with Veeva Vault (sandbox integration in pilot)" },
     { icon: Brain, title: "AI Multi-Agent Review", description: "Intelligent analysis & flagging" },
     { icon: Users, title: "Human Override", description: "Expert review when needed" },
-    { icon: CheckCircle2, title: "Instant Approval", description: "Automated compliance & audit" },
+    { icon: CheckCircle2, title: "Approval", description: "Automated compliance & audit" },
   ]
 
   const comparisonFeatures = [

@@ -133,7 +133,7 @@ const Process = () => {
         "Team knows what to build and in what order",
       ],
       inPractice: {
-        text: "For a hospitality analytics company, we developed an AI strategy that prioritised cancellation prediction as the highest-ROI use case — leading to a 25% reduction in hotel no-shows. For a professional networking platform, we mapped the AI opportunity landscape and designed a phased roadmap from magic-link authentication to AI-powered member matching. Each strategy was board-approved with quantified ROI.",
+        text: "For a hospitality analytics company, we developed an AI strategy that prioritised cancellation prediction as the highest-ROI use case. For a professional networking platform, we mapped the AI opportunity landscape and designed a phased roadmap from magic-link authentication to AI-powered member matching. Each strategy was board-approved with quantified ROI.",
         links: [
           { name: "AI Strategy deep dive", path: "/ai-strategy" },
           { name: "AI Governance frameworks", path: "/ai-governance" },

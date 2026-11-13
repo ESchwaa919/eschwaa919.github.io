@@ -20,7 +20,7 @@ const stories = [
       "A hospitality analytics company was drowning in cancellation data but couldn't predict which bookings would be lost — costing hotels six figures annually in empty rooms.",
     approach:
       "We developed an AI strategy that prioritised cancellation prediction as the highest-ROI use case, built a predictive model, and deployed it into their existing analytics platform.",
-    outcome: "25% reduction in no-shows",
+    outcome: "Cancellation prediction prioritised as the top use case",
     outcomeIcon: TrendingUp,
     stage: "Strategy → Implementation",
     link: "/ai-strategy",

@@ -3,25 +3,22 @@ import { ArrowRight } from "lucide-react";
 import SceneMarker from "./SceneMarker";
 import Reveal from "./Reveal";
 
-const stats = [
+const stakes = [
   {
-    figure: "85%",
-    headline: "of AI pilots never reach production.",
+    headline: "Most AI pilots never reach production.",
     detail: "Experiments everywhere. Shipping almost nowhere. This is the gap we close.",
   },
   {
-    figure: "2–3×",
-    headline: "productivity gap between AI adopters and laggards.",
+    headline: "The gap between AI adopters and laggards keeps widening.",
     detail: "The distance compounds every quarter you wait.",
   },
   {
-    figure: "60%",
-    headline: "of AI projects fail through poor vendor selection.",
+    headline: "Many AI projects stall on the wrong vendor choice.",
     detail: "You can't buy your way past understanding. Literacy comes first.",
   },
 ];
 
-/** Act I — the stakes, told as full-width stat beats. */
+/** Act I — the stakes, told as full-width beats. */
 const StakesAct = () => {
   return (
     <div className="container mx-auto px-4">
@@ -35,13 +32,12 @@ const StakesAct = () => {
       </Reveal>
 
       <div className="mt-4">
-        {stats.map((stat, index) => (
-          <Reveal key={stat.figure} delay={index * 80}>
-            <div className="grid md:grid-cols-[auto_1fr] gap-3 md:gap-10 items-baseline py-6 lg:py-7 border-b border-border last:border-b-0">
-              <span className="stat-figure md:min-w-[4ch]">{stat.figure}</span>
-              <div className="max-w-xl">
-                <p className="text-lg text-foreground font-medium">{stat.headline}</p>
-                <p className="text-muted-foreground mt-1">{stat.detail}</p>
+        {stakes.map((item, index) => (
+          <Reveal key={item.headline} delay={index * 80}>
+            <div className="py-6 lg:py-7 border-b border-border last:border-b-0">
+              <div className="max-w-2xl">
+                <p className="text-xl md:text-2xl text-foreground font-medium">{item.headline}</p>
+                <p className="text-muted-foreground mt-1">{item.detail}</p>
               </div>
             </div>
           </Reveal>

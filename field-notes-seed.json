@@ -1,0 +1,52 @@
+[
+  {
+    "slug": "rune-week-1-spec",
+    "stage": "spec",
+    "title": "Rune week, day 1 of 5: the spec",
+    "postedAt": "2026-11-16T08:30:00Z",
+    "text": "Day 1 of 5. The spec.\n\nThis week I'm walking through how we take a piece of work from idea to production with AI agents, one stage a day, the way we actually run it. Today is everything that happens before anyone writes code, human or agent.\n\nWe start by checking whether the thing already exists, whether we started it once and stopped, and how far it got. Agents will very happily rebuild something you already have, and do a nice job of it.\n\nThen a short brief, and two lists before any code. Roughly this shape:\n\nFor: (the user, by role)\nJob, in their words:\nWe'll know it worked when:\nNot doing:\nMust pass:\nMust refuse:\n\nIf we can't fill in \"must refuse\", we don't understand the work yet.\n\nLast week a brief asked a builder to add a lock so two requests couldn't overwrite the same record. The builder measured before writing anything. In real use the clash couldn't happen. The failures came from the test's own fake data colliding with itself, so we shipped a test that keeps it that way and no lock.\n\nA model is very good at filling a gap with a confident guess. Most of the spec is us closing the gaps before it gets the chance.\n\nTomorrow, the code, and why the agent that plans the work never writes it.\n\nWhen your team writes acceptance criteria, do you write down what the feature must refuse, or only what it must do?",
+    "alt": "Before any code, fill this in. For: The user, by role. Never a name. Job, in their words: Quote them. Don't translate it into spec-speak. We'll know it worked when: Something you could watch happen. Not doing: Write down what's out of scope too. Must pass: The cases the feature has to handle. Must refuse: Can't fill this one in? You don't understand the work yet. A brief asked for a lock. The builder measured first and found the clash could never happen in real use, so we shipped a test instead.",
+    "card": "/field-notes/cards/rune-week-1-spec.png",
+    "live": false
+  },
+  {
+    "slug": "rune-week-2-code",
+    "stage": "code",
+    "title": "Rune week, day 2 of 5: the code",
+    "postedAt": "2026-11-17T08:30:00Z",
+    "text": "Day 2 of 5. The code.\n\nThe agent that plans the work never writes the code. Of all the rules we've added this year, that one changed more for us than any model upgrade.\n\nRune, our lead agent, writes the spec, the plan and the checks. The build goes to separate builder agents, and each builder gets its own git worktree. No two builders ever write to the same checkout. We learned that one the hard way.\n\nThe other rules came the same way. If a new idea turns up halfway through a build, it goes to a new builder and the running one is left alone to finish. A bug fix starts with a test that fails, and if we can't make it fail we haven't found the bug yet. The model is picked by how hard the job is, so small mechanical work goes to a cheap model and the top model only sees the hardest items, after the spec and plan have passed review. Urgency doesn't come into it. And a builder's progress lives in files, so any session can die and the next one picks up where it stopped.\n\nA builder isn't finished when it compiles. It loops with a reviewer until the checks pass, opens a PR, and then someone else judges it.\n\nTomorrow, review, and why the reviewer is never the model that wrote the code.\n\nIf you've got more than one agent writing code in the same repo, how are you keeping them off each other's changes?",
+    "alt": "The planner never writes code. One builder, one git worktree: No two builders ever write to the same checkout. New idea mid-build? New builder.: The running one is left alone to finish. Bug fixes start with a failing test: If you can't make it fail, you haven't found the bug yet. Pick the model by difficulty: Cheap models for mechanical work. The top model only gets the hardest items, after the spec and plan pass review. Progress lives in files: Any session can die and the next one picks up where it stopped.",
+    "card": "/field-notes/cards/rune-week-2-code.png",
+    "live": false
+  },
+  {
+    "slug": "rune-week-3-review",
+    "stage": "review",
+    "title": "Rune week, day 3 of 5: the review",
+    "postedAt": "2026-11-18T08:30:00Z",
+    "text": "Day 3 of 5. Review.\n\nThe model that wrote the code doesn't get to mark its own homework. Every plan is reviewed before any code is written and every change is reviewed after, both times by a model from a different lab to the one that did the work. Different training, different blind spots. And it's every change, including the dull ones.\n\nOne catch from the last fortnight, with every test green.\n\nOur own merge tool would have accepted a passing test run from someone else's copy of the code, or one weeks old, as proof that main was fine. The reviewer found it by asking where that evidence came from.\n\nWhat keeps review useful is one rule. A finding blocks the merge only if real data or a normal user action can reach it. Anything else goes in as a written follow-up so it doesn't get lost.\n\nAI review raises the floor a lot. The diff still gets read before anything merges.\n\nTomorrow, verification, and why green checks aren't the finish line.\n\nIf you've put a second model on code review, what was the first thing it caught that the authoring model missed?",
+    "alt": "No model marks its own homework. The plan is reviewed before any code: By a model from a different lab. Different training, different blind spots. Every change is reviewed after: Including the dull ones. Ask where the evidence came from: That question caught our merge tool trusting a weeks-old test run from someone else's copy of the code. Block only what real data can reach: Everything else goes in as a written follow-up. The diff still gets read: Before anything merges. The catch came with every test green. The question was where the evidence came from.",
+    "card": "/field-notes/cards/rune-week-3-review.png",
+    "live": false
+  },
+  {
+    "slug": "rune-week-4-verification",
+    "stage": "verification",
+    "title": "Rune week, day 4 of 5: verification",
+    "postedAt": "2026-11-19T08:30:00Z",
+    "text": "Day 4 of 5. Verification.\n\nGreen CI and a merged PR are proxies. Neither tells you a customer can use the thing. The rule we work to is verify the behaviour, not the proxy.\n\nThis fortnight, in a content studio for a pharma brand team, every test was green and the real export produced 0 of the 5 review PDFs it should have. Only running the real export in the real environment showed it. The cause was found within the hour.\n\nOn another project, every part of a feature worked on its own on our test site. Then an agent walked a fresh case in a real browser, the way a user would, and hit a dead end. Nothing on screen let you confirm who the case was about, so it could never be signed off. No test was going to see that.\n\nAbsence isn't evidence either. \"No errors in the log\" only counts once you've seen that log record a known good case.\n\nEvery piece of work ends with a footer like this:\n\nVerified: what behaviour, where, with what evidence\nUnverified: what I didn't check\nResidual risk: HIGH / MED / LOW\nIf the gap hides a bug, the symptom would be: …\n\nI read Unverified first. An agent that tells me what it didn't check is one I can work with.\n\nTomorrow, deployment, and where the bottleneck has moved.\n\nWhat's the last thing your CI said was fine that turned out not to be?",
+    "alt": "Verify the behaviour, not the proxy. Green CI is a proxy: Every test was green. The real export produced 0 of 5 review PDFs. Walk it in a real browser: The way a user would, in the real environment. A quiet log proves nothing yet: It counts once you've seen it record a known good case. End every task with this footer: Read the Unverified line first. Verified: what behaviour, where, what evidence Unverified: what I didn't check Residual risk: HIGH / MED / LOW If the gap hides a bug, the symptom would be: …",
+    "card": "/field-notes/cards/rune-week-4-verification.png",
+    "live": false
+  },
+  {
+    "slug": "rune-week-5-deploy",
+    "stage": "deploy",
+    "title": "Rune week, day 5 of 5: deployment",
+    "postedAt": "2026-11-20T08:30:00Z",
+    "text": "Day 5 of 5. Deployment.\n\nMerging is done by a script. The agent that wrote the change doesn't get to press the button. Once it ships, the live system has to report healthy, and then someone checks it working again in the real environment. After that comes the clean-up, where a finished piece of work frees its worktree, its branch and its test data. Half-finished work that never lands costs more than the tokens ever will.\n\nThe thing that surprised me this year is where the bottleneck went. My bottlenecks are now on the CI side.\n\nOn one project the full suite against a real database takes 64 to 81 minutes. A change can only merge once it's been tested on the tip of main, so every merge makes every other waiting PR stale, and you land roughly one change an hour however fast the agents write. Elsewhere a unit-test job runs about 25 minutes against a 30-minute cap, and on a slow runner it got cancelled twice in one day.\n\nSo we batch changes into tested trains, where one full run proves several changes at once. How we decide what's safe to put on the same train I'm keeping to myself for now.\n\nHow long does your slowest required CI check take, and what have you done to get around it?",
+    "alt": "The bottleneck has moved. Full suite on a real database: 64 to 81 min: A unit-test job runs about 25 min against a 30 min cap. It got cancelled twice in one day on a slow runner. Merge only on the tip of main: Every merge makes every other open PR stale. That's roughly one change an hour, however fast the agents write. So we batch changes into tested trains: One full run proves several changes at once. How we pick what's safe to batch stays in-house. A script merges, never the author: Then a live health check, then someone sees it working in production.",
+    "card": "/field-notes/cards/rune-week-5-deploy.png",
+    "live": false
+  }
+]

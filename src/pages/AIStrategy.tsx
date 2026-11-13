@@ -37,7 +37,7 @@ const faqs = [
   {
     question: "What ROI should I expect from AI?",
     answer:
-      "ROI varies by use case, but we typically see 20-40% productivity gains in knowledge work, 15-30% cost reduction in operational processes, and significant competitive advantages in customer experience. Our strategy phase includes detailed ROI modelling for each prioritised use case before any implementation investment.",
+      "ROI varies by use case. The usual places to look are time saved in knowledge work, lower cost in operational processes, and a better customer experience, but the size of the return depends on your data, volumes and adoption. Our strategy phase includes detailed ROI modelling for each prioritised use case before any implementation investment.",
   },
   {
     question: "Do I need to understand AI to develop a strategy?",

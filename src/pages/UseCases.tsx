@@ -43,15 +43,15 @@ const faqs = [
   },
   {
     question: "How do I know if AI is right for a specific use case?",
-    answer: "AI is well-suited for tasks that involve pattern recognition, prediction, classification, or processing large volumes of data. Good candidates show consistent, rule-based decision making that currently requires significant human time. Ask: Is there enough historical data? Are the outcomes measurable? Would a 70-80% automation rate still deliver value? If yes, AI is likely a good fit."
+    answer: "AI is well-suited for tasks that involve pattern recognition, prediction, classification, or processing large volumes of data. Good candidates show consistent, rule-based decision making that currently requires significant human time. Ask: Is there enough historical data? Are the outcomes measurable? Would automating most cases, but not all of them, still deliver value? If yes, AI is likely a good fit."
   },
   {
     question: "What's the typical ROI from AI implementation?",
-    answer: "ROI varies significantly by use case, but UK SMBs typically see 2-5x returns within 12-18 months for well-executed projects. Document processing automation often delivers 40-60% time savings. Customer service automation can reduce costs by 25-35% while improving response times. The key is starting with high-impact, low-complexity projects to build momentum."
+    answer: "ROI varies significantly by use case, by the quality of your data and by how well the change is adopted. Document processing and customer service automation are common places to find time and cost savings, but the honest answer depends on your volumes and processes. That's why we model the expected return for each prioritised use case before any implementation investment. The key is starting with high-impact, low-complexity projects to build momentum."
   },
   {
     question: "Should we start with quick wins or strategic initiatives?",
-    answer: "Start with quick wins. They build confidence, demonstrate value to stakeholders, and fund larger initiatives. A good portfolio includes 60% quick wins (3-6 month payback), 30% strategic bets (6-18 month payback), and 10% transformational projects (18+ months). Quick wins also help your team develop AI skills before tackling complex challenges."
+    answer: "Start with quick wins. They build confidence, demonstrate value to stakeholders, and fund larger initiatives. A good portfolio leans mostly on quick wins with short payback, adds a smaller set of strategic bets that take longer to pay off, and keeps a few transformational projects for the long term. Quick wins also help your team develop AI skills before tackling complex challenges."
   },
   {
     question: "How do we prioritise which AI use cases to tackle first?",
@@ -83,7 +83,7 @@ const businessFunctions = [
       "Predictive maintenance scheduling",
       "Logistics route optimisation",
     ],
-    impact: "15-30% cost reduction",
+    impact: "Lower operating costs",
   },
   {
     name: "Customer Service & Support",
@@ -95,7 +95,7 @@ const businessFunctions = [
       "Sentiment analysis and escalation",
       "Self-service knowledge recommendations",
     ],
-    impact: "25-40% faster resolution",
+    impact: "Faster resolution",
   },
   {
     name: "Sales & Marketing",
@@ -107,7 +107,7 @@ const businessFunctions = [
       "Campaign performance prediction",
       "Customer segmentation and targeting",
     ],
-    impact: "20-35% conversion improvement",
+    impact: "Better-targeted pipeline",
   },
   {
     name: "Finance & Reporting",
@@ -119,7 +119,7 @@ const businessFunctions = [
       "Cash flow forecasting",
       "Expense categorisation and policy compliance",
     ],
-    impact: "40-60% time savings",
+    impact: "Less manual processing",
   },
   {
     name: "HR & People",
@@ -131,7 +131,7 @@ const businessFunctions = [
       "Skills gap analysis and L&D recommendations",
       "Employee engagement prediction",
     ],
-    impact: "50-70% screening time saved",
+    impact: "Less time spent screening",
   },
   {
     name: "Legal & Compliance",
@@ -143,7 +143,7 @@ const businessFunctions = [
       "Risk assessment and due diligence",
       "Policy document summarisation",
     ],
-    impact: "30-50% review time reduction",
+    impact: "Faster, more consistent review",
   },
   {
     name: "Leadership & Decision Making",
@@ -190,7 +190,7 @@ const projectTypes = [
     icon: Zap,
     color: "primary",
     timeframe: "3-6 months to value",
-    percentage: "60% of portfolio",
+    percentage: "Most of the portfolio",
     characteristics: [
       "Well-defined, bounded scope",
       "Existing data and clear metrics",
@@ -204,7 +204,7 @@ const projectTypes = [
     icon: Target,
     color: "secondary",
     timeframe: "6-18 months to value",
-    percentage: "30% of portfolio",
+    percentage: "A smaller share",
     characteristics: [
       "Higher complexity, higher reward",
       "May require new data collection",
@@ -218,7 +218,7 @@ const projectTypes = [
     icon: Lightbulb,
     color: "primary",
     timeframe: "18+ months to value",
-    percentage: "10% of portfolio",
+    percentage: "A few selective bets",
     characteristics: [
       "Business model innovation",
       "Significant competitive advantage",
@@ -236,7 +236,7 @@ const firstProjects = [
     icon: FileText,
     description: "Automate extraction, classification, and routing of invoices, contracts, or applications.",
     suitedFor: "High document volumes, manual data entry",
-    typicalROI: "40-60% time savings",
+    typicalROI: "Less manual data entry",
     timeToValue: "2-3 months",
   },
   {
@@ -244,7 +244,7 @@ const firstProjects = [
     icon: MessageSquare,
     description: "Route, prioritise, and auto-respond to common customer questions with AI assistance.",
     suitedFor: "High inquiry volumes, repetitive questions",
-    typicalROI: "30-50% cost reduction",
+    typicalROI: "Lower handling cost",
     timeToValue: "3-4 months",
   },
   {
@@ -252,7 +252,7 @@ const firstProjects = [
     icon: LineChart,
     description: "Generate routine reports, dashboards, and summaries automatically from multiple data sources.",
     suitedFor: "Regular reporting cycles, multiple data sources",
-    typicalROI: "20-30 hours saved monthly",
+    typicalROI: "Hours back each reporting cycle",
     timeToValue: "2-3 months",
   },
   {
@@ -268,7 +268,7 @@ const firstProjects = [
     icon: UserCheck,
     description: "Screen CVs, match candidates to roles, and identify top prospects automatically.",
     suitedFor: "High-volume recruitment, standardised roles",
-    typicalROI: "50-70% screening time saved",
+    typicalROI: "Less time spent screening",
     timeToValue: "2-3 months",
   },
   {
@@ -276,7 +276,7 @@ const firstProjects = [
     icon: FileSearch,
     description: "Extract key terms, identify risks, and compare clauses across contracts.",
     suitedFor: "Legal teams, procurement, high contract volumes",
-    typicalROI: "30-50% review time reduction",
+    typicalROI: "Faster, more consistent review",
     timeToValue: "3-4 months",
   },
 ];

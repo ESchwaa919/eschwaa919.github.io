@@ -245,7 +245,7 @@ const StageSwitcher = ({ stages }: { stages: ProcessStage[] }) => {
                           Every build runs on our spec-driven agentic method.
                         </p>
                         <span className="inline-flex items-center gap-1 font-heading tracking-wide text-secondary group-hover:text-secondary/80 transition-colors">
-                          How we build: The Ai Expert SDLC
+                          How we build: The AI Expert SDLC
                           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </span>
                       </div>

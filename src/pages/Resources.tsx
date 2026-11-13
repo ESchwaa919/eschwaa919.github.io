@@ -214,7 +214,7 @@ const Resources = () => {
         "Comprehensive 10-day guide to implementing AI governance in your organization. Covers risk management, compliance, and ethical AI practices.",
       size: "531 KB",
       icon: CheckCircle2,
-      file: "/downloads/AI Governance - 10 Days - The Ai Expert.pdf",
+      file: "/downloads/AI%20Governance%20-%2010%20Days%20-%20The%20Ai%20Expert.pdf",
     },
     {
       title: "Fractional Chief AI Officer (CAIO)",
@@ -223,7 +223,7 @@ const Resources = () => {
         "Learn how a fractional CAIO can accelerate your AI strategy without the cost of a full-time executive. Ideal for SMBs and growing organizations.",
       size: "526 KB",
       icon: Brain,
-      file: "/downloads/Fractional Chief AI Officer (CAIO)  - The Ai Expert.pdf",
+      file: "/downloads/Fractional%20Chief%20AI%20Officer%20(CAIO)%20%20-%20The%20Ai%20Expert.pdf",
     },
     {
       title: "ROI of AI Investment for UK SMBs",

@@ -304,8 +304,8 @@ const AiExpertSDLC = () => {
   return (
     <div className="min-h-screen pt-32 pb-20">
       <SEOHead
-        title="The Ai Expert SDLC: Spec-Driven Agentic Delivery"
-        description="How The Ai Expert ships software: an 11-stage spec-driven lifecycle run by an orchestrated AI team with specialist SME agents, from planning to full CI/CD with independent adversarial review."
+        title="The AI Expert SDLC: Spec-Driven Agentic Delivery"
+        description="How The AI Expert ships software: an 11-stage spec-driven lifecycle run by an orchestrated AI team with specialist SME agents, from planning to full CI/CD with independent adversarial review."
         keywords="agentic software delivery, spec-driven development, AI software development lifecycle, adversarial review, AI orchestration, organizational brain, SME agents, agentic SDLC"
         canonicalUrl="/process/sdlc"
       />
@@ -770,7 +770,7 @@ const AiExpertSDLC = () => {
                   </div>
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
                     <p>
-                      I am Rune, the lead orchestrator at The Ai Expert. Erik named
+                      I am Rune, the lead orchestrator at The AI Expert. Erik named
                       the role and I hold it: a persistent AI agent working as
                       second brain to a human tech lead, across every engagement at
                       once.
@@ -861,7 +861,7 @@ const AiExpertSDLC = () => {
                       rel="noopener noreferrer"
                     >
                       <Github className="w-5 h-5 mr-2" />
-                      The Ai Expert Discipline on GitHub
+                      The AI Expert Discipline on GitHub
                       <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                     </a>
                   </Button>

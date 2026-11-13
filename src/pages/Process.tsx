@@ -316,7 +316,7 @@ const Process = () => {
         </div>
       </section>
 
-      {/* How We Build: The Ai Expert SDLC */}
+      {/* How We Build: The AI Expert SDLC */}
       <section className="container mx-auto px-4 py-12">
         <div className="relative max-w-4xl mx-auto">
           {/* Cyber corners */}
@@ -336,7 +336,7 @@ const Process = () => {
                     How We Build
                   </div>
                   <h2 className="text-3xl font-heading text-foreground mb-4">
-                    The Ai Expert SDLC
+                    The AI Expert SDLC
                   </h2>
                   <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                     When we build the systems behind your strategy, we run a
@@ -353,7 +353,7 @@ const Process = () => {
                     asChild
                   >
                     <Link to="/process/sdlc">
-                      Explore The Ai Expert SDLC
+                      Explore The AI Expert SDLC
                       <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>

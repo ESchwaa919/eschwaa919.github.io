@@ -26,7 +26,7 @@ const GuidePracticeSlide = () => {
         <div className="space-y-6">
           <Reveal delay={80}>
             <p className="lede">
-              Every engagement is delivered through The Ai Expert SDLC — a
+              Every engagement is delivered through The AI Expert SDLC — a
               spec-driven, agentic lifecycle where an orchestrated AI team
               builds under human direction, every change begins as a written
               specification, and an independent AI reviewer adversarially

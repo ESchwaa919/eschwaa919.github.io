@@ -700,7 +700,7 @@ const AIStrategy = () => {
                   roadmaps.
                 </p>
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-                  <a href="/downloads/AI-Execution-Playbook.pdf" download>
+                  <a href="/downloads/The-AI-Execution-Playbook-for-SMBs.pdf" download>
                     <Download className="w-5 h-5 mr-2" />
                     Download Free Playbook
                   </a>

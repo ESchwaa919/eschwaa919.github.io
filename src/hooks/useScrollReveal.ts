@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { REVEAL_DEFAULTS } from '@/constants/animations';
 
 interface UseScrollRevealOptions {
@@ -20,33 +20,40 @@ export const useScrollReveal = (options: UseScrollRevealOptions = {}) => {
     rootMargin = REVEAL_DEFAULTS.rootMargin,
     triggerOnce = REVEAL_DEFAULTS.triggerOnce,
   } = options;
-  const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(reducedMotion || !hasIO);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  useEffect(() => {
-    if (reducedMotion || !hasIO) return;
+  // Callback ref: React calls this each time the element attaches (element) or
+  // detaches (null), so an element mounted after the first render, such as a
+  // results panel behind `{showResults && ...}`, is still observed. A plain
+  // useRef read once inside useEffect only sees elements present at mount.
+  // React also calls it with null on unmount, which disconnects the observer.
+  const ref = useCallback(
+    (element: HTMLDivElement | null) => {
+      observerRef.current?.disconnect();
+      observerRef.current = null;
 
-    const element = ref.current;
-    if (!element) return;
+      if (!element || reducedMotion || !hasIO) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          if (triggerOnce) {
-            observer.unobserve(element);
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            if (triggerOnce) {
+              observer.unobserve(element);
+            }
+          } else if (!triggerOnce) {
+            setIsVisible(false);
           }
-        } else if (!triggerOnce) {
-          setIsVisible(false);
-        }
-      },
-      { threshold, rootMargin }
-    );
+        },
+        { threshold, rootMargin }
+      );
 
-    observer.observe(element);
-
-    return () => observer.disconnect();
-  }, [threshold, rootMargin, triggerOnce]);
+      observer.observe(element);
+      observerRef.current = observer;
+    },
+    [threshold, rootMargin, triggerOnce]
+  );
 
   return { ref, isVisible };
 };

@@ -14,7 +14,7 @@ const reasons = [
     icon: Rocket,
     title: "Proven Results",
     description:
-      "25% reduction in hotel no-shows through AI prediction. 70% faster workplace investigation reviews. Pharma compliance reviews in seconds instead of days. Real outcomes, not slide decks.",
+      "25% reduction in hotel no-shows through AI prediction. Real outcomes, not slide decks.",
   },
   {
     icon: Users,
@@ -26,7 +26,7 @@ const reasons = [
     icon: Wrench,
     title: "Hands-On Builder",
     description:
-      "Not just strategy — Erik writes production code. A coaching platform shipped in 12 weeks with kiosk mode for frontline workers. A document analysis AI now handles thousands of cases. We build what we recommend.",
+      "Not just strategy — Erik writes production code. A coaching platform shipped in 12 weeks with kiosk mode for frontline workers. We build what we recommend.",
   },
 ];
 

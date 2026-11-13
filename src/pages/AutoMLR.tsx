@@ -27,7 +27,6 @@ import cyberGrid from "@/assets/cyber-grid.jpg"
 import { useLeadCapture } from "@/hooks/useLeadCapture"
 import { LeadCaptureModal } from "@/components/LeadCaptureModal"
 import { useScrollReveal } from "@/hooks/useScrollReveal"
-import { useCounterReveal } from "@/hooks/useCounterReveal"
 
 const AutoMLR = () => {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null)
@@ -45,11 +44,6 @@ const AutoMLR = () => {
     submitLead,
     closeModal,
   } = useLeadCapture()
-
-  const metric1 = useCounterReveal(90)
-  const metric2 = useCounterReveal(15)
-  const metric3 = useCounterReveal(99)
-  const metric4 = useCounterReveal(24)
 
   const handleDownloadWhitepaper = () => {
     checkAndDownload(
@@ -78,51 +72,43 @@ const AutoMLR = () => {
   ]
 
   const pipelineSteps = [
-    { icon: FileText, title: "Content Ingestion", description: "Direct Veeva Vault integration" },
+    { icon: FileText, title: "Content Ingestion", description: "Designed to work with Veeva Vault (sandbox integration in pilot)" },
     { icon: Brain, title: "AI Multi-Agent Review", description: "Intelligent analysis & flagging" },
     { icon: Users, title: "Human Override", description: "Expert review when needed" },
     { icon: CheckCircle2, title: "Instant Approval", description: "Automated compliance & audit" },
   ]
 
   const comparisonFeatures = [
-    { feature: "Veeva Vault Integration", automlr: "Native, zero-config connector", other: "Limited / vendor-specific", automlrGood: true, otherBad: false },
-    { feature: "Real-time Processing (<15s)", automlr: "Seconds, not hours", other: "Typically hours–days", automlrGood: true, otherBad: true },
+    { feature: "Veeva Vault Integration", automlr: "Designed to work with Veeva Vault (sandbox integration in pilot)", other: "Limited / vendor-specific", automlrGood: true, otherBad: false },
     { feature: "Multi-Agent AI Architecture", automlr: "Yes", other: "Single model / rule engine", automlrGood: true, otherBad: true },
     { feature: "Regulatory Compliance Packs", automlr: "FDA today, EU/JP roadmap", other: "Manual or service-heavy", automlrGood: true, otherBad: false },
-    { feature: "15-Second Latency (P95)", automlr: "Proven SLO", other: "Not publicly documented", automlrGood: true, otherBad: true },
-    { feature: "Cryptographically-Sealed Audit", automlr: "Immutable, tamper-proof trail", other: "Basic logs only", automlrGood: true, otherBad: false },
   ]
 
   const howItWorks = [
-    { title: "Content Ingestion", description: "Documents are automatically pulled from Veeva Vault and preprocessed for AI analysis with complete metadata preservation." },
+    { title: "Content Ingestion", description: "Documents are ingested and preprocessed for AI analysis with complete metadata preservation." },
     { title: "Multi-Agent AI Review", description: "Specialized AI agents analyze content for regulatory compliance, medical accuracy, and legal requirements in parallel." },
     { title: "Expert Human Validation", description: "All AI decisions can be reviewed and overridden by human experts. Complex cases are automatically escalated with full context." },
-    { title: "Human-Validated Approval", description: "Only human-approved content is updated in Veeva Vault with complete audit trail for full regulatory traceability." },
+    { title: "Human-Validated Approval", description: "Only human-approved content is released, with complete audit trail for full regulatory traceability." },
   ]
 
   const faqs = [
     { question: "How does AutoMLR maintain human control and oversight?", answer: "AutoMLR is designed as a human-in-the-loop system. AI handles initial analysis and flags potential issues, but humans maintain final authority on all decisions. Reviewers can override any AI recommendation, add contextual notes, and escalate complex cases." },
-    { question: "How quickly can AutoMLR be integrated with our Veeva Vault?", answer: "AutoMLR can be integrated with your existing Veeva Vault instance within 2-4 weeks. Our team handles the complete setup, configuration, and testing to ensure seamless operation without disrupting your current workflows." },
-    { question: "Which regulatory frameworks does AutoMLR support?", answer: "AutoMLR is pre-configured for FDA, EMA, MHRA, and PMDA requirements. The system automatically adapts review criteria based on your target markets and can be customized for additional regulatory frameworks." },
     { question: "What happens when the AI identifies potential compliance issues?", answer: "When potential issues are detected, AutoMLR provides detailed explanations, suggests corrections, and can automatically escalate to human reviewers. All decisions include full audit trails and regulatory justifications." },
-    { question: "Is our sensitive pharmaceutical data secure?", answer: "Yes, AutoMLR is built with enterprise-grade security including SOC 2 Type II compliance, HIPAA compliance, and GDPR compliance. All data is encrypted in transit and at rest, with role-based access controls." },
-    { question: "Can AutoMLR handle different types of content?", answer: "AutoMLR supports all content types including promotional materials, medical information, clinical data, regulatory submissions, and training materials. The AI agents are specialized for different content types and regulatory requirements." },
+    { question: "Is our sensitive pharmaceutical data secure?", answer: "All data is encrypted in transit and at rest, with role-based access controls." },
   ]
-
-  const trustBadges = ["Veeva Vault", "HIPAA", "GDPR", "SOC 2 Type II"]
 
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
         title="AutoMLR | AI-Powered Medical Legal Review for Pharma | The AI Expert"
-        description="Transform pharmaceutical compliance with AutoMLR's multi-agent AI. Accelerate medical legal review by 90% with human oversight, Veeva Vault integration, and regulatory compliance."
-        keywords="medical legal review, MLR automation, pharma compliance, Veeva Vault integration, pharmaceutical AI, regulatory compliance, FDA compliance"
+        description="Transform pharmaceutical compliance with AutoMLR's multi-agent AI. Accelerate medical legal review with human oversight and regulatory compliance."
+        keywords="medical legal review, MLR automation, pharma compliance, Veeva Vault, pharmaceutical AI, regulatory compliance, FDA compliance"
         canonicalUrl="/automlr"
         ogType="product"
       />
       <StructuredData schema={createProductSchema({
         name: "AutoMLR",
-        description: "AI-powered medical legal review automation for pharmaceutical companies. Multi-agent AI with human oversight, native Veeva Vault integration, and FDA/EMA compliance.",
+        description: "AI-powered medical legal review automation for pharmaceutical companies. Multi-agent AI with human oversight.",
         url: "https://theaiexpert.ai/automlr"
       })} />
       <StructuredData schema={createFAQSchema(faqs)} />
@@ -178,23 +164,6 @@ const AutoMLR = () => {
                 </a>
               </Button>
             </div>
-
-            {/* Hero Metrics */}
-            <div className="flex flex-wrap justify-center gap-6">
-              {[
-                { value: "90%", label: "Faster Approvals" },
-                { value: "15s", label: "Latency" },
-                { value: "24/7", label: "Availability" },
-              ].map((metric, index) => (
-                <div
-                  key={index}
-                  className="px-6 py-4 rounded-lg bg-card/50 border border-border backdrop-blur-sm"
-                >
-                  <div className="text-2xl font-heading text-primary glow-green">{metric.value}</div>
-                  <div className="text-sm text-muted-foreground">{metric.label}</div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -239,7 +208,7 @@ const AutoMLR = () => {
               <span className="text-foreground"> SOLUTION</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Our multi-agent AI system transforms medical legal review with intelligent automation, instant processing, and seamless integration.
+              Our multi-agent AI system transforms medical legal review with intelligent automation.
             </p>
           </div>
 
@@ -270,52 +239,21 @@ const AutoMLR = () => {
               <div>
                 <h3 className="text-2xl font-heading text-primary mb-3">AI + HUMAN INTELLIGENCE</h3>
                 <p className="text-muted-foreground">
-                  AutoMLR's multi-agent AI handles routine reviews and flags potential issues, while human experts maintain final authority on complex decisions. This hybrid approach delivers 90% faster processing while ensuring pharmaceutical-grade accuracy.
+                  AutoMLR's multi-agent AI handles routine reviews and flags potential issues, while human experts maintain final authority on complex decisions.
                 </p>
               </div>
               <div>
                 <h3 className="text-2xl font-heading text-primary mb-3">EXPERT OVERSIGHT ALWAYS</h3>
                 <p className="text-muted-foreground">
-                  AI recommendations are transparent and explainable. Human reviewers can override any decision, add context, and maintain full control. Built specifically for pharmaceutical workflows with native Veeva Vault integration.
+                  AI recommendations are transparent and explainable. Human reviewers can override any decision, add context, and maintain full control. Built specifically for pharmaceutical workflows, and designed to work with Veeva Vault (sandbox integration in pilot).
                 </p>
               </div>
               <div>
-                <h3 className="text-2xl font-heading text-primary mb-3">TRUSTED GLOBAL COMPLIANCE</h3>
+                <h3 className="text-2xl font-heading text-primary mb-3">HUMAN-VALIDATED COMPLIANCE</h3>
                 <p className="text-muted-foreground">
-                  Pre-configured for FDA, EMA, MHRA, and PMDA requirements with human validation at every critical checkpoint. AI accelerates the process, humans ensure compliance integrity.
+                  Human validation at every critical checkpoint. AI accelerates the process, humans ensure compliance integrity.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Metrics Section */}
-      <section className="py-24 bg-card/50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-heading mb-6">
-              <span className="text-foreground">PROVEN </span>
-              <span className="text-primary glow-green">RESULTS</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            <div ref={metric1.ref} className="text-center">
-              <div className="text-5xl font-heading text-primary glow-green mb-2">{metric1.count}%</div>
-              <div className="text-muted-foreground">Faster Review Process</div>
-            </div>
-            <div ref={metric2.ref} className="text-center">
-              <div className="text-5xl font-heading text-primary glow-green mb-2">{metric2.count}s</div>
-              <div className="text-muted-foreground">Average Latency</div>
-            </div>
-            <div ref={metric3.ref} className="text-center">
-              <div className="text-5xl font-heading text-primary glow-green mb-2">{metric3.count}.9%</div>
-              <div className="text-muted-foreground">Accuracy Rate</div>
-            </div>
-            <div ref={metric4.ref} className="text-center">
-              <div className="text-5xl font-heading text-primary glow-green mb-2">{metric4.count}/7</div>
-              <div className="text-muted-foreground">Availability</div>
             </div>
           </div>
         </div>
@@ -433,14 +371,6 @@ const AutoMLR = () => {
               <p className="text-xl text-muted-foreground mb-8">
                 Schedule a personalized demo to see how AutoMLR can transform your medical legal review process.
               </p>
-
-              <div className="flex flex-wrap gap-3 mb-8">
-                {trustBadges.map((badge, index) => (
-                  <span key={index} className="px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-sm text-primary">
-                    {badge}
-                  </span>
-                ))}
-              </div>
 
               <Button
                 variant="outline"

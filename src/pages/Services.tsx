@@ -97,17 +97,10 @@ const Services = () => {
       name: "AutoMLR",
       tagline: "Multi-Agent Medical Legal Review Automation",
       description:
-        "Transform pharmaceutical compliance workflows with AI-powered review. 90% faster approvals with seamless Veeva Vault integration and regulatory compliance across all major markets.",
-      metrics: [
-        { value: "90%", label: "Faster Approvals" },
-        { value: "15s", label: "Average Latency" },
-        { value: "24/7", label: "Availability" },
-      ],
+        "Transform pharmaceutical compliance workflows with AI-powered review.",
       features: [
-        "Native Veeva Vault integration",
-        "FDA, EMA, MHRA, PMDA compliance",
+        "Designed to work with Veeva Vault (sandbox integration in pilot)",
         "Multi-agent AI with human oversight",
-        "Cryptographically-sealed audit trails",
       ],
       cta: "Learn More About AutoMLR",
       link: "/automlr",
@@ -118,16 +111,10 @@ const Services = () => {
       tagline: "AI Enrichment for Learning Management Systems",
       description:
         "Transform static courses into dynamic, personalized learning journeys. Adaptive pathways, interactive experiences, and smart content discovery that boost engagement and retention.",
-      metrics: [
-        { value: "70%", label: "Higher Engagement" },
-        { value: "30%", label: "Faster Completion" },
-        { value: "85%", label: "Better Retention" },
-      ],
       features: [
-        "Seamless LMS integration (Canvas, Moodle, Blackboard)",
+        "Designed to work alongside your LMS",
         "Personalized learning paths for each student",
         "Interactive quizzes, simulations, and study guides",
-        "GDPR, FERPA, and COPPA compliant",
       ],
       cta: "Learn More About AILMS",
       link: "/ailms",
@@ -386,7 +373,7 @@ const Services = () => {
               <div className="mb-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                 <h3 className="text-sm font-heading text-primary uppercase tracking-wider mb-3">Delivered in Production</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  From pharmaceutical compliance automation processing thousands of medical-legal reviews monthly, to workplace investigation AI analysing document evidence across complex employment cases, to a coaching platform that went from concept to production in 12 weeks — including kiosk mode for frontline workers without email access. We take AI from concept to production in regulated, high-stakes environments.
+                  From pharmaceutical compliance review in pilot, to a coaching platform that went from concept to production in 12 weeks — including kiosk mode for frontline workers without email access. We take AI from concept to production in regulated, high-stakes environments.
                 </p>
                 <div className="flex flex-wrap gap-4 mt-4">
                   <Link to="/ai-implementation" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1">
@@ -497,7 +484,7 @@ const Services = () => {
               <div className="mb-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                 <h3 className="text-sm font-heading text-primary uppercase tracking-wider mb-3">Domain Expertise That Matters</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Our AutoMLR platform automates pharmaceutical medical-legal review with multi-agent AI and Veeva Vault integration. Our AILMS enriches learning management systems with adaptive AI pathways. Each solution is built with deep domain knowledge, regulatory awareness, and cryptographically-sealed audit trails where compliance demands it.
+                  Our AutoMLR platform automates pharmaceutical medical-legal review with multi-agent AI. Our AILMS enriches learning management systems with adaptive AI pathways. Each solution is built with deep domain knowledge and regulatory awareness.
                 </p>
                 <div className="flex flex-wrap gap-4 mt-4">
                   <Link to="/ai-governance" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1">
@@ -576,20 +563,6 @@ const Services = () => {
                   <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
                     {product.description}
                   </p>
-
-                  {/* Metrics */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-8 p-4 sm:p-6 bg-background/50 rounded-lg border border-border">
-                    {product.metrics.map((metric, idx) => (
-                      <div key={idx} className="text-center">
-                        <div className="text-3xl font-heading text-primary mb-1">
-                          {metric.value}
-                        </div>
-                        <div className="text-xs text-muted-foreground uppercase tracking-wide">
-                          {metric.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
 
                   {/* Features */}
                   <ul className="space-y-3 mb-8 flex-grow">

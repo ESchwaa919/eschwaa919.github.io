@@ -12,8 +12,6 @@ import {
   XCircle,
   ArrowRight,
   Download,
-  Users,
-  TrendingUp,
   ChevronDown,
   GraduationCap,
   Lightbulb,
@@ -24,7 +22,6 @@ import cyberGrid from "@/assets/cyber-grid.jpg"
 import { useLeadCapture } from "@/hooks/useLeadCapture"
 import { LeadCaptureModal } from "@/components/LeadCaptureModal"
 import { useScrollReveal } from "@/hooks/useScrollReveal"
-import { useCounterReveal } from "@/hooks/useCounterReveal"
 
 const AILMS = () => {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null)
@@ -40,10 +37,6 @@ const AILMS = () => {
     submitLead,
     closeModal,
   } = useLeadCapture()
-
-  const metric1 = useCounterReveal(70)
-  const metric2 = useCounterReveal(30)
-  const metric3 = useCounterReveal(85)
 
   const handleDownloadWhitepaper = () => {
     checkAndDownload(
@@ -75,11 +68,11 @@ const AILMS = () => {
     { icon: Target, title: "Custom Learning Paths", description: "Adaptive journeys based on student needs and progress, ensuring every learner finds their optimal route to mastery." },
     { icon: Zap, title: "Interactive Experiences", description: "Quizzes, simulations, conversational study guides that transform passive consumption into active engagement." },
     { icon: Search, title: "Smarter Discovery", description: "AI surfaces related lessons and materials contextually, creating serendipitous learning moments." },
-    { icon: Link2, title: "Seamless Integration", description: "Works with major LMS platforms without disrupting existing workflows or requiring content migration." },
+    { icon: Link2, title: "Works Alongside Your LMS", description: "Designed to work alongside your LMS without disrupting existing workflows or requiring content migration." },
   ]
 
   const howItWorks = [
-    { title: "Connect", description: "Plug into your LMS in minutes with our seamless API integration. No disruption to existing workflows." },
+    { title: "Connect", description: "Designed to work alongside your LMS. No disruption to existing workflows." },
     { title: "Enrich", description: "AI analyzes your courses and builds adaptive paths, creating personalized learning journeys for each student." },
     { title: "Engage", description: "Students interact dynamically with enriched material through personalized quizzes, simulations, and guided discoveries." },
     { title: "Evolve", description: "AI learns from every interaction, continuously improving experiences and outcomes for all learners." },
@@ -88,17 +81,13 @@ const AILMS = () => {
   const faqs = [
     { question: "What is AI Enrichment for LMS?", answer: "AI Enrichment enhances your existing courses with personalization and interactivity to dramatically improve learning outcomes. It transforms static content into dynamic, adaptive experiences." },
     { question: "Do I need to rebuild my courses?", answer: "No, our AI enrichment works with your existing content and LMS platforms. There's no need to migrate or rebuild - we enhance what you already have." },
-    { question: "Which LMS platforms are supported?", answer: "We support Canvas, Moodle, Blackboard, TalentLMS, and many others via our flexible API integration. Contact us to discuss your specific platform." },
+    { question: "Which LMS platforms are supported?", answer: "AI Enrichment is designed to work alongside your LMS. Contact us to discuss your specific platform." },
     { question: "How does AI personalize learning paths?", answer: "Our AI adapts based on student behavior, preferences, and progress. It creates branching pathways, suggests relevant content, and adjusts difficulty in real-time." },
     { question: "Do educators keep control?", answer: "Absolutely. Teachers can edit, override, or customize any AI suggestions. You maintain full control while benefiting from intelligent automation." },
-    { question: "Is student data safe?", answer: "Yes, we're fully GDPR, FERPA, and COPPA compliant with end-to-end encryption. Student privacy and data security are our top priorities." },
-    { question: "What results can I expect?", answer: "Our beta users see 70% higher engagement, 30% faster completion rates, and significantly improved knowledge retention scores." },
   ]
 
   const trustSignals = [
-    { icon: CheckCircle2, text: "Works with top LMS platforms" },
-    { icon: TrendingUp, text: "Proven to improve student engagement" },
-    { icon: Users, text: "Compliant with global education privacy standards" },
+    { icon: CheckCircle2, text: "Designed to work alongside your LMS" },
   ]
 
   return (
@@ -246,31 +235,9 @@ const AILMS = () => {
         </div>
       </section>
 
-      {/* Metrics Section */}
+      {/* Testimonial Section */}
       <section className="py-24 bg-card/50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-heading mb-6">
-              <span className="text-foreground">PROVEN </span>
-              <span className="text-primary glow-green">RESULTS</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-            <div ref={metric1.ref} className="text-center">
-              <div className="text-5xl font-heading text-primary glow-green mb-2">{metric1.count}%</div>
-              <div className="text-muted-foreground">Higher Learner Engagement</div>
-            </div>
-            <div ref={metric2.ref} className="text-center">
-              <div className="text-5xl font-heading text-secondary glow-pink mb-2">{metric2.count}%</div>
-              <div className="text-muted-foreground">Faster Course Completion</div>
-            </div>
-            <div ref={metric3.ref} className="text-center">
-              <div className="text-5xl font-heading text-primary glow-green mb-2">{metric3.count}%</div>
-              <div className="text-muted-foreground">Improved Knowledge Retention</div>
-            </div>
-          </div>
-
           {/* Testimonial */}
           <Card className="max-w-3xl mx-auto p-8 bg-gradient-cyber border-2 border-primary/30 shadow-cyber">
             <p className="text-xl text-foreground italic mb-4">

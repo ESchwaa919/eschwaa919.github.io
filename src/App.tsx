@@ -56,7 +56,7 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/field-notes" element={<FieldNotes />} />
-          {/* Non-live slugs render NotFound inside FieldNote */}
+          {/* Slugs with no note render NotFound inside FieldNote */}
           <Route path="/field-notes/:slug" element={<FieldNote />} />
           {/* Pricing is intentionally unpublished — old links land on Contact */}
           <Route path="/pricing" element={<Navigate to="/contact" replace />} />

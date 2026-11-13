@@ -8,13 +8,17 @@
 import { writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { readLiveFieldNotes } from './fieldNotesData.js';
+import { readFieldNotes } from './fieldNotesData.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, '..', 'dist');
 
 const BASE_URL = 'https://theaiexpert.ai';
 const TODAY = new Date().toISOString().split('T')[0];
+
+// Every note in src/constants/fieldNotes.ts is published. With none, the
+// /field-notes index shows only its empty-state line, so it stays out of the sitemap.
+const fieldNotes = readFieldNotes();
 
 /**
  * Canonical route definitions.
@@ -32,13 +36,17 @@ const routes = [
   { path: '/contact',         priority: '0.7', changefreq: 'monthly' },
   { path: '/courses',         priority: '0.9', changefreq: 'weekly' },
 
-  // Field notes: the index plus one entry per LIVE note (src/constants/fieldNotes.ts)
-  { path: '/field-notes',     priority: '0.7', changefreq: 'weekly' },
-  ...readLiveFieldNotes().map((note) => ({
-    path: `/field-notes/${note.slug}`,
-    priority: '0.6',
-    changefreq: 'yearly',
-  })),
+  // Field notes: the index plus one entry per note, only once there is a note
+  ...(fieldNotes.length > 0
+    ? [
+        { path: '/field-notes', priority: '0.7', changefreq: 'weekly' },
+        ...fieldNotes.map((note) => ({
+          path: `/field-notes/${note.slug}`,
+          priority: '0.6',
+          changefreq: 'yearly',
+        })),
+      ]
+    : []),
 
   // Pillar pages (SEO/GEO)
   { path: '/fractional-caio',   priority: '0.9', changefreq: 'monthly' },

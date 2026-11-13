@@ -33,7 +33,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getLiveFieldNoteForStage, type FieldNoteStage } from "@/constants/fieldNotes";
 
 // The 11-stage delivery lifecycle. Copy authored verbatim (UK English, no em dashes).
-// `fieldNoteStage` links a stage to its field note; the link shows only once that note is live.
+// `fieldNoteStage` links a stage to its field note; the link shows only once that note has been published.
 const stages: {
   number: string;
   title: string;

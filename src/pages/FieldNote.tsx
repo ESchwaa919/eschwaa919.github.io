@@ -17,8 +17,7 @@ const FieldNote = () => {
   const { slug } = useParams<{ slug: string }>();
   const index = liveFieldNotes.findIndex((note) => note.slug === slug);
 
-  // A note that is not live (or does not exist) renders the site's 404, so
-  // nothing about it shows before its post has gone out.
+  // A slug with no note in the data renders the site's 404.
   if (index === -1) {
     return <NotFound />;
   }

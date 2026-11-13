@@ -45,7 +45,7 @@ const ROUTES = [
   '/ailms',
   '/privacy',
   '/terms',
-  // Field notes: the index plus one route per LIVE note (src/constants/fieldNotes.ts)
+  // Field notes: the index plus one route per published note (src/constants/fieldNotes.ts)
   ...fieldNoteRoutes(),
 ];
 

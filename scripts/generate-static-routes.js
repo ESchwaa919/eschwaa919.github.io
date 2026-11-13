@@ -12,7 +12,7 @@
 import { mkdirSync, copyFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { fieldNoteRoutes, pruneNonLiveCards } from './fieldNotesData.js';
+import { fieldNoteRoutes } from './fieldNotesData.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, '..', 'dist');
@@ -41,7 +41,7 @@ const routes = [
   '/ai-governance',
   '/ai-implementation',
   '/use-cases',
-  // Field notes: the index plus one route per LIVE note (src/constants/fieldNotes.ts)
+  // Field notes: the index plus one route per published note (src/constants/fieldNotes.ts)
   ...fieldNoteRoutes(),
 ];
 
@@ -65,7 +65,3 @@ for (const route of routes) {
 }
 
 console.log(`\nDone: ${created} created, ${skipped} skipped`);
-
-// Remove cards of not-yet-live field notes that Vite copied from public/.
-const prunedCards = pruneNonLiveCards(distDir);
-console.log(`Field notes: pruned ${prunedCards.length} non-live card(s) from dist/`);

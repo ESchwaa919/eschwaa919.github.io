@@ -33,7 +33,7 @@ const Footer = () => {
         { name: "Insights", path: "/resources" },
         { name: "Media & Speaking", path: "/resources#media" },
         { name: "Free Tools", path: "/resources#tools" },
-        // Shown only once at least one field note is live
+        // Shown only once at least one field note has been published
         ...(liveFieldNotes.length > 0
           ? [{ name: "Field notes", path: "/field-notes" }]
           : []),

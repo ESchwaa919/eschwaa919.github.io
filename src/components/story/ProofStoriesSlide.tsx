@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Hotel,
-  FileSearch,
   Pill,
   GraduationCap,
   TrendingUp,
@@ -27,25 +26,13 @@ const stories = [
     link: "/ai-strategy",
   },
   {
-    icon: FileSearch,
-    industry: "Workplace Investigations",
-    challenge:
-      "A workplace investigations firm was spending 40+ hours per case manually reviewing thousands of documents to identify evidence patterns across complex employment cases.",
-    approach:
-      "We built an AI system that analyses document evidence, identifies patterns, and generates structured investigation reports — with human oversight at every decision point.",
-    outcome: "70% faster case review",
-    outcomeIcon: Clock,
-    stage: "Implementation",
-    link: "/ai-implementation",
-  },
-  {
     icon: Pill,
     industry: "Pharmaceutical Compliance",
     challenge:
       "Every piece of marketing content required manual compliance checks against FDA, EMA, and MHRA regulations. The medical-legal review bottleneck was costing weeks per campaign.",
     approach:
-      "We deployed multi-agent AI with Veeva Vault integration that reviews content against regulatory requirements, with cryptographically-sealed audit trails for compliance.",
-    outcome: "Reviews in seconds, not days",
+      "We built multi-agent AI that reviews content against regulatory requirements, now in pilot.",
+    outcome: "In pilot",
     outcomeIcon: Clock,
     stage: "Implementation",
     link: "/ai-implementation",
@@ -95,7 +82,7 @@ const ProofStoriesSlide = () => {
             <div
               key={story.industry}
               style={{ transitionDelay: `${index * 80}ms` }}
-              className={`card-surface p-5 lg:p-6 flex flex-col ${revealClasses(storiesVisible)}`}
+              className={`card-surface p-5 lg:p-6 flex flex-col ${stories.length % 2 === 1 && index === stories.length - 1 ? "md:col-span-2" : ""} ${revealClasses(storiesVisible)}`}
             >
               <div className="flex items-center gap-3 mb-4">
                 <StoryIcon className="w-5 h-5 text-primary" aria-hidden="true" />

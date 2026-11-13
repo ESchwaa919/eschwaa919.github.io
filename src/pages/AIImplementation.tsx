@@ -244,7 +244,7 @@ const AIImplementation = () => {
     },
     {
       question: "How do you handle data privacy and security?",
-      answer: "Security and compliance are built into every phase. We conduct data audits during discovery, implement security controls during development, and ensure compliance with relevant regulations (GDPR, HIPAA, SOC 2, etc.) before production deployment. All solutions can run in your own infrastructure if required."
+      answer: "Security and compliance are built into every phase. We conduct data audits during discovery, implement security controls during development, and ensure compliance with relevant regulations before production deployment. All solutions can run in your own infrastructure if required."
     },
     {
       question: "What's the difference between this and your AI Strategy service?",

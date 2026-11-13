@@ -190,7 +190,7 @@ const Process = () => {
         "Clear path to scaling or expanding capabilities",
       ],
       inPractice: {
-        text: "We built a workplace investigation AI that analyses thousands of documents, identifies evidence patterns, and generates structured reports — now used across complex employment cases. For a pharma client, we deployed multi-agent medical-legal review automation processing content against FDA, EMA, and MHRA regulations. A coaching platform went from concept to production in 12 weeks, including kiosk mode for frontline workers without email access.",
+        text: "For a pharma client, we built multi-agent medical-legal review automation, now in pilot. A coaching platform went from concept to production in 12 weeks, including kiosk mode for frontline workers without email access.",
         links: [
           { name: "Implementation methodology", path: "/ai-implementation" },
           { name: "Explore use cases", path: "/use-cases" },

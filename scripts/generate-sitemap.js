@@ -63,7 +63,7 @@ const routes = [
   { path: '/ai-learning',     priority: '0.8', changefreq: 'monthly' },
 
   // Products
-  { path: '/automlr',         priority: '0.8', changefreq: 'monthly' },
+  { path: '/intelligent-content-factory', priority: '0.8', changefreq: 'monthly' },
   { path: '/ailms',           priority: '0.8', changefreq: 'monthly' },
 
   // Legal

@@ -28,7 +28,7 @@ import { useLeadCapture } from "@/hooks/useLeadCapture"
 import { LeadCaptureModal } from "@/components/LeadCaptureModal"
 import { useScrollReveal } from "@/hooks/useScrollReveal"
 
-const AutoMLR = () => {
+const IntelligentContentFactory = () => {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null)
   const [showVideoModal, setShowVideoModal] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -47,9 +47,9 @@ const AutoMLR = () => {
 
   const handleDownloadWhitepaper = () => {
     checkAndDownload(
-      "AutoMLR Technical Whitepaper",
+      "Intelligent Content Factory Technical Whitepaper",
       "/automlr/automlr-whitepaper.pdf",
-      "AutoMLR Page"
+      "Intelligent Content Factory Page"
     )
   }
 
@@ -79,9 +79,9 @@ const AutoMLR = () => {
   ]
 
   const comparisonFeatures = [
-    { feature: "Veeva Vault Integration", automlr: "Designed to work with Veeva Vault (sandbox integration in pilot)", other: "Limited / vendor-specific", automlrGood: true, otherBad: false },
-    { feature: "Multi-Agent AI Architecture", automlr: "Yes", other: "Single model / rule engine", automlrGood: true, otherBad: true },
-    { feature: "Regulatory Compliance Packs", automlr: "FDA today, EU/JP roadmap", other: "Manual or service-heavy", automlrGood: true, otherBad: false },
+    { feature: "Veeva Vault Integration", product: "Designed to work with Veeva Vault (sandbox integration in pilot)", other: "Limited / vendor-specific", productGood: true, otherBad: false },
+    { feature: "Multi-Agent AI Architecture", product: "Yes", other: "Single model / rule engine", productGood: true, otherBad: true },
+    { feature: "Regulatory Compliance Packs", product: "FDA today, EU/JP roadmap", other: "Manual or service-heavy", productGood: true, otherBad: false },
   ]
 
   const howItWorks = [
@@ -92,24 +92,24 @@ const AutoMLR = () => {
   ]
 
   const faqs = [
-    { question: "How does AutoMLR maintain human control and oversight?", answer: "AutoMLR is designed as a human-in-the-loop system. AI handles initial analysis and flags potential issues, but humans maintain final authority on all decisions. Reviewers can override any AI recommendation, add contextual notes, and escalate complex cases." },
-    { question: "What happens when the AI identifies potential compliance issues?", answer: "When potential issues are detected, AutoMLR provides detailed explanations, suggests corrections, and can automatically escalate to human reviewers. All decisions include full audit trails and regulatory justifications." },
+    { question: "How does the Content Factory maintain human control and oversight?", answer: "The Content Factory is designed as a human-in-the-loop system. AI handles initial analysis and flags potential issues, but humans maintain final authority on all decisions. Reviewers can override any AI recommendation, add contextual notes, and escalate complex cases." },
+    { question: "What happens when the AI identifies potential compliance issues?", answer: "When potential issues are detected, the Content Factory provides detailed explanations, suggests corrections, and can automatically escalate to human reviewers. All decisions include full audit trails and regulatory justifications." },
     { question: "Is our sensitive pharmaceutical data secure?", answer: "All data is encrypted in transit and at rest, with role-based access controls." },
   ]
 
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="AutoMLR | AI-Powered Medical Legal Review for Pharma | The AI Expert"
-        description="Transform pharmaceutical compliance with AutoMLR's multi-agent AI. Accelerate medical legal review with human oversight and regulatory compliance."
+        title="Intelligent Content Factory | AI-Powered Medical Legal Review for Pharma | The AI Expert"
+        description="Transform pharmaceutical compliance with Intelligent Content Factory's multi-agent AI. Accelerate medical legal review with human oversight and regulatory compliance."
         keywords="medical legal review, MLR automation, pharma compliance, Veeva Vault, pharmaceutical AI, regulatory compliance, FDA compliance"
-        canonicalUrl="/automlr"
+        canonicalUrl="/intelligent-content-factory"
         ogType="product"
       />
       <StructuredData schema={createProductSchema({
-        name: "AutoMLR",
+        name: "Intelligent Content Factory",
         description: "AI-powered medical legal review automation for pharmaceutical companies. Multi-agent AI with human oversight.",
-        url: "https://theaiexpert.ai/automlr"
+        url: "https://theaiexpert.ai/intelligent-content-factory"
       })} />
       <StructuredData schema={createFAQSchema(faqs)} />
       {/* Hero Section */}
@@ -140,7 +140,7 @@ const AutoMLR = () => {
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Transform your pharmaceutical compliance workflow with AutoMLR's intelligent automation. AI-powered review with human oversight ensures accuracy and regulatory compliance.
+              Transform your pharmaceutical compliance workflow with Intelligent Content Factory's intelligent automation. AI-powered review with human oversight ensures accuracy and regulatory compliance.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
@@ -204,7 +204,7 @@ const AutoMLR = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-heading mb-6">
               <span className="text-foreground">THE </span>
-              <span className="text-primary glow-green">AUTOMLR</span>
+              <span className="text-primary glow-green">CONTENT FACTORY</span>
               <span className="text-foreground"> SOLUTION</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -239,7 +239,7 @@ const AutoMLR = () => {
               <div>
                 <h3 className="text-2xl font-heading text-primary mb-3">AI + HUMAN INTELLIGENCE</h3>
                 <p className="text-muted-foreground">
-                  AutoMLR's multi-agent AI handles routine reviews and flags potential issues, while human experts maintain final authority on complex decisions.
+                  The Content Factory's multi-agent AI handles routine reviews and flags potential issues, while human experts maintain final authority on complex decisions.
                 </p>
               </div>
               <div>
@@ -264,7 +264,7 @@ const AutoMLR = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-heading mb-6">
-              <span className="text-foreground">AUTOMLR VS </span>
+              <span className="text-foreground">THE CONTENT FACTORY VS </span>
               <span className="text-secondary glow-pink">TRADITIONAL</span>
             </h2>
           </div>
@@ -273,7 +273,7 @@ const AutoMLR = () => {
             <div className="bg-gradient-to-r from-primary to-secondary p-4 text-center">
               <div className="grid grid-cols-3 gap-4 text-primary-foreground font-heading">
                 <div>FEATURE</div>
-                <div>AUTOMLR</div>
+                <div>INTELLIGENT CONTENT FACTORY</div>
                 <div>OTHER PLATFORMS</div>
               </div>
             </div>
@@ -281,9 +281,9 @@ const AutoMLR = () => {
               {comparisonFeatures.map((row, index) => (
                 <div key={index} className="grid grid-cols-3 gap-4 p-4 items-center">
                   <div className="font-medium text-foreground">{row.feature}</div>
-                  <div className={`text-sm ${row.automlrGood ? 'text-primary' : 'text-muted-foreground'}`}>
+                  <div className={`text-sm ${row.productGood ? 'text-primary' : 'text-muted-foreground'}`}>
                     <CheckCircle2 className="w-4 h-4 inline mr-2 text-primary" />
-                    {row.automlr}
+                    {row.product}
                   </div>
                   <div className={`text-sm ${row.otherBad ? 'text-secondary' : 'text-muted-foreground'}`}>
                     {row.otherBad ? (
@@ -364,12 +364,12 @@ const AutoMLR = () => {
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-start">
             <div>
               <h2 className="text-4xl md:text-5xl font-heading mb-6">
-                <span className="text-foreground">SEE </span>
-                <span className="text-primary glow-green">AUTOMLR</span>
+                <span className="text-foreground">SEE THE </span>
+                <span className="text-primary glow-green">CONTENT FACTORY</span>
                 <span className="text-foreground"> IN ACTION</span>
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
-                Schedule a personalized demo to see how AutoMLR can transform your medical legal review process.
+                Schedule a personalized demo to see how the Content Factory can transform your medical legal review process.
               </p>
 
               <Button
@@ -400,7 +400,7 @@ const AutoMLR = () => {
         <div className="fixed inset-0 bg-background/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <Card className="bg-card border-2 border-primary shadow-cyber max-w-4xl w-full">
             <div className="p-4 border-b border-border flex items-center justify-between">
-              <h3 className="text-xl font-heading text-primary">AUTOMLR PRODUCT DEMO</h3>
+              <h3 className="text-xl font-heading text-primary">INTELLIGENT CONTENT FACTORY PRODUCT DEMO</h3>
               <button
                 onClick={closeVideoModal}
                 className="w-8 h-8 rounded-lg hover:bg-border flex items-center justify-center transition-colors"
@@ -434,7 +434,7 @@ const AutoMLR = () => {
         onNameChange={setName}
         onEmailChange={setEmail}
         title="DOWNLOAD WHITEPAPER"
-        resourceName="AutoMLR Technical Whitepaper"
+        resourceName="Intelligent Content Factory Technical Whitepaper"
         buttonText="Download Whitepaper"
         buttonIcon="download"
       />
@@ -442,4 +442,4 @@ const AutoMLR = () => {
   )
 }
 
-export default AutoMLR
+export default IntelligentContentFactory

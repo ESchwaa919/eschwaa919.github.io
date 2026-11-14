@@ -33,7 +33,7 @@ organisations in the UK, Europe, and worldwide (remote).
 - **Truth & Tone Studio** – AI content-review studio, currently in pilot.
 - **Invero AI** – AI verification and trust platform for enterprise AI governance and compliance.
 - **Agency** – AI agent orchestration platform for building, deploying, and managing autonomous AI workflows.
-- **AutoMLR** – Medical Legal Review (in pilot) (https://theaiexpert.ai/automlr).
+- **Intelligent Content Factory** – Medical Legal Review (in pilot) (https://theaiexpert.ai/intelligent-content-factory).
 - **AILMS** – AI-powered Learning Management System for personalised training and skills development (in development) (https://theaiexpert.ai/ailms).
 - **Prompt Fluency** – Training toolkit for mastering AI prompt engineering and effective human-AI collaboration (https://theaiexpert.ai/promptfluency).
 - **AI Learning Paths** – Personalised AI learning path generator with curated recommendations (https://theaiexpert.ai/ai-learning).
@@ -46,7 +46,7 @@ Erik and team build and deploy specialised AI agents across domains:
 4. **Legal Domain Expert Agent** – Legal document analysis and compliance checking.
 5. **Integration Test Agent** – Automated integration test generation and execution.
 6. **Content Verification Agent** – Fact-checking and claim verification (Truth & Tone).
-7. **Medical Legal Review Agent** – Automated medical-legal review (AutoMLR, in pilot).
+7. **Medical Legal Review Agent** – Automated medical-legal review (the Content Factory, in pilot).
 8. **Learning Path Agent** – Personalised learning recommendations (AILMS).
 9. **Prompt Coaching Agent** – Real-time prompt improvement suggestions (Prompt Fluency).
 10. **Workflow Orchestration Agent** – Multi-agent coordination and task routing (Agency).

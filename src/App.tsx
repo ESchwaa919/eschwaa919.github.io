@@ -23,7 +23,7 @@ import PromptFluency from "./pages/PromptFluency";
 import AILearning from "./pages/AILearning";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
-import AutoMLR from "./pages/AutoMLR";
+import IntelligentContentFactory from "./pages/IntelligentContentFactory";
 import AILMS from "./pages/AILMS";
 import NotFound from "./pages/NotFound";
 // New pillar pages for SEO/GEO
@@ -68,7 +68,9 @@ const App = () => (
           <Route path="/ai-learning" element={<AILearning />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
-          <Route path="/automlr" element={<AutoMLR />} />
+          <Route path="/intelligent-content-factory" element={<IntelligentContentFactory />} />
+          {/* Product renamed (14 Nov 2026): old links land on the new path */}
+          <Route path="/automlr" element={<Navigate to="/intelligent-content-factory" replace />} />
           <Route path="/ailms" element={<AILMS />} />
           <Route path="/courses" element={<Courses />} />
 

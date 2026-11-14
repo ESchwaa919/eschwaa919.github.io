@@ -94,7 +94,7 @@ const Services = () => {
   // Featured product offerings
   const products = [
     {
-      name: "AutoMLR",
+      name: "Intelligent Content Factory",
       tagline: "Multi-Agent Medical Legal Review Automation",
       description:
         "Transform pharmaceutical compliance workflows with AI-powered review.",
@@ -102,8 +102,8 @@ const Services = () => {
         "Designed to work with Veeva Vault (sandbox integration in pilot)",
         "Multi-agent AI with human oversight",
       ],
-      cta: "Learn More About AutoMLR",
-      link: "/automlr",
+      cta: "Learn More About the Content Factory",
+      link: "/intelligent-content-factory",
       gradient: "from-emerald-600 to-teal-600",
     },
     {
@@ -484,7 +484,7 @@ const Services = () => {
               <div className="mb-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                 <h3 className="text-sm font-heading text-primary uppercase tracking-wider mb-3">Domain Expertise That Matters</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Our AutoMLR platform automates pharmaceutical medical-legal review with multi-agent AI. Our AILMS enriches learning management systems with adaptive AI pathways. Each solution is built with deep domain knowledge and regulatory awareness.
+                  Our Intelligent Content Factory platform automates pharmaceutical medical-legal review with multi-agent AI. Our AILMS enriches learning management systems with adaptive AI pathways. Each solution is built with deep domain knowledge and regulatory awareness.
                 </p>
                 <div className="flex flex-wrap gap-4 mt-4">
                   <Link to="/ai-governance" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1">

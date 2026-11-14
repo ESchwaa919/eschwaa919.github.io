@@ -41,7 +41,8 @@ const ROUTES = [
   '/roi-calculator',
   '/promptfluency',
   '/ai-learning',
-  '/automlr',
+  '/intelligent-content-factory',
+  // /automlr is not pre-rendered: generate-static-routes.js writes a redirect page there
   '/ailms',
   '/privacy',
   '/terms',

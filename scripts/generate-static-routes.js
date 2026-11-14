@@ -12,6 +12,7 @@
 import { mkdirSync, copyFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { fieldNoteRoutes } from './fieldNotesData.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, '..', 'dist');
@@ -40,6 +41,8 @@ const routes = [
   '/ai-governance',
   '/ai-implementation',
   '/use-cases',
+  // Field notes: the index plus one route per published note (src/constants/fieldNotes.ts)
+  ...fieldNoteRoutes(),
 ];
 
 let created = 0;

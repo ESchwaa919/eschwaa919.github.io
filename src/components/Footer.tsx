@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Linkedin, Mail, MapPin, Phone, Facebook, Instagram } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
 import Brandmark from "@/components/Brandmark";
+import { liveFieldNotes } from "@/constants/fieldNotes";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -32,6 +33,10 @@ const Footer = () => {
         { name: "Insights", path: "/resources" },
         { name: "Media & Speaking", path: "/resources#media" },
         { name: "Free Tools", path: "/resources#tools" },
+        // Shown only once at least one field note has been published
+        ...(liveFieldNotes.length > 0
+          ? [{ name: "Field notes", path: "/field-notes" }]
+          : []),
         { name: "Contact", path: "/contact" },
       ],
     },

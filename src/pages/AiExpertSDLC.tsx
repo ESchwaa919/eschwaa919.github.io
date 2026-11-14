@@ -14,6 +14,7 @@ import {
   Rocket,
   Eye,
   Flag,
+  Activity,
   User,
   Compass,
   Layers,
@@ -32,7 +33,7 @@ import { StructuredData, organizationSchema } from "@/components/StructuredData"
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getLiveFieldNoteForStage, type FieldNoteStage } from "@/constants/fieldNotes";
 
-// The 11-stage delivery lifecycle. Copy authored verbatim (UK English, no em dashes).
+// The 12-stage delivery lifecycle. Copy authored verbatim (UK English, no em dashes).
 // `fieldNoteStage` links a stage to its field note; the link shows only once that note has been published.
 const stages: {
   number: string;
@@ -111,24 +112,32 @@ const stages: {
   },
   {
     number: "09",
-    title: "Merge + CI/CD",
-    phase: "Ship",
-    icon: Rocket,
-    description:
-      "After a clean review the change merges and the pipeline deploys automatically. Deploy status is verified and staging environments are auto-cleaned.",
-    fieldNoteStage: "deploy",
-  },
-  {
-    number: "10",
     title: "Verify behaviour",
     phase: "Ship",
     icon: Eye,
     description:
-      "The change is confirmed in the real environment, browser or live API, not just green tests. Anything only proxy-verified is logged as explicit verify-debt.",
+      "Before anything merges, the change is confirmed in a real environment, browser or live API, not just green tests. Anything only proxy-verified is logged as explicit verify-debt.",
     fieldNoteStage: "verification",
   },
   {
+    number: "10",
+    title: "Merge + CI/CD",
+    phase: "Ship",
+    icon: Rocket,
+    description:
+      "Once review is clean and the behaviour is verified, the change merges and the pipeline deploys automatically. Deploy status is checked and staging environments are auto-cleaned.",
+    fieldNoteStage: "deploy",
+  },
+  {
     number: "11",
+    title: "Prove it live",
+    phase: "Ship",
+    icon: Activity,
+    description:
+      "After deploy, the same behaviour is checked again in production, and the live system must report healthy. A green pipeline alone does not count as shipped.",
+  },
+  {
+    number: "12",
     title: "Close the loop",
     phase: "Ship",
     icon: Flag,
@@ -137,12 +146,12 @@ const stages: {
   },
 ];
 
-// Visual grouping of the 11 stages into three phases (all stages stay
+// Visual grouping of the 12 stages into three phases (all stages stay
 // visible; this only clusters them so the lifecycle reads with rhythm).
 const phaseGroups = [
   { label: "Plan", caption: "Specify and sequence the work", numbers: ["01", "02", "03"] },
   { label: "Build", caption: "Make the change, safely", numbers: ["04", "05", "06", "07", "08"] },
-  { label: "Ship", caption: "Land it and prove it", numbers: ["09", "10", "11"] },
+  { label: "Ship", caption: "Verify, ship, then prove it live", numbers: ["09", "10", "11", "12"] },
 ];
 
 // The layered agentic team. "human" and "sme" render in secondary (magenta),
@@ -319,7 +328,7 @@ const AiExpertSDLC = () => {
     <div className="min-h-screen pt-32 pb-20">
       <SEOHead
         title="The AI Expert SDLC: Spec-Driven Agentic Delivery"
-        description="How The AI Expert ships software: an 11-stage spec-driven lifecycle run by an orchestrated AI team with specialist SME agents, from planning to full CI/CD with independent adversarial review."
+        description="How The AI Expert ships software: a 12-stage spec-driven lifecycle run by an orchestrated AI team under human direction. Behaviour is verified before merge, then proven again live after deploy."
         keywords="agentic software delivery, spec-driven development, AI software development lifecycle, adversarial review, AI orchestration, organizational brain, SME agents, agentic SDLC"
         canonicalUrl="/process/sdlc"
       />
@@ -361,7 +370,7 @@ const AiExpertSDLC = () => {
 
           <div className="flex flex-wrap gap-3 justify-center pt-2">
             {[
-              { value: "11", label: "lifecycle stages" },
+              { value: "12", label: "lifecycle stages" },
               { value: "6", label: "agent roles" },
               { value: "6", label: "core principles" },
               { value: "", label: "Human-directed · AI-executed" },

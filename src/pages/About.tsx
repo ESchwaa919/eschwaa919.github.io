@@ -41,40 +41,40 @@ const experience = [
 
 const principles = [
   {
-    icon: Lightbulb,
-    title: "AI is not a magic trick — it's a capability",
-    description:
-      "The companies that win will be the ones that treat AI as a core competency, not a bolt-on. This starts with education and fluency at the leadership level.",
-  },
-  {
     icon: Target,
-    title: "Strategy before scale",
+    title: "Verify the behaviour, not the proxy",
     description:
-      "Most AI projects fail because they begin with tools instead of outcomes. We help organisations understand where AI fits and why it matters before building anything.",
-  },
-  {
-    icon: Rocket,
-    title: "Build fast, learn fast",
-    description:
-      "You don't need six-month projects to prove value. A prototype in a day often reveals more than a committee report in a month. Momentum builds confidence.",
-  },
-  {
-    icon: Users,
-    title: "Blend human judgment with intelligent automation",
-    description:
-      "The winning model is hybrid: AI handles scale, speed, and complexity. Humans handle judgment, nuance, and relationships. When the two align, businesses transform.",
+      "Green tests are evidence, not proof. We check the behaviour in a real environment before it merges, then prove it again live after deploy.",
   },
   {
     icon: Shield,
-    title: "Trust is the foundation",
+    title: "Independent review before landing",
     description:
-      "AI adoption only works when teams believe in the process. Transparency, governance, and pragmatic risk management create the confidence required to move forward.",
+      "Nothing merges on its author's say-so. Every change is reviewed independently before it lands.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Fresh context always",
+    description:
+      "Work starts from the current state of your systems, never from a stale picture of them.",
   },
   {
     icon: Building2,
-    title: "Every business can become AI-powered",
+    title: "Evidence before conclusion",
     description:
-      "You don't need a data science team or Silicon Valley budgets. You need clarity, the right guidance, and the courage to take the first step.",
+      "We follow the full chain before we act on a finding. The answer that confirms what we already suspected is the one we test hardest.",
+  },
+  {
+    icon: Rocket,
+    title: 'No silent stalls, no silent "done"',
+    description:
+      "Everything we take on is tracked to proven completion. Blocked is a status, not a disappearance.",
+  },
+  {
+    icon: Users,
+    title: "One team, one method",
+    description:
+      "Every engagement runs the same lifecycle and the same guardrails, so quality does not depend on who is on the keyboard.",
   },
 ];
 

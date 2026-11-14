@@ -4,7 +4,7 @@ import SceneMarker from "./SceneMarker";
 import Reveal from "./Reveal";
 
 const sdlcChips = [
-  "11 lifecycle stages",
+  "12 lifecycle stages",
   "6 agent roles",
   "Independent adversarial review",
   "MIT-licensed open source",

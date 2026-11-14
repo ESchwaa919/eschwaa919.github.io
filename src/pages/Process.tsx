@@ -38,7 +38,7 @@ const Process = () => {
       challenge: "You can't strategize what you don't understand",
       description:
         "Most AI initiatives fail because leadership can't evaluate proposals, teams can't distinguish hype from reality, and nobody knows what's actually possible. We fix this first.",
-      duration: "2-4 weeks",
+      duration: "A few weeks, sized to your team",
       outcome: "Confident leadership and educated teams who can evaluate AI opportunities critically",
       whoItsFor: "Organizations starting their AI journey or those stuck in 'pilot purgatory'",
       keyActivities: [
@@ -143,25 +143,25 @@ const Process = () => {
     },
     {
       number: "03",
-      name: "Implementation & Scale",
-      tagline: "Build fast, learn fast",
+      name: "Agent-Run Delivery",
+      tagline: "Human direction, agent execution",
       icon: Rocket,
       challenge: "You can't succeed without execution",
       description:
-        "Now we build. We start with rapid prototyping to validate approaches, then move to production deployment. No pilot purgatory — just working solutions that deliver measurable value.",
-      duration: "8-16 weeks per initiative",
-      outcome: "Production-ready AI systems delivering measurable ROI with full team ownership",
+        "Now we build. Delivery is agent-run with human direction: every change starts as a written specification, its behaviour is verified in a real environment before it merges, and it is proven again live after deploy. You see a working version early, then production once the behaviour is proven.",
+      duration: "Scoped per initiative",
+      outcome: "Production AI systems whose behaviour is proven live, with full team ownership",
       whoItsFor: "Organizations ready to execute on specific AI initiatives with committed teams",
       keyActivities: [
         {
           icon: Zap,
-          title: "Rapid Prototyping",
-          description: "Working proof-of-concept in 2-4 weeks to validate technical approach",
+          title: "Spec First",
+          description: "Every change begins as a written specification with explicit acceptance criteria",
         },
         {
           icon: Code,
-          title: "Production Deployment",
-          description: "Full-scale implementation with monitoring, security, and compliance",
+          title: "Verify, Ship, Prove It Live",
+          description: "Behaviour is checked in a real environment before merge, then checked again in production after deploy",
         },
         {
           icon: Users,
@@ -175,7 +175,7 @@ const Process = () => {
         },
       ],
       deliverables: [
-        "Working proof-of-concept (2-4 weeks)",
+        "A working version early, built from an approved specification",
         "Production system with monitoring and alerting",
         "MLOps pipeline for continuous deployment",
         "Complete technical documentation and runbooks",
@@ -185,13 +185,14 @@ const Process = () => {
       ],
       successIndicators: [
         "System running in production with real users",
-        "Measurable ROI within 90 days",
+        "Behaviour proven live in production, not just in tests",
         "Your team can maintain and improve the system",
         "Clear path to scaling or expanding capabilities",
       ],
       inPractice: {
         text: "For a pharma client, we built multi-agent medical-legal review automation, now in pilot. A coaching platform went from concept to production in 12 weeks, including kiosk mode for frontline workers without email access.",
         links: [
+          { name: "How we deliver: The AI Expert SDLC", path: "/process/sdlc" },
           { name: "Implementation methodology", path: "/ai-implementation" },
           { name: "Explore use cases", path: "/use-cases" },
         ],
@@ -205,28 +206,28 @@ const Process = () => {
     {
       name: "Full Transformation",
       stages: ["Literacy", "Strategy", "Implementation"],
-      duration: "4-6 months",
+      duration: "Leadership literacy sessions",
       description: "Complete journey for organizations starting from scratch",
       bestFor: "First AI initiative or building foundational capabilities",
     },
     {
       name: "Strategy Sprint",
       stages: ["Strategy", "Implementation"],
-      duration: "3-4 months",
+      duration: "Use case prioritisation",
       description: "Fast-track for teams with existing AI literacy",
       bestFor: "Organizations with technical teams but no strategic plan",
     },
     {
       name: "Implementation Fast-Track",
       stages: ["Implementation"],
-      duration: "2-3 months",
+      duration: "A written specification",
       description: "Jump straight to building for well-prepared teams",
       bestFor: "Organizations with clear strategy ready to execute",
     },
     {
       name: "Fractional CAIO",
       stages: ["All stages, ongoing"],
-      duration: "6-12+ months",
+      duration: "A standing leadership role",
       description: "Continuous leadership across all phases as you mature",
       bestFor: "Growing companies building AI as a core capability",
     },
@@ -235,9 +236,9 @@ const Process = () => {
   return (
     <div className="process-page min-h-screen pt-32 pb-20">
       <SEOHead
-        title="Our 3-Stage AI Process | Discover, Design, Deploy"
-        description="Transform from AI-curious to AI-confident with our proven 3-stage methodology. Discover opportunities, design solutions, and deploy AI that delivers real business value."
-        keywords="AI process, AI methodology, AI implementation, discover design deploy, AI transformation, AI roadmap"
+        title="Our AI Process | Strategy, Then Agent-Run Delivery"
+        description="How The AI Expert works: literacy and strategy to find the right use cases, then agent-run delivery with human direction, where behaviour is verified before merge and proven again live after deploy."
+        keywords="AI process, AI methodology, AI implementation, agentic delivery, AI strategy, AI roadmap"
         canonicalUrl="/process"
       />
       {/* Hero Section */}
@@ -251,7 +252,7 @@ const Process = () => {
         <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
           {/* Slate */}
           <span className="kicker text-primary inline-block">
-            The Process — 3-stage methodology
+            The Process · Strategy, then delivery
           </span>
 
           <h1 className="title-display">
@@ -259,8 +260,14 @@ const Process = () => {
             <span className="block text-primary">to AI-powered.</span>
           </h1>
           <p className="lede max-w-2xl mx-auto">
-            Our proven 3-stage methodology takes you from confusion to
-            confidence to capability — without the typical pilot purgatory.
+            We start with literacy and strategy, so you know which use cases
+            are worth building. Then delivery is agent-run with human direction:
+            behaviour is verified before anything merges, and proven again live
+            after deploy.{" "}
+            <Link to="/process/sdlc" className="text-primary hover:underline">
+              See how we deliver
+            </Link>
+            .
           </p>
         </div>
       </section>
@@ -339,12 +346,13 @@ const Process = () => {
                     The AI Expert SDLC
                   </h2>
                   <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                    When we build the systems behind your strategy, we run a
-                    spec-driven, agentic delivery lifecycle: every change starts
-                    as a written specification and ends as verified behaviour in
-                    the real environment, with independent adversarial review and
-                    specialist SME agents before anything lands. Explore the full
-                    11-stage method and the agentic team that runs it.
+                    When we build the systems behind your strategy, delivery is
+                    agent-run with human direction. Every change starts as a
+                    written specification and passes independent adversarial
+                    review. Its behaviour is verified in a real environment
+                    before it merges, then proven again live after deploy.
+                    Explore the full 12-stage method and the agentic team that
+                    runs it.
                   </p>
                   <Button
                     size="lg"
@@ -421,7 +429,7 @@ const Process = () => {
                   <div className="flex items-center justify-between pt-4 border-t border-border/50">
                     <div>
                       <div className="text-xs text-muted-foreground uppercase tracking-wide">
-                        Timeline
+                        Starts with
                       </div>
                       <div className="text-sm font-semibold text-primary glow-green">
                         {path.duration}
@@ -471,8 +479,9 @@ const Process = () => {
                       No Pilot Purgatory
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      Rapid prototyping in 2-4 weeks, not 6-month pilots that
-                      never scale. You see results fast or pivot quickly.
+                      A working version early, then production once the
+                      behaviour is proven. You see results early or pivot
+                      quickly.
                     </p>
                   </div>
                 </div>

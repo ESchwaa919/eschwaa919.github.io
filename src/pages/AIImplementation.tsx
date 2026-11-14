@@ -39,10 +39,10 @@ const AIImplementation = () => {
   const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
 
-  // The First 90 Days - EMBED methodology
+  // Implementation phases, from kickoff to behaviour proven live (no fixed durations)
   const implementationPhases = [
     {
-      weeks: "1-2",
+      weeks: "Phase 1",
       name: "Discovery & Scoping",
       icon: Target,
       description: "Define scope, success metrics, and technical approach",
@@ -58,7 +58,7 @@ const AIImplementation = () => {
       color: "primary",
     },
     {
-      weeks: "3-6",
+      weeks: "Phase 2",
       name: "Rapid Prototyping",
       icon: Zap,
       description: "Build working proof-of-concept to validate the approach",
@@ -74,10 +74,10 @@ const AIImplementation = () => {
       color: "secondary",
     },
     {
-      weeks: "7-10",
+      weeks: "Phase 3",
       name: "Production Deployment",
       icon: Rocket,
-      description: "Ship to production with monitoring and safeguards",
+      description: "Verify the behaviour before merge, ship with monitoring and safeguards, then prove it again live",
       activities: [
         "Production infrastructure setup",
         "Security hardening and compliance checks",
@@ -90,7 +90,7 @@ const AIImplementation = () => {
       color: "primary",
     },
     {
-      weeks: "11-12",
+      weeks: "Phase 4",
       name: "Handover & Training",
       icon: Users,
       description: "Transfer knowledge so your team owns the solution",
@@ -112,7 +112,7 @@ const AIImplementation = () => {
     {
       problem: "Scope creep",
       description: "POC keeps expanding without clear boundaries",
-      solution: "Fixed 2-4 week sprints with defined deliverables",
+      solution: "A written specification with explicit acceptance criteria",
     },
     {
       problem: "No production path",
@@ -136,7 +136,7 @@ const AIImplementation = () => {
     {
       title: "Rapid Prototyping",
       icon: Zap,
-      description: "Working prototype in 2-4 weeks, not months. We validate approaches quickly so you can make informed decisions before scaling investment.",
+      description: "A working version early, then production once the behaviour is proven. We validate approaches quickly so you can make informed decisions before scaling investment.",
       details: [
         "Focus on core functionality first",
         "Use real data from day one",
@@ -220,7 +220,7 @@ const AIImplementation = () => {
   const faqs = [
     {
       question: "How long does AI implementation take?",
-      answer: "A typical first AI project takes 90 days from kickoff to production deployment. This includes 2 weeks of discovery, 4 weeks of prototyping, 4 weeks of production deployment, and 2 weeks of handover and training. More complex projects may take longer, but we always start with a focused scope to deliver value quickly."
+      answer: "We don't promise a fixed duration. Every project moves through discovery, a working version, production deployment, and handover, and the pace is set by the scope and by how quickly the behaviour can be proven. You see a working version early, then production once the behaviour is proven. Delivery is agent-run with human direction: behaviour is verified in a real environment before anything merges, and proven again live after deploy. We always start with a focused scope to deliver value quickly."
     },
     {
       question: "What do we own at the end?",
@@ -236,7 +236,7 @@ const AIImplementation = () => {
     },
     {
       question: "What if the prototype doesn't work?",
-      answer: "That's exactly why we prototype first. If the approach doesn't validate during the prototype phase, we pivot or stop before significant investment. You'll have clear evidence of what works and what doesn't within 4-6 weeks, allowing you to make informed decisions about whether to proceed to production."
+      answer: "That's exactly why we prototype first. If the approach doesn't validate during the prototype phase, we pivot or stop before significant investment. You'll have clear evidence of what works and what doesn't early, allowing you to make informed decisions about whether to proceed to production."
     },
     {
       question: "Do we need to have AI expertise in-house?",
@@ -255,15 +255,15 @@ const AIImplementation = () => {
   return (
     <div className="min-h-screen pt-32 pb-20">
       <SEOHead
-        title="AI Implementation for SMEs | From Prototype to Production in 90 Days"
-        description="Get your first AI project to production in 90 days. Expert implementation consulting with rapid prototyping, production deployment, and full knowledge transfer. No pilot purgatory."
+        title="AI Implementation for SMEs | From Prototype to Proven in Production"
+        description="Get your first AI project to production with agent-run delivery under human direction: a working version early, then production once the behaviour is proven, with full knowledge transfer. No pilot purgatory."
         keywords="AI implementation consultant, AI adoption for SMEs, how to implement AI in business, AI pilot programme, AI deployment, AI integration, production AI systems"
         canonicalUrl="/ai-implementation"
       />
       <StructuredData schema={createFAQSchema(faqs)} />
       <StructuredData schema={createServiceSchema([
         { name: "AI Implementation Consulting", description: "End-to-end AI implementation from prototype to production with full knowledge transfer.", url: "https://theaiexpert.ai/ai-implementation" },
-        { name: "Rapid AI Prototyping", description: "Working AI prototype in 2-4 weeks to validate approach before scaling investment.", url: "https://theaiexpert.ai/ai-implementation#prototyping" },
+        { name: "Rapid AI Prototyping", description: "A working AI version early, to validate the approach before scaling investment.", url: "https://theaiexpert.ai/ai-implementation#prototyping" },
         { name: "Production AI Deployment", description: "Deploy AI systems to production with monitoring, security, and compliance.", url: "https://theaiexpert.ai/ai-implementation#deployment" },
       ])} />
 
@@ -290,21 +290,21 @@ const AIImplementation = () => {
           </div>
 
           <h1 className="text-4xl md:text-6xl font-heading leading-tight">
-            <span className="text-gradient-animate glow-green-intense">YOUR FIRST 90 DAYS</span>
+            <span className="text-gradient-animate glow-green-intense">YOUR FIRST AI PROJECT</span>
             <br />
-            <span className="text-foreground">OF REAL AI PROGRESS</span>
+            <span className="text-foreground">PROVEN IN PRODUCTION</span>
           </h1>
 
           <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Stop asking "how do I implement AI?" and start shipping. We take you from idea to production
-            in 90 days with a proven methodology: build fast, learn fast, and own everything you build.
+            Stop asking "how do I implement AI?" and start shipping. We take you from idea to a working
+            version early, then to production once the behaviour is proven, and you own everything we build.
           </p>
 
           {/* Key Value Props */}
           <div className="flex flex-wrap justify-center gap-6 pt-4">
             <div className="flex items-center gap-2 text-muted-foreground">
               <CheckCircle2 className="w-5 h-5 text-primary" />
-              <span>Working prototype in 2-4 weeks</span>
+              <span>A working version early</span>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <CheckCircle2 className="w-5 h-5 text-primary" />
@@ -344,7 +344,7 @@ const AIImplementation = () => {
         </div>
       </section>
 
-      {/* The First 90 Days Section */}
+      {/* Kickoff to Proven Live Section */}
       <section className="py-20 section-glow" id="first-90-days">
         <div
           ref={first90Ref}
@@ -354,10 +354,10 @@ const AIImplementation = () => {
         >
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-heading mb-4">
-              <span className="text-gradient-animate glow-green">THE FIRST 90 DAYS</span>
+              <span className="text-gradient-animate glow-green">FROM KICKOFF TO PROVEN LIVE</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Our proven methodology takes you from kickoff to production in 12 weeks.
+              Four phases take you from kickoff to a system whose behaviour is proven in production.
               No multi-year roadmaps. No endless pilots. Just working AI that delivers value.
             </p>
           </div>
@@ -396,7 +396,7 @@ const AIImplementation = () => {
                               phase.color === "primary" ? "bg-primary/10 text-primary border border-primary/30" : "bg-secondary/10 text-secondary border border-secondary/30"
                             }`}>
                               <Clock className="w-3 h-3 inline mr-1" />
-                              Weeks {phase.weeks}
+                              {phase.weeks}
                             </span>
                             <h3 className="text-2xl font-heading text-foreground">
                               {phase.name}
@@ -531,6 +531,12 @@ const AIImplementation = () => {
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Three principles guide every implementation: speed, production-readiness, and knowledge transfer.
+              Delivery is agent-run with human direction: behaviour is verified before anything merges,
+              then proven again live after deploy.{" "}
+              <Link to="/process/sdlc" className="text-primary hover:underline">
+                See how we deliver
+              </Link>
+              .
             </p>
           </div>
 

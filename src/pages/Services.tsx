@@ -51,7 +51,7 @@ const Services = () => {
       description:
         "Hands-on implementation support, production-ready code, and comprehensive knowledge transfer so your team maintains the solution long-term.",
       benefits: [
-        "Rapid POC development (2-4 weeks)",
+        "A working version early, then production once the behaviour is proven",
         "Production deployment with MLOps and monitoring",
         "LLM integration, RAG architectures, custom ML models",
         "Full documentation, runbooks, and team training",
@@ -367,6 +367,13 @@ const Services = () => {
               </div>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Turn AI strategy into reality with hands-on implementation support. From POC to production, we guide every step of your AI transformation journey.
+              </p>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed -mt-4">
+                Delivery is agent-run with human direction: behaviour is verified in a real environment before anything merges, then proven again live after deploy.{" "}
+                <Link to="/process/sdlc" className="text-primary hover:text-primary/80">
+                  See how we deliver
+                </Link>
+                .
               </p>
 
               {/* In Practice */}

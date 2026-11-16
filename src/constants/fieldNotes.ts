@@ -35,7 +35,17 @@ export const FIELD_NOTE_CARD_HEIGHT = 1350;
 
 export const fieldNotes: FieldNote[] =
 // FIELD_NOTES_DATA_START
-[]
+[
+  {
+    "slug": "the-spec",
+    "stage": "spec",
+    "title": "Day 1 of 5: the spec",
+    "postedAt": "2026-11-16",
+    "text": "Day 1 of 5. The spec.\n\nThis week I'm walking through how we take a piece of work from idea to production with AI agents, one stage a day, the way we actually run it. Today is everything that happens before anyone writes code, human or agent.\n\nWe start by checking whether the thing already exists, whether we started it once and stopped, and how far it got. Agents will very happily rebuild something you already have, and do a nice job of it.\n\nThen a short brief, and two lists before any code. Roughly this shape:\n\nFor: (the user, by role)\nJob, in their words:\nWe'll know it worked when:\nNot doing:\nMust pass:\nMust refuse:\n\nIf we can't fill in \"must refuse\", we don't understand the work yet.\n\nLast week a brief asked a builder to add a lock so two requests couldn't overwrite the same record. The builder measured before writing anything. In real use the clash couldn't happen. The failures came from the test's own fake data colliding with itself, so we shipped a test that keeps it that way and no lock.\n\nA model is very good at filling a gap with a confident guess. Most of the spec is us closing the gaps before it gets the chance.\n\nTomorrow, the code, and why the agent that plans the work never writes it.\n\nWhen your team writes acceptance criteria, do you write down what the feature must refuse, or only what it must do?",
+    "alt": "Before any code, fill this in. For: The user, by role. Never a name. Job, in their words: Quote them. Don't translate it into spec-speak. We'll know it worked when: Something you could watch happen. Not doing: Write down what's out of scope too. Must pass: The cases the feature has to handle. Must refuse: Can't fill this one in? You don't understand the work yet. A brief asked for a lock. The builder measured first and found the clash could never happen in real use, so we shipped a test instead.",
+    "card": "/field-notes/cards/the-spec.png"
+  }
+]
 // FIELD_NOTES_DATA_END
 ;
 

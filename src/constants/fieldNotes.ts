@@ -17,7 +17,7 @@
 // - `text` is the exact approved post text. Paragraphs are separated by a blank
 //   line ("\n\n"); single "\n" line breaks inside a paragraph are kept.
 
-export type FieldNoteStage = "spec" | "code" | "review" | "verification" | "deploy";
+export type FieldNoteStage = "spec" | "code" | "review" | "verification" | "deploy" | "handoffs";
 
 export interface FieldNote {
   slug: string;
@@ -80,6 +80,15 @@ export const fieldNotes: FieldNote[] =
     "text": "Day 5 of 5. Deployment.\n\nMerging is done by a script. The agent that wrote the change doesn't get to press the button. Once it ships, the live system has to report healthy, and then someone checks it working again in the real environment. After that comes the clean-up, where a finished piece of work frees its worktree, its branch and its test data. Half-finished work that never lands costs more than the tokens ever will.\n\nThe thing that surprised me this year is where the bottleneck went. My bottlenecks are now on the CI side.\n\nOn one project the full suite against a real database takes 64 to 81 minutes. A change can only merge once it's been tested on the tip of main, so every merge makes every other waiting PR stale, and you land roughly one change an hour however fast the agents write. Elsewhere a unit-test job runs about 25 minutes against a 30-minute cap, and on a slow runner it got cancelled twice in one day.\n\nSo we batch changes into tested trains, where one full run proves several changes at once. How we decide what's safe to put on the same train I'm keeping to myself for now.\n\nHow long does your slowest required CI check take, and what have you done to get around it?",
     "alt": "The bottleneck has moved. Full suite on a real database: 64 to 81 min: A unit-test job runs about 25 min against a 30 min cap. It got cancelled twice in one day on a slow runner. Merge only on the tip of main: Every merge makes every other open PR stale. That's roughly one change an hour, however fast the agents write. So we batch changes into tested trains: One full run proves several changes at once. How we pick what's safe to batch stays in-house. A script merges, never the author: Then a live health check, then someone sees it working in production.",
     "card": "/field-notes/cards/the-deploy.png"
+  },
+  {
+    "slug": "the-handoffs",
+    "stage": "handoffs",
+    "title": "They forget everything, on purpose",
+    "postedAt": "2026-11-24",
+    "text": "The AI agents I build with forget everything, on purpose.\n\nA long session gets expensive, and it gets muddled. Old decisions sit next to new ones and the agent can't tell which still hold. So we end sessions deliberately, between pieces of work, not at the end of the day.\n\nWhat makes that safe is writing things down. Before a session ends it writes a handoff: what's live, what's half done, what it owes someone, and the first thing to do on restart. The next session reads it before touching anything.\n\nOn Monday morning one of them restarted, read its note, and its first job was to check that a post had actually gone out before logging it as done.\n\nTwo rules came out of getting this wrong.\nIf it isn't written down, it didn't happen. A promise in a chat window dies with the window.\nAnd a handoff is a claim, not a fact. The new session checks it against what's actually live before trusting it.\n\nIt's the same with people. Most teams lose more to what was only in someone's head than to what was written down wrong.\n\nWhat does your team lose when someone goes on holiday?",
+    "alt": "If it isn't written down, it didn't happen. End sessions on purpose: Long sessions get expensive and muddled. Stop between pieces of work, not at the end of the day. Write the handoff first: What's live, what's half done, what's owed, and the first thing to do on restart. Read it before touching anything: The next session starts from the note, not from memory. A handoff is a claim, not a fact: Check it against what's actually live before trusting it. On Monday morning a session restarted, read its note, and checked that a post had really gone out before logging it as done.",
+    "card": "/field-notes/cards/the-handoffs.png"
   }
 ]
 // FIELD_NOTES_DATA_END
